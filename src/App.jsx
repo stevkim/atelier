@@ -1,7 +1,10 @@
+import React from 'react';
+import StarRating from './components/star-rating/StarRating.jsx';
+
 const App = () => {
   return (
     <div>
-      Testing!
+      <StarRating rating={3.2} />
     </div>
   )
 }

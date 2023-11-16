@@ -1,0 +1,23 @@
+.star-rating-wrapper {
+  width: 5em;
+  position: relative;
+  display: flex;
+}
+
+.active-stars {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  display: flex;
+}
+
+.inactive-stars {
+  width: 100%;
+  display: flex;
+  color: gray;
+  position: absolute;
+}
+
+.stars {
+  width: 1em;
+}

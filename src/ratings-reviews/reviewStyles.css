@@ -1,0 +1,63 @@
+.review-wrapper {
+  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+
+.review-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.review-summary {
+  font-weight: bold;
+  margin: 1em 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review-body {
+  word-wrap: break-word;
+  word-break: break-all;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.review-response {
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.helpfulness-wrapper {
+  margin: 1em 0;
+}
+
+.helpfulness-wrapper > span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.helpful-review {
+  margin-left: 1.5em;
+}
+
+.show-more-button {
+  cursor: pointer;
+}
+
+.show-more-button:hover {
+  animation: bounce .5s linear infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

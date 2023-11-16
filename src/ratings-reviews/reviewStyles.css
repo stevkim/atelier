@@ -44,6 +44,7 @@
 
 .show-more-button {
   cursor: pointer;
+  width: fit-content;
 }
 
 .show-more-button:hover {

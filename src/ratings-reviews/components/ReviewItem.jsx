@@ -53,12 +53,12 @@ const ReviewItem = ({ review }) => {
       <div className='review-summary'> {summary} </div>
 
       <div className='review-body'>
-        {show ?
-          <div>{body}</div> :
-          <div>
-            {body.slice(0,250)}...
-            <div className='show-more-button' onClick={() => setShow(true)}>Show more</div>
-          </div>
+        {show
+          ? <div>{body}</div>
+          : <div>
+              {body.slice(0,250)}...
+              <div className='show-more-button' onClick={() => setShow(true)}>Show more</div>
+            </div>
         }
       </div>
       {

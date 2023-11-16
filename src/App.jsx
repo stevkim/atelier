@@ -1,10 +1,10 @@
 import React from 'react';
-import StarRating from './components/star-rating/StarRating.jsx';
+import QuestionsAndAnswers from './q-and-a/QuestionsAndAnswers.jsx'
 
 const App = () => {
   return (
     <div>
-      <StarRating rating={3.2} />
+      <QuestionsAndAnswers />
     </div>
   )
 }

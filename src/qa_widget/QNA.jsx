@@ -9,13 +9,12 @@ export default function QNA() {
   // in the order of most helpful to least helpful
   useEffect(() => {
     setQuestionList(questions.results);
-  }, [])
+  }, []);
 
-  // If there are no questions, only display add a question button
   return (
     <div>
       <h4>QUESTIONS AND ANSWERS</h4>
-      {questions.length > 0 && <QuestionList questionList={questionList}/>}
+      {questionList.length > 0 && <QuestionList questionList={questionList}/>}
     </div>
   );
 };

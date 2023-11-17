@@ -10,7 +10,7 @@ const Reviews = ({ reviews }) => {
     totalReviews += reviews[starsGiven];
   }
   return (
-    <div id='overview-reviews'>
+    <div className='overview-reviews'>
       < StarRating rating={totalStars / totalReviews} />
       <p>See All {totalReviews} Reviews!</p>
     </div>

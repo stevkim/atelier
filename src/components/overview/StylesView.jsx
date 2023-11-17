@@ -3,7 +3,7 @@ import StyleThumbnail from './StyleThumbnail.jsx';
 
 const StylesView = ({styleIndex, styles, updateStyle}) => {
   return (
-    <div id='overview-styles-view'>
+    <div className='overview-styles-view'>
       Thumbnails:
       {styles.map((style, index) => {
         return (

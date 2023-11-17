@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Category = ({category}) => (
-  <div id='overview-category'>
+  <div className='overview-category'>
     {category}
   </div>
 )

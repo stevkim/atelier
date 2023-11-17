@@ -2,7 +2,7 @@ import React from 'react';
 // import ShareButtons from './ShareButtons.jsx';
 
 const Details = ({ slogan, description, features }) => (
-  <div id='overview-details'>
+  <div className='overview-details'>
     <h3>{slogan}</h3>
     <p>{description}</p>
     <ul>
@@ -14,9 +14,9 @@ const Details = ({ slogan, description, features }) => (
         );
       })}
     </ul>
-    < button id='share-facebook'>f</button>
-    < button id='share-x'>x</button>
-    < button id='share-pinterest'>P</button>
+    < button className='share-facebook'>f</button>
+    < button className='share-x'>x</button>
+    < button className='share-pinterest'>P</button>
   </div>
 )
 

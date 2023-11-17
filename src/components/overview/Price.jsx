@@ -5,10 +5,10 @@ const Price = ({selectedStyle}) => {
   const salePrice = selectedStyle.sale_price;
   const isOnSale = salePrice > 0;
   return (
-    <div id='overview-price-container'>
-      <span className='overview-price' id={'overview-price-onSale-' + isOnSale}>Price: {regularPrice}</span>
+    <div className='overview-price-container'>
+      <span className='overview-price' className={'overview-price-onSale-' + isOnSale}>Price: {regularPrice}</span>
       {isOnSale
-        ? <span id='overview-sale-price'>Sale Price: {salePrice}</span>
+        ? <span className='overview-sale-price'>Sale Price: {salePrice}</span>
         : ''}
     </div>
   );

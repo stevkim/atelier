@@ -1,10 +1,12 @@
 import React from 'react';
-import './styles.css';
 import Title from './Title.jsx';
 import Category from './Category.jsx';
 import Details from './Details.jsx';
 import Reviews from './Reviews.jsx';
 import StyleWrapper from './StyleWrapper.jsx';
+
+import './styles.css';
+import product from './product-example.js';
 
 /*
   Note how easy this would be easy to refactor. If we were to break up our input
@@ -12,9 +14,9 @@ import StyleWrapper from './StyleWrapper.jsx';
   changed.
 */
 
-const Overview = ({ product }) => {
+const Overview = () => {
   return (
-    <div id='overview'>
+    <div className='overview'>
       < Title title={product.title} />
       < Category category={product.category} />
 

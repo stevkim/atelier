@@ -6,7 +6,7 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => {
     <select
       name='Size'
       title='-Size-'
-      id='overview-size-dropdown'
+      className='overview-size-dropdown'
       onChange={(e) => { updateSizeSelected(e.target.value) }}>
       {skus.map((sku, index) => {
         return (

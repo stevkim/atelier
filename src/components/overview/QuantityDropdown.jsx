@@ -6,10 +6,10 @@ const QuantityDropdown = ({ skus, sizeSelected }) => {
     <select
       name='Quantity'
       title='-Quantity-'
-      id='overview-quantity-dropdown'>
+      className='overview-quantity-dropdown'>
       {Array.from(Array(skus[sizeSelected].quantity)).slice(0, 25).map((value, index) => {
         return (
-          <option key={'overview-cart-quantity-' + (index+1)}value={index+1}>
+          <option key={'overview-cart-quantity-' + (index+1)} value={index+1}>
             {index+1}
           </option>
         );

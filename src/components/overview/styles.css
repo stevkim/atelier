@@ -4,7 +4,7 @@
   --tertiary-color: rgb(112, 205, 236);
 }
 
-#overview {
+.overview {
   box-sizing: border-box;
   /* display: grid; */
   /* grid-template-areas: '. . title title . .' */
@@ -16,7 +16,7 @@
  * ================
  */
 
-#overview-title {
+.overview-title {
   box-sizing: border-box;
   grid-area: title;
   background-color: var(--primary-color);
@@ -29,7 +29,7 @@
  * ================
  */
 
-#overview-category {
+.overview-category {
   box-sizing: border-box;
 }
 
@@ -39,7 +39,7 @@
  * ================
  */
 
-#overview-details {
+.overview-details {
   box-sizing: border-box;
 }
 
@@ -54,19 +54,17 @@
  */
 
 /* Entire thing */
-#overview-image-view {
+.overview-image-view {
   box-sizing: border-box;
 }
 
 /* Main image in default view */
-.overview-image-main
-#default {
+.overview-image-main-default {
   box-sizing: border-box;
 }
 
 /* Main image in expanded view */
-.overview-image-main
-#expanded {
+.overview-image-main-expanded {
   box-sizing: border-box;
 }
 
@@ -76,12 +74,21 @@
  * ================
  */
 
-#overview-thumbnail-view {
+.overview-thumbnail-view {
   box-sizing: border-box;
 }
 
 /* THUMBNAIL */
 .overview-thumbnail {
+  box-sizing: border-box;
+}
+/*
+ * ================
+ *  STYLE WRAPPER
+ * ================
+ */
+
+.overview-style-wrapper {
   box-sizing: border-box;
 }
 
@@ -91,7 +98,7 @@
  * ================
  */
 
-#overview-styles-view {
+.overview-styles-view {
   box-sizing: border-box;
 }
 
@@ -112,11 +119,11 @@
 }
 
 /* style the regular price if the item is on sale */
-#overview-price-onSale-true {
+.overview-price-onSale-true {
   box-sizing: border-box;
 }
 
-#overview-sale-price {
+.overview-sale-price {
   box-sizing: border-box;
 }
 
@@ -126,14 +133,14 @@
  * ================
  */
 
-#overview-cart-form {
+.overview-cart-form {
   box-sizing: border-box;
 }
 
-#overview-size-dropdown {
+.overview-size-dropdown {
   box-sizing: border-box;
 }
 
-#overview-quantity-dropdown {
+.overview-quantity-dropdown {
   box-sizing: border-box;
 }

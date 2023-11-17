@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Title = ({title}) => (
-  <div id='overview-title'>
+  <div className='overview-title'>
     {title}
   </div>
 )

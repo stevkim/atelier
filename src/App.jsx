@@ -1,14 +1,14 @@
 import React from 'react';
-import StarRating from './components/star-rating/StarRating.jsx';
-import RatingsReviews from './ratings-reviews/RatingsReviews.jsx';
+import QNA from './qa_widget/QNA.jsx';
+// import StarRating from './components/star-rating/StarRating.jsx';
+// import RatingsReviews from './ratings-reviews/RatingsReviews.jsx';
 
 const App = () => {
   return (
     <div>
-      <RatingsReviews />
+      <QNA />
     </div>
-    // hazel
-  )
-}
+  );
+};
 
 export default App;

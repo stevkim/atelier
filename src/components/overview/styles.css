@@ -1,0 +1,146 @@
+:root {
+  --primary-color: black;
+  --secondary-color: gold;
+  --tertiary-color: rgb(112, 205, 236);
+}
+
+.overview {
+  box-sizing: border-box;
+  /* display: grid; */
+  /* grid-template-areas: '. . title title . .' */
+}
+
+/*
+ * ================
+ *      TITLE
+ * ================
+ */
+
+.overview-title {
+  box-sizing: border-box;
+  grid-area: title;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/*
+ * ================
+ *    CATEGORY
+ * ================
+ */
+
+.overview-category {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *    DETAILS
+ * ================
+ */
+
+.overview-details {
+  box-sizing: border-box;
+}
+
+.overview-feature {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *    IMAGE VIEW
+ * ================
+ */
+
+/* Entire thing */
+.overview-image-view {
+  box-sizing: border-box;
+}
+
+/* Main image in default view */
+.overview-image-main-default {
+  box-sizing: border-box;
+}
+
+/* Main image in expanded view */
+.overview-image-main-expanded {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *  THUMBNAIL VIEW
+ * ================
+ */
+
+.overview-thumbnail-view {
+  box-sizing: border-box;
+}
+
+/* THUMBNAIL */
+.overview-thumbnail {
+  box-sizing: border-box;
+}
+/*
+ * ================
+ *  STYLE WRAPPER
+ * ================
+ */
+
+.overview-style-wrapper {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *   STYLES VIEW
+ * ================
+ */
+
+.overview-styles-view {
+  box-sizing: border-box;
+}
+
+/* THUMBNAIL */
+.overview-style-thumbnail {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *      PRICE
+ * ================
+ */
+
+/* style the regular price */
+.overview-price {
+  box-sizing: border-box;
+}
+
+/* style the regular price if the item is on sale */
+.overview-price-onSale-true {
+  box-sizing: border-box;
+}
+
+.overview-sale-price {
+  box-sizing: border-box;
+}
+
+/*
+ * ================
+ *   ADD TO CART
+ * ================
+ */
+
+.overview-cart-form {
+  box-sizing: border-box;
+}
+
+.overview-size-dropdown {
+  box-sizing: border-box;
+}
+
+.overview-quantity-dropdown {
+  box-sizing: border-box;
+}

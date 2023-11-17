@@ -3,6 +3,8 @@
   height: 1em;
   position: relative;
   display: block;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .active-stars {

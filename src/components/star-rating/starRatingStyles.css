@@ -7,6 +7,7 @@
 
 .active-stars {
   position: absolute;
+  left: 0;
   z-index: 10;
   overflow: hidden;
   display: flex;
@@ -15,10 +16,12 @@
 .inactive-stars {
   width: 100%;
   display: flex;
+  left: 0;
   color: gray;
   position: absolute;
 }
 
 .stars {
   width: 1em;
+  height: 1em;
 }

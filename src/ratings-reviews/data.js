@@ -68,7 +68,7 @@ export const reviews = {
       },
       {
           "review_id": 1280428,
-          "rating": 5,
+          "rating": 3.7,
           "summary": "example summary",
           "recommend": true,
           "response": null,

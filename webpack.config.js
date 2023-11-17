@@ -1,4 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+require('dotenv').config({ path: './.env'});
 
 module.exports = {
   mode: 'development',
@@ -13,19 +16,22 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /nodeModules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            "presets": [
-              "@babel/preset-env",
-              "@babel/preset-react"
-            ]
-          }
+          loader: 'babel-loader'
         }
       },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
-      }
+      },
     ]
-  }
+  },
+  plugins: [
+    new NodePolyfillPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        GIT_TOKEN: JSON.stringify(process.env.GIT_TOKEN),
+        API_URL: JSON.stringify(process.env.API_URL)
+      }
+    })
+  ]
 }

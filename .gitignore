@@ -1,6 +1,3 @@
 node_modules
 dist
-*.env
-*.gitignore
-src/app.jsx
-src/components/product-example.js
+.env

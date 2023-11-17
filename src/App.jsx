@@ -1,10 +1,11 @@
 import React from 'react';
-import StarRating from './components/star-rating/StarRating.jsx';
+import Overview from './components/overview/Overview.jsx';
+import product from './components/overview/product-example.js';
 
 const App = () => {
   return (
     <div>
-      <StarRating rating={3.2} />
+      <Overview product={product} />
     </div>
   )
 }

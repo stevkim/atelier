@@ -8,7 +8,7 @@ import RelatedProductsAndComparison from './components/related-products-and-comp
 const App = () => {
   return (
     <div>
-      <Overview product={product} />
+      <RelatedProductsAndComparison />
       <RatingsReviews />
     </div>
   )

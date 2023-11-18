@@ -3,8 +3,13 @@
   overflow-y: auto;
 }
 
+.review-list-container::-webkit-scrollbar {
+  display: none;
+}
+
 .ratings-reviews-title {
   height: 2em;
+  margin-bottom: 0;
 }
 
 .ratings-reviews-container  {
@@ -111,8 +116,29 @@
   }
 }
 
-.bar-wrapper {
+.average-rating-breakdown {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  line-height: .9;
+  font-size: 1.5em;
+  margin: .5em 0;
+}
+
+.average-rating-breakdown > span {
+  font-size: 3em;
+  margin-right: 15px;
+}
+
+.bar-rating {
+  display: flex;
+  flex-direction: row;
   width: inherit;
+  cursor: pointer;
+}
+
+.bar-wrapper {
+  width: 80%;
   height: 1em;
   position: relative;
   display: block;
@@ -128,6 +154,7 @@
 .bar-active, .bar-inactive {
   position: absolute;
   left: 0;
+  bottom: 0;
   height: .5em;
 }
 

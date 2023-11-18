@@ -1,3 +1,44 @@
+.review-list-container {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.ratings-reviews-title {
+  height: 2em;
+}
+
+.review-list-header {
+  font-size: 1.2rem;
+}
+
+.review-sort-options {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  margin-left: .5em;
+  cursor: pointer;
+}
+
+.review-sort-options > option {
+  padding: 0;
+}
+
+.review-sort-options:focus {
+  outline: none;
+}
+
+.review-list-button-wrapper {
+  display: flex;
+  gap: 1em;
+}
+
+.review-list-button-wrapper > * {
+  padding: 1em;
+  border: 1px solid black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .review-wrapper {
   border-bottom: 1px solid black;
   margin-bottom: 1em;

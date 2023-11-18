@@ -50,7 +50,7 @@ const RatingsReviews = () => {
   }, [currentListLength, reviewList, currentSort]);
 
   useEffect(() => {
-    getReviewList(product_id, currentPage, currentSort)
+    getReviewList(product_id, 1, currentSort)
       .then(({data}) => {
         setReviewList(data.results);
         setCurrentPage(1);

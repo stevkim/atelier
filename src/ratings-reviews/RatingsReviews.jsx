@@ -53,6 +53,7 @@ const RatingsReviews = () => {
     getReviewList(product_id, currentPage, currentSort)
       .then(({data}) => {
         setReviewList(data.results);
+        setCurrentPage(1);
         setCurrentListLength(2);
       })
   }, [currentSort])

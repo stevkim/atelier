@@ -10,11 +10,12 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
 
   const convertDate = (date) => {
-    const newDate = new Date(date.split('T')[0]);
+    const newDate = new Date(date);
     const options = {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     };
     return newDate.toLocaleDateString('en-US', options);
   };

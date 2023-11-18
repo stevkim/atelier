@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
+import RatingBreakdown from './components/RatingBreakdown.jsx';
 
 const product_id = 40346;
 
@@ -61,7 +62,10 @@ const RatingsReviews = () => {
   return (
     <div>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
-      {activeList && <ReviewsList reviewList={activeList} handleListIncrement={handleListIncrement} setCurrentSort={setCurrentSort} totalReviews={totalReviews} />}
+      <div className='ratings-reviews-container'>
+        <RatingBreakdown data={metaData} total={totalReviews} />
+        {activeList && <ReviewsList reviewList={activeList} handleListIncrement={handleListIncrement} setCurrentSort={setCurrentSort} totalReviews={totalReviews} />}
+      </div>
     </div>
   )
 }

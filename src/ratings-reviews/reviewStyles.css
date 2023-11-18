@@ -7,6 +7,13 @@
   height: 2em;
 }
 
+.ratings-reviews-container  {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  padding: 1em;
+}
+
 .review-list-header {
   font-size: 1.2rem;
 }
@@ -102,4 +109,29 @@
   100% {
     transform: translateY(0px);
   }
+}
+
+.bar-wrapper {
+  width: inherit;
+  height: 1em;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.bar-active {
+  background-color: gray;
+  z-index: 2;
+}
+
+.bar-active, .bar-inactive {
+  position: absolute;
+  left: 0;
+  height: .5em;
+}
+
+.bar-inactive {
+  width: 100%;
+  background-color: lightgray;
 }

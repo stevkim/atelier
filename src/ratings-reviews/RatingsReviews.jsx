@@ -4,15 +4,16 @@ import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
 
-const product_id = 40346;
+const product_id = 40347;
 
 const RatingsReviews = () => {
+  const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [activeList, setActiveList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSort, setCurrentSort] = useState('relevant'); // cant be newest or helpful
   const [currentListLength, setCurrentListLength] = useState(0);
-  const [metaData, setMetaData] = useState({});
+  const [starFilter, setStarFilter] = useState(0);
 
   const totalReviews = useMemo(() => {
     let total = 0;
@@ -25,6 +26,27 @@ const RatingsReviews = () => {
   const handleListIncrement = () => {
     setCurrentListLength(currentListLength + 2);
   };
+
+  const handleStarFilter = (number) => {
+    if (number === starFilter) {
+      setStarFilter(0);
+    } else {
+      setStarFilter(number);
+    }
+  }
+
+  const setFilteredList = () => {
+    if (starFilter === 0) {
+      setActiveList(reviewList.slice(0, currentListLength));
+    } else {
+      let filteredList = reviewList.filter(review => {
+        if (review.rating === starFilter) {
+          return review
+        }
+      })
+      setActiveList(filteredList.slice(0, currentListLength))
+    }
+  }
 
   useEffect(() => {
     const getData = async() => {
@@ -43,12 +65,12 @@ const RatingsReviews = () => {
         .then(({ data }) => {
           setReviewList([...reviewList, ...data.results]);
           setCurrentPage(currentPage + 1);
-          setActiveList(reviewList.slice(0, currentListLength));
+          setFilteredList();
         })
     } else if (currentListLength !== 0) {
-      setActiveList(reviewList.slice(0, currentListLength));
+      setFilteredList();
     }
-  }, [currentListLength, reviewList, currentSort]);
+  }, [currentListLength, reviewList, currentSort, starFilter]);
 
   useEffect(() => {
     getReviewList(product_id, 1, currentSort)
@@ -56,15 +78,23 @@ const RatingsReviews = () => {
         setReviewList(data.results);
         setCurrentPage(1);
         setCurrentListLength(2);
+        setStarFilter(0);
       })
   }, [currentSort])
 
   return (
-    <div>
+    <div style={{ width: '100%'}}>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <RatingBreakdown data={metaData} total={totalReviews} />
-        {activeList && <ReviewsList reviewList={activeList} handleListIncrement={handleListIncrement} setCurrentSort={setCurrentSort} totalReviews={totalReviews} />}
+        <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
+        <ReviewsList
+          reviewList={activeList}
+          handleListIncrement={handleListIncrement}
+          setCurrentSort={setCurrentSort}
+          totalReviews={totalReviews}
+          currentListLength={currentListLength}
+          starFilter={starFilter}
+        />
       </div>
     </div>
   )

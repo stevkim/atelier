@@ -4,5 +4,5 @@ export const getAverageRating = (ratings, totalRatings) => {
   for (let keys in ratings) {
     total += JSON.parse(keys) * ratings[keys];
   }
-  return (total/totalRatings).toFixed(1);
+  return parseFloat((total/totalRatings).toFixed(1));
 }

@@ -16,7 +16,7 @@ export const reportReview = (id) => {
 
 export const getReviewList = (id, page, sort) => {
   console.log(sort)
-  return axios.get(`${requestUrl}/reviews/?product_id=${id}&page=${page}&count=10&sort=${sort}`, { headers: header });
+  return axios.get(`${requestUrl}/reviews/?product_id=${id}&page=${page}&count=20&sort=${sort}`, { headers: header });
 }
 
 export const getReviewMetaData = (id) => {

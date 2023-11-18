@@ -51,8 +51,7 @@ const ReviewItem = ({ review, getList }) => {
           {reviewer_name}, {formattedDate}
         </div>
       </div>
-
-      <div className='review-summary'> {summary} </div>
+      <div className='review-summary'>{summary} </div>
 
       <div className='review-body'>
         {show

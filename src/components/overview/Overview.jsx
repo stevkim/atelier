@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Title from './Title.jsx';
 import Category from './Category.jsx';
 import Details from './Details.jsx';
 import Reviews from './Reviews.jsx';
-import StyleWrapper from './StyleWrapper.jsx';
+import ImageView from './ImageView.jsx';
+import StylesView from './StylesView.jsx';
+import Price from './Price.jsx';
+import AddToCart from './AddToCart.jsx';
 
 import './styles.css';
 import product from './product-example.js';
@@ -15,6 +18,13 @@ import product from './product-example.js';
 */
 
 const Overview = () => {
+  const [style, setStyle] = useState(0);
+  const selectedStyle = product.styles[style];
+
+  const updateStyle = (int) => {
+    setStyle(int);
+  }
+
   return (
     <div className='overview'>
       < Title title={product.title} />
@@ -28,8 +38,17 @@ const Overview = () => {
       {/* TODO: Use Steven Powers */}
       {< Reviews reviews={product.reviews} />}
 
-      {/* This is a wrapper to prevent excessive rendering due to a style change. */}
-      < StyleWrapper styles={product.styles} />
+      {/* ImageView also contains the thumbnails. */}
+      {< ImageView photos={selectedStyle.photos} />}
+
+      {/* Styles will change the style state */}
+      {< StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />}
+
+      {/* Price also has the SelectedStyle textbox */}
+      {< Price selectedStyle={selectedStyle} />}
+
+      {/* Needs a sizeDropdown, quantityDropdown, and Submit sub */}
+      {< AddToCart skus={selectedStyle.skus} />}
     </div>
   );
 }

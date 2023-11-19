@@ -15,8 +15,9 @@
 }
 
 .review-list-container {
+  width: 70vw;
   height: 50vh;
-  max-width: 70vw;
+  max-width: 1400px;
   overflow-y: auto;
 }
 

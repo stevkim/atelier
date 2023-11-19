@@ -49,7 +49,9 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
     <div className='answer-container'>
       <p>{body}</p>
       <div className='answer-details-container'>
-        <span>by {answerer_name}, {convertDate(date)}</span>|
+        <span>
+          by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, {convertDate(date)}
+        </span>|
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span

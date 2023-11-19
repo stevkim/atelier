@@ -1,6 +1,7 @@
 require('dotenv').config();
 import React, { useState } from 'react';
 import axios from 'axios';
+import { convertDate } from './convertDate.js'
 
 export default function AnswerEntry({ answer, serverURL, headers }) {
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer;
@@ -8,17 +9,6 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   const [updateHelpfulness, setUpdateHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-
-  const convertDate = (date) => {
-    const newDate = new Date(date);
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC'
-    };
-    return newDate.toLocaleDateString('en-US', options);
-  };
 
   const handleHelpfulClick = (id) => {
     if (!isHelpful) {
@@ -47,15 +37,15 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
   return (
     <div className='answer-container'>
-      <p>{body}</p>
+      <p className='answer'>{body}</p>
       <div className='answer-details-container'>
         <span>
-          by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, {convertDate(date)}
+          by <span className='answerer' style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span className='date'>{convertDate(date)}</span>
         </span>|
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span
-          className='yes'
+            className='yes'
             style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
             onClick={() => {handleHelpfulClick(answer_id)}}>Yes</span>({updateHelpfulness})
           </span>|

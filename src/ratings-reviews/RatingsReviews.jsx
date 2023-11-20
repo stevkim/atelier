@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
+import ModalOverlay from './components/ModalOverlay.jsx';
+import AddReviewForm from './components/AddReviewForm.jsx';
 
 const product_id = 40346;
 
@@ -62,6 +64,9 @@ const RatingsReviews = () => {
     <div>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       {activeList && <ReviewsList reviewList={activeList} handleListIncrement={handleListIncrement} setCurrentSort={setCurrentSort} totalReviews={totalReviews} />}
+      <ModalOverlay>
+        <AddReviewForm />
+      </ModalOverlay>
     </div>
   )
 }

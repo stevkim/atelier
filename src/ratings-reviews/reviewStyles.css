@@ -92,6 +92,87 @@
   animation: bounce .5s linear infinite;
 }
 
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 3, 3, .6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modal-background > * {
+  z-index: 16;
+}
+
+.add-review-container {
+  width: 70vw;
+  background: white;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.add-review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper-row {
+  display: flex;
+}
+
+.input-wrapper-row > label {
+  margin-right: .5em;
+}
+
+.input-wrapper-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+}
+
+.product-input-wrapper >  div {
+  min-width: 120px;
+  width: 20%;
+  white-space: nowrap;
+  font-size: .8em;
+}
+
+.user-image-wrapper {
+  display: flex;
+  gap: 1em;
+  flex-direction: row;
+  justify-content: start;
+  width: 100%;
+}
+
+.user-image-wrapper > img {
+  height: auto;
+  width: 120px;
+  box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
+}
+
+textarea {
+  resize: none;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0);

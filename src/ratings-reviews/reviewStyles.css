@@ -135,25 +135,54 @@
 
 .add-review-container {
   width: 70vw;
+  max-width: 800px;
   background: white;
-  padding: 1em;
+  padding: 3em;
   box-sizing: border-box;
+  position: relative;
+}
+
+.add-review-container p {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.add-review-header {
+  display: flex;
+  align-items: center;
+}
+
+.add-review-header > h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.add-review-header > span {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.add-review-header > span:hover {
+  transform: scale(1.1);
 }
 
 .add-review-form {
   display: flex;
   flex-direction: column;
+  gap: .3em;
 }
 
 .input-wrapper-row {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-.input-wrapper-row > {
-}
-
-.input-wrapper-row > label {
+.input-wrapper-row > input {
   margin: 0 .5em;
 }
 
@@ -169,8 +198,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto .5rem;
   border-bottom: 1px solid black;
-  padding-bottom: 1em;
+  padding-bottom: .5em;
 }
 
 .product-input-wrapper >  div {
@@ -180,20 +211,25 @@
   font-size: .8em;
 }
 
+input[type='file'] {
+  margin-bottom: 1em;
+}
+
 .user-image-wrapper {
   display: flex;
   gap: 1em;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   width: 100%;
+  margin-bottom: 1em;
 }
 
 .user-image-wrapper > img {
   height: auto;
-  width: 120px;
-  box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
+  max-width: 20%;
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
 }
 
 textarea {
@@ -338,4 +374,17 @@ textarea {
 
 .filled-star {
   color: darkyellow;
+}
+
+.body-subtext {
+  margin-left: auto;
+  margin-right: .5em;
+  font-size: .5em;
+}
+
+.error-message {
+  font-size: .5em;
+  color: red;
+  width: 50%;
+  margin: .5em auto 0;
 }

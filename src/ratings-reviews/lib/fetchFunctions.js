@@ -22,3 +22,7 @@ export const getReviewList = (id, page, sort) => {
 export const getReviewMetaData = (id) => {
   return axios.get(`${requestUrl}/reviews/meta/?product_id=${id}`, { headers: header });
 }
+
+export const postReview = (id, data) => {
+  return axios.post(`${requestUrl}/reviews/?product_id=${id}`, data, { headers: header });
+}

@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
 import ModalOverlay from './components/ModalOverlay.jsx';
-// import AddReviewForm from './components/AddReviewForm.jsx';
+import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
 
-const AddReviewForm = lazy(() => import('./components/AddReviewForm.jsx'))
-
-const product_id = 40347;
+const product_id = 40348;
 
 const RatingsReviews = () => {
   const [metaData, setMetaData] = useState({});
@@ -18,6 +16,7 @@ const RatingsReviews = () => {
   const [currentSort, setCurrentSort] = useState('relevant'); // cant be newest or helpful
   const [currentListLength, setCurrentListLength] = useState(0);
   const [starFilter, setStarFilter] = useState(0);
+  const [modal, setModal] = useState(false);
 
   const totalReviews = useMemo(() => {
     let total = 0;
@@ -92,7 +91,6 @@ const RatingsReviews = () => {
     <div style={{ width: '100%'}}>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <Suspense fallback={<div>Loading...</div>}>
           <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
           <ReviewsList
             reviewList={activeList}
@@ -101,11 +99,13 @@ const RatingsReviews = () => {
             totalReviews={totalReviews}
             currentListLength={currentListLength}
             starFilter={starFilter}
+            setModal={setModal}
           />
-          <ModalOverlay>
-            <AddReviewForm data={metaData.characteristics}/>
-          </ModalOverlay>
-        </Suspense>
+          {modal &&
+            <ModalOverlay>
+              <AddReviewForm id={product_id} data={metaData.characteristics} setModal={setModal}/>
+            </ModalOverlay>
+          }
       </div>
     </div>
   )

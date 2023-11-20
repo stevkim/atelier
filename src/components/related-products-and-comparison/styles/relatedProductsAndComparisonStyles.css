@@ -1,0 +1,5 @@
+.related-products {
+  display: grid;
+  grid-template-columns: 2em 1fr 1fr 1fr 1fr 2em;
+  gap: 1em;
+}

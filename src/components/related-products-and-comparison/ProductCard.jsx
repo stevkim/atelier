@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../star-rating/StarRating.jsx';
+import Price from '../overview/Price.jsx';
+import './styles/productCardStyles.css';
 require("dotenv").config();
 
 // image url: (products/:id/styles).results[(index where .default? === true)].photos[0].url
@@ -13,9 +15,7 @@ require("dotenv").config();
 
 
 const ProductCard = ({ id }) => {
-  //const imageURL = "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80";
-
-  const [imageURL, setImageURL] = useState('');
+  const [imageURL, setImageURL] = useState('./productimagenotfound.png');
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -49,11 +49,11 @@ const ProductCard = ({ id }) => {
   }, []);
 
   return (
-    <div onClick={() => {console.log(`Product ID: ${id} card clicked`)}}>
-      <img src={imageURL}></img>
+    <div onClick={() => {console.log(`Product ID: ${id} card clicked`)}} className="product-card">
+      <div className="image-container"><img src={imageURL}></img></div>
       <h5>{category}</h5>
       <h3>{name}</h3>
-      <h4>{originalPrice}</h4>
+      <Price selectedStyle={{original_price: originalPrice, sale_price: salePrice}} />
       <StarRating rating={rating} />
     </div>
   );

@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div>
       <Overview product={product} />
+      <RelatedProductsAndComparison />
       <RatingsReviews />
     </div>
   )

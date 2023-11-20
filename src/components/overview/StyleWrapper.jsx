@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageView from './ImageView.jsx';
 import StylesView from './StylesView.jsx';
 import Price from './Price.jsx';

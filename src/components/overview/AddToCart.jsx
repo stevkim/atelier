@@ -18,7 +18,7 @@ const AddToCart = ({ skus }) => {
       arr[i] = skus[arr[i]];
     }
     setSkusArray(arr);
-  }, []);
+  }, [skus]);
 
   const updateSizeSelected = (size) => {
     setSizeSelected(size);

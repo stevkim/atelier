@@ -10,16 +10,16 @@
   display: grid;
   grid-gap: 10px 10px;
   grid-template-areas:
-    'title title title title title title title title title title title '
-    'category category category category category category category category category category category'
-    '. imgMain imgMain imgMain imgMain imgMain details details details details details'
-    '. imgMain imgMain imgMain imgMain imgMain details details details details details'
-    '. imgMain imgMain imgMain imgMain imgMain details details details details details'
-    '. imgMain imgMain imgMain imgMain imgMain selectStyle . . . .'
-    '. imgMain imgMain imgMain imgMain imgMain reviews reviews reviews reviews reviews'
-    '. . . . . . Price Price Price Price Price'
-    '. . . . . . AddToCart AddToCart AddToCart AddToCart . '
-    '. . . . . . AddToCart AddToCart AddToCart AddToCart .';
+    '.       .       .       .       .       title .  .        .       .       .'
+    '.       .       .       .       .       category . .      .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . selectStyle .   .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . reviews .       .       .       .'
+    '.       .       .       .       .       . Price .         .       .       .'
+    '.       .       .       .       .       . AddToCart .     .       .       .';
+  border-style: solid;
 }
 
 /*
@@ -32,8 +32,8 @@
   box-sizing: border-box;
   grid-area: title;
   justify-self: center;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
   grid-area: title;
   max-height: 20px;
 }
@@ -97,16 +97,16 @@
   justify-items: right;
   grid-template-areas:
   /*          1       2       3       4       5       6       7       8       9       10   */
-  /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg .'
-  /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*04*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*05*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*06*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*07*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*08*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*09*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*10*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg .'
+  /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*04*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*05*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*06*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*07*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*08*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*09*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*10*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
 }
 
 /* Main image in default view */
@@ -136,10 +136,15 @@
   box-sizing: border-box;
   position: relative;
   border-style: solid;
-  right: 100px;
+  border-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
   z-index: 1;
   grid-area: thumbnl;
   display: grid;
+  top: 60px;
+  left: 10px;
+  height: 168px;
+  width: 84px;
   grid-template: repeat(4, 1fr) / repeat(2, 1fr);
 }
 
@@ -182,11 +187,14 @@
   box-sizing: border-box;
   position: relative;
   border-style: solid;
+  border-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
   z-index: 1;
   grid-area: selectStyle;
   display: grid;
+  gap: 1px;
   grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-  width: 84px;
+  width: 88px;
 }
 
 /* THUMBNAIL */

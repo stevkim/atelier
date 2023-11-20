@@ -30,6 +30,9 @@ const Overview = () => {
       < Title title={product.title} />
       < Category category={product.category} />
 
+      {/* ImageView also contains the thumbnails. */}
+      {< ImageView photos={selectedStyle.photos} />}
+
       < Details
         slogan={product.slogan}
         description={product.description}
@@ -37,9 +40,6 @@ const Overview = () => {
 
       {/* TODO: Use Steven Powers */}
       {< Reviews reviews={product.reviews} />}
-
-      {/* ImageView also contains the thumbnails. */}
-      {< ImageView photos={selectedStyle.photos} />}
 
       {/* Styles will change the style state */}
       {< StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />}

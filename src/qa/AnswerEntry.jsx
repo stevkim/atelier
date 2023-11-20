@@ -40,16 +40,20 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
       <p className='answer'>{body}</p>
       <div className='answer-details-container'>
         <span>
-          by <span className='answerer' style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span className='date'>{convertDate(date)}</span>
+          by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span>{convertDate(date)}</span>
         </span>|
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span
+            title='Yes'
             className='yes'
             style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
-            onClick={() => {handleHelpfulClick(answer_id)}}>Yes</span>({updateHelpfulness})
-          </span>|
+            onClick={() => {handleHelpfulClick(answer_id)}}>Yes
+          </span>
+          <span title='Count'>({updateHelpfulness})</span>
+        </span>|
         <span
+          title='Report'
           className='report'
           style={{textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default'}}
           onClick={() => {handleReportClick(answer_id)}}>{reported ? 'Reported' : 'Report'}</span>

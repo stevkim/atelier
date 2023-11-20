@@ -1,6 +1,7 @@
 require('dotenv').config();
 import React, { useState } from 'react';
 import axios from 'axios';
+import { convertDate } from './convertDate.js'
 
 export default function AnswerEntry({ answer, serverURL, headers }) {
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer;
@@ -8,16 +9,6 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   const [updateHelpfulness, setUpdateHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-
-  const convertDate = (date) => {
-    const newDate = new Date(date.split('T')[0]);
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    };
-    return newDate.toLocaleDateString('en-US', options);
-  };
 
   const handleHelpfulClick = (id) => {
     if (!isHelpful) {
@@ -46,17 +37,23 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
   return (
     <div className='answer-container'>
-      <p>{body}</p>
+      <p className='answer'>{body}</p>
       <div className='answer-details-container'>
-        <span>by {answerer_name}, {convertDate(date)}</span>|
+        <span>
+          by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span>{convertDate(date)}</span>
+        </span>|
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span
-          className='yes'
+            title='Yes'
+            className='yes'
             style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
-            onClick={() => {handleHelpfulClick(answer_id)}}>Yes</span>({updateHelpfulness})
-          </span>|
+            onClick={() => {handleHelpfulClick(answer_id)}}>Yes
+          </span>
+          <span title='Count'>({updateHelpfulness})</span>
+        </span>|
         <span
+          title='Report'
           className='report'
           style={{textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default'}}
           onClick={() => {handleReportClick(answer_id)}}>{reported ? 'Reported' : 'Report'}</span>

@@ -10,14 +10,14 @@
   display: grid;
   grid-gap: 10px 10px;
   grid-template-areas:
-    '.       .       .       .       .       title .  .        .       .       .'
-    '.       .       .       .       .       category . .      .       .       .'
+    '.       .       .       .       .    title .      .       .       .       .'
+    '.       .       .       .       .    category .   .       .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . selectStyle .   .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . reviews .       .       .       .'
-    '.       .       .       .       .       . Price .         .       .       .'
+    '.       .       .       .       .       . Price   .       .       .       .'
     '.       .       .       .       .       . AddToCart .     .       .       .';
   border-style: solid;
 }
@@ -96,7 +96,7 @@
   align-items: right;
   justify-items: right;
   grid-template-areas:
-  /*          1       2       3       4       5       6       7       8       9       10   */
+  /*          1       2       3       4       5       6       7       8    */
   /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
   /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
   /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'

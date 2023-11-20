@@ -5,7 +5,6 @@ const Reviews = ({ reviews }) => {
   var totalReviews = 0;
   var totalStars = 0;
   for (var starsGiven in reviews) {
-    console.log(starsGiven, reviews[starsGiven])
     totalStars += starsGiven * reviews[starsGiven];
     totalReviews += reviews[starsGiven];
   }

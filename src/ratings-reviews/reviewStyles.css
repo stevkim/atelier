@@ -147,10 +147,14 @@
 
 .input-wrapper-row {
   display: flex;
+  align-items: center;
+}
+
+.input-wrapper-row > {
 }
 
 .input-wrapper-row > label {
-  margin-right: .5em;
+  margin: 0 .5em;
 }
 
 .input-wrapper-column {
@@ -325,4 +329,13 @@ textarea {
   width: 20%;
   height: .5em;
   background-color: lightgray;
+}
+
+.filled-star, .empty-star {
+  width: 1em;
+  height: 1em;
+}
+
+.filled-star {
+  color: darkyellow;
 }

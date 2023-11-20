@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
 import ModalOverlay from './components/ModalOverlay.jsx';
-import AddReviewForm from './components/AddReviewForm.jsx';
+// import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
+
+const AddReviewForm = lazy(() => import('./components/AddReviewForm.jsx'))
 
 const product_id = 40347;
 
@@ -23,7 +25,7 @@ const RatingsReviews = () => {
       total += JSON.parse(metaData.recommended[keys]);
     }
     return total;
-  }, [metaData])
+  }, [metaData]);
 
   const handleListIncrement = () => {
     setCurrentListLength(currentListLength + 2);
@@ -55,8 +57,10 @@ const RatingsReviews = () => {
       const [reviews, meta] = await Promise.all([getReviewList(product_id, currentPage, currentSort), getReviewMetaData(product_id)]);
       setReviewList(reviews.data.results);
       handleListIncrement();
+      console.log(reviews.data.results)
 
       setMetaData(meta.data);
+      console.log(meta.data)
     }
     getData();
   }, [])
@@ -88,15 +92,20 @@ const RatingsReviews = () => {
     <div style={{ width: '100%'}}>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
-        <ReviewsList
-          reviewList={activeList}
-          handleListIncrement={handleListIncrement}
-          setCurrentSort={setCurrentSort}
-          totalReviews={totalReviews}
-          currentListLength={currentListLength}
-          starFilter={starFilter}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
+          <ReviewsList
+            reviewList={activeList}
+            handleListIncrement={handleListIncrement}
+            setCurrentSort={setCurrentSort}
+            totalReviews={totalReviews}
+            currentListLength={currentListLength}
+            starFilter={starFilter}
+          />
+          <ModalOverlay>
+            <AddReviewForm data={metaData.characteristics}/>
+          </ModalOverlay>
+        </Suspense>
       </div>
     </div>
   )

@@ -6,8 +6,20 @@
 
 .overview {
   box-sizing: border-box;
-  /* display: grid; */
-  /* grid-template-areas: '. . title title . .' */
+  position: relative;
+  display: grid;
+  grid-gap: 10px 10px;
+  grid-template-areas:
+    '.       .       .       .       .    title .      .       .       .       .'
+    '.       .       .       .       .    category .   .       .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . selectStyle .   .       .       .'
+    'imgMain imgMain imgMain imgMain imgMain . reviews .       .       .       .'
+    '.       .       .       .       .       . Price   .       .       .       .'
+    '.       .       .       .       .       . AddToCart .     .       .       .';
+  border-style: solid;
 }
 
 /*
@@ -19,8 +31,11 @@
 .overview-title {
   box-sizing: border-box;
   grid-area: title;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  justify-self: center;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  grid-area: title;
+  max-height: 20px;
 }
 
 /*
@@ -31,6 +46,10 @@
 
 .overview-category {
   box-sizing: border-box;
+  grid-area: category;
+  justify-self: center;
+  position: relative;
+  max-height: 60px;
 }
 
 /*
@@ -41,10 +60,26 @@
 
 .overview-details {
   box-sizing: border-box;
+  grid-area: details;
 }
 
 .overview-feature {
   box-sizing: border-box;
+}
+
+.share-facebook {
+  box-sizing: border-box;
+  grid-area: fButton;
+}
+
+.share-x {
+  box-sizing: border-box;
+  grid-area: xButton;
+}
+
+.share-pinterest {
+  box-sizing: border-box;
+  grid-area: PButton;
 }
 
 /*
@@ -56,16 +91,39 @@
 /* Entire thing */
 .overview-image-view {
   box-sizing: border-box;
+  grid-area: imgMain;
+  display: grid;
+  align-items: right;
+  justify-items: right;
+  grid-template-areas:
+  /*          1       2       3       4       5       6       7       8    */
+  /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*04*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*05*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*06*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*07*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*08*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
+  /*09*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*10*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
 }
 
 /* Main image in default view */
-.overview-image-main-default {
+.overview-img-main-default {
   box-sizing: border-box;
+  grid-area: mainImg;
+  object-fit: fill;
+  min-height: 400px;
+  min-width: 400px;
+  max-height: 400px;
+  max-width: 400px;
 }
 
 /* Main image in expanded view */
-.overview-image-main-expanded {
+.overview-img-main-expanded {
   box-sizing: border-box;
+  grid-area: mainImg;
 }
 
 /*
@@ -76,12 +134,29 @@
 
 .overview-thumbnail-view {
   box-sizing: border-box;
+  position: relative;
+  border-style: solid;
+  border-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
+  z-index: 1;
+  grid-area: thumbnl;
+  display: grid;
+  top: 60px;
+  left: 10px;
+  height: 168px;
+  width: 84px;
+  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
 }
 
 /* THUMBNAIL */
 .overview-thumbnail {
   box-sizing: border-box;
+  border-style: solid;
+  object-fit: fill;
+  height: 40px;
+  width: 40px;
 }
+
 /*
  * ================
  *  STYLE WRAPPER
@@ -93,6 +168,16 @@
 }
 
 /*
+ * ===============
+ *    Reviews
+ * ===============
+ */
+.overview-reviews {
+  box-sizing: border-box;
+  grid-area: reviews;
+}
+
+/*
  * ================
  *   STYLES VIEW
  * ================
@@ -100,11 +185,25 @@
 
 .overview-styles-view {
   box-sizing: border-box;
+  position: relative;
+  border-style: solid;
+  border-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
+  z-index: 1;
+  grid-area: selectStyle;
+  display: grid;
+  gap: 1px;
+  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+  width: 88px;
 }
 
 /* THUMBNAIL */
 .overview-style-thumbnail {
   box-sizing: border-box;
+  border-style: solid;
+  object-fit: fill;
+  width: 40px;
+  height: 40px;
 }
 
 /*
@@ -112,6 +211,16 @@
  *      PRICE
  * ================
  */
+
+.overview-selected-style {
+  box-sizing: border-box;
+  grid-area: selectedStyle;
+}
+
+.overview-price-container {
+  box-sizing: border-box;
+  grid-area: Price;
+}
 
 /* style the regular price */
 .overview-price {
@@ -133,8 +242,9 @@
  * ================
  */
 
-.overview-cart-form {
+#overview-cart-form {
   box-sizing: border-box;
+  grid-area: AddToCart;
 }
 
 .overview-size-dropdown {

@@ -4,9 +4,6 @@ import '@testing-library/jest-dom';
 import AnswerEntry from '../AnswerEntry.jsx';
 import { answers } from '../answersData.js';
 import { convertDate } from '../convertDate.js';
-import axios from 'axios';
-
-jest.mock('axios');
 
 describe('Convert Date', () => {
   it('Correctly converts date to desired format', () => {

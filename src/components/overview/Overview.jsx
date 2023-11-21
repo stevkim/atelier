@@ -23,7 +23,6 @@ const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
   const selectedStyle = product.styles[style];
-  console.log(selectedStyle);
 
   productId = productId | 40344;
 

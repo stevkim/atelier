@@ -22,7 +22,6 @@ const AddToCart = ({ skus }) => {
     }
     arr.sort();
     setSkuNumber(arr[0]); // While the skuNums are sorted, take advantage
-    console.log(skuNumber);
     for (var i = 0; i < arr.length; i++) {
       arr[i] = skus[arr[i]];
     }

@@ -1,12 +1,9 @@
 import React from 'react';
 import ProductCard from './ProductCard.jsx';
-import './styles/relatedProductsAndComparisonStyles.css';
 
-const RelatedProducts = ({ relatedProducts, leftButton, rightButton, leftClick, rightClick}) => {
-
-
+const YourOutfit = ( outfitProducts, leftButton) => {
   return (
-    <div className="related-products">
+    <div>
       {leftButton ? <button onClick={leftClick} >{'<'}</button> : <div></div>}
       {relatedProducts.map((id) => {
         return <ProductCard id={id} key={id} />
@@ -16,4 +13,4 @@ const RelatedProducts = ({ relatedProducts, leftButton, rightButton, leftClick, 
   );
 };
 
-export default RelatedProducts;
+export default YourOutfit;

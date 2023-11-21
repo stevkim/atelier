@@ -6,25 +6,69 @@ import axios from 'axios';
 import './qaStyles.css';
 
 export default function QuestionsAndAnswers() {
-  const [answerList, setAnswerList] = useState([]);
+  const [currAnswerList, setCurrAnswerList] = useState([]);
+  const [totalAnswers, setTotalAnswers] = useState(0);
+  const [count, setCount] = useState(2);
 
   const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const headers = { Authorization: process.env.GIT_TOKEN };
 
   useEffect(() => {
-    axios.get(`${serverURL}/qa/questions/646801/answers`, { headers: headers })
+    axios.get(`${serverURL}/qa/questions`, {
+      headers: headers,
+      params: {
+        product_id: 40345
+      }
+    })
       .then((response) => {
-        setAnswerList(response.data.results);
+        const answerObj = response.data.results[0].answers;
+        setTotalAnswers(Object.keys(answerObj).length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    axios.get(`${serverURL}/qa/questions/646801/answers`, {
+      headers: headers,
+      params: {
+        page: 1,
+        count: count
+      }
+    })
+      .then((response) => {
+        setCurrAnswerList(response.data.results);
       })
       .catch((err) => {
         console.log(err);
       })
-  }, []);
+  }, [count]);
+
+  const handleLoadMoreAnswersClick = () => {
+    if(currAnswerList.length < totalAnswers) {
+      setCount(totalAnswers);
+    };
+  };
+
+  const handleCollapseAnswersClick = () => {
+    if(currAnswerList.length === totalAnswers) {
+      setCount(2);
+    }
+  }
 
   return (
     <div>
       <h4>QUESTIONS AND ANSWERS</h4>
-      <AnswerList answerList={ answerList } serverURL={serverURL} headers={headers} />
+      <AnswerList
+        currAnswerList={ currAnswerList }
+        serverURL={serverURL}
+        headers={headers}
+        totalAnswers={totalAnswers}
+        handleLoadMoreAnswersClick={handleLoadMoreAnswersClick}
+        handleCollapseAnswersClick={handleCollapseAnswersClick}
+      />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Title from './Title.jsx';
 import Category from './Category.jsx';
 import Details from './Details.jsx';
@@ -7,9 +7,11 @@ import ImageView from './ImageView.jsx';
 import StylesView from './StylesView.jsx';
 import Price from './Price.jsx';
 import AddToCart from './AddToCart.jsx';
-
 import './styles.css';
-import product from './product-example.js';
+import productExample from './product-example.js';
+import getOverviewById from './helper-funcs/req-handler.js';
+require('dotenv').config();
+const axios = require('axios');
 
 /*
   Note how easy this would be easy to refactor. If we were to break up our input
@@ -17,9 +19,20 @@ import product from './product-example.js';
   changed.
 */
 
-const Overview = () => {
+const Overview = ({ productId }) => {
+  const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
   const selectedStyle = product.styles[style];
+
+  console.log(productId);
+
+  productId = productId | 40344;
+
+  useEffect(() => {
+    getOverviewById(productId)
+      .then(res => setProduct(res))
+      .catch(res => console.log(res))
+  }, [productId])
 
   const updateStyle = (int) => {
     setStyle(int);

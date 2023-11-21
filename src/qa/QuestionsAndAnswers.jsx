@@ -9,6 +9,7 @@ export default function QuestionsAndAnswers() {
   const [currAnswerList, setCurrAnswerList] = useState([]);
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [count, setCount] = useState(2);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const headers = { Authorization: process.env.GIT_TOKEN };
@@ -29,7 +30,6 @@ export default function QuestionsAndAnswers() {
       });
   }, []);
 
-
   useEffect(() => {
     axios.get(`${serverURL}/qa/questions/646801/answers`, {
       headers: headers,
@@ -46,17 +46,15 @@ export default function QuestionsAndAnswers() {
       })
   }, [count]);
 
-  const handleLoadMoreAnswersClick = () => {
-    if(currAnswerList.length < totalAnswers) {
-      setCount(totalAnswers);
-    };
+  const handleLoadMoreAnswers = () => {
+    currAnswerList.length < totalAnswers && setCount(totalAnswers);
+    setIsExpanded(true);
   };
 
-  const handleCollapseAnswersClick = () => {
-    if(currAnswerList.length === totalAnswers) {
-      setCount(2);
-    }
-  }
+  const handleCollapseAnswers = () => {
+    currAnswerList.length === totalAnswers && setCount(2);
+    setIsExpanded(false);
+  };
 
   return (
     <div>
@@ -66,8 +64,9 @@ export default function QuestionsAndAnswers() {
         serverURL={serverURL}
         headers={headers}
         totalAnswers={totalAnswers}
-        handleLoadMoreAnswersClick={handleLoadMoreAnswersClick}
-        handleCollapseAnswersClick={handleCollapseAnswersClick}
+        handleLoadMoreAnswers={handleLoadMoreAnswers}
+        handleCollapseAnswers={handleCollapseAnswers}
+        isExpanded={isExpanded}
       />
     </div>
   )

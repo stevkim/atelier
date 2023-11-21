@@ -13,7 +13,9 @@
   gap: 0.6em;
 }
 .yes,
-.report {
+.report,
+.load-more-answers,
+.collapse-answers {
   cursor: pointer;
 }
 .answer-list-container-expanded {

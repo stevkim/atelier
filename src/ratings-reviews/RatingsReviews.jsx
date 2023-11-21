@@ -8,7 +8,7 @@ import RatingBreakdown from './components/RatingBreakdown.jsx';
 
 const product_id = 40348;
 
-const RatingsReviews = () => {
+const RatingsReviews = ({ id }) => {
   const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [activeList, setActiveList] = useState([]);
@@ -53,18 +53,18 @@ const RatingsReviews = () => {
 
   useEffect(() => {
     const getData = async() => {
-      const [reviews, meta] = await Promise.all([getReviewList(product_id, currentPage, currentSort), getReviewMetaData(product_id)]);
+      const [reviews, meta] = await Promise.all([getReviewList(id, currentPage, currentSort), getReviewMetaData(id)]);
       setReviewList(reviews.data.results);
       handleListIncrement();
 
       setMetaData(meta.data);
     }
     getData();
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (currentListLength > reviewList.length) {
-      getReviewList(product_id, currentPage + 1, currentSort)
+      getReviewList(id, currentPage + 1, currentSort)
         .then(({ data }) => {
           setReviewList([...reviewList, ...data.results]);
           setCurrentPage(currentPage + 1);
@@ -76,7 +76,7 @@ const RatingsReviews = () => {
   }, [currentListLength, reviewList, currentSort, starFilter]);
 
   useEffect(() => {
-    getReviewList(product_id, 1, currentSort)
+    getReviewList(id, 1, currentSort)
       .then(({data}) => {
         setReviewList(data.results);
         setCurrentPage(1);
@@ -101,7 +101,7 @@ const RatingsReviews = () => {
           />
           {modal &&
             <ModalOverlay>
-              <AddReviewForm id={product_id} data={metaData.characteristics} setModal={setModal}/>
+              <AddReviewForm id={id} data={metaData.characteristics} setModal={setModal}/>
             </ModalOverlay>
           }
       </div>

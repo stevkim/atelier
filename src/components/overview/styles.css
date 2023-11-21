@@ -8,10 +8,10 @@
   box-sizing: border-box;
   position: relative;
   display: grid;
-  grid-gap: 10px 10px;
+  gap: 0.67em;
   grid-template-areas:
-    '.       .       .       .       .    title .      .       .       .       .'
-    '.       .       .       .       .    category .   .       .       .       .'
+    'title   title   title   title   title   title title title title   title   title'
+    'categor categor categor categor categor categor categor categor categor categor categor'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
     'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
@@ -32,10 +32,13 @@
   box-sizing: border-box;
   grid-area: title;
   justify-self: center;
+  text-align: center;
   background-color: var(--tertiary-color);
   color: var(--primary-color);
   grid-area: title;
-  max-height: 20px;
+  font-size: 2em;
+  max-width: 20em;
+  min-width: 20em;
 }
 
 /*
@@ -46,11 +49,22 @@
 
 .overview-category {
   box-sizing: border-box;
-  grid-area: category;
+  grid-area: categor;
   justify-self: center;
+  text-align: center;
   position: relative;
-  max-height: 60px;
+  max-height: 2em;
+  font-size: 1.5em;
+  max-width: 20em;
+  min-width: 20em;
 }
+
+/*
+ * ================
+ *     INFO
+ *  (Future use)
+ * ================
+ */
 
 /*
  * ================
@@ -61,25 +75,59 @@
 .overview-details {
   box-sizing: border-box;
   grid-area: details;
+  position: relative;
+  display: grid;
+  min-height: 14.5em;
+  max-height: 14.5em;
+  grid-template-areas:
+    'slogan . . .'
+    'description description . .'
+    'description description . .'
+    'feature . . .'
+    'feature . . .'
+    'buttons . . .'
+}
+
+.overview-slogan {
+  box-sizing: border-box;
+  grid-area: slogan;
+  margin-block-start: 2em;
+  margin-block-end: 0em;
+}
+
+.overview-description {
+  box-sizing: border-box;
+  grid-area: description;
+  min-height: 3em;
+  max-height: 3em;
+  min-width: 25em;
+  max-width: 25em;
+}
+
+.overview-feature-wrapper {
+  box-sizing: border-box;
+  grid-area: feature;
 }
 
 .overview-feature {
   box-sizing: border-box;
 }
 
+.overview-share-buttons {
+  box-sizing: border-box;
+  grid-area: buttons;
+}
+
 .share-facebook {
   box-sizing: border-box;
-  grid-area: fButton;
 }
 
 .share-x {
   box-sizing: border-box;
-  grid-area: xButton;
 }
 
 .share-pinterest {
   box-sizing: border-box;
-  grid-area: PButton;
 }
 
 /*
@@ -92,6 +140,7 @@
 .overview-image-view {
   box-sizing: border-box;
   grid-area: imgMain;
+  position: relative;
   display: grid;
   align-items: right;
   justify-items: right;
@@ -113,11 +162,12 @@
 .overview-img-main-default {
   box-sizing: border-box;
   grid-area: mainImg;
+  position: relative;
   object-fit: fill;
-  min-height: 400px;
-  min-width: 400px;
-  max-height: 400px;
-  max-width: 400px;
+  min-height: 25em;
+  min-width: 25em;
+  max-height: 25em;
+  max-width: 25em;
 }
 
 /* Main image in expanded view */
@@ -141,10 +191,11 @@
   z-index: 1;
   grid-area: thumbnl;
   display: grid;
-  top: 60px;
-  left: 10px;
-  height: 168px;
-  width: 84px;
+  top: 4em;
+  left: 0.67em;
+  height: 10.5em;
+  width: 5.5em;
+  gap: 1px;
   grid-template: repeat(4, 1fr) / repeat(2, 1fr);
 }
 
@@ -153,8 +204,8 @@
   box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
-  height: 40px;
-  width: 40px;
+  height: 2.5em;
+  width: 2.5em;
 }
 
 /*
@@ -194,7 +245,7 @@
   display: grid;
   gap: 1px;
   grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-  width: 88px;
+  width: 5.5em;
 }
 
 /* THUMBNAIL */
@@ -202,8 +253,8 @@
   box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
-  width: 40px;
-  height: 40px;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 /*
@@ -249,8 +300,10 @@
 
 .overview-size-dropdown {
   box-sizing: border-box;
+  inline-size: 4em;
 }
 
 .overview-quantity-dropdown {
   box-sizing: border-box;
+  inline-size: 4em;
 }

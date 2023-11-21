@@ -1,8 +1,6 @@
 import axios from 'axios';
 require('dotenv').config();
 
-console.log(process.env);
-
 const getProductInfo = (productId) => {
   let url = process.env.API_URL + 'products/' + productId;
   let headers = {
@@ -50,7 +48,6 @@ const getOverviewById = async (productId) => {
     description: productLevelInfo.data.description,
     styles: styleInfo.data.results
   }
-  console.log(res);
   return res;
 };
 

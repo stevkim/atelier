@@ -9,7 +9,7 @@ import Price from './Price.jsx';
 import AddToCart from './AddToCart.jsx';
 import './styles.css';
 import productExample from './product-example.js';
-import getOverviewById from './helper-funcs/req-handler.js';
+import getOverviewById from './helper-funcs/getOverviewById.js';
 require('dotenv').config();
 const axios = require('axios');
 
@@ -23,20 +23,26 @@ const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
   const selectedStyle = product.styles[style];
-
-  console.log(productId);
+  console.log(selectedStyle);
 
   productId = productId | 40344;
 
   useEffect(() => {
     getOverviewById(productId)
       .then(res => setProduct(res))
-      .catch(res => console.log(res))
+      .catch(err => console.log(err))
   }, [productId])
+
+  useEffect(() => {
+
+  })
 
   const updateStyle = (int) => {
     setStyle(int);
   }
+
+  // Tech debt: It would probably be faster to just pass in the entire product.
+  // It's definitely more readable this way, though.
 
   return (
     <div className='overview'>
@@ -46,6 +52,7 @@ const Overview = ({ productId }) => {
       {/* ImageView also contains the thumbnails. */}
       {< ImageView photos={selectedStyle.photos} />}
 
+      {/* Tech Debt: Layout will be more responsive if we throw everything underneath this in a div and fix the CSS */}
       < Details
         slogan={product.slogan}
         description={product.description}

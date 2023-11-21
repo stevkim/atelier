@@ -5,8 +5,8 @@ const Reviews = ({ reviews }) => {
   var totalReviews = 0;
   var totalStars = 0;
   for (var starsGiven in reviews) {
-    totalStars += starsGiven * reviews[starsGiven];
-    totalReviews += reviews[starsGiven];
+    totalStars += (starsGiven * reviews[starsGiven]);
+    totalReviews += Number(reviews[starsGiven]);
   }
   return (
     <div className='overview-reviews'>

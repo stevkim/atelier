@@ -1,4 +1,4 @@
-var product = {
+var productExample = {
   product_id: 1,
   title: 'test title',
   category: 'test category',
@@ -79,7 +79,7 @@ var product = {
   ]
 }
 
-export default product;
+export default productExample;
 
 /* The above can be made like so, given only a productId
  * let productLevelInfo = GET /products/:productId

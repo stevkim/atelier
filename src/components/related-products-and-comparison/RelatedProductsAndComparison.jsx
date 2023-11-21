@@ -1,55 +1,48 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import RelatedProducts from './RelatedProducts.jsx';
-import './styles/relatedProductsAndComparisonStyles.css'
+import axios from 'axios';
+import ProductList from './ProductList.jsx';
+import './styles/relatedProductsAndComparisonStyles.css';
 
-const RelatedProductsAndComparison = () => {
-  const [fourProducts, setFourProducts] = useState([]);
-  const [firstIndex, setFirstIndex] = useState(0);
-  const [lastIndex, setLastIndex] = useState(0);
+const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [leftButton, setLeftButton] = useState(false);
-  const [rightButton, setRightButton] = useState(false);
+  const [outfitProducts, setOutfitProducts] = useState([-1]);
 
   useEffect(() => {
-    // replace this with API call to get relatedProducts
-    const apiCallResults = [40348, 40352, 40350, 40345, 40344, 40346, 40347];
-    if (apiCallResults.length > 4) {
-      setLastIndex(3)
-      setRightButton(true);
+    axios.get(`${process.env.API_URL}products/${currentProduct}/related`, {headers: {Authorization: process.env.GIT_TOKEN}})
+      .then(({ data }) => {
+        const uniqueRelatedProducts = data.filter((value, index, array) => array.indexOf(value) === index);
+        setRelatedProducts(uniqueRelatedProducts);
+      })
+      .catch((err) => {
+        console.log(`Failed to retrieve related products for Product ID: ${currentProduct}`);
+      })
+  }, [currentProduct]);
+
+  const productCardClickHandler = (id) => {
+    setCurrentProduct(id);
+  };
+
+  const addToOutfitHandler = () => {
+    if (outfitProducts.includes(currentProduct)) {
+      console.log(`Product ID: ${currentProduct} already in Your Outfit`);
     } else {
-      setLastIndex(apiCallResults.length - 1)
+      setOutfitProducts([-1, currentProduct].concat(outfitProducts.slice(1)));
+      console.log(`Product id: ${currentProduct} added to Your Outfit`);
     }
-    setRelatedProducts(apiCallResults);
-  }, [])
-
-  useEffect(() => {
-    setFourProducts(relatedProducts.slice(firstIndex, lastIndex + 1));
-  }, [firstIndex, lastIndex]);
-
-  const leftClickHandler = () => {
-    setRightButton(true);
-    setLastIndex(lastIndex - 1);
-    if (firstIndex === 1) {
-      setLeftButton(false);
-    }
-    setFirstIndex(firstIndex - 1);
   };
 
-  const rightClickHandler = () => {
-    setLeftButton(true);
-    setFirstIndex(firstIndex + 1);
-    if (lastIndex === relatedProducts.length - 2) {
-      setRightButton(false);
-    }
-    setLastIndex(lastIndex + 1);
+  const removeFromOutfitHandler = (id) => {
+    setOutfitProducts(outfitProducts.filter((productId) => productId !== id));
+    console.log(`Product id: ${id} removed from Your Outfit`);
   };
-
 
   return (
     <div>
       <h2>RELATED PRODUCTS</h2>
-      <RelatedProducts relatedProducts={fourProducts} leftButton={leftButton} rightButton={rightButton} leftClick={leftClickHandler} rightClick={rightClickHandler} />
+      <ProductList  products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} />
+      <h2>YOUR OUTFIT</h2>
+      <ProductList  products={outfitProducts} productCardClick={removeFromOutfitHandler} isYourOutfit={true} addToOutfit={addToOutfitHandler} />
     </div>
   )
 };

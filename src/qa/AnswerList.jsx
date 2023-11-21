@@ -2,7 +2,6 @@ import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 
 export default function AnswerList({ currAnswerList, serverURL, headers, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isExpanded }) {
-  console.log(totalAnswers)
   return (
     <div className={`answer-list-container ${isExpanded && 'answer-list-container-expanded'}`}>
       {

@@ -56,10 +56,8 @@ const RatingsReviews = () => {
       const [reviews, meta] = await Promise.all([getReviewList(product_id, currentPage, currentSort), getReviewMetaData(product_id)]);
       setReviewList(reviews.data.results);
       handleListIncrement();
-      console.log(reviews.data.results)
 
       setMetaData(meta.data);
-      console.log(meta.data)
     }
     getData();
   }, [])

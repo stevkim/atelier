@@ -13,3 +13,12 @@ export const reportReview = (id) => {
   console.log(id)
   return axios.put(`${requestUrl}/reviews/${id}/report`, null, { headers: header });
 }
+
+export const getReviewList = (id, page, sort) => {
+  console.log(sort)
+  return axios.get(`${requestUrl}/reviews/?product_id=${id}&page=${page}&count=20&sort=${sort}`, { headers: header });
+}
+
+export const getReviewMetaData = (id) => {
+  return axios.get(`${requestUrl}/reviews/meta/?product_id=${id}`, { headers: header });
+}

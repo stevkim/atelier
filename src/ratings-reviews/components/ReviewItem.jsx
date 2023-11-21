@@ -4,12 +4,13 @@ import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
 import { convertDate } from '../lib/convertDate.js';
 
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, getList }) => {
   const { reviewer_name, rating, email, date, summary, response,
     body, photos, recommend, helpfulness, review_id } = review;
 
   const [clicked, setClicked] = useState(false);
   const [show, setShow] = useState(true);
+  const [helpful, setHelpful] = useState(helpfulness);
   const formattedDate = useMemo(() => convertDate(date), [date]);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const ReviewItem = ({ review }) => {
     updateHelpfulness(id)
       .then(result => {
         setClicked(true);
+        setHelpful(helpful + 1);
       })
       .catch(err => {
         console.log(err);
@@ -49,8 +51,7 @@ const ReviewItem = ({ review }) => {
           {reviewer_name}, {formattedDate}
         </div>
       </div>
-
-      <div className='review-summary'> {summary} </div>
+      <div className='review-summary'>{summary} </div>
 
       <div className='review-body'>
         {show
@@ -78,7 +79,7 @@ const ReviewItem = ({ review }) => {
 
       <div className='helpfulness-wrapper'> Helpful?
         <span className='helpful-review' onClick={() => handleHelpfulClick(review_id)}>Yes</span>
-        ({helpfulness})  |{' '}
+        ({helpful})  |{' '}
         <span onClick={() => handleReportClick(review_id)}>Report</span>
       </div>
     </div>

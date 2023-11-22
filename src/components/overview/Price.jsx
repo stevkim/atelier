@@ -6,9 +6,9 @@ const Price = ({ selectedStyle }) => {
   const isOnSale = salePrice > 0;
   return (
     <div className='overview-price-container'>
-      <span className='overview-price' className={'overview-price-onSale-' + isOnSale}>Price: {regularPrice}</span>
+      <span className='overview-price'>${regularPrice}</span>
       {isOnSale
-        ? <span className='overview-sale-price'>Sale Price: {salePrice}</span>
+        ? <span className='overview-sale-price'>{' Sale: $' + salePrice}</span>
         : ''}
       <div className='overview-selected-style'>
         {selectedStyle.name}

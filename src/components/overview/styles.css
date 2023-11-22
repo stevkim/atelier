@@ -103,7 +103,7 @@
   height: 25em;
   grid-template-areas:
     '. . . . .'
-    'reviews reviews . . .'
+    'reviews . . . .'
     'categor categor . . .'
     'title   title   . . .'
     'price   .       . . .'
@@ -116,6 +116,9 @@
 .overview-reviews {
   box-sizing: border-box;
   grid-area: reviews;
+  display: grid;
+  gap: 1em;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
 }
 
 .overview-category {

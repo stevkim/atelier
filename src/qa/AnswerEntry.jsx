@@ -5,16 +5,16 @@ import { convertDate } from './convertDate.js'
 
 export default function AnswerEntry({ answer, serverURL, headers }) {
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer;
-  const [isHelpful, setIsHelpful] = useState(false);
-  const [updateHelpfulness, setUpdateHelpfulness] = useState(helpfulness);
+  const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
+  const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-  const handleHelpfulClick = (id) => {
-    if (!isHelpful) {
+  const handleHelpfulAnswerClick = (id) => {
+    if (!isAnswerHelpful) {
       axios.put(`${serverURL}/qa/answers/${id}/helpful`, null, { headers: headers })
         .then((response) => {
-          setUpdateHelpfulness(updateHelpfulness + 1);
-          setIsHelpful(true);
+          setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
+          setIsAnswerHelpful(true);
         })
         .catch((err) => {
           console.log(err);
@@ -50,10 +50,11 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
           <span>Helpful?</span>
           <span
             className='yes'
-            style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
-            onClick={() => {handleHelpfulClick(answer_id)}}>Yes
+            style={{textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default'}}
+            onClick={() => {handleHelpfulAnswerClick(answer_id)}}>
+            Yes
           </span>
-          <span title='Count'>({updateHelpfulness})</span>
+          <span title='Count'>({updateAnswerHelpfulness})</span>
         </span>|
         <span
           title='Report'

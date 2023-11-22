@@ -142,20 +142,20 @@
   grid-area: imgMain;
   position: relative;
   display: grid;
-  align-items: right;
-  justify-items: right;
+  height: 25em;
+  width: 25em;
   grid-template-areas:
   /*          1       2       3       4       5       6       7       8    */
-  /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*04*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*05*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*06*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*07*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*08*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*09*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*10*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*01*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*02*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*03*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*04*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*05*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*06*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*07*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*08*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*09*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*10*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
 }
 
 /* Main image in default view */
@@ -185,18 +185,15 @@
 .overview-thumbnail-view {
   box-sizing: border-box;
   position: relative;
-  border-style: solid;
-  border-color: var(--tertiary-color);
-  background-color: var(--tertiary-color);
   z-index: 1;
   grid-area: thumbnl;
   display: grid;
-  top: 4em;
-  left: 0.67em;
-  height: 10.5em;
+  left: 6em;
+  height: 25em;
   width: 5.5em;
-  gap: 1px;
-  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+  gap: 1.25em;
+  grid-template: repeat(7, 1fr) / repeat(1, 1fr);
+  overflow-y: scroll;
 }
 
 /* THUMBNAIL */
@@ -204,8 +201,8 @@
   box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
-  height: 2.5em;
-  width: 2.5em;
+  height: 4em;
+  width: 4em;
 }
 
 /*
@@ -244,7 +241,7 @@
   grid-area: selectStyle;
   display: grid;
   gap: 1px;
-  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
   width: 5.5em;
 }
 

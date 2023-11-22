@@ -8,50 +8,121 @@
   box-sizing: border-box;
   position: relative;
   display: grid;
-  gap: 0.67em;
   grid-template-areas:
-    'title   title   title   title   title   title title title title   title   title'
-    'categor categor categor categor categor categor categor categor categor categor categor'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . selectStyle .   .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . reviews .       .       .       .'
-    '.       .       .       .       .       . Price   .       .       .       .'
-    '.       .       .       .       .       . AddToCart .     .       .       .';
+    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
+    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
+    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
+    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
+    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
+    'details details details details details details details  details  details  details  details'
+    'details details details details details details details  details  details  details  details';
   border-style: solid;
 }
 
 /*
  * ================
- *      TITLE
+ *    IMAGE VIEW
  * ================
  */
 
-.overview-title {
+/* Entire thing */
+.overview-image-view {
   box-sizing: border-box;
-  grid-area: title;
-  justify-self: center;
-  text-align: center;
-  background-color: var(--tertiary-color);
-  color: var(--primary-color);
-  grid-area: title;
-  font-size: 2em;
-  max-width: 20em;
-  min-width: 20em;
+  grid-area: imgMain;
+  display: grid;
+  margin-top: 4em;
+  height: 30em;
+  width: 30em;
+  grid-template-areas:
+  /*          1       2       3       4       5       6       7      */
+  /*01*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*02*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*03*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*04*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*05*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*06*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*07*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*08*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*09*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+  /*10*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+}
+
+/* Main image in default view */
+.overview-img-main-default {
+  box-sizing: border-box;
+  grid-area: mainImg;
+  position: relative;
+  object-fit: fill;
+  min-height: 25em;
+  min-width: 25em;
+  max-height: 25em;
+  max-width: 25em;
+}
+
+/* Main image in expanded view */
+.overview-img-main-expanded {
+  box-sizing: border-box;
+  grid-area: mainImg;
+}
+
+.overview-thumbnail-view {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  grid-area: thumbnl;
+  display: grid;
+  left: 6em;
+  height: 25em;
+  width: 5.5em;
+  gap: 1.25em;
+  grid-template: repeat(7, 1fr) / repeat(1, 1fr);
+  overflow-y: scroll;
+}
+
+.overview-thumbnail {
+  box-sizing: border-box;
+  border-style: solid;
+  object-fit: fill;
+  height: 4em;
+  width: 4em;
 }
 
 /*
  * ================
- *    CATEGORY
+ *      INFO
  * ================
  */
+
+ .overview-overview {
+  box-sizing: border-box;
+  grid-area: overview;
+  position: relative;
+  display: grid;
+  margin-top: 4em;
+  width: 25em;
+  height: 25em;
+  grid-template-areas:
+    '. . . . .'
+    'reviews reviews . . .'
+    'categor categor . . .'
+    'title   title   . . .'
+    'price   .       . . .'
+    'selectStyle selectStyle . . .'
+    'AddToCart AddToCart AddToCart . .'
+    'AddToCart AddToCart AddToCart . .'
+    'butttons buttons . . .'
+}
+
+.overview-reviews {
+  box-sizing: border-box;
+  grid-area: reviews;
+}
 
 .overview-category {
   box-sizing: border-box;
   grid-area: categor;
-  justify-self: center;
-  text-align: center;
+  justify-self: left;
+  text-align: left;
   position: relative;
   max-height: 2em;
   font-size: 1.5em;
@@ -59,12 +130,92 @@
   min-width: 20em;
 }
 
-/*
- * ================
- *     INFO
- *  (Future use)
- * ================
- */
+.overview-title {
+  box-sizing: border-box;
+  grid-area: title;
+  justify-self: left;
+  text-align: left;
+  grid-area: title;
+  font-size: 2em;
+  max-width: 20em;
+  min-width: 20em;
+}
+
+.overview-styles-view {
+  box-sizing: border-box;
+  position: relative;
+  border-style: solid;
+  border-color: var(--tertiary-color);
+  background-color: var(--tertiary-color);
+  z-index: 1;
+  grid-area: selectStyle;
+  display: grid;
+  gap: 1px;
+  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+  width: 5.5em;
+}
+
+.overview-style-thumbnail {
+  box-sizing: border-box;
+  border-style: solid;
+  object-fit: fill;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.overview-price-container {
+  box-sizing: border-box;
+  grid-area: price;
+}
+
+.overview-selected-style {
+  box-sizing: border-box;
+  grid-area: selectedStyle;
+}
+
+.overview-price {
+  box-sizing: border-box;
+}
+
+.overview-price-onSale-true {
+  box-sizing: border-box;
+}
+
+.overview-sale-price {
+  box-sizing: border-box;
+}
+
+#overview-cart-form {
+  box-sizing: border-box;
+  grid-area: AddToCart;
+}
+
+.overview-size-dropdown {
+  box-sizing: border-box;
+  inline-size: 4em;
+}
+
+.overview-quantity-dropdown {
+  box-sizing: border-box;
+  inline-size: 4em;
+}
+
+.overview-share-buttons {
+  box-sizing: border-box;
+  grid-area: buttons;
+}
+
+.share-facebook {
+  box-sizing: border-box;
+}
+
+.share-x {
+  box-sizing: border-box;
+}
+
+.share-pinterest {
+  box-sizing: border-box;
+}
 
 /*
  * ================
@@ -72,20 +223,17 @@
  * ================
  */
 
-.overview-details {
+ .overview-details {
   box-sizing: border-box;
   grid-area: details;
   position: relative;
   display: grid;
-  min-height: 14.5em;
-  max-height: 14.5em;
+  min-height: 10em;
+  max-height: 10em;
   grid-template-areas:
     'slogan . . .'
-    'description description . .'
-    'description description . .'
-    'feature . . .'
-    'feature . . .'
-    'buttons . . .'
+    'description description feature feature'
+    'description description feature feature'
 }
 
 .overview-slogan {
@@ -111,196 +259,4 @@
 
 .overview-feature {
   box-sizing: border-box;
-}
-
-.overview-share-buttons {
-  box-sizing: border-box;
-  grid-area: buttons;
-}
-
-.share-facebook {
-  box-sizing: border-box;
-}
-
-.share-x {
-  box-sizing: border-box;
-}
-
-.share-pinterest {
-  box-sizing: border-box;
-}
-
-/*
- * ================
- *    IMAGE VIEW
- * ================
- */
-
-/* Entire thing */
-.overview-image-view {
-  box-sizing: border-box;
-  grid-area: imgMain;
-  position: relative;
-  display: grid;
-  height: 25em;
-  width: 25em;
-  grid-template-areas:
-  /*          1       2       3       4       5       6       7       8    */
-  /*01*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*02*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*03*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*04*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*05*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*06*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*07*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*08*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*09*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*10*/  '   .    thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-}
-
-/* Main image in default view */
-.overview-img-main-default {
-  box-sizing: border-box;
-  grid-area: mainImg;
-  position: relative;
-  object-fit: fill;
-  min-height: 25em;
-  min-width: 25em;
-  max-height: 25em;
-  max-width: 25em;
-}
-
-/* Main image in expanded view */
-.overview-img-main-expanded {
-  box-sizing: border-box;
-  grid-area: mainImg;
-}
-
-/*
- * ================
- *  THUMBNAIL VIEW
- * ================
- */
-
-.overview-thumbnail-view {
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-  grid-area: thumbnl;
-  display: grid;
-  left: 6em;
-  height: 25em;
-  width: 5.5em;
-  gap: 1.25em;
-  grid-template: repeat(7, 1fr) / repeat(1, 1fr);
-  overflow-y: scroll;
-}
-
-/* THUMBNAIL */
-.overview-thumbnail {
-  box-sizing: border-box;
-  border-style: solid;
-  object-fit: fill;
-  height: 4em;
-  width: 4em;
-}
-
-/*
- * ================
- *  STYLE WRAPPER
- * ================
- */
-
-.overview-style-wrapper {
-  box-sizing: border-box;
-}
-
-/*
- * ===============
- *    Reviews
- * ===============
- */
-.overview-reviews {
-  box-sizing: border-box;
-  grid-area: reviews;
-}
-
-/*
- * ================
- *   STYLES VIEW
- * ================
- */
-
-.overview-styles-view {
-  box-sizing: border-box;
-  position: relative;
-  border-style: solid;
-  border-color: var(--tertiary-color);
-  background-color: var(--tertiary-color);
-  z-index: 1;
-  grid-area: selectStyle;
-  display: grid;
-  gap: 1px;
-  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
-  width: 5.5em;
-}
-
-/* THUMBNAIL */
-.overview-style-thumbnail {
-  box-sizing: border-box;
-  border-style: solid;
-  object-fit: fill;
-  width: 2.5em;
-  height: 2.5em;
-}
-
-/*
- * ================
- *      PRICE
- * ================
- */
-
-.overview-selected-style {
-  box-sizing: border-box;
-  grid-area: selectedStyle;
-}
-
-.overview-price-container {
-  box-sizing: border-box;
-  grid-area: Price;
-}
-
-/* style the regular price */
-.overview-price {
-  box-sizing: border-box;
-}
-
-/* style the regular price if the item is on sale */
-.overview-price-onSale-true {
-  box-sizing: border-box;
-}
-
-.overview-sale-price {
-  box-sizing: border-box;
-}
-
-/*
- * ================
- *   ADD TO CART
- * ================
- */
-
-#overview-cart-form {
-  box-sizing: border-box;
-  grid-area: AddToCart;
-}
-
-.overview-size-dropdown {
-  box-sizing: border-box;
-  inline-size: 4em;
-}
-
-.overview-quantity-dropdown {
-  box-sizing: border-box;
-  inline-size: 4em;
 }

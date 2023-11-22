@@ -155,15 +155,16 @@
   z-index: 1;
   grid-area: selectStyle;
   display: grid;
-  gap: 1px;
+  gap: 0.5em;
   grid-template: repeat(2, 1fr) / repeat(4, 1fr);
-  width: 5.5em;
+  width: 12.5em;
 }
 
 .overview-style-thumbnail {
   box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
+  border-radius: 2.5em;
   width: 2.5em;
   height: 2.5em;
 }

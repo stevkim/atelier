@@ -10,8 +10,10 @@ const Reviews = ({ product }) => {
   }
   return (
     <div className='overview-reviews'>
-      < StarRating rating={totalStars / totalReviews} />
-      <p>See All {totalReviews} Reviews!</p>
+      <span>
+        < StarRating rating={totalStars / totalReviews} />
+        See All {totalReviews} Reviews!
+      </span>
     </div>
   );
 }

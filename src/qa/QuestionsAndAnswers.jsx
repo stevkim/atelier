@@ -1,6 +1,5 @@
 require('dotenv').config();
 import React, { useState, useEffect } from 'react';
-import { answers } from './answersData.js';
 import AnswerList from './AnswerList.jsx';
 import axios from 'axios';
 import './qaStyles.css';

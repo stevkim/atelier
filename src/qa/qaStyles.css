@@ -22,3 +22,13 @@
   height: 50vh;
   overflow-y: auto;
 }
+.answer-photo {
+  height: 6rem;
+  width: 7rem;
+  margin-right: 0.5rem;
+}
+.load-more-answers,
+.collapse-answers {
+  font-size: 0.8em;
+  font-weight: bold;
+}

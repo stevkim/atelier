@@ -49,7 +49,6 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span
-            title='Yes'
             className='yes'
             style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
             onClick={() => {handleHelpfulClick(answer_id)}}>Yes

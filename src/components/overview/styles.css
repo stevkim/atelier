@@ -9,13 +9,8 @@
   position: relative;
   display: grid;
   grid-template-areas:
-    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
-    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
-    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
-    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
-    'imgMain imgMain imgMain imgMain imgMain imgMain overview overview overview overview overview'
-    'details details details details details details details  details  details  details  details'
-    'details details details details details details details  details  details  details  details';
+    'imgMain overview'
+    'details details';
   border-style: solid;
 }
 
@@ -34,17 +29,7 @@
   height: 30em;
   width: 30em;
   grid-template-areas:
-  /*          1       2       3       4       5       6       7      */
-  /*01*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*02*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*03*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*04*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*05*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*06*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*07*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*08*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*09*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*10*/  '   thumbnl mainImg mainImg mainImg mainImg mainImg mainImg'
+    'thumbnl mainImg'
 }
 
 /* Main image in default view */
@@ -99,18 +84,17 @@
   position: relative;
   display: grid;
   margin-top: 4em;
+  gap: 1em;
   width: 25em;
   height: 25em;
   grid-template-areas:
-    '. . . . .'
-    'reviews . . . .'
-    'categor categor . . .'
-    'title   title   . . .'
-    'price   .       . . .'
-    'selectStyle selectStyle . . .'
-    'AddToCart AddToCart AddToCart . .'
-    'AddToCart AddToCart AddToCart . .'
-    'butttons buttons . . .'
+    'reviews'
+    'categor'
+    'title'
+    'price'
+    'selectStyle'
+    'AddToCart'
+    'butttons';
 }
 
 .overview-reviews {
@@ -195,12 +179,12 @@
 
 .overview-size-dropdown {
   box-sizing: border-box;
-  inline-size: 4em;
+  inline-size: 8em;
 }
 
 .overview-quantity-dropdown {
   box-sizing: border-box;
-  inline-size: 4em;
+  inline-size: 8em;
 }
 
 .overview-share-buttons {

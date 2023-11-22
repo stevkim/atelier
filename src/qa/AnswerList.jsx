@@ -10,8 +10,8 @@ export default function AnswerList({ currAnswerList, serverURL, headers, totalAn
         })
       }
       <div>{totalAnswers <= 2 && ''}</div>
-      <div className='load-more-answers' onClick={handleLoadMoreAnswers}>{totalAnswers > 2 && currAnswerList.length < totalAnswers && 'Load More Answers'}</div>
-      <div className='collapse-answers' onClick={handleCollapseAnswers}>{totalAnswers > 2 && currAnswerList.length === totalAnswers && 'Collapse Answers'}</div>
+      <div className='load-more-answers' onClick={handleLoadMoreAnswers}>{totalAnswers > 2 && currAnswerList.length < totalAnswers && 'LOAD MORE ANSWERS'}</div>
+      <div className='collapse-answers' onClick={handleCollapseAnswers}>{totalAnswers > 2 && currAnswerList.length === totalAnswers && 'COLLAPSE ANSWERS'}</div>
     </div>
   )
 }

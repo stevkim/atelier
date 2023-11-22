@@ -22,10 +22,13 @@
   height: 50vh;
   overflow-y: auto;
 }
-.answer-photo {
-  height: 6rem;
-  width: 7rem;
-  margin-right: 0.5rem;
+.answer-photos {
+  height: 5.8em;
+  width: 7em;
+}
+.photos-container {
+  display: flex;
+  gap: 0.5em;
 }
 .load-more-answers,
 .collapse-answers {

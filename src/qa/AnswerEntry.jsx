@@ -9,7 +9,6 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   const [updateHelpfulness, setUpdateHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-
   const handleHelpfulClick = (id) => {
     if (!isHelpful) {
       axios.put(`${serverURL}/qa/answers/${id}/helpful`, null, { headers: headers })
@@ -38,6 +37,11 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   return (
     <div className='answer-container'>
       <p className='answer'>{body}</p>
+      <div>
+        {photos.map((photo) => {
+          return <img className='answer-photos' src={photo.url} alt='Photos for answer'/>
+        })}
+      </div>
       <div className='answer-details-container'>
         <span>
           by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span>{convertDate(date)}</span>

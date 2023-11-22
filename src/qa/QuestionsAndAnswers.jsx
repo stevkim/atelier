@@ -1,6 +1,7 @@
 require('dotenv').config();
 import React, { useState, useEffect } from 'react';
 import AnswerList from './AnswerList.jsx';
+import QuestionEntry from './QuestionEntry.jsx';
 import axios from 'axios';
 import './qaStyles.css';
 
@@ -17,7 +18,7 @@ export default function QuestionsAndAnswers() {
     axios.get(`${serverURL}/qa/questions`, {
       headers: headers,
       params: {
-        product_id: 40345
+        product_id: 40344
       }
     })
       .then((response) => {
@@ -30,7 +31,7 @@ export default function QuestionsAndAnswers() {
   }, []);
 
   useEffect(() => {
-    axios.get(`${serverURL}/qa/questions/646801/answers`, {
+    axios.get(`${serverURL}/qa/questions/647006/answers`, {
       headers: headers,
       params: {
         page: 1,
@@ -58,6 +59,7 @@ export default function QuestionsAndAnswers() {
   return (
     <div>
       <h4>QUESTIONS AND ANSWERS</h4>
+      <QuestionEntry />
       <AnswerList
         currAnswerList={ currAnswerList }
         serverURL={serverURL}

@@ -8,7 +8,7 @@ const StarRating = ({ rating }) => {
 
   return (
     <div className='star-rating-wrapper'>
-      <div className='active-stars' style={{ width: `${activeRating}em` }}>
+      <div className='active-stars' style={{ width: `${activeRating}em` }} >
         {
           starLength.map((star, index) => {
             return (

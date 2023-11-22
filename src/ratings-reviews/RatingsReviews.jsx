@@ -2,11 +2,13 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
+import ModalOverlay from './components/ModalOverlay.jsx';
+import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
 
-const product_id = 40347;
+const product_id = 40348;
 
-const RatingsReviews = () => {
+const RatingsReviews = ({ id }) => {
   const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [activeList, setActiveList] = useState([]);
@@ -14,6 +16,7 @@ const RatingsReviews = () => {
   const [currentSort, setCurrentSort] = useState('relevant'); // cant be newest or helpful
   const [currentListLength, setCurrentListLength] = useState(0);
   const [starFilter, setStarFilter] = useState(0);
+  const [modal, setModal] = useState(false);
 
   const totalReviews = useMemo(() => {
     let total = 0;
@@ -21,7 +24,7 @@ const RatingsReviews = () => {
       total += JSON.parse(metaData.recommended[keys]);
     }
     return total;
-  }, [metaData])
+  }, [metaData]);
 
   const handleListIncrement = () => {
     setCurrentListLength(currentListLength + 2);
@@ -50,18 +53,18 @@ const RatingsReviews = () => {
 
   useEffect(() => {
     const getData = async() => {
-      const [reviews, meta] = await Promise.all([getReviewList(product_id, currentPage, currentSort), getReviewMetaData(product_id)]);
+      const [reviews, meta] = await Promise.all([getReviewList(id, currentPage, currentSort), getReviewMetaData(id)]);
       setReviewList(reviews.data.results);
       handleListIncrement();
 
       setMetaData(meta.data);
     }
     getData();
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (currentListLength > reviewList.length) {
-      getReviewList(product_id, currentPage + 1, currentSort)
+      getReviewList(id, currentPage + 1, currentSort)
         .then(({ data }) => {
           setReviewList([...reviewList, ...data.results]);
           setCurrentPage(currentPage + 1);
@@ -73,7 +76,7 @@ const RatingsReviews = () => {
   }, [currentListLength, reviewList, currentSort, starFilter]);
 
   useEffect(() => {
-    getReviewList(product_id, 1, currentSort)
+    getReviewList(id, 1, currentSort)
       .then(({data}) => {
         setReviewList(data.results);
         setCurrentPage(1);
@@ -86,15 +89,21 @@ const RatingsReviews = () => {
     <div style={{ width: '100%'}}>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
-        <ReviewsList
-          reviewList={activeList}
-          handleListIncrement={handleListIncrement}
-          setCurrentSort={setCurrentSort}
-          totalReviews={totalReviews}
-          currentListLength={currentListLength}
-          starFilter={starFilter}
-        />
+          <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
+          <ReviewsList
+            reviewList={activeList}
+            handleListIncrement={handleListIncrement}
+            setCurrentSort={setCurrentSort}
+            totalReviews={totalReviews}
+            currentListLength={currentListLength}
+            starFilter={starFilter}
+            setModal={setModal}
+          />
+          {modal &&
+            <ModalOverlay>
+              <AddReviewForm id={id} data={metaData.characteristics} setModal={setModal}/>
+            </ModalOverlay>
+          }
       </div>
     </div>
   )

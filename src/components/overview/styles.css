@@ -26,8 +26,9 @@
   grid-area: imgMain;
   display: grid;
   margin-top: 4em;
-  height: 30em;
-  width: 30em;
+  margin-right: 2em;
+  height: 40em;
+  width: 40em;
   grid-template-areas:
     'thumbnl mainImg'
 }
@@ -38,10 +39,10 @@
   grid-area: mainImg;
   position: relative;
   object-fit: fill;
-  min-height: 25em;
-  min-width: 25em;
-  max-height: 25em;
-  max-width: 25em;
+  min-height: 40em;
+  min-width: 40em;
+  max-height: 40em;
+  max-width: 40em;
 }
 
 /* Main image in expanded view */
@@ -179,12 +180,14 @@
 
 .overview-size-dropdown {
   box-sizing: border-box;
-  inline-size: 8em;
+  inline-size: 4em;
+  font-size: 2em;
 }
 
 .overview-quantity-dropdown {
   box-sizing: border-box;
-  inline-size: 8em;
+  inline-size: 4em;
+  font-size: 2em;
 }
 
 .overview-share-buttons {

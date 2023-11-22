@@ -149,9 +149,6 @@
 .overview-styles-view {
   box-sizing: border-box;
   position: relative;
-  border-style: solid;
-  border-color: var(--tertiary-color);
-  background-color: var(--tertiary-color);
   z-index: 1;
   grid-area: selectStyle;
   display: grid;

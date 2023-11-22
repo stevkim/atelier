@@ -37,7 +37,7 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   return (
     <div className='answer-container'>
       <p className='answer'>{body}</p>
-      <div>
+      <div className='photos-container'>
         {photos.map((photo) => {
           return <img key={photo.id} className='answer-photos' src={photo.url} alt='Photos for answer'/>
         })}

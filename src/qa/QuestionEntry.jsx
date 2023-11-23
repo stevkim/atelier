@@ -8,7 +8,7 @@ export default function QuestionEntry({ question, serverURL, headers }) {
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
   const [currAnswerList, setCurrAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isAnswerExpanded, setIsAnswerExpanded] = useState(false);
 
   const handleHelpfulQuestionClick = (id) => {
     !isQuestionHelpful &&
@@ -26,12 +26,12 @@ export default function QuestionEntry({ question, serverURL, headers }) {
 
   const handleLoadMoreAnswers = () => {
     setCurrAnswerList(answerList);
-    setIsExpanded(true);
+    setIsAnswerExpanded(true);
   };
 
   const handleCollapseAnswers = () => {
     setCurrAnswerList(answerList.slice(0, 2));
-    setIsExpanded(false);
+    setIsAnswerExpanded(false);
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function QuestionEntry({ question, serverURL, headers }) {
           totalAnswers={totalAnswers}
           handleLoadMoreAnswers={handleLoadMoreAnswers}
           handleCollapseAnswers={handleCollapseAnswers}
-          isExpanded={isExpanded}
+          isAnswerExpanded={isAnswerExpanded}
         />
       </div>
     </div>

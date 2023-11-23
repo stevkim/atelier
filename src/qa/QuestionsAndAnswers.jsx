@@ -11,7 +11,7 @@ export default function QuestionsAndAnswers() {
   const headers = { Authorization: process.env.GIT_TOKEN };
 
   useEffect(() => {
-    axios.get(`${serverURL}/qa/questions/?product_id=40348&count=50`, { headers: headers })
+    axios.get(`${serverURL}/qa/questions/?product_id=40345&count=20`, { headers: headers })
       .then((response) => {
         setCurrQuestionList(response.data.results);
       })

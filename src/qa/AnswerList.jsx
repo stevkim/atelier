@@ -1,17 +1,22 @@
 import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 
-export default function AnswerList({ currAnswerList, serverURL, headers, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isExpanded }) {
+export default function AnswerList({ currAnswerList, serverURL, headers, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) {
   return (
-    <div className={`answer-list-container ${isExpanded && 'answer-list-container-expanded'}`}>
+    <div className={`answer-list-container ${isAnswerExpanded && 'answer-list-container-expanded'}`}>
       {
         currAnswerList.map((answer) => {
           return <AnswerEntry key={answer.answer_id} answer={answer} serverURL={serverURL} headers={headers} />
         })
       }
-      <div>{totalAnswers <= 2 && ''}</div>
-      <div className='load-more-answers' onClick={handleLoadMoreAnswers}>{totalAnswers > 2 && currAnswerList.length < totalAnswers && 'LOAD MORE ANSWERS'}</div>
-      <div className='collapse-answers' onClick={handleCollapseAnswers}>{totalAnswers > 2 && currAnswerList.length === totalAnswers && 'COLLAPSE ANSWERS'}</div>
+      {
+        totalAnswers > 2 && currAnswerList.length < totalAnswers &&
+        <div className='load-more-answers' onClick={handleLoadMoreAnswers}>LOAD MORE ANSWERS</div>
+      }
+      {
+        totalAnswers > 2 && currAnswerList.length === totalAnswers &&
+        <div className='collapse-answers' onClick={handleCollapseAnswers}>COLLAPSE ANSWERS</div>
+      }
     </div>
   )
 }

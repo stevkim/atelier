@@ -30,6 +30,7 @@ app.route('/*')
         res.status(201).json({ message: 'Successfully posted'});
       })
       .catch(err => {
+        console.log(err);
         res.sendStatus(404);
       })
   })
@@ -39,7 +40,6 @@ app.route('/*')
         res.status(200).json({ message: 'Successfully PUT request'});
       })
       .catch(err => {
-        console.log(err);
         res.sendStatus(404);
       })
   })

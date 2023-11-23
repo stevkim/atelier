@@ -2,18 +2,16 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
-import ModalOverlay from './components/ModalOverlay.jsx';
+import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
-
-const product_id = 40348;
 
 const RatingsReviews = ({ id }) => {
   const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [activeList, setActiveList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentSort, setCurrentSort] = useState('relevant'); // cant be newest or helpful
+  const [currentSort, setCurrentSort] = useState('relevant');
   const [currentListLength, setCurrentListLength] = useState(0);
   const [starFilter, setStarFilter] = useState(0);
   const [modal, setModal] = useState(false);
@@ -31,24 +29,13 @@ const RatingsReviews = ({ id }) => {
   };
 
   const handleStarFilter = (number) => {
-    if (number === starFilter) {
-      setStarFilter(0);
-    } else {
-      setStarFilter(number);
-    }
+    return number === starFilter ? setStarFilter(0) : setStarFilter(number);
   }
 
   const setFilteredList = () => {
-    if (starFilter === 0) {
-      setActiveList(reviewList.slice(0, currentListLength));
-    } else {
-      let filteredList = reviewList.filter(review => {
-        if (review.rating === starFilter) {
-          return review
-        }
-      })
-      setActiveList(filteredList.slice(0, currentListLength))
-    }
+    if (starFilter === 0) return setActiveList(reviewList.slice(0, currentListLength));
+    let filteredList = reviewList.filter(review => { return review.rating === starFilter });
+    setActiveList(filteredList.slice(0, currentListLength));
   }
 
   useEffect(() => {
@@ -63,49 +50,53 @@ const RatingsReviews = ({ id }) => {
   }, [id])
 
   useEffect(() => {
+    if (currentListLength === 0) return;
     if (currentListLength > reviewList.length) {
-      getReviewList(id, currentPage + 1, currentSort)
+      return getReviewList(id, currentPage + 1, currentSort)
         .then(({ data }) => {
           setReviewList([...reviewList, ...data.results]);
           setCurrentPage(currentPage + 1);
           setFilteredList();
         })
-    } else if (currentListLength !== 0) {
-      setFilteredList();
-    }
+    };
+    setFilteredList();
   }, [currentListLength, reviewList, currentSort, starFilter]);
 
   useEffect(() => {
     getReviewList(id, 1, currentSort)
-      .then(({data}) => {
+      .then(({ data }) => {
         setReviewList(data.results);
-        setCurrentPage(1);
-        setCurrentListLength(2);
-        setStarFilter(0);
       })
   }, [currentSort])
 
   return (
-    <div style={{ width: '100%'}}>
+    <section style={{ width: '100%'}}>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
           <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
-          <ReviewsList
-            reviewList={activeList}
-            handleListIncrement={handleListIncrement}
-            setCurrentSort={setCurrentSort}
-            totalReviews={totalReviews}
-            currentListLength={currentListLength}
-            starFilter={starFilter}
-            setModal={setModal}
-          />
+          <div>
+            <div className='review-list-header'>
+              {totalReviews} reviews, sorted by
+              <select className='review-sort-options' onChange={(e) => setCurrentSort(e.target.value)}>
+                <option value='relevant'>Relevance</option>
+                <option value='newest'>Newest</option>
+                <option value='helpful'>Most Helpful</option>
+              </select>
+            </div>
+            <ReviewsList
+              reviewList={activeList}
+              handleListIncrement={handleListIncrement}
+              setModal={setModal}
+              showButton={currentListLength < totalReviews && starFilter === 0}
+            />
+          </div>
           {modal &&
             <ModalOverlay>
-              <AddReviewForm id={id} data={metaData.characteristics} setModal={setModal}/>
+              <AddReviewForm data={metaData} setModal={setModal}/>
             </ModalOverlay>
           }
       </div>
-    </div>
+    </section>
   )
 }
 

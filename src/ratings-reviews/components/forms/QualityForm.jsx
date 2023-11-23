@@ -1,8 +1,8 @@
 import React from 'react';
 
-const QualityForm = ({ handleCharacterstics }) => {
+const QualityForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Quality', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Quality', e.target.value)}>
       <p>Quality</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>

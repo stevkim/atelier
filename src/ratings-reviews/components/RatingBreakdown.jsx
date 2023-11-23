@@ -1,34 +1,24 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import RatingList from './RatingList.jsx';
-import '../reviewStyles.css'
-import { getAverageRating } from '../lib/getAverageRating.js';
+import { getAverageRating, getAverageRecommended, convertCharacterstics } from '../lib/utilityFunctions.js';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, total, handleStarFilter }) => {
   const [ratingList, setRatingList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
-  const [averageRecommended, setAverageRecommended] = useState(0);
-  const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data])
 
-  useEffect(() => {
+  const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data]);
+  const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, total), [data]);
+  const parseData = useCallback(() => {
     for(let keys in data.ratings) {
       data.ratings[keys] = Math.round(JSON.parse(data.ratings[keys]) / total * 100);
     }
-    for (let keys in data.recommended) {
-      if (keys === 'true') {
-        setAverageRecommended(Math.round(JSON.parse(data.recommended[keys]) / total * 100));
-      }
-    }
-    let characteristics = [];
-    for (let keys in data.characteristics) {
-      characteristics.push({
-        'id': data.characteristics[keys].id,
-        'characteristic': keys,
-        'rating': data.characteristics[keys].value
-      })
-    }
-    setPropertyList(characteristics);
+    setPropertyList(convertCharacterstics(data.characteristics))
+  }, [data])
+
+  useEffect(() => {
+    parseData();
   }, [data]);
 
   return (

@@ -1,11 +1,10 @@
-export const convertFilesToDataURL = async(e) => {
-  let files = Array.from(e.target.files);
-  console.log(files)
-  if (files.length > 5) {
-    e.target.value = '';
+export const convertFilesToDataURL = async(files) => {
+  let listOfFiles = Array.from(files.target.files);
+  if (listOfFiles.length > 5) {
+    files.target.value = '';
     return alert('Maximum of 5 pictures!');
   }
-  const results = await Promise.all(files.map(file => {
+  const results = await Promise.all(listOfFiles.map(file => {
     return convertFile(file);
   }));
   return await results;
@@ -23,4 +22,13 @@ const convertFile = (file) => {
       reject(err);
     }
   })
+}
+
+export const postRequirements = (data) => {
+  for (let key in data) {
+    if (!!data[key] === false) {
+      return false;
+    }
+  }
+  return true;
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 
-
-const SizeForm = ({ handleCharacterstics }) => {
+const SizeForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Size', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Size', e.target.value)}>
       <p>Size</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>

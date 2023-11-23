@@ -1,4 +1,5 @@
 import React from 'react';
+import './utilStyles.css';
 
 const BarRating = ({ rating }) => {
   return (

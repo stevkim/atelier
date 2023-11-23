@@ -1,83 +1,73 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import SizeForm from './SizeForm.jsx';
-import WidthForm from './WidthForm.jsx';
-import ComfortForm from './ComfortForm.jsx';
-import QualityForm from './QualityForm.jsx';
-import LengthForm from './LengthForm.jsx';
-import FitForm from './FitForm.jsx';
-import AddStarRating from './AddStarRating.jsx';
-import { convertFilesToDataURL } from '../lib/convertFile.js';
+import React, { useState } from 'react';
+import SizeForm from './forms/SizeForm.jsx';
+import WidthForm from './forms/WidthForm.jsx';
+import ComfortForm from './forms/ComfortForm.jsx';
+import QualityForm from './forms/QualityForm.jsx';
+import LengthForm from './forms/LengthForm.jsx';
+import FitForm from './forms/FitForm.jsx';
+import AddStarRating from '../utils/AddStarRating.jsx';
+import { convertFilesToDataURL, postRequirements } from '../lib/addReviewFunctions.js';
 import { postReview } from '../lib/fetchFunctions.js';
+import errorMessages from '../lib/errorMessages.js';
 
-const AddReviewForm = ({ id, data, setModal }) => {
-  const [userImages, setUserImages] = useState([]);
-  const [overallRating, setOverallRating] = useState(0);
-  const [summary, setSummary] = useState('');
-  const [body, setBody] = useState('');
-  const [recommend, setRecommend] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [characteristics, setCharacteristics] = useState({});
+const initState = {
+  product_id: '',
+  rating: 0,
+  summary: '',
+  body: '',
+  recommend: null,
+  name: '',
+  email: '',
+  characteristics: {},
+  photos: []
+}
+
+const AddReviewForm = ({ data, setModal }) => {
+  const { product_id, characteristics } = data;
+
+  const [userInput, setUserInput] = useState(() => {
+    initState.product_id = JSON.parse(product_id);
+    return initState;
+  });
   const [errMessages, setErrMessages] = useState([]);
   const [error, setError] = useState(false);
 
-  const invalidMessages = {
-    'default': 'Please enter the required fields',
-    'email' : 'The email address provided is not in correct email format',
-    'images' : 'The images selected are invalid or unable to be uploaded',
-    'body': 'The review body must be between 50 and 1000 characters',
-    'summary' : 'The review summary must be between 1 than 60 characters'
+  const convertImage = async(files) => {
+    const result = await convertFilesToDataURL(files);
+    setUserInput({...userInput, photos: result});
   };
 
-  const convertImage = useCallback(async(e) => {
-    const result = convertFilesToDataURL(e);
-    setUserImages(await result)
-  }, []);
+  const setCharacterstic = (input, value) => {
+    setUserInput({...userInput, characteristics: {...userInput.characteristics, [characteristics[input].id]: parseInt(value)}})
+  }
 
-  const handleCharacterstics = (input, value) => {
-    setCharacteristics({...characteristics, [data[input].id]: parseInt(value)})
+  const setOverallRating = (value) => {
+    setUserInput({...userInput, rating: value });
   }
 
   const checkValid = (e, type) => {
     if (!e.target.checkValidity() || e.target.value === '') {
-      if (errMessages.includes(invalidMessages[type])) return false;
-      setErrMessages([...errMessages, invalidMessages[type]]);
-      return false;
+      if (errMessages.includes(errorMessages[type])) return;
+      setErrMessages([...errMessages, errorMessages[type]]);
     } else {
-      setErrMessages(errMessages.filter(msg => { return msg !== invalidMessages[type] }));
-      return true;
+      setErrMessages(errMessages.filter(msg => msg !== errorMessages[type] ));
     }
   }
 
   const checkRequirements = () => {
-    let passing = true;
-    if (name === '' || summary === '' || email === '' || body === '' || recommend === null || overallRating === 0) {
-      if (errMessages.includes(invalidMessages['default'])) return false;
-      setErrMessages([...errMessages, invalidMessages['default']]);
-      passing = false;
-    } else {
-      setErrMessages(errMessages.filter(msg => { return msg !== invalidMessages['default'] }));
+    if (!postRequirements(userInput)) {
+      if (errMessages.includes(errorMessages['default'])) return false;
+      setErrMessages([...errMessages, errorMessages['default']]);
+      return false;
     }
-    return passing;
+    setErrMessages(errMessages.filter(msg =>  msg !== errorMessages['default'] ));
+    return true;
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!checkRequirements() || errMessages.length > 0) {
-      return setError(true);
-    };
-    const review = {
-      product_id: id,
-      rating: overallRating,
-      summary: summary,
-      body: body,
-      recommend: recommend,
-      name: name,
-      email: email,
-      photos: userImages,
-      characteristics: characteristics
-    }
-    postReview(id, review)
+    if (!checkRequirements() || errMessages.length > 0) return setError(true);
+    postReview(product_id, userInput)
       .then(result => {
         console.log(result);
         setModal(false);
@@ -98,29 +88,37 @@ const AddReviewForm = ({ id, data, setModal }) => {
         </span>
       </div>
       <h4>About the [name]</h4>
-      <form className='add-review-form' onSubmit={(e) => handleSubmit(e)} onChange={() => setError(false)} noValidate>
+      <form className='add-review-form'
+        onSubmit={e => handleSubmit(e)}
+        onChange={() => setError(false)}
+        noValidate
+      >
         <div className='input-wrapper-row'>
-          <p htmlFor='username'>Username: </p>
-          <input id='username' type='text' placeholder='Example: jackson11!'
-            onChange={(e) => setName(e.target.value)}
+          <p>Username: </p>
+          <input type='text'
+            placeholder='Example: jackson11!'
+            onChange={e => setUserInput({...userInput, name: e.target.value})}
           />
         </div>
-        <sub style={{ fontSize: '.5em' }}>For privacy reasons, do not use your full name or email address</sub>
+        <sub>For privacy reasons, do not use your full name or email address</sub>
 
         <div className='input-wrapper-row'>
-          <p htmlFor='email'>Email: </p>
-          <input id='email' type='email' placeholder='Example: jackson11@email.com'
-            onChange={(e) => setEmail(e.target.value)}
+          <p>Email: </p>
+          <input type='email'
+            placeholder='Example: jackson11@email.com'
+            onChange={e => setUserInput({...userInput, email: e.target.value})}
             onBlur={e => checkValid(e, 'email')}/>
         </div>
-        <sub style={{ fontSize: '.5em' }}>For authentication reasons, you will not be emailed</sub>
+        <sub>For authentication reasons, you will not be emailed</sub>
 
         <div className='input-wrapper-row'>
           <p>Overall rating: </p>
-          <AddStarRating overallRating={overallRating} setOverallRating={setOverallRating} />
+          <AddStarRating rating={userInput.rating} setOverallRating={setOverallRating} />
         </div>
 
-        <div className='input-wrapper-row' onChange={(e) => setRecommend(JSON.parse(e.target.value))}>
+        <div className='input-wrapper-row'
+          onChange={e => setUserInput({...userInput, recommend: JSON.parse(e.target.value)})}
+        >
           <p>Would you recommed this product?</p>
           <label htmlFor='yes-recommend'>Yes</label>
           <input id='yes-recommend' name='recommend' type='radio' value={true}/>
@@ -128,39 +126,42 @@ const AddReviewForm = ({ id, data, setModal }) => {
           <input id='no-recommend' name='recommend' type='radio' value={false}/>
         </div>
 
-        <p htmlFor='summary'>Review Summary</p>
-        <input id='summary' type='text' maxLength='60' placeholder='Example: Best Purchase Ever!'
-          onChange={(e) => setSummary(e.target.value)}
+        <p>Review Summary</p>
+        <input type='text' maxLength='60'
+          placeholder='Example: Best Purchase Ever!'
+          onChange={e => setUserInput({...userInput, summary: e.target.value})}
           onBlur={e => checkValid(e, 'summary')}
         />
 
-        <p htmlFor='review-body'>How was your overall experience?</p>
-        <textarea id='review-body' rows='4' minLength='50' maxLength='1000' placeholder='Why did you like the product or not?'
-          onChange={(e) => setBody(e.target.value)}
+        <p>How was your overall experience?</p>
+        <textarea rows='4' minLength='50' maxLength='1000'
+          placeholder='Why did you like the product or not?'
+          onChange={e => setUserInput({...userInput, body: e.target.value})}
           onBlur={e => checkValid(e, 'body')}
         />
 
-        {body.length < 50
-          ? <div className='body-subtext'>Minimum required characters left: [{50 - body.length}]</div>
+        {userInput.body.length < 50
+          ? <div className='body-subtext'>Minimum required characters left: [{50 - userInput.body.length}]</div>
           : <div className='body-subtext'>Minimum reached</div>
         }
 
-        {data && data.Size && <SizeForm handleCharacterstics={handleCharacterstics} />}
-        {data && data.Width && <WidthForm handleCharacterstics={handleCharacterstics} />}
-        {data && data.Comfort && <ComfortForm handleCharacterstics={handleCharacterstics} />}
-        {data && data.Quality && <QualityForm handleCharacterstics={handleCharacterstics} />}
-        {data && data.Length && <LengthForm handleCharacterstics={handleCharacterstics} />}
-        {data && data.Fit && <FitForm handleCharacterstics={handleCharacterstics} />}
+        {characteristics.Size && <SizeForm setCharacterstic={setCharacterstic} />}
+        {characteristics.Width && <WidthForm setCharacterstic={setCharacterstic} />}
+        {characteristics.Comfort && <ComfortForm setCharacterstic={setCharacterstic} />}
+        {characteristics.Quality && <QualityForm setCharacterstic={setCharacterstic} />}
+        {characteristics.Length && <LengthForm setCharacterstic={setCharacterstic} />}
+        {characteristics.Fit && <FitForm setCharacterstic={setCharacterstic} />}
 
         <p>Add Images (optional):</p>
-        <input type='file' multiple accept="image/png, image/jpeg"
-          onChange={(e) => convertImage(e)}
+        <input type='file' multiple
+          accept="image/png, image/jpeg"
+          onChange={e => convertImage(e)}
           onBlur={e => checkValid(e, 'images')}
         />
 
         <div className='user-image-wrapper'>
-          {userImages &&
-            userImages.map((image,index) => {
+          {
+            userInput.photos.map((image, index) => {
               return <img key={`userimage-${index}`} src={image} />
             })
           }

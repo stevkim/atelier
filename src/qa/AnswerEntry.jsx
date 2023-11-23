@@ -54,7 +54,7 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
             onClick={() => {handleHelpfulAnswerClick(answer_id)}}>
             Yes
           </span>
-          <span title='Count'>({updateAnswerHelpfulness})</span>
+          <span>({updateAnswerHelpfulness})</span>
         </span>|
         <span
           title='Report'

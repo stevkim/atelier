@@ -6,28 +6,48 @@ import './qaStyles.css';
 
 export default function QuestionsAndAnswers() {
   const [currQuestionList, setCurrQuestionList] = useState([]);
+  const [questionList, setQuestionList] = useState([]);
+  const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [displayCount, setDisplayCount] = useState(2);
 
   const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const headers = { Authorization: process.env.GIT_TOKEN };
 
+  const handleMoreQuestions = () => {
+    totalQuestions !== displayCount &&
+    setDisplayCount(displayCount + 2);
+    setIsQuestionExpanded(true);
+  }
+
   useEffect(() => {
     axios.get(`${serverURL}/qa/questions/?product_id=40345&count=20`, { headers: headers })
       .then((response) => {
-        setCurrQuestionList(response.data.results);
+        setTotalQuestions(response.data.results.length);
+        setQuestionList(response.data.results);
+        setCurrQuestionList(response.data.results.slice(0, displayCount));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [displayCount]);
 
   return (
-    <div>
+    <div className='qa-container'>
       <h4>QUESTIONS AND ANSWERS</h4>
       <QuestionList
         currQuestionList={currQuestionList}
         serverURL={serverURL}
         headers={headers}
+        isQuestionExpanded={isQuestionExpanded}
       />
+      <div className='button-container'>
+        {
+          totalQuestions > 2 && currQuestionList.length < totalQuestions &&
+          <button onClick={handleMoreQuestions}>More Answered Questions</button>
+        }
+        <button>Add A Question</button>
+      </div>
     </div>
   )
 }

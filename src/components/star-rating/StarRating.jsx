@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import { convertRating } from './convertRating.js';
 import './starRatingStyles.css'
 
@@ -38,4 +38,4 @@ const StarRating = ({ rating }) => {
   )
 }
 
-export default StarRating;
+export default memo(StarRating);

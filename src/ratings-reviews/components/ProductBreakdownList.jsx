@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import ProductBar from '../utils/ProductBar.jsx';
 
 const ProductBreakdownList = ({ propertyList }) => {
@@ -28,4 +28,4 @@ const ProductBreakdownList = ({ propertyList }) => {
   )
 }
 
-export default ProductBreakdownList;
+export default memo(ProductBreakdownList);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
@@ -9,7 +9,6 @@ import RatingBreakdown from './components/RatingBreakdown.jsx';
 const RatingsReviews = ({ id }) => {
   const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
-  const [activeList, setActiveList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSort, setCurrentSort] = useState('relevant');
   const [currentListLength, setCurrentListLength] = useState(0);
@@ -24,19 +23,18 @@ const RatingsReviews = ({ id }) => {
     return total;
   }, [metaData]);
 
+  const activeList = useMemo(() => {
+    if (starFilter === 0) return reviewList.slice(0, currentListLength);
+    return reviewList.filter(review => { return review.rating === starFilter });
+  }, [reviewList, starFilter, currentListLength])
+
   const handleListIncrement = () => {
     setCurrentListLength(currentListLength + 2);
   };
 
-  const handleStarFilter = (number) => {
-    return number === starFilter ? setStarFilter(0) : setStarFilter(number);
-  }
-
-  const setFilteredList = () => {
-    if (starFilter === 0) return setActiveList(reviewList.slice(0, currentListLength));
-    let filteredList = reviewList.filter(review => { return review.rating === starFilter });
-    setActiveList(filteredList.slice(0, currentListLength));
-  }
+  const handleStarFilter = useCallback((number) => {
+    number === starFilter ? setStarFilter(0) : setStarFilter(number);
+  }, [starFilter]);
 
   useEffect(() => {
     const getData = async() => {
@@ -52,15 +50,13 @@ const RatingsReviews = ({ id }) => {
   useEffect(() => {
     if (currentListLength === 0) return;
     if (currentListLength > reviewList.length) {
-      return getReviewList(id, currentPage + 1, currentSort)
+      getReviewList(id, currentPage + 1, currentSort)
         .then(({ data }) => {
           setReviewList([...reviewList, ...data.results]);
           setCurrentPage(currentPage + 1);
-          setFilteredList();
         })
     };
-    setFilteredList();
-  }, [currentListLength, reviewList, currentSort, starFilter]);
+  }, [currentListLength, currentSort, currentPage]);
 
   useEffect(() => {
     getReviewList(id, 1, currentSort)

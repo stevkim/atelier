@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const ComfortForm = ({ setCharacterstic }) => {
   return (
@@ -30,4 +30,4 @@ const ComfortForm = ({ setCharacterstic }) => {
   )
 }
 
-export default ComfortForm;
+export default memo(ComfortForm);

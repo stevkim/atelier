@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const WidthForm = ({ setCharacterstic }) => {
   return (
@@ -30,5 +30,5 @@ const WidthForm = ({ setCharacterstic }) => {
   )
 }
 
-export default WidthForm;
+export default memo(WidthForm);
 

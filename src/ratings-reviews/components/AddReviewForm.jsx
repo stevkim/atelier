@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import SizeForm from './forms/SizeForm.jsx';
 import WidthForm from './forms/WidthForm.jsx';
 import ComfortForm from './forms/ComfortForm.jsx';
@@ -10,24 +10,19 @@ import { convertFilesToDataURL, postRequirements } from '../lib/addReviewFunctio
 import { postReview } from '../lib/fetchFunctions.js';
 import errorMessages from '../lib/errorMessages.js';
 
-const initState = {
-  product_id: '',
-  rating: 0,
-  summary: '',
-  body: '',
-  recommend: null,
-  name: '',
-  email: '',
-  characteristics: {},
-  photos: []
-}
-
 const AddReviewForm = ({ data, setModal }) => {
   const { product_id, characteristics } = data;
 
-  const [userInput, setUserInput] = useState(() => {
-    initState.product_id = JSON.parse(product_id);
-    return initState;
+  const [userInput, setUserInput] = useState({
+    product_id: JSON.parse(product_id),
+    rating: 0,
+    summary: '',
+    body: '',
+    recommend: null,
+    name: '',
+    email: '',
+    characteristics: {},
+    photos: []
   });
   const [errMessages, setErrMessages] = useState([]);
   const [error, setError] = useState(false);
@@ -37,13 +32,13 @@ const AddReviewForm = ({ data, setModal }) => {
     setUserInput({...userInput, photos: result});
   };
 
-  const setCharacterstic = (input, value) => {
+  const setCharacterstic = useCallback((input, value) => {
     setUserInput({...userInput, characteristics: {...userInput.characteristics, [characteristics[input].id]: parseInt(value)}})
-  }
+  }, [])
 
-  const setOverallRating = (value) => {
+  const setOverallRating = useCallback((value) => {
     setUserInput({...userInput, rating: value });
-  }
+  }, [])
 
   const checkValid = (e, type) => {
     if (!e.target.checkValidity() || e.target.value === '') {
@@ -68,12 +63,11 @@ const AddReviewForm = ({ data, setModal }) => {
     e.preventDefault();
     if (!checkRequirements() || errMessages.length > 0) return setError(true);
     postReview(product_id, userInput)
-      .then(result => {
-        console.log(result);
-        setModal(false);
-      })
       .catch(err => {
         console.log(err);
+      })
+      .finally(() => {
+        setModal(false);
       })
   }
 

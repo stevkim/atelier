@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const QualityForm = ({ setCharacterstic }) => {
   return (
@@ -30,4 +30,4 @@ const QualityForm = ({ setCharacterstic }) => {
   )
 }
 
-export default QualityForm;
+export default memo(QualityForm);

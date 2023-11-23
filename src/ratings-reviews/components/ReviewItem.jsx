@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
 import { convertDate } from '../lib/convertDate.js';
 
-const ReviewItem = ({ review, getList }) => {
+const ReviewItem = ({ review }) => {
   const { reviewer_name, rating, email, date, summary, response,
     body, photos, recommend, helpfulness, review_id } = review;
 
@@ -63,7 +63,7 @@ const ReviewItem = ({ review, getList }) => {
       </div>
       {
         photos.map(photo => {
-          return <img src={photo.url} key={photo.id} alt='Reviewer picture' width='150px'/>
+          return <img  key={photo.id} src={photo.url} alt='Reviewer picture' width='150px' onError={e => { e.target.src = 'https://i.imgur.com/mYzivnl.png'}}/>
         })
       }
 
@@ -85,4 +85,4 @@ const ReviewItem = ({ review, getList }) => {
   )
 }
 
-export default ReviewItem;
+export default memo(ReviewItem);

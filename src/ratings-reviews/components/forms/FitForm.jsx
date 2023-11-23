@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const FitForm = ({ setCharacterstic }) => {
   return (
@@ -30,4 +30,4 @@ const FitForm = ({ setCharacterstic }) => {
   )
 }
 
-export default FitForm;
+export default memo(FitForm);

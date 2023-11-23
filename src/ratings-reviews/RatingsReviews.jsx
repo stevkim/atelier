@@ -28,13 +28,13 @@ const RatingsReviews = ({ id }) => {
     return reviewList.filter(review => { return review.rating === starFilter });
   }, [reviewList, starFilter, currentListLength])
 
-  const handleListIncrement = () => {
-    setCurrentListLength(currentListLength + 2);
-  };
-
   const handleStarFilter = useCallback((number) => {
     number === starFilter ? setStarFilter(0) : setStarFilter(number);
   }, [starFilter]);
+
+  const handleListIncrement = () => {
+    setCurrentListLength(currentListLength + 2);
+  };
 
   useEffect(() => {
     const getData = async() => {

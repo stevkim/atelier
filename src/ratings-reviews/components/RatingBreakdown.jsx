@@ -5,22 +5,9 @@ import StarRating from '../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, total, handleStarFilter }) => {
-  const [ratingList, setRatingList] = useState([]);
-  const [propertyList, setPropertyList] = useState([]);
-
   const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data]);
   const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, total), [data]);
-
-  const parseData = () => {
-    for(let keys in data.ratings) {
-      data.ratings[keys] = Math.round(JSON.parse(data.ratings[keys]) / total * 100);
-    }
-    setPropertyList(convertCharacterstics(data.characteristics))
-  };
-
-  useEffect(() => {
-    parseData();
-  }, [data]);
+  const propertyList = useMemo(() => convertCharacterstics(data.characteristics), [data]);
 
   return (
     <section className='breakdown-wrapper'>
@@ -29,7 +16,7 @@ const RatingBreakdown = ({ data, total, handleStarFilter }) => {
         <sup><StarRating rating={averageRating} /></sup>
       </div>
       <p>{averageRecommended}% of reviews recommend this product</p>
-      <RatingList ratings={data.ratings} handleStarFilter={handleStarFilter}/>
+      <RatingList ratings={data.ratings} total={total} handleStarFilter={handleStarFilter}/>
       <ProductBreakdownList propertyList={propertyList} />
     </section>
   )

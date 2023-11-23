@@ -2,7 +2,6 @@ import React from 'react';
 import ReviewItem from './ReviewItem.jsx';
 
 const ReviewsList = ({ reviewList, handleListIncrement, setModal, showButton }) => {
-
   return (
     <div className='review-list-container'>
       {

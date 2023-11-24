@@ -81,7 +81,6 @@
   left: 62.5%;
   width: 30%;
   height: 100%;
-  gap: 5.5%;
   grid-template-areas:
     'reviews'
     'categor'
@@ -103,7 +102,6 @@
   justify-self: left;
   text-align: left;
   position: relative;
-  max-height: 10%;
   font-size: 1.5em;
 }
 
@@ -112,7 +110,7 @@
   justify-self: left;
   text-align: left;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 5%;
   font-size: 2em;
 }
 

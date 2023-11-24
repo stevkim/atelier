@@ -4,9 +4,6 @@ import ProductCard from './ProductCard.jsx';
 import './styles/relatedProductsAndComparisonStyles.css';
 
 const ProductList = ({ products, productCardClick, isYourOutfit, addToOutfit }) => {
-  if (products.length === 0){
-    return <div></div>
-  }
   const [fourProducts, setFourProducts] = useState([]);
   const [firstIndex, setFirstIndex] = useState(0);
   const [lastIndex, setLastIndex] = useState(0);
@@ -47,6 +44,10 @@ const ProductList = ({ products, productCardClick, isYourOutfit, addToOutfit }) 
     }
     setLastIndex(lastIndex + 1);
   };
+
+  if (products.length === 0){
+    return <div></div>
+  }
 
   return (
     <div className="related-products">

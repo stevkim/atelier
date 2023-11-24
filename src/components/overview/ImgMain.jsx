@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImgMain = ({ url, inExpandedView, changeView }) => {
+const ImgMain = ({ url, inExpandedView, changeView, incrementThumbnail }) => {
   return (
     <>
       {!inExpandedView

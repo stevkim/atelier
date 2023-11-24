@@ -1,133 +1,7 @@
-:root {
-  --primary-color: black;
-  --secondary-color: gold;
-  --tertiary-color: rgb(112, 205, 236);
-}
-
 .overview {
-  box-sizing: border-box;
   position: relative;
-  display: grid;
-  gap: 0.67em;
-  grid-template-areas:
-    'title   title   title   title   title   title title title title   title   title'
-    'categor categor categor categor categor categor categor categor categor categor categor'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . details details .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . selectStyle .   .       .       .'
-    'imgMain imgMain imgMain imgMain imgMain . reviews .       .       .       .'
-    '.       .       .       .       .       . Price   .       .       .       .'
-    '.       .       .       .       .       . AddToCart .     .       .       .';
   border-style: solid;
-}
-
-/*
- * ================
- *      TITLE
- * ================
- */
-
-.overview-title {
-  box-sizing: border-box;
-  grid-area: title;
-  justify-self: center;
-  text-align: center;
-  background-color: var(--tertiary-color);
-  color: var(--primary-color);
-  grid-area: title;
-  font-size: 2em;
-  max-width: 20em;
-  min-width: 20em;
-}
-
-/*
- * ================
- *    CATEGORY
- * ================
- */
-
-.overview-category {
-  box-sizing: border-box;
-  grid-area: categor;
-  justify-self: center;
-  text-align: center;
-  position: relative;
-  max-height: 2em;
-  font-size: 1.5em;
-  max-width: 20em;
-  min-width: 20em;
-}
-
-/*
- * ================
- *     INFO
- *  (Future use)
- * ================
- */
-
-/*
- * ================
- *    DETAILS
- * ================
- */
-
-.overview-details {
-  box-sizing: border-box;
-  grid-area: details;
-  position: relative;
-  display: grid;
-  min-height: 14.5em;
-  max-height: 14.5em;
-  grid-template-areas:
-    'slogan . . .'
-    'description description . .'
-    'description description . .'
-    'feature . . .'
-    'feature . . .'
-    'buttons . . .'
-}
-
-.overview-slogan {
-  box-sizing: border-box;
-  grid-area: slogan;
-  margin-block-start: 2em;
-  margin-block-end: 0em;
-}
-
-.overview-description {
-  box-sizing: border-box;
-  grid-area: description;
-  min-height: 3em;
-  max-height: 3em;
-  min-width: 25em;
-  max-width: 25em;
-}
-
-.overview-feature-wrapper {
-  box-sizing: border-box;
-  grid-area: feature;
-}
-
-.overview-feature {
-  box-sizing: border-box;
-}
-
-.overview-share-buttons {
-  box-sizing: border-box;
-  grid-area: buttons;
-}
-
-.share-facebook {
-  box-sizing: border-box;
-}
-
-.share-x {
-  box-sizing: border-box;
-}
-
-.share-pinterest {
-  box-sizing: border-box;
+  padding-top: 7%;
 }
 
 /*
@@ -138,172 +12,250 @@
 
 /* Entire thing */
 .overview-image-view {
-  box-sizing: border-box;
-  grid-area: imgMain;
-  position: relative;
-  display: grid;
-  align-items: right;
-  justify-items: right;
-  grid-template-areas:
-  /*          1       2       3       4       5       6       7       8    */
-  /*01*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*02*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*03*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*04*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*05*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*06*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*07*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*08*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg thumbnl'
-  /*09*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
-  /*10*/  'mainImg mainImg mainImg mainImg mainImg mainImg mainImg mainImg'
+  height: 70%;
+  width: 50%;
 }
 
 /* Main image in default view */
 .overview-img-main-default {
-  box-sizing: border-box;
-  grid-area: mainImg;
-  position: relative;
-  object-fit: fill;
-  min-height: 25em;
-  min-width: 25em;
-  max-height: 25em;
-  max-width: 25em;
+  position: absolute;
+  left: 10%;
+  height: inherit;
+  width: inherit;
+  min-height: 70%;
+  min-width: 50%;
 }
 
 /* Main image in expanded view */
 .overview-img-main-expanded {
-  box-sizing: border-box;
-  grid-area: mainImg;
 }
-
-/*
- * ================
- *  THUMBNAIL VIEW
- * ================
- */
 
 .overview-thumbnail-view {
   box-sizing: border-box;
-  position: relative;
-  border-style: solid;
-  border-color: var(--tertiary-color);
-  background-color: var(--tertiary-color);
+  position: absolute;
   z-index: 1;
-  grid-area: thumbnl;
+  margin: 3% 3% 3% 3%;
+  left: 10%;
+  height: 55%;
+  width: 6%;
+  row-gap: 1%;
   display: grid;
-  top: 4em;
-  left: 0.67em;
-  height: 10.5em;
-  width: 5.5em;
-  gap: 1px;
-  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+  grid-template: repeat(6, 1fr) / repeat(1, 1fr);
+  grid-template-rows: 16% 16% 16% 16% 16% 20%;
 }
 
-/* THUMBNAIL */
-.overview-thumbnail {
-  box-sizing: border-box;
+div.overview-thumbnail {
   border-style: solid;
-  object-fit: fill;
-  height: 2.5em;
-  width: 2.5em;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 200%;
 }
 
-/*
- * ================
- *  STYLE WRAPPER
- * ================
- */
-
-.overview-style-wrapper {
+img.overview-thumbnail {
+  border-style: solid;
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 
+.overview-thumbnail-button {
+  height: 20%;
+}
+
+.overview-left-button {
+  position: absolute;
+  top: 70%;
+  left: 15.5%;
+  z-index: 1;
+}
+
+.overview-right-button {
+  position: absolute;
+  top: 70%;
+  left: 52.5%;
+  z-index: 1;
+}
+
 /*
- * ===============
- *    Reviews
- * ===============
+ * ================
+ *      INFO
+ * ================
  */
+
+ .overview-overview {
+  grid-area: overview;
+  position: relative;
+  margin-top: 2.5%;
+  display: grid;
+  left: 62.5%;
+  width: 30%;
+  height: 100%;
+  grid-template-areas:
+    'reviews'
+    'categor'
+    'title'
+    'price'
+    'selectStyle'
+    'AddToCart'
+    'butttons';
+  grid-auto-rows: 7% 7% 12% 12% 35% 20% 7%;
+}
+
 .overview-reviews {
-  box-sizing: border-box;
   grid-area: reviews;
-}
-
-/*
- * ================
- *   STYLES VIEW
- * ================
- */
-
-.overview-styles-view {
-  box-sizing: border-box;
-  position: relative;
-  border-style: solid;
-  border-color: var(--tertiary-color);
-  background-color: var(--tertiary-color);
-  z-index: 1;
-  grid-area: selectStyle;
   display: grid;
-  gap: 1px;
-  grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-  width: 5.5em;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
 }
 
-/* THUMBNAIL */
-.overview-style-thumbnail {
-  box-sizing: border-box;
-  border-style: solid;
-  object-fit: fill;
-  width: 2.5em;
-  height: 2.5em;
+.overview-category {
+  grid-area: categor;
+  justify-self: left;
+  text-align: left;
+  position: relative;
+  font-size: 1.5em;
 }
 
-/*
- * ================
- *      PRICE
- * ================
- */
-
-.overview-selected-style {
-  box-sizing: border-box;
-  grid-area: selectedStyle;
+.overview-title {
+  grid-area: title;
+  justify-self: left;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 5%;
+  font-size: 2em;
 }
 
 .overview-price-container {
-  box-sizing: border-box;
-  grid-area: Price;
+  position: relative;
+  grid-area: price;
+  text-wrap: nowrap;
 }
 
-/* style the regular price */
-.overview-price {
-  box-sizing: border-box;
+.overview-price-true {
+  color: red;
+  text-decoration: line-through;
+  font-size: 1.25em;
 }
 
-/* style the regular price if the item is on sale */
-.overview-price-onSale-true {
-  box-sizing: border-box;
+.overview-price-false {
+  font-size: 1.25em;
 }
 
 .overview-sale-price {
-  box-sizing: border-box;
+  font-size: 1.25em;
+}
+
+.overview-selected-style {
+  grid-area: selectedStyle;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  font-size: 1.25em;
+}
+
+.overview-styles-view {
+  position: relative;
+  z-index: 1;
+  grid-area: selectStyle;
+  display: grid;
+  column-gap: 6%;
+  row-gap: 15%;
+  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-template-rows: 50% 50%;
+  padding-top: 7%;
+  padding-bottom: 14%;
+  min-height: 10%;
+  min-width: 50%;
+  max-width: 90%;
+}
+
+div.overview-style-thumbnail {
+  border-style: solid;
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+  font-size: 200%;
+  text-align: center;
+}
+
+img.overview-style-thumbnail {
+  border-style: solid;
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+}
+
+#overview-cart-form {
+  grid-area: AddToCart;
+  z-index: 1;
+}
+
+.overview-size-dropdown {
+  inline-size: 60%;
+  margin-right: 5%;
+  font-size: 2em;
+}
+
+.overview-quantity-dropdown {
+  inline-size: 30%;
+  font-size: 2em;
+}
+
+.overview-share-buttons {
+  grid-area: buttons;
+  justify-content: left;
+}
+
+.overview-cart-submit {
+  margin-top: 5%;
+  inline-size: 70%;
+  font-size: 2em;
+  min-width: 4em;
+}
+
+.share-facebook {
+}
+
+.share-x {
+}
+
+.share-pinterest {
 }
 
 /*
  * ================
- *   ADD TO CART
+ *    DETAILS
  * ================
  */
 
-#overview-cart-form {
-  box-sizing: border-box;
-  grid-area: AddToCart;
+ .overview-details {
+  position: relative;
+  grid-area: details;
+  display: grid;
+  grid-template-areas:
+    '. slogan      feature'
+    '. description feature'
+    '. description feature';
+  gap: 1%;
+  grid-template-columns: 9% 51.25%;
 }
 
-.overview-size-dropdown {
-  box-sizing: border-box;
-  inline-size: 4em;
+.overview-slogan {
+  grid-area: slogan;
 }
 
-.overview-quantity-dropdown {
-  box-sizing: border-box;
-  inline-size: 4em;
+.overview-description {
+  position: relative;
+  grid-area: description;
+}
+
+.overview-feature-wrapper {
+  position: relative;
+  grid-area: feature;
+  justify-content: left;
+  border-left: solid;
+}
+
+.overview-feature {
 }

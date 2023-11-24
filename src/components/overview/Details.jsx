@@ -1,25 +1,27 @@
 import React from 'react';
+import Reviews from './Reviews.jsx';
+import ImageView from './ImageView.jsx';
+import StylesView from './StylesView.jsx';
+import Price from './Price.jsx';
+import AddToCart from './AddToCart.jsx';
 // import ShareButtons from './ShareButtons.jsx';
 
-const Details = ({ slogan, description, features }) => (
-  <div className='overview-details'>
-    <h3 className='overview-slogan'>{slogan}</h3>
-    <p className='overview-description'>{description}</p>
-    <ul className='overview-feature-wrapper'>
-      {features.map((feat, index) => {
-        return (
-          <li className='overview-feature' key={'overview-details-' + index}>
-            The {feat.feature} is {feat.value}!
-          </li>
-        );
-      })}
-    </ul>
-    <div className='overview-share-buttons'>
-      < button className='share-facebook'>f</button>
-      < button className='share-x'>x</button>
-      < button className='share-pinterest'>P</button>
+const Details = ({ product }) => {
+  return (
+    <div className='overview-details'>
+      <h3 className='overview-slogan'>{product.slogan}</h3>
+      <p className='overview-description'>{product.description}</p>
+      <ul className='overview-feature-wrapper'>
+        {product.features.map((feat, index) => {
+          return (
+            <li className='overview-feature' key={'overview-details-' + index}>
+              The {feat.feature} is {feat.value}!
+            </li>
+          );
+        })}
+      </ul>
     </div>
-  </div>
-)
+  );
+}
 
 export default Details;

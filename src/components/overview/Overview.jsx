@@ -32,10 +32,6 @@ const Overview = ({ productId }) => {
       .catch(err => console.log(err))
   }, [productId])
 
-  useEffect(() => {
-
-  })
-
   const updateStyle = (int) => {
     setStyle(int);
   }
@@ -45,31 +41,22 @@ const Overview = ({ productId }) => {
 
   return (
     <div className='overview'>
-      < Title title={product.title} />
-      < Category category={product.category} />
-
-      {/* ImageView also contains the thumbnails. */}
-      {< ImageView photos={selectedStyle.photos} />}
-
-      {/* Tech Debt: Layout will be more responsive if we throw everything underneath this in a div and fix the CSS */}
-      < Details
-        slogan={product.slogan}
-        description={product.description}
-        features={product.features} />
-
-      {/* TODO: Use Steven Powers */}
-      {< Reviews reviews={product.reviews} />}
-
-      {/* Styles will change the style state */}
-      {< StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />}
-
-      {/* Price also has the SelectedStyle textbox */}
-      {< Price selectedStyle={selectedStyle} />}
-
-      {/* Needs a sizeDropdown, quantityDropdown, and Submit sub */}
-      {< AddToCart skus={selectedStyle.skus} />}
+      < ImageView photos={selectedStyle.photos} />
+      <div className='overview-overview'>
+        < Reviews product={product} />
+        <div className='overview-category'>{product.category}</div>
+        <h3 className='overview-title'>{product.title}</h3>
+        < Price selectedStyle={selectedStyle} />
+        < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
+        < AddToCart skus={selectedStyle.skus} />
+        <div className='overview-share-buttons'>
+          < button className='share-facebook'>f</button>
+          < button className='share-x'>x</button>
+          < button className='share-pinterest'>P</button>
+        </div>
+      </div>
+      < Details product={product} />
     </div>
-  );
+  )
 }
-
 export default Overview;

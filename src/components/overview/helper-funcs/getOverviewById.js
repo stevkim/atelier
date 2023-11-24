@@ -1,36 +1,20 @@
 import axios from 'axios';
-require('dotenv').config();
 
 const getProductInfo = (productId) => {
-  let url = process.env.API_URL + 'products/' + productId;
-  let headers = {
-    headers: {
-      Authorization: process.env.GIT_TOKEN,
-    }
-  }
-  let res = axios.get(url, headers);
+  let url = '/products/' + productId;
+  let res = axios.get(url);
   return res;
 };
 
 const getReviewMetadata = (productId) => {
-  let url = process.env.API_URL + 'reviews/meta/?product_id=' + productId;
-  let headers = {
-    headers: {
-      Authorization: process.env.GIT_TOKEN,
-    }
-  };
-  let res = axios.get(url, headers);
+  let url = '/reviews/meta/?product_id=' + productId;
+  let res = axios.get(url);
   return res;
 };
 
 const getProductStyles = (productId) => {
-  let url = process.env.API_URL + 'products/' + productId + '/styles';
-  let headers = {
-    headers: {
-      Authorization: process.env.GIT_TOKEN,
-    }
-  };
-  let res = axios.get(url, headers);
+  let url = '/products/' + productId + '/styles';
+  let res = axios.get(url);
   return res;
 };
 

@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Price = ({selectedStyle}) => {
+const Price = ({ selectedStyle }) => {
   const regularPrice = selectedStyle.original_price;
   const salePrice = selectedStyle.sale_price;
   const isOnSale = salePrice > 0;
   return (
     <div className='overview-price-container'>
-      <div className='overview-selected-style'>
-        {selectedStyle.name}
-      </div>
-      <span className='overview-price' className={'overview-price-onSale-' + isOnSale}>Price: {regularPrice}</span>
+      <span className={'overview-price-' + isOnSale}>${regularPrice}</span>
       {isOnSale
-        ? <span className='overview-sale-price'>Sale Price: {salePrice}</span>
+        ? <span className='overview-sale-price'>{' $' + salePrice}</span>
         : ''}
+      <div className='overview-selected-style'>
+        <b>Style {'<'}</b> {selectedStyle.name}
+      </div>
     </div>
   );
 }

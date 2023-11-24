@@ -5,6 +5,7 @@
   display: block;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
+  font-weight: normal;
 }
 
 .active-stars {
@@ -26,4 +27,15 @@
 .stars {
   width: 1em;
   height: 1em;
+}
+
+.body-subtext {
+  margin-left: auto;
+  margin-right: .5em;
+  font-size: .5em;
+}
+
+.error-message {
+  font-size: .5em;
+  color: red;
 }

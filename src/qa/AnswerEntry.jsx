@@ -3,19 +3,18 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { convertDate } from './convertDate.js'
 
-export default function AnswerEntry({ answer, serverURL, headers }) {
+export default function AnswerEntry({ answer }) {
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer;
-  const [isHelpful, setIsHelpful] = useState(false);
-  const [updateHelpfulness, setUpdateHelpfulness] = useState(helpfulness);
+  const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
+  const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-
-  const handleHelpfulClick = (id) => {
-    if (!isHelpful) {
-      axios.put(`${serverURL}/qa/answers/${id}/helpful`, null, { headers: headers })
+  const handleHelpfulAnswerClick = (id) => {
+    if (!isAnswerHelpful) {
+      axios.put(`/qa/answers/${id}/helpful`, null)
         .then((response) => {
-          setUpdateHelpfulness(updateHelpfulness + 1);
-          setIsHelpful(true);
+          setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
+          setIsAnswerHelpful(true);
         })
         .catch((err) => {
           console.log(err);
@@ -25,7 +24,7 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
   const handleReportClick = (id) => {
     if (!reported) {
-      axios.put(`${serverURL}/qa/answers/${id}/report`, null, { headers: headers })
+      axios.put(`/qa/answers/${id}/report`, null)
         .then(() => {
           setReported(true);
         })
@@ -38,6 +37,11 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
   return (
     <div className='answer-container'>
       <p className='answer'>{body}</p>
+      <div className='photos-container'>
+        {photos.map((photo) => {
+          return <img key={photo.id} className='answer-photos' src={photo.url} alt='Photos for answer'/>
+        })}
+      </div>
       <div className='answer-details-container'>
         <span>
           by <span style={{fontWeight: answerer_name === 'Seller' && 'bold'}}>{answerer_name}</span>, <span>{convertDate(date)}</span>
@@ -45,12 +49,12 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
         <span className='helpful-container'>
           <span>Helpful?</span>
           <span
-            title='Yes'
             className='yes'
-            style={{textDecoration: isHelpful ? 'none' : 'underline', cursor: isHelpful && 'default'}}
-            onClick={() => {handleHelpfulClick(answer_id)}}>Yes
+            style={{textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default'}}
+            onClick={() => {handleHelpfulAnswerClick(answer_id)}}>
+            Yes
           </span>
-          <span title='Count'>({updateHelpfulness})</span>
+          <span>({updateAnswerHelpfulness})</span>
         </span>|
         <span
           title='Report'

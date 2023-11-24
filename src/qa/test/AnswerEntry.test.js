@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AnswerEntry from '../AnswerEntry.jsx';
-import { answers } from '../answersData.js';
+import { answers } from '../example-data/answersData.js';
 import { convertDate } from '../convertDate.js';
 
 describe('Convert Date', () => {

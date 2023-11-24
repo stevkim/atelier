@@ -7,7 +7,7 @@ import './styles/productCardStyles.css';
 require("dotenv").config();
 
 const ProductCard = ({ id, productCardClick }) => {
-  const [imageURL, setImageURL] = useState('./productimagenotfound.png');
+  const [imageURL, setImageURL] = useState('https://imgur.com/a/GueMKaC');
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [originalPrice, setOriginalPrice] = useState(0);

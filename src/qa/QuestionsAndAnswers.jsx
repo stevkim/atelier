@@ -10,6 +10,7 @@ export default function QuestionsAndAnswers() {
   const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [displayCount, setDisplayCount] = useState(2);
+  const [term, setTerm] = useState('');
 
   const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const headers = { Authorization: process.env.GIT_TOKEN };
@@ -18,7 +19,15 @@ export default function QuestionsAndAnswers() {
     totalQuestions !== displayCount &&
     setDisplayCount(displayCount + 2);
     setIsQuestionExpanded(true);
-  }
+  };
+
+  const handleInputChange = (e) => {
+    e.target.value.length >= 3
+    ? setTerm(e.target.value)
+    : setTerm('');
+  };
+
+  console.log(term)
 
   useEffect(() => {
     axios.get(`${serverURL}/qa/questions/?product_id=40345&count=20`, { headers: headers })
@@ -35,11 +44,20 @@ export default function QuestionsAndAnswers() {
   return (
     <div className='qa-container'>
       <h4>QUESTIONS AND ANSWERS</h4>
+      <div className='search-container'>
+        <input
+          type='text'
+          name='Search'
+          placeholder='Have a question? Search for answers...'
+          onChange={handleInputChange}>
+        </input>
+      </div>
       <QuestionList
         currQuestionList={currQuestionList}
         serverURL={serverURL}
         headers={headers}
         isQuestionExpanded={isQuestionExpanded}
+        term={term}
       />
       <div className='button-container'>
         {

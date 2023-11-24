@@ -33,7 +33,7 @@ const Overview = ({ productId }) => {
   }, [productId])
 
   const updateStyle = (int) => {
-    setStyle(int);
+    setStyle((int % Object.keys(product.styles).length));
   }
 
   // Tech debt: It would probably be faster to just pass in the entire product.
@@ -41,7 +41,7 @@ const Overview = ({ productId }) => {
 
   return (
     <div className='overview'>
-      < ImageView photos={selectedStyle.photos} />
+      < ImageView photos={selectedStyle.photos} style={style} updateStyle={updateStyle}/>
       <div className='overview-overview'>
         < Reviews product={product} />
         <h3 className='overview-title'>{product.title}</h3>

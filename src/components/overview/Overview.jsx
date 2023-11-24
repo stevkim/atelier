@@ -41,9 +41,7 @@ const Overview = ({ productId }) => {
 
   return (
     <div className='overview'>
-      <div className='overview-main-view'>
-        < ImageView photos={selectedStyle.photos} />
-      </div>
+      < ImageView photos={selectedStyle.photos} />
       <div className='overview-overview'>
         < Reviews product={product} />
         <h3 className='overview-title'>{product.title}</h3>

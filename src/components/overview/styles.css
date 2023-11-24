@@ -1,17 +1,9 @@
-:root {
-  --primary-color: black;
-  --secondary-color: gold;
-  --tertiary-color: rgb(112, 205, 236);
-}
-
 .overview {
-  box-sizing: border-box;
   position: relative;
-  display: grid;
-  grid-template-areas:
-    'imgMain overview'
-    'details details';
   border-style: solid;
+  height: 100%;
+  width: 100%;
+  padding-top: 5%;
 }
 
 /*
@@ -23,22 +15,15 @@
 /* Entire thing */
 .overview-image-view {
   box-sizing: border-box;
-  grid-area: imgMain;
-  display: grid;
-  margin-top: 4em;
-  height: 35em;
-  width: 50em;
-  grid-template-areas:
-    'thumbnl mainImg'
+  height: 74%;
+  width: 50%;
 }
 
 /* Main image in default view */
 .overview-img-main-default {
   box-sizing: border-box;
-  grid-area: mainImg;
   position: absolute;
-  float: left;
-  object-fit: fill;
+  left: 10%;
   height: inherit;
   width: inherit;
 }
@@ -46,29 +31,25 @@
 /* Main image in expanded view */
 .overview-img-main-expanded {
   box-sizing: border-box;
-  grid-area: mainImg;
 }
 
 .overview-thumbnail-view {
   box-sizing: border-box;
   position: absolute;
   z-index: 1;
-  grid-area: thumbnl;
-  display: grid;
   margin: 3% 3% 3% 3%;
   height: 52%;
-  width: 8%;
-  gap: 1.25em;
-  grid-template: repeat(7, 1fr) / repeat(1, 1fr);
-  overflow-y: scroll;
+  width: 6%;
+  left: 10%;
+  overflow-y: hidden;
 }
 
 .overview-thumbnail {
   box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
-  height: 4em;
-  width: 4em;
+  height: 19%;
+  width: 100%;
 }
 
 /*
@@ -82,10 +63,10 @@
   grid-area: overview;
   position: relative;
   display: grid;
-  margin-top: 4em;
-  gap: 1em;
-  width: 20em;
-  height: 35em;
+  left: 62.5%;
+  width: 30%;
+  height: 100%;
+  gap: 5.5%;
   grid-template-areas:
     'reviews'
     'categor'
@@ -100,7 +81,6 @@
   box-sizing: border-box;
   grid-area: reviews;
   display: grid;
-  width: fit-content;
   grid-template: repeat(1, 1fr) / repeat(2, 1fr);
 }
 
@@ -112,8 +92,6 @@
   position: relative;
   max-height: 4em;
   font-size: 1.5em;
-  max-width: 20em;
-  min-width: 20em;
 }
 
 .overview-title {
@@ -124,28 +102,23 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 2em;
-  max-width: 20em;
-  min-width: 20em;
 }
 
 .overview-styles-view {
-  box-sizing: border-box;
   position: relative;
   z-index: 1;
   grid-area: selectStyle;
   display: grid;
-  gap: 0.5em;
+  column-gap: 4%;
   grid-template: repeat(2, 1fr) / repeat(4, 1fr);
-  width: 18em;
 }
 
 .overview-style-thumbnail {
   box-sizing: border-box;
   border-style: solid;
-  object-fit: fill;
-  border-radius: 4em;
-  width: 4em;
-  height: 4em;
+  border-radius: 100%;
+  height: 72%;
+  width: 100%;
 }
 
 .overview-price-container {
@@ -190,6 +163,7 @@
 .overview-share-buttons {
   box-sizing: border-box;
   grid-area: buttons;
+  justify-content: left;
 }
 
 .share-facebook {
@@ -212,36 +186,35 @@
 
  .overview-details {
   box-sizing: border-box;
-  grid-area: details;
   position: relative;
+  grid-area: details;
+  padding-top: 15%;
   display: grid;
-  min-height: 10em;
-  max-height: 10em;
   grid-template-areas:
-    'slogan .'
-    'description feature'
-    'description feature'
+    '. slogan      feature'
+    '. description feature'
+    '. description feature';
+  gap: 1%;
+  grid-template-columns: 9% 51.25%;
 }
 
 .overview-slogan {
   box-sizing: border-box;
   grid-area: slogan;
-  margin-block-start: 2em;
-  margin-block-end: 0em;
 }
 
 .overview-description {
   box-sizing: border-box;
+  position: relative;
   grid-area: description;
-  min-height: 3em;
-  max-height: 3em;
-  min-width: 25em;
-  max-width: 25em;
 }
 
 .overview-feature-wrapper {
   box-sizing: border-box;
+  position: relative;
   grid-area: feature;
+  justify-content: left;
+  border-left: solid;
 }
 
 .overview-feature {

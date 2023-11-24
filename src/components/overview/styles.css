@@ -1,8 +1,6 @@
 .overview {
   position: relative;
   border-style: solid;
-  height: 100%;
-  width: 100%;
   padding-top: 5%;
 }
 
@@ -14,14 +12,12 @@
 
 /* Entire thing */
 .overview-image-view {
-  box-sizing: border-box;
   height: 74%;
   width: 50%;
 }
 
 /* Main image in default view */
 .overview-img-main-default {
-  box-sizing: border-box;
   position: absolute;
   left: 10%;
   height: inherit;
@@ -30,11 +26,9 @@
 
 /* Main image in expanded view */
 .overview-img-main-expanded {
-  box-sizing: border-box;
 }
 
 .overview-thumbnail-view {
-  box-sizing: border-box;
   position: absolute;
   z-index: 1;
   margin: 3% 3% 3% 3%;
@@ -45,7 +39,6 @@
 }
 
 .overview-thumbnail {
-  box-sizing: border-box;
   border-style: solid;
   object-fit: fill;
   height: 19%;
@@ -59,7 +52,6 @@
  */
 
  .overview-overview {
-  box-sizing: border-box;
   grid-area: overview;
   position: relative;
   display: grid;
@@ -78,14 +70,12 @@
 }
 
 .overview-reviews {
-  box-sizing: border-box;
   grid-area: reviews;
   display: grid;
   grid-template: repeat(1, 1fr) / repeat(2, 1fr);
 }
 
 .overview-category {
-  box-sizing: border-box;
   grid-area: categor;
   justify-self: left;
   text-align: left;
@@ -95,7 +85,6 @@
 }
 
 .overview-title {
-  box-sizing: border-box;
   grid-area: title;
   justify-self: left;
   text-align: left;
@@ -114,7 +103,6 @@
 }
 
 .overview-style-thumbnail {
-  box-sizing: border-box;
   border-style: solid;
   border-radius: 100%;
   height: 72%;
@@ -122,60 +110,48 @@
 }
 
 .overview-price-container {
-  box-sizing: border-box;
   grid-area: price;
 }
 
 .overview-selected-style {
-  box-sizing: border-box;
   grid-area: selectedStyle;
 }
 
 .overview-price {
-  box-sizing: border-box;
 }
 
 .overview-price-onSale-true {
-  box-sizing: border-box;
 }
 
 .overview-sale-price {
-  box-sizing: border-box;
 }
 
 #overview-cart-form {
-  box-sizing: border-box;
   grid-area: AddToCart;
 }
 
 .overview-size-dropdown {
-  box-sizing: border-box;
   inline-size: 4em;
   font-size: 2em;
 }
 
 .overview-quantity-dropdown {
-  box-sizing: border-box;
   inline-size: 4em;
   font-size: 2em;
 }
 
 .overview-share-buttons {
-  box-sizing: border-box;
   grid-area: buttons;
   justify-content: left;
 }
 
 .share-facebook {
-  box-sizing: border-box;
 }
 
 .share-x {
-  box-sizing: border-box;
 }
 
 .share-pinterest {
-  box-sizing: border-box;
 }
 
 /*
@@ -185,7 +161,6 @@
  */
 
  .overview-details {
-  box-sizing: border-box;
   position: relative;
   grid-area: details;
   padding-top: 15%;
@@ -199,18 +174,15 @@
 }
 
 .overview-slogan {
-  box-sizing: border-box;
   grid-area: slogan;
 }
 
 .overview-description {
-  box-sizing: border-box;
   position: relative;
   grid-area: description;
 }
 
 .overview-feature-wrapper {
-  box-sizing: border-box;
   position: relative;
   grid-area: feature;
   justify-content: left;
@@ -218,5 +190,4 @@
 }
 
 .overview-feature {
-  box-sizing: border-box;
 }

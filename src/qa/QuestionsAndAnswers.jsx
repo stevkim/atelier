@@ -1,19 +1,15 @@
-require('dotenv').config();
 import React, { useState, useEffect } from 'react';
 import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
 import './qaStyles.css';
 
-export default function QuestionsAndAnswers() {
+export default function QuestionsAndAnswers({ productId }) {
   const [currQuestionList, setCurrQuestionList] = useState([]);
   const [questionList, setQuestionList] = useState([]);
   const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [displayCount, setDisplayCount] = useState(2);
   const [term, setTerm] = useState('');
-
-  const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-  const headers = { Authorization: process.env.GIT_TOKEN };
 
   const handleMoreQuestions = () => {
     totalQuestions !== displayCount &&
@@ -27,10 +23,8 @@ export default function QuestionsAndAnswers() {
     : setTerm('');
   };
 
-  console.log(term)
-
   useEffect(() => {
-    axios.get(`${serverURL}/qa/questions/?product_id=40345&count=20`, { headers: headers })
+    axios.get(`/qa/questions/?product_id=${productId}&count=20`)
       .then((response) => {
         setTotalQuestions(response.data.results.length);
         setQuestionList(response.data.results);
@@ -54,8 +48,6 @@ export default function QuestionsAndAnswers() {
       </div>
       <QuestionList
         currQuestionList={currQuestionList}
-        serverURL={serverURL}
-        headers={headers}
         isQuestionExpanded={isQuestionExpanded}
         term={term}
       />

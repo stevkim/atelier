@@ -11,7 +11,7 @@ const App = () => {
     <div>
       <Overview productId={currentProduct} />
       <RelatedProductsAndComparison currentProduct={currentProduct} setCurrentProduct={setCurrentProduct} />
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers productId={currentProduct} />
       <RatingsReviews id={currentProduct} />
     </div>
   )

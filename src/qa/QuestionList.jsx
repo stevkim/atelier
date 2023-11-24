@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
 
-export default function QuestionList({ currQuestionList, serverURL, headers, isQuestionExpanded, term }) {
+export default function QuestionList({ currQuestionList, isQuestionExpanded, term }) {
   return (
     <div className={`question-list-container ${isQuestionExpanded && 'question-list-container-expanded'}`}>
       {
@@ -12,7 +12,7 @@ export default function QuestionList({ currQuestionList, serverURL, headers, isQ
             : question.question_body.toLowerCase().includes(term)
           })
           .map((question) => {
-            return <QuestionEntry key={question.question_id} question={question} serverURL={serverURL} headers={headers} />
+            return <QuestionEntry key={question.question_id} question={question} />
           })
       }
     </div>

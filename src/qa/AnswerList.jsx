@@ -1,12 +1,12 @@
 import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 
-export default function AnswerList({ currAnswerList, serverURL, headers, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) {
+export default function AnswerList({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) {
   return (
     <div className={`answer-list-container ${isAnswerExpanded && 'answer-list-container-expanded'}`}>
       {
         currAnswerList.map((answer) => {
-          return <AnswerEntry key={answer.answer_id} answer={answer} serverURL={serverURL} headers={headers} />
+          return <AnswerEntry key={answer.answer_id} answer={answer} />
         })
       }
       {

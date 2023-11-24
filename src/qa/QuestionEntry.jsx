@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import AnswerList from './AnswerList.jsx';
 
-export default function QuestionEntry({ question, serverURL, headers }) {
+export default function QuestionEntry({ question }) {
   const { question_id, question_body, question_helpfulness, answers } = question;
   const [updateQuestionHelpfulness, setUpdateQuestionHelpfulness] = useState(question_helpfulness);
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
@@ -12,7 +12,7 @@ export default function QuestionEntry({ question, serverURL, headers }) {
 
   const handleHelpfulQuestionClick = (id) => {
     !isQuestionHelpful &&
-    axios.put(`${serverURL}/qa/questions/${id}/helpful`, null, { headers: headers })
+    axios.put(`/qa/questions/${id}/helpful`, null)
       .then(() => {
         setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
         setIsQuestionHelpful(true);
@@ -35,7 +35,7 @@ export default function QuestionEntry({ question, serverURL, headers }) {
   };
 
   useEffect(() => {
-    axios.get(`${serverURL}/qa/questions/${question_id}/answers/?count=${totalAnswers}`, { headers: headers })
+    axios.get(`/qa/questions/${question_id}/answers/?count=${totalAnswers}`)
       .then((response) => {
         const sortedAnswerList = response.data.results.sort((a,b) => {
           const isSellerA = a.answerer_name === 'Seller';
@@ -82,8 +82,6 @@ export default function QuestionEntry({ question, serverURL, headers }) {
         <div style={{ fontWeight: 'bold' }}>A:</div>
         <AnswerList
           currAnswerList={currAnswerList}
-          serverURL={serverURL}
-          headers={headers}
           totalAnswers={totalAnswers}
           handleLoadMoreAnswers={handleLoadMoreAnswers}
           handleCollapseAnswers={handleCollapseAnswers}

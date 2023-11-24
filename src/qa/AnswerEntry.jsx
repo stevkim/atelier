@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { convertDate } from './convertDate.js'
 
-export default function AnswerEntry({ answer, serverURL, headers }) {
+export default function AnswerEntry({ answer }) {
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer;
   const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
   const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
@@ -11,7 +11,7 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
   const handleHelpfulAnswerClick = (id) => {
     if (!isAnswerHelpful) {
-      axios.put(`${serverURL}/qa/answers/${id}/helpful`, null, { headers: headers })
+      axios.put(`/qa/answers/${id}/helpful`, null)
         .then((response) => {
           setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
           setIsAnswerHelpful(true);
@@ -24,7 +24,7 @@ export default function AnswerEntry({ answer, serverURL, headers }) {
 
   const handleReportClick = (id) => {
     if (!reported) {
-      axios.put(`${serverURL}/qa/answers/${id}/report`, null, { headers: headers })
+      axios.put(`/qa/answers/${id}/report`, null)
         .then(() => {
           setReported(true);
         })

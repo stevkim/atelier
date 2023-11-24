@@ -33,16 +33,16 @@
   position: absolute;
   z-index: 1;
   margin: 3% 3% 3% 3%;
-  height: 52%;
-  width: 6%;
   left: 10%;
   overflow: hidden;
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(1, 1fr);
 }
 
 .overview-thumbnail {
   border-style: solid;
   object-fit: fill;
-  height: 17.9%;
+  height: 40%;
   width: 92%;
 }
 

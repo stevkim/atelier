@@ -46,8 +46,8 @@ const Overview = ({ productId }) => {
         < Reviews product={product} />
         <div className='overview-category'>{product.category}</div>
         <h3 className='overview-title'>{product.title}</h3>
-        < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
         < Price selectedStyle={selectedStyle} />
+        < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
         < AddToCart skus={selectedStyle.skus} />
         <div className='overview-share-buttons'>
           < button className='share-facebook'>f</button>

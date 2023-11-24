@@ -11,7 +11,7 @@ const Price = ({ selectedStyle }) => {
         ? <span className='overview-sale-price'>{' $' + salePrice}</span>
         : ''}
       <div className='overview-selected-style'>
-        {selectedStyle.name}
+        <b>Style {'<'}</b> {selectedStyle.name}
       </div>
     </div>
   );

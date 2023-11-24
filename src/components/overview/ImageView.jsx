@@ -14,14 +14,6 @@ const ImageView = ({ photos }) => {
     setThumbnail(int);
   }
 
-  const incrementThumbnail = (increment) => {
-    let newThumbnail = (thumbnail + increment) % Object.keys(photos).length;
-    if (newThumbnail < 0) {
-      newThumbnail = Object.keys(photos).length + newThumbnail;
-    }
-    setThumbnail(newThumbnail)
-  }
-
   const changeView = () => {
     setInExpandedView(!inExpandedView);
   }
@@ -36,8 +28,7 @@ const ImageView = ({ photos }) => {
       < ThumbnailView
         thumbnails={photos}
         thumbnail={thumbnail}
-        updateThumbnail={updateThumbnail}
-        incrementThumbnail={incrementThumbnail} />
+        updateThumbnail={updateThumbnail} />
     </div>
   );
 }

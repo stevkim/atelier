@@ -129,6 +129,7 @@
 
 #overview-cart-form {
   grid-area: AddToCart;
+  z-index: 1;
 }
 
 .overview-size-dropdown {

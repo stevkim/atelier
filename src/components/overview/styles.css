@@ -12,7 +12,7 @@
 
 /* Entire thing */
 .overview-image-view {
-  height: 74%;
+  height: 70%;
   width: 50%;
 }
 
@@ -55,6 +55,7 @@
  .overview-overview {
   grid-area: overview;
   position: relative;
+  margin-top: 1.5%;
   display: grid;
   left: 62.5%;
   width: 30%;
@@ -81,7 +82,7 @@
   justify-self: left;
   text-align: left;
   position: relative;
-  max-height: 4em;
+  max-height: 10%;
   font-size: 1.5em;
 }
 
@@ -99,14 +100,19 @@
   z-index: 1;
   grid-area: selectStyle;
   display: grid;
-  column-gap: 4%;
+  column-gap: 6%;
+  row-gap: 15%;
   grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-template-rows: 50% 50%;
+  height: 70%;
+  width: 90%;
 }
 
 .overview-style-thumbnail {
   border-style: solid;
   border-radius: 100%;
-  height: 72%;
+  height: 100%;
   width: 100%;
 }
 
@@ -152,6 +158,7 @@
   margin-top: 5%;
   inline-size: 70%;
   font-size: 2em;
+  min-width: 4em;
 }
 
 .share-facebook {

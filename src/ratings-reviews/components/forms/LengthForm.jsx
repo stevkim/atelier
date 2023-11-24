@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { memo } from 'react';
 
-const LengthForm = ({ handleCharacterstics }) => {
-
+const LengthForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Length', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Length', e.target.value)}>
       <p>Length</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>
@@ -31,5 +30,5 @@ const LengthForm = ({ handleCharacterstics }) => {
   )
 }
 
-export default LengthForm;
+export default memo(LengthForm);
 

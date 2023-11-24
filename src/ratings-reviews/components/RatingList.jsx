@@ -1,17 +1,20 @@
 import React from 'react';
-import BarRating from './BarRating.jsx';
+import BarRating from '../utils/BarRating.jsx';
 
-const RatingList = ({ ratings, handleStarFilter }) => {
+const RatingList = ({ ratings, handleStarFilter, total }) => {
   const allRatings = Array.from(Array(5));
 
   return (
     <div className='rating-list-container'>
       {ratings &&
-        allRatings.map((rating, index) => {
-          let stars = 5 - index;
+        allRatings.map((_, index) => {
+          let rating = 5 - index;
           return (
             <div key={`barrating${index}`} className='bar-rating'>
-              <span onClick={() => handleStarFilter(stars)}>{stars} stars</span><BarRating rating={ratings[stars]} />
+              <span onClick={() => handleStarFilter(rating)}>
+                {rating} stars
+              </span>
+              <BarRating rating={ratings[Math.round(JSON.parse(rating) / total * 100)]} />
             </div>
           )
         })

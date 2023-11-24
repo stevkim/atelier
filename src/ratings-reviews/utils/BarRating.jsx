@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
+import './utilStyles.css';
 
 const BarRating = ({ rating }) => {
   return (
@@ -9,4 +10,4 @@ const BarRating = ({ rating }) => {
   )
 }
 
-export default BarRating;
+export default memo(BarRating);

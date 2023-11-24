@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const WidthForm = ({ handleCharacterstics }) => {
+const WidthForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Width', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Width', e.target.value)}>
       <p>Width</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>
@@ -30,5 +30,5 @@ const WidthForm = ({ handleCharacterstics }) => {
   )
 }
 
-export default WidthForm;
+export default memo(WidthForm);
 

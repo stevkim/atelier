@@ -1,4 +1,5 @@
 import React from 'react';
+import './utilStyles.css';
 
 const ProductBar = ({ rating }) => {
   const barLength = Array.from(Array(5));

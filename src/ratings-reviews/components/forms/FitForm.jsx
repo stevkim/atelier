@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const FitForm = ({ handleCharacterstics }) => {
+const FitForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Fit', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Fit', e.target.value)}>
       <p>Fit</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>
@@ -30,4 +30,4 @@ const FitForm = ({ handleCharacterstics }) => {
   )
 }
 
-export default FitForm;
+export default memo(FitForm);

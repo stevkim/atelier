@@ -142,7 +142,9 @@
   grid-area: selectedStyle;
 }
 
-.overview-price {
+.overview-price-true {
+  color: red;
+  text-decoration: line-through;
 }
 
 .overview-price-onSale-true {

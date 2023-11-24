@@ -29,6 +29,7 @@
 }
 
 .overview-thumbnail-view {
+  box-sizing: border-box;
   position: absolute;
   z-index: 1;
   margin: 3% 3% 3% 3%;
@@ -41,8 +42,8 @@
 .overview-thumbnail {
   border-style: solid;
   object-fit: fill;
-  height: 19%;
-  width: 100%;
+  height: 17.9%;
+  width: 92%;
 }
 
 /*

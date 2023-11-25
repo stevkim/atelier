@@ -2,8 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AnswerEntry from '../AnswerEntry.jsx';
-import { answers } from '../example-data/answersData.js';
+import AnswerList from '../AnswerList.jsx';
+import QuestionEntry from '../QuestionEntry.jsx';
 import { convertDate } from '../convertDate.js';
+import { answers } from '../example-data/answersData.js';
+import { questions } from '../example-data/questionsData';
 
 describe('Convert Date', () => {
   it('Correctly converts date to desired format', () => {
@@ -15,7 +18,7 @@ describe('Convert Date', () => {
     expect(convertDate(date_two)).toBe('November 18, 2000');
     expect(convertDate(date_three)).toBe('June 25, 2016');
   });
-})
+});
 
 describe('AnswerEntry Component', () => {
   it('Displays the answer on initial render', () => {
@@ -51,5 +54,38 @@ describe('AnswerEntry Component', () => {
     const reportElement = screen.getByTitle('Report');
 
     expect(reportElement).toHaveTextContent('Report');
+  });
+});
+
+describe('AnswerList Component', () => {
+  it('Does not display "Load More Answers" if the total number of answers is less than or equal to 2', () => {
+    render(<AnswerList currAnswerList={answers.results.slice(0, 2)} totalAnswers={2} />);
+
+    expect(screen.queryByText(/load more answers/i)).toBeNull();
+  });
+
+  it('Displays "Load More Answers" if the total number of answers is greater than 2', () => {
+    render(<AnswerList currAnswerList={ answers.results.slice(0, 2) } totalAnswers={3} />);
+
+    const loadMoreAnswersElement = screen.getByText(/load more answers/i);
+
+    expect(loadMoreAnswersElement).toBeInTheDocument();
+  });
+
+  it('Displays "Collapse Answers" if the length of the answer list and tota answers are equal to one another', () => {
+    render(<AnswerList currAnswerList={ answers.results.slice(0, 3) } totalAnswers={3} />);
+
+    const collapseAnswers = screen.getByText(/collapse Answers/i);
+
+    expect(collapseAnswers).toBeInTheDocument();
+  });
+});
+
+describe('QuestionEntry Component', () => {
+  it('Displays a question on initial render', () => {
+    render(<QuestionEntry question={questions.results[0]} />);
+    const questionElement = screen.getByText(questions.results[0].question_body);
+
+    expect(questionElement).toBeInTheDocument();
   });
 });

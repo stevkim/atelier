@@ -79,7 +79,7 @@ export default function QuestionEntry({ question }) {
         </div>
       </div>
       <div className='answer-indicator'>
-        <div style={{ fontWeight: 'bold' }}>A:</div>
+        {totalAnswers > 0 && <div style={{ fontWeight: 'bold' }}>A:</div>}
         <AnswerList
           currAnswerList={currAnswerList}
           totalAnswers={totalAnswers}

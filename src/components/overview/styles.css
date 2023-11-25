@@ -159,15 +159,15 @@ img.overview-thumbnail {
   grid-area: selectStyle;
   display: grid;
   column-gap: 6%;
-  row-gap: 15%;
-  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+  row-gap: 18%;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
   grid-template-columns: 20% 20% 20% 20%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 50% 50% 50% 50%;
   padding-top: 7%;
   padding-bottom: 14%;
   min-height: 10%;
   min-width: 50%;
-  max-width: 90%;
+  overflow-y: auto;
 }
 
 div.overview-style-thumbnail {
@@ -194,12 +194,12 @@ img.overview-style-thumbnail {
 .overview-size-dropdown {
   inline-size: 60%;
   margin-right: 5%;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .overview-quantity-dropdown {
   inline-size: 30%;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .overview-share-buttons {
@@ -210,7 +210,7 @@ img.overview-style-thumbnail {
 .overview-cart-submit {
   margin-top: 5%;
   inline-size: 70%;
-  font-size: 2em;
+  font-size: 1.5em;
   min-width: 4em;
 }
 

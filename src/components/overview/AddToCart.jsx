@@ -4,8 +4,8 @@ import QuantityDropdown from './QuantityDropdown.jsx';
 import addToCart from './helper-funcs/addToCart.js'
 
 const AddToCart = ({ skus }) => {
-  const [sizeSelected, setSizeSelected] = useState(0);
-  const [quantitySelected, setQuantitySelected] = useState(1);
+  const [sizeSelected, setSizeSelected] = useState([0, false]);
+  const [quantitySelected, setQuantitySelected] = useState(0);
   const [skusArray, setSkusArray] = useState([]);
   const [skuNumber, setSkuNumber] = useState(0);
   // skuNum in skus
@@ -16,9 +16,7 @@ const AddToCart = ({ skus }) => {
     let arr = [];
     // This matters to keep the sizes in order for sizeDropdown and to only show proper sizes.
     for (var skuNum in skus) {
-      if (skus[skuNum].quantity > 0) {
-        arr.push(skuNum);
-      }
+      arr.push(skuNum);
     }
     arr.sort();
     setSkuNumber(arr[0]); // While the skuNums are sorted, take advantage
@@ -30,7 +28,7 @@ const AddToCart = ({ skus }) => {
 
   const updateSizeSelected = (size) => {
     setSkuNumber(skuNumber - sizeSelected + size); // skuNums are consecutive
-    setSizeSelected(size);
+    setSizeSelected([size, true]);
   };
 
   const updateQuantitySelected = (int) => {
@@ -39,16 +37,20 @@ const AddToCart = ({ skus }) => {
 
   const cartSubmitHandler = (e) => {
     e.preventDefault();
-    console.log('Added SKU: ' + skuNumber + ' ' + quantitySelected + ' times!');
-    // addToCart(skuNumber, quantitySelected); // This is bugged currently. Request returns a 422.
+    addToCart(skuNumber, quantitySelected); // This is bugged currently. Request returns a 422.
   };
 
   if (skusArray.length > 0) {
     return (
-      <form id='overview-cart-form' onSubmit={e => {cartSubmitHandler(e)}}>
-        <SizeDropdown skus={skusArray} updateSizeSelected={updateSizeSelected} />
-        <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected}/>
-        <button type='submit' className='overview-cart-submit'>Add To Cart</button>
+      <form id='overview-cart-form' onSubmit={e => { cartSubmitHandler(e) }}>
+        <SizeDropdown skus={skusArray} sizeSelected={sizeSelected} updateSizeSelected={updateSizeSelected} />
+        <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected} />
+        {sizeSelected === 0
+          ? <button type='button' className='overview-cart-submit' onClick={() => {
+            const sizeDropdown = document.getElementById('overview-size-dropdown');
+            sizeDropdown.style.color = 'red';
+          }}>Add To Fart</button>
+          : <button type='submit' className='overview-cart-submit'>AddToCart</button>}
       </form>
     );
   } else {

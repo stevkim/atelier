@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QuestionList from './QuestionList.jsx';
+import Modal from './Modal.jsx';
+import AddQuestionForm from './AddQuestionForm.jsx';
 import axios from 'axios';
 import './qaStyles.css';
 
@@ -10,6 +12,7 @@ export default function QuestionsAndAnswers({ productId }) {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [displayCount, setDisplayCount] = useState(2);
   const [term, setTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMoreQuestions = () => {
     totalQuestions !== displayCount &&
@@ -56,8 +59,13 @@ export default function QuestionsAndAnswers({ productId }) {
           totalQuestions > 2 && currQuestionList.length < totalQuestions &&
           <button onClick={handleMoreQuestions}>More Questions</button>
         }
-        <button>Add A Question</button>
+        <button onClick={() => {setIsModalOpen(true)}}>Add A Question</button>
       </div>
+      {isModalOpen &&
+        <Modal>
+          <AddQuestionForm setIsModalOpen={setIsModalOpen} />
+        </Modal>
+      }
     </div>
   )
 }

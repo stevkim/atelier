@@ -72,7 +72,7 @@ describe('AnswerList Component', () => {
     expect(loadMoreAnswersElement).toBeInTheDocument();
   });
 
-  it('Displays "Collapse Answers" if the length of the answer list and tota answers are equal to one another', () => {
+  it('Displays "Collapse Answers" if the length of the answer list and total answers are equal to one another', () => {
     render(<AnswerList currAnswerList={ answers.results.slice(0, 3) } totalAnswers={3} />);
 
     const collapseAnswers = screen.getByText(/collapse Answers/i);

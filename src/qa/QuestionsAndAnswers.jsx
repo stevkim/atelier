@@ -24,7 +24,7 @@ export default function QuestionsAndAnswers({ productId }) {
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/?product_id=${productId}&count=20`)
+    axios.get(`/qa/questions/?product_id=${productId}&count=200`)
       .then((response) => {
         setTotalQuestions(response.data.results.length);
         setQuestionList(response.data.results);
@@ -54,7 +54,7 @@ export default function QuestionsAndAnswers({ productId }) {
       <div className='button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions &&
-          <button onClick={handleMoreQuestions}>More Answered Questions</button>
+          <button onClick={handleMoreQuestions}>More Questions</button>
         }
         <button>Add A Question</button>
       </div>

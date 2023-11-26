@@ -103,6 +103,7 @@ img.overview-thumbnail {
     'AddToCart'
     'butttons';
   grid-auto-rows: 7% 7% 12% 14% 35% 20% 7%;
+  grid-auto-columns: 80%;
 }
 
 .overview-reviews {
@@ -152,6 +153,7 @@ img.overview-thumbnail {
   grid-area: selectedStyle;
   margin-top: 6%;
   margin-bottom: 6%;
+  text-overflow: clip;
   font-size: 1.25em;
 }
 
@@ -170,20 +172,13 @@ img.overview-thumbnail {
   overflow-y: auto;
 }
 
-div.overview-style-thumbnail {
+.overview-style-thumbnail {
   border-style: solid;
   border-radius: 100%;
   height: 30px;
   width: 30px;
   font-size: 100%;
   text-align: center;
-}
-
-img.overview-style-thumbnail {
-  border-style: solid;
-  border-radius: 100%;
-  height: 30px;
-  width: 30px;
 }
 
 #overview-cart-form {

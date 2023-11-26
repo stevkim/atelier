@@ -4,8 +4,20 @@ const ImgMain = ({ url, inExpandedView, changeView, incrementThumbnail }) => {
   return (
     <>
       {!inExpandedView
-        ? <img className='overview-img-main-default' src={url} onClick={() => { changeView() }} />
-        : <img className='overview-img-main-expanded' src={url} onClick={() => { console.log('Zoom!') }} />
+        ? <div
+          className='overview-img-main-default'
+          style={{
+            backgroundImage: `url('${url}')`,
+            backgroundSize: '100% 100%'
+          }}
+          onClick={() => { changeView() }} />
+        : <div
+          className='overview-img-main-expanded'
+          style={{
+            backgroundImage: `url('${url}')`,
+            backgroundSize: '100% 100%'
+          }}
+          onClick={() => { console.log('Zoom!') }} />
       }
     </>
   );

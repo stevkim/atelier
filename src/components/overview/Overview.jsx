@@ -22,7 +22,7 @@ const axios = require('axios');
 const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
-  const selectedStyle = product.styles[style];
+  let selectedStyle = product.styles[style];
 
   productId = productId | 40344;
 
@@ -31,6 +31,10 @@ const Overview = ({ productId }) => {
       .then(res => setProduct(res))
       .catch(err => console.log(err))
   }, [productId])
+
+  useEffect(() => {
+    selectedStyle = product.styles[style];
+  }, [style])
 
   const updateStyle = (int) => {
     setStyle(int);

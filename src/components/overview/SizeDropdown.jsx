@@ -13,9 +13,16 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => {
         document.getElementById('overview-size-dropdown').style.color = 'black' }}>
       <option hidden value={0}>-Size-</option>
       {skus.map((sku, index) => {
-        return (
-          <option key={'size-option-' + index} value={index}>{sku.quantity > 0 ? sku.size : sku.size + ' Out of Stock!'}</option>
-        );
+        if (sku.quantity === 0) {
+          return (
+            <option key={'size-option-' + index} disabled value={index}>{sku.size + ' Out of Stock!'}</option>
+          )
+        } else {
+          return (
+            <option key={'size-option-' + index} value={index}>{sku.size}</option>
+          );
+        }
+
       })}
 
     </select>

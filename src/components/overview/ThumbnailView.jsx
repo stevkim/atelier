@@ -3,7 +3,7 @@ import Thumbnail from './Thumbnail.jsx';
 
 const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
   const [topThumbnailIndex, setTopThumbnailIndex] = useState(0);
-  const sizeOfThumbnailView = 5;
+  const sizeOfThumbnailView = 7;
 
   useEffect(() => {
     // This should check if the thumbnail is immediately before or after the array
@@ -28,7 +28,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
     }
   };
 
-  const rotatingSliceOf5 = (arr) => {
+  const rotatingSlice = (arr) => {
     let slice = arr.slice(topThumbnailIndex, Math.min(topThumbnailIndex + sizeOfThumbnailView, thumbnails.length))
     for (var i = 0; slice.length < Math.min(sizeOfThumbnailView, arr.length); i++) {
       slice.push(arr[i]);
@@ -48,7 +48,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
   return (
     <>
       <div className='overview-thumbnail-view'>
-        {rotatingSliceOf5(thumbnails).map((photo, index) => {
+        {rotatingSlice(thumbnails).map((photo, index) => {
           return (
             <Thumbnail key={'overview-thumbnail-' + index}
               url={photo.thumbnail_url}

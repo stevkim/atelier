@@ -76,7 +76,7 @@ button {
   display: flex;
   margin-bottom: 1em;
 }
-input {
+.search-input {
   width: 100vw;
   height: 4vh;
 }

@@ -43,6 +43,7 @@ export default function QuestionsAndAnswers({ productId }) {
       <h4>QUESTIONS AND ANSWERS</h4>
       <div className='search-container'>
         <input
+          className='search-input'
           type='text'
           name='Search'
           placeholder='Have a question? Search for answers...'

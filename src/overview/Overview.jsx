@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Details from './Details.jsx';
 import Info from './info/Info.jsx';
-import Reviews from './Reviews.jsx';
 import ImageView from './imageView/ImageView.jsx';
-import StylesView from './StylesView.jsx';
-import Price from './Price.jsx';
-import AddToCart from './AddToCart.jsx';
 import './styles.css';
 import productExample from './product-example.js';
 import getOverviewById from './helper-funcs/axios-requests.js';
@@ -42,26 +38,8 @@ const Overview = ({ productId }) => {
   return (
     <div className='overview' id='overview'>
       < ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
-      {!inExpandedView
-        ? <>
-          <div className='overview-overview' id='overview-overview'>
-            < Reviews product={product} />
-            <div className='overview-category'>
-              {product.category}
-            </div>
-            <h3 className='overview-title'>{product.title}</h3>
-            < Price selectedStyle={selectedStyle} />
-            < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
-            < AddToCart skus={selectedStyle.skus} />
-            <div className='overview-share-buttons'>
-              < button className='share-facebook'>f</button>
-              < button className='share-x'>x</button>
-              < button className='share-pinterest'>P</button>
-            </div>
-          </div>
-          < Details product={product} expanded={inExpandedView} />
-        </>
-        : ''}
+      {!inExpandedView ? <Info product={product} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+      {!inExpandedView ? <Details product={product} expanded={inExpandedView} /> : ''}
     </div>
   )
 }

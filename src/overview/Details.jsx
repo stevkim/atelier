@@ -1,9 +1,4 @@
 import React from 'react';
-import Reviews from './Reviews.jsx';
-import ImageView from './ImageView.jsx';
-import StylesView from './StylesView.jsx';
-import Price from './Price.jsx';
-import AddToCart from './AddToCart.jsx';
 // import ShareButtons from './ShareButtons.jsx';
 
 const Details = ({ product, expanded }) => {

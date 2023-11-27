@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import StarRating from '../star-rating/StarRating.jsx';
+import StarRating from '../../star-rating/StarRating.jsx';
 
 const Reviews = ({ product }) => {
   let totalReviews = 0;

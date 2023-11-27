@@ -27,7 +27,6 @@ const ImgMain = ({ url, expanded, changeView }) => {
             container.addEventListener('mousemove', (e) => {
               // Set up relative zooming
               const rect = thisImg.getBoundingClientRect();
-              console.log(thisImg.offsetWidth, rect.width, rect.left);
               const scaleX = thisImg.offsetWidth / (rect.width); // zoom power
               const scaleY = thisImg.offsetHeight / (rect.height);
               const mouseX = e.clientX;

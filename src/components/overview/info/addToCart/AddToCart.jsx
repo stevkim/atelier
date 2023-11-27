@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SizeDropdown from './SizeDropdown.jsx';
 import QuantityDropdown from './QuantityDropdown.jsx';
-import addToCart from './helper-funcs/addToCart.js'
+import addToCart from '../helper-funcs/axios-requests'
 
 const AddToCart = ({ skus }) => {
   const [sizeSelected, setSizeSelected] = useState([0, false]);

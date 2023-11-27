@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Title from './Title.jsx';
-import Category from './Category.jsx';
 import Details from './Details.jsx';
+import Info from './info/Info.jsx';
 import Reviews from './Reviews.jsx';
-import ImageView from './ImageView.jsx';
+import ImageView from './imageView/ImageView.jsx';
 import StylesView from './StylesView.jsx';
 import Price from './Price.jsx';
 import AddToCart from './AddToCart.jsx';
 import './styles.css';
 import productExample from './product-example.js';
-import getOverviewById from './helper-funcs/getOverviewById.js';
-require('dotenv').config();
-const axios = require('axios');
+import getOverviewById from './helper-funcs/axios-requests.js';
 
 const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
@@ -49,7 +46,9 @@ const Overview = ({ productId }) => {
         ? <>
           <div className='overview-overview' id='overview-overview'>
             < Reviews product={product} />
-            <div className='overview-category'>{product.category}</div>
+            <div className='overview-category'>
+              {product.category}
+            </div>
             <h3 className='overview-title'>{product.title}</h3>
             < Price selectedStyle={selectedStyle} />
             < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />

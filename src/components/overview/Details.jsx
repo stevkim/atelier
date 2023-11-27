@@ -6,9 +6,9 @@ import Price from './Price.jsx';
 import AddToCart from './AddToCart.jsx';
 // import ShareButtons from './ShareButtons.jsx';
 
-const Details = ({ product }) => {
+const Details = ({ product, expanded }) => {
   return (
-    <div className='overview-details'>
+    <div className='overview-details' id='overview-details'>
       <h3 className='overview-slogan'>{product.slogan}</h3>
       <p className='overview-description'>{product.description}</p>
       <ul className='overview-feature-wrapper'>

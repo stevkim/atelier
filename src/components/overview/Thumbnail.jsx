@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Thumbnail = ({ url, isSelected, updateThumbnail, index }) => {
+const Thumbnail = ({ url, isSelected, expanded, updateThumbnail, index }) => {
   if (isSelected) {
     return (
       <div
@@ -8,7 +8,7 @@ const Thumbnail = ({ url, isSelected, updateThumbnail, index }) => {
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%'
         }}
-        className='overview-thumbnail'>&#10004;</div>
+        className={'overview-thumbnail-' + expanded}>&#10004;</div>
     );
   } else {
     return (
@@ -17,7 +17,7 @@ const Thumbnail = ({ url, isSelected, updateThumbnail, index }) => {
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%'
         }}
-        className='overview-thumbnail'
+        className={'overview-thumbnail-' + expanded}
         onClick={() => { updateThumbnail(index) }} />
     );
   }

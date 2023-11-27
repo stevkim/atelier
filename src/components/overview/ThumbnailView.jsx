@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, expanded } from 'react';
 import Thumbnail from './Thumbnail.jsx';
 
-const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
+const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail, }) => {
   const [topThumbnailIndex, setTopThumbnailIndex] = useState(0);
   const sizeOfThumbnailView = 7;
 
@@ -47,12 +47,13 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
 
   return (
     <>
-      <div className='overview-thumbnail-view'>
+      <div className={'overview-thumbnail-view-' + expanded}>
         {rotatingSlice(thumbnails).map((photo, index) => {
           return (
             <Thumbnail key={'overview-thumbnail-' + index}
               url={photo.thumbnail_url}
               isSelected={(index + topThumbnailIndex) % thumbnails.length === thumbnail}
+              expanded={expanded}
               updateThumbnail={updateThumbnail}
               index={(index + topThumbnailIndex) % thumbnails.length} />
           );
@@ -66,6 +67,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail, }) => {
       <button className='overview-right-button' onClick={() => { incrementThumbnail(+1) }}>{'->'}</button>
     </>
   );
+
 }
 
 export default ThumbnailView;

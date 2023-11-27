@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { reviews } from '../../../example-data/reviewData.js';
 import ReviewList from '../components/ReviewsList.jsx';
 import ReviewItem from '../components/ReviewItem.jsx';
-import { convertDate } from '../lib/convertDate.js';
+import { convertDate } from '../lib/utilityFunctions.js';
 
 describe('Convert Date', () => {
   test('Correctly converts date to the intended format', () => {
@@ -24,7 +24,7 @@ describe('Review Item', () => {
         const currentReview = reviews.results[i]
         const { container } = render(<ReviewItem review={currentReview} />);
         const reviewDate = convertDate(currentReview.date);
-        const text = `${currentReview.reviewer_name}, ${reviewDate}`;
+        const text = `${currentReview.reviewer_name}`;
         const header = container.querySelector('.review-header');
 
         expect(header.innerHTML).toContain(text);
@@ -46,12 +46,12 @@ describe('List of reviews', () => {
     const { container } = render(await <ReviewList reviewList={reviews.results} showButton={true}/>);
 
     const list = await screen.getByTestId('review-list');
-    expect(list.children.length).toEqual(reviews.results.length + 1);
+    expect(list.children.length).toEqual(reviews.results.length);
 
     for (let i = 0; i < list.children.length - 1; i++) {
       expect([...list.children[i].classList]).toContain('review-wrapper');
     };
 
-    expect(await screen.getByText('MORE REVIEWS')).toBeInTheDocument();
+    expect(await screen.getByText('ADD A REVIEW')).toBeInTheDocument();
   })
 })

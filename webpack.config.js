@@ -1,7 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-require('dotenv').config({ path: './.env'});
 
 module.exports = {
   mode: 'development',
@@ -26,12 +24,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new NodePolyfillPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        GIT_TOKEN: JSON.stringify(process.env.GIT_TOKEN),
-        API_URL: JSON.stringify(process.env.API_URL)
-      }
-    })
+    new NodePolyfillPlugin()
   ]
 }

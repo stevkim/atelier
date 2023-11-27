@@ -113,7 +113,7 @@ const AddReviewForm = ({ data, setModal }) => {
         <div className='input-wrapper-row'
           onChange={e => setUserInput({...userInput, recommend: JSON.parse(e.target.value)})}
         >
-          <p>Would you recommed this product?</p>
+          <p style={{ marginRight: '.5em' }}>Would you recommed this product?</p>
           <label htmlFor='yes-recommend'>Yes</label>
           <input id='yes-recommend' name='recommend' type='radio' value={true}/>
           <label htmlFor='no-recommend'>No</label>

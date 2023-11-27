@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
-import { convertDate } from '../lib/convertDate.js';
+import { convertDate } from '../lib/utilityFunctions.js';
 
 const ReviewItem = ({ review }) => {
   const { reviewer_name, rating, email, date, summary, response,
@@ -47,7 +47,7 @@ const ReviewItem = ({ review }) => {
         <StarRating rating={rating} />
         <div style={{ marginLeft: 'auto' }}>
           {email && <span>&#10003;</span>}
-          {reviewer_name}, {formattedDate}
+          <span style={{ fontWeight: 'bold' }}>{reviewer_name}</span>, {formattedDate}
         </div>
       </div>
       <div className='review-summary'>{summary}</div>

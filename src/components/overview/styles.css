@@ -1,7 +1,8 @@
 .overview {
   position: relative;
+  height: 100%;
   border-style: solid;
-  padding-top: 7%;
+  padding-top: 2.5%;
 }
 
 /*
@@ -12,19 +13,16 @@
 
 /* Entire thing */
 .overview-image-view {
-  height: 75%;
   width: 50%;
+  aspect-ratio: 7 / 6;
 }
 
 /* Main image in default view */
 .overview-img-main-default {
   position: absolute;
   left: 10%;
-  height: inherit;
   width: inherit;
-  min-height: 70%;
-  max-height: 100%;
-  min-width: 50%;
+  aspect-ratio: 7 / 6;
 }
 
 /* Main image in expanded view */
@@ -35,7 +33,7 @@
   box-sizing: border-box;
   position: absolute;
   z-index: 1;
-  margin: 3% 3% 3% 3%;
+  margin: 1.25% 0% 0% 3%;
   left: 10%;
   height: 50%;
   width: 3.75%;
@@ -43,23 +41,16 @@
 
 div.overview-thumbnail {
   border-style: solid;
-  width: 90%;
+  width: 100%;
   aspect-ratio: 1 / 1;
   text-align: center;
   font-weight: 800;
-  font-size: 200%;
+  font-size: 2.5vw;
   margin-top: 0.5%;
   margin-bottom: 1%;
 }
 
-img.overview-thumbnail {
-  border-style: solid;
-  height: 14%;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 0.5%;
-  margin-bottom: 0.5%;
-}
+
 
 .overview-thumbnail-button {
   height: 10%;
@@ -67,15 +58,17 @@ img.overview-thumbnail {
 
 .overview-left-button {
   position: absolute;
-  top: 70%;
+  top: calc(77.5% - 5vh);
   left: 15.5%;
+  font-size: 1.5vw;
   z-index: 1;
 }
 
 .overview-right-button {
   position: absolute;
-  top: 70%;
+  top: calc(77.5% - 5vh);
   left: 52.5%;
+  font-size: 1.5vw;
   z-index: 1;
 }
 
@@ -87,12 +80,12 @@ img.overview-thumbnail {
 
  .overview-overview {
   grid-area: overview;
-  position: relative;
-  margin-top: 2.5%;
+  position: absolute;
   display: grid;
-  left: 62.5%;
+  top: 5vh;
+  left: 65%;
   width: 30%;
-  height: 100%;
+  aspect-ratio: 7 / 8;
   grid-template-areas:
     'reviews'
     'categor'
@@ -163,14 +156,14 @@ img.overview-thumbnail {
   position: relative;
   z-index: 1;
   grid-area: selectStyle;
-  row-gap: 18%;
-  height: 40%;
-  padding-top: 5%;
-  padding-bottom: 10%;
-  min-width: 50%;
+  row-gap: 2vh;
+  padding-top: 2vh;
+  padding-bottom: 7.5%;
+  width: 35vw;
   display: grid;
   grid-template-columns: 20% 20% 20% 20%;
   overflow-y: auto;
+  aspect-ratio: 8 / 2;
 }
 
 .overview-style-thumbnail {
@@ -179,24 +172,25 @@ img.overview-thumbnail {
   width: 60%;
   padding-left: 5%;
   aspect-ratio: 1 / 1;
-  font-size: 200%;
+  font-size: 1.8vw;
   text-align: center;
 }
 
 #overview-cart-form {
   grid-area: AddToCart;
+  aspect-ratio: 4 / 2;
   z-index: 1;
 }
 
 .overview-size-dropdown {
   inline-size: 60%;
   margin-right: 5%;
-  font-size: 1.5em;
+  font-size: 2vw;
 }
 
 .overview-quantity-dropdown {
   inline-size: 30%;
-  font-size: 1.5em;
+  font-size: 2vw;
 }
 
 .overview-share-buttons {
@@ -207,8 +201,8 @@ img.overview-thumbnail {
 .overview-cart-submit {
   margin-top: 5%;
   inline-size: 70%;
-  font-size: 1.5em;
-  min-width: 4em;
+  font-size: 2vw;
+  min-width: 4vw;
 }
 
 .share-facebook {
@@ -228,6 +222,7 @@ img.overview-thumbnail {
 
  .overview-details {
   position: relative;
+  height: 100%;
   grid-area: details;
   display: grid;
   grid-template-areas:
@@ -239,6 +234,7 @@ img.overview-thumbnail {
 }
 
 .overview-slogan {
+  position: relative;
   grid-area: slogan;
 }
 

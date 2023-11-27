@@ -13,18 +13,12 @@ import getOverviewById from './helper-funcs/getOverviewById.js';
 require('dotenv').config();
 const axios = require('axios');
 
-/*
-  Note how easy this would be easy to refactor. If we were to break up our input
-  into 3 separate objects, for example, this component is all that would have to be
-  changed.
-*/
-
 const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
   let selectedStyle = product.styles[style];
 
-  productId = productId | 40344;
+  productId = productId || 40344;
 
   useEffect(() => {
     getOverviewById(productId)

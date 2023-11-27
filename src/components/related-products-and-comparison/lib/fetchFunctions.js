@@ -1,17 +1,9 @@
 import axios from 'axios';
 
-export const getProduct = (id) => {
-  return axios.get(`/products/${id}`);
-}
+export const getProduct = (id) => axios.get(`/products/${id}`);
 
-export const getRelatedProducts = (id) => {
-  return axios.get(`/products/${id}/related`);
-}
+export const getRelatedProducts = (id) => axios.get(`/products/${id}/related`);
 
-export const getProductStyles = (id) => {
-  return axios.get(`/products/${id}/styles`);
-}
+export const getProductStyles = (id) => axios.get(`/products/${id}/styles`);
 
-export const getReviewsMetaData = (id) => {
-  return axios.get(`/reviews/meta/?product_id=${id}`);
-}
+export const getReviewsMetaData = (id) => axios.get(`/reviews/meta/?product_id=${id}`);

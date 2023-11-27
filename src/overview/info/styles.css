@@ -49,6 +49,7 @@
   position: relative;
   grid-area: price;
   text-wrap: nowrap;
+  height: 8vh;
 }
 
 .overview-price-true {
@@ -78,7 +79,7 @@
   z-index: 1;
   grid-area: selectStyle;
   row-gap: 14%;
-  padding-top: 14%;
+  padding-top: 4vh;
   padding-bottom: 2vh;
   width: 100%;
   display: grid;
@@ -90,11 +91,12 @@
 .overview-style-thumbnail {
   border-style: solid;
   border-radius: 100%;
-  width: 60%;
+  width: 65%;
   padding-left: 5%;
   aspect-ratio: 1 / 1;
   font-size: 1.8vw;
   text-align: center;
+  z-index: -1;
 }
 
 .share-facebook {}

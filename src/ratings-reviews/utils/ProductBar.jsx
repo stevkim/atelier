@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as key } from 'uuid';
 import './utilStyles.css';
 
 const ProductBar = ({ rating }) => {
@@ -6,16 +7,14 @@ const ProductBar = ({ rating }) => {
 
   return (
     <div className='product-bar-container'>
-      <div className='product-bar-icon' style={{ left: `${rating}%`}}></div>
+      <div className='product-bar-icon' style={{ left: `${rating}%` }} />
       <div className='product-bar-wrapper'>
         {
-          barLength.map((bar, index) => {
-            return <div key={`productbar${index}`} className='product-bar'></div>
-          })
+          barLength.map((bar) => <div key={bar + key()} className='product-bar' />)
         }
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProductBar;

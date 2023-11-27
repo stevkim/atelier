@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
+import QuestionList from './QuestionList.jsx';
 import './qaStyles.css';
 
 export default function QuestionsAndAnswers({ productId }) {
@@ -12,15 +12,15 @@ export default function QuestionsAndAnswers({ productId }) {
   const [term, setTerm] = useState('');
 
   const handleMoreQuestions = () => {
-    totalQuestions !== displayCount &&
-    setDisplayCount(displayCount + 2);
+    totalQuestions !== displayCount
+    && setDisplayCount(displayCount + 2);
     setIsQuestionExpanded(true);
   };
 
   const handleInputChange = (e) => {
     e.target.value.length >= 3
-    ? setTerm(e.target.value)
-    : setTerm('');
+      ? setTerm(e.target.value)
+      : setTerm('');
   };
 
   useEffect(() => {
@@ -43,8 +43,8 @@ export default function QuestionsAndAnswers({ productId }) {
           type='text'
           name='Search'
           placeholder='Have a question? Search for answers...'
-          onChange={handleInputChange}>
-        </input>
+          onChange={handleInputChange}
+        />
       </div>
       <QuestionList
         currQuestionList={currQuestionList}
@@ -53,11 +53,11 @@ export default function QuestionsAndAnswers({ productId }) {
       />
       <div className='button-container'>
         {
-          totalQuestions > 2 && currQuestionList.length < totalQuestions &&
-          <button onClick={handleMoreQuestions}>More Answered Questions</button>
+          totalQuestions > 2 && currQuestionList.length < totalQuestions
+          && <button onClick={handleMoreQuestions}>More Answered Questions</button>
         }
         <button>Add A Question</button>
       </div>
     </div>
-  )
+  );
 }

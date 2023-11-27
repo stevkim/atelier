@@ -1,31 +1,31 @@
 import React, { memo } from 'react';
 import ProductBar from '../utils/ProductBar.jsx';
 
-const ProductBreakdownList = ({ propertyList }) => {
-  return (
-    <div>
-      {
-        propertyList.map((property, index) => {
-         return (
+const ProductBreakdownList = ({ propertyList }) => (
+  <div>
+    {
+        propertyList.map((property) => (
           <div key={property.id} className='product-rating-wrapper'>
             <h4 className='product-rating-title'>{property.characteristic}</h4>
-            <ProductBar rating={Math.round(JSON.parse(property.rating) / 5 * 100)} />
+            <ProductBar rating={Math.round((JSON.parse(property.rating) / 5) * 100)} />
             {property.characteristic === 'Comfort' || property.characteristic === 'Quality'
-              ? <div className='product-rating-description'>
+              ? (
+                <div className='product-rating-description'>
                   <p>Poor</p>
                   <p>Perfect</p>
                 </div>
-              : <div className='product-rating-description'>
+              )
+              : (
+                <div className='product-rating-description'>
                   <p>Too Small</p>
                   <p>Perfect</p>
                   <p>Too Big</p>
                 </div>
-            }
-          </div>)
-        })
+              )}
+          </div>
+        ))
       }
-    </div>
-  )
-}
+  </div>
+);
 
 export default memo(ProductBreakdownList);

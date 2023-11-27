@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRelatedProducts } from './lib/fetchFunctions.js';
 import ProductList from './ProductList.jsx';
 import './styles/relatedProductsAndComparisonStyles.css';
@@ -13,11 +12,11 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
   const [relatedProduct, setRelatedProduct] = useState(0);
 
   useEffect(() => {
-    const getData = async() => {
+    const getData = async () => {
       const relatedProducts = await getRelatedProducts(currentProduct);
       const uniqueRelatedProducts = relatedProducts.data.filter((value, index, array) => array.indexOf(value) === index);
       setRelatedProducts(uniqueRelatedProducts);
-    }
+    };
     getData();
   }, [currentProduct]);
 
@@ -26,7 +25,7 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
   };
 
   const relatedActionButtonClickHandler = (id) => {
-    setRelatedProduct(id)
+    setRelatedProduct(id);
     setModal(true);
   };
 
@@ -45,15 +44,17 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
   return (
     <div>
       <h2>RELATED PRODUCTS</h2>
-      <ProductList  products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} actionButtonClick={relatedActionButtonClickHandler} />
+      <ProductList products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} actionButtonClick={relatedActionButtonClickHandler} />
       <h2>YOUR OUTFIT</h2>
-      <ProductList  products={outfitProducts} productCardClick={productCardClickHandler} isYourOutfit={true} addToOutfit={addToOutfitHandler} actionButtonClick={removeFromOutfitHandler} />
-      {modal &&
-        <ModalOverlay >
+      <ProductList products={outfitProducts} productCardClick={productCardClickHandler} isYourOutfit addToOutfit={addToOutfitHandler} actionButtonClick={removeFromOutfitHandler} />
+      {modal
+        && (
+        <ModalOverlay>
           <Comparison currentProduct={currentProduct} relatedProduct={relatedProduct} setModal={setModal} />
-        </ModalOverlay>}
+        </ModalOverlay>
+        )}
     </div>
-  )
+  );
 };
 
 export default RelatedProductsAndComparison;

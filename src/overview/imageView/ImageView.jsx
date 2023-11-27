@@ -8,26 +8,44 @@ const ImageView = ({ photos, expanded, changeView }) => {
 
   useEffect(() => {
     console.log(thumbnail);
-  }, [thumbnail])
+  }, [thumbnail]);
 
   const updateThumbnail = (int) => {
     setThumbnail(int);
-  }
+  };
 
+<<<<<<< HEAD:src/overview/imageView/ImageView.jsx
+=======
+  const changeView = () => {
+    setInExpandedView(!inExpandedView);
+  };
+
+>>>>>>> b1d04ad926e3fd85c6578aaca8b85c5e4e5df630:src/components/overview/ImageView.jsx
   return (
     <div className='overview-image-view'>
-      < ImgMain
+      <ImgMain
         url={photos[thumbnail].url}
+<<<<<<< HEAD:src/overview/imageView/ImageView.jsx
         expanded={expanded}
         changeView={changeView} />
+=======
+        inExpandedView={inExpandedView}
+        changeView={changeView}
+      />
+>>>>>>> b1d04ad926e3fd85c6578aaca8b85c5e4e5df630:src/components/overview/ImageView.jsx
 
-      < ThumbnailView
+      <ThumbnailView
         thumbnails={photos}
         thumbnail={thumbnail}
+<<<<<<< HEAD:src/overview/imageView/ImageView.jsx
         expanded={expanded}
         updateThumbnail={updateThumbnail} />
+=======
+        updateThumbnail={updateThumbnail}
+      />
+>>>>>>> b1d04ad926e3fd85c6578aaca8b85c5e4e5df630:src/components/overview/ImageView.jsx
     </div>
   );
-}
+};
 
 export default ImageView;

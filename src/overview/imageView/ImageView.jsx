@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ImgMain from './ImgMain.jsx';
 import ThumbnailView from './ThumbnailView.jsx';
-import './styles.css'
+import './styles.css';
 
 const ImageView = ({ photos, expanded, changeView }) => {
   const [thumbnail, setThumbnail] = useState(0);

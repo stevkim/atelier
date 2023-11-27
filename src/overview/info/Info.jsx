@@ -1,10 +1,11 @@
 import React from 'react';
 import Reviews from './Reviews.jsx';
 import StylesView from './StylesView.jsx';
-import Price from '../components/price/Price.jsx';
-import AddToCart from './AddToCart.jsx';
+import Price from '../../components/price/Price.jsx';
+import AddToCart from './addToCart/AddToCart.jsx';
+import './styles.css'
 
-const Info = ({ product, selectedStyle, updateStyle }) => (
+const Info = ({ product, style, selectedStyle, updateStyle }) => (
   <>
     < Reviews product={product} />
     <div className='overview-category'>
@@ -21,3 +22,5 @@ const Info = ({ product, selectedStyle, updateStyle }) => (
     </div>
   </>
 );
+
+export default Info;

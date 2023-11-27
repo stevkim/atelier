@@ -4,7 +4,7 @@ import Info from './info/Info.jsx';
 import ImageView from './imageView/ImageView.jsx';
 import './styles.css';
 import productExample from './product-example.js';
-import getOverviewById from './helper-funcs/axios-requests.js';
+import { getOverviewById } from './helper-funcs/axios-requests.js';
 
 const Overview = ({ productId }) => {
   const [product, setProduct] = useState(productExample);
@@ -38,7 +38,7 @@ const Overview = ({ productId }) => {
   return (
     <div className='overview' id='overview'>
       < ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
-      {!inExpandedView ? <Info product={product} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+      {!inExpandedView ? <Info product={product} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
       {!inExpandedView ? <Details product={product} expanded={inExpandedView} /> : ''}
     </div>
   )

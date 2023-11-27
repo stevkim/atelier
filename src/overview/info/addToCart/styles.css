@@ -1,0 +1,28 @@
+#overview-cart-form {
+  grid-area: AddToCart;
+  aspect-ratio: 4 / 2;
+  z-index: 1;
+}
+
+.overview-size-dropdown {
+  inline-size: 60%;
+  margin-right: 5%;
+  font-size: 2vw;
+}
+
+.overview-quantity-dropdown {
+  inline-size: 30%;
+  font-size: 2vw;
+}
+
+.overview-share-buttons {
+  grid-area: buttons;
+  justify-content: left;
+}
+
+.overview-cart-submit {
+  margin-top: 5%;
+  inline-size: 70%;
+  font-size: 2vw;
+  min-width: 4vw;
+}

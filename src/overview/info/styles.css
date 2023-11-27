@@ -1,0 +1,104 @@
+.overview-overview {
+  grid-area: overview;
+  position: absolute;
+  display: grid;
+  top: calc(4%);
+  left: 60%;
+  width: 30vw;
+  font-size: 1.5vw;
+  aspect-ratio: 7 / 8;
+  grid-template-areas:
+    'reviews'
+    'categor'
+    'title'
+    'price'
+    'selectStyle'
+    'AddToCart'
+    'buttons';
+  grid-auto-rows: 7% 7% 12% 14% 40% 20% 7%;
+  grid-auto-columns: 80%;
+}
+
+.overview-reviews {
+  grid-area: reviews;
+  display: grid;
+  text-wrap: nowrap;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+}
+
+.overview-category {
+  grid-area: categor;
+  justify-self: left;
+  text-align: left;
+  position: relative;
+  font-size: 1.5em;
+  text-wrap: nowrap;
+}
+
+.overview-title {
+  grid-area: title;
+  justify-self: left;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 5%;
+  font-size: 2em;
+  text-wrap: nowrap;
+}
+
+.overview-price-container {
+  position: relative;
+  grid-area: price;
+  text-wrap: nowrap;
+}
+
+.overview-price-true {
+  color: red;
+  text-decoration: line-through;
+  font-size: 1.25em;
+}
+
+.overview-price-false {
+  font-size: 1.25em;
+}
+
+.overview-sale-price {
+  font-size: 1.25em;
+}
+
+.overview-selected-style {
+  grid-area: selectedStyle;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  text-overflow: clip;
+  font-size: 1.25em;
+}
+
+.overview-styles-view {
+  position: relative;
+  z-index: 1;
+  grid-area: selectStyle;
+  row-gap: 14%;
+  padding-top: 14%;
+  padding-bottom: 2vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  overflow-y: auto;
+  aspect-ratio: 4 / 1;
+}
+
+.overview-style-thumbnail {
+  border-style: solid;
+  border-radius: 100%;
+  width: 60%;
+  padding-left: 5%;
+  aspect-ratio: 1 / 1;
+  font-size: 1.8vw;
+  text-align: center;
+}
+
+.share-facebook {}
+
+.share-x {}
+
+.share-pinterest {}

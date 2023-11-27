@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const QualityForm = ({ handleCharacterstics }) => {
+const QualityForm = ({ setCharacterstic }) => {
   return (
-    <div onChange={(e) => handleCharacterstics('Quality', e.target.value)}>
+    <div onChange={(e) => setCharacterstic('Quality', e.target.value)}>
       <p>Quality</p>
       <div className='product-input-wrapper'>
         <div className='input-wrapper-column'>
@@ -30,4 +30,4 @@ const QualityForm = ({ handleCharacterstics }) => {
   )
 }
 
-export default QualityForm;
+export default memo(QualityForm);

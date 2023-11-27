@@ -1,10 +1,10 @@
-import React from 'react';
-import ProductBar from './ProductBar.jsx';
+import React, { memo } from 'react';
+import ProductBar from '../utils/ProductBar.jsx';
 
 const ProductBreakdownList = ({ propertyList }) => {
   return (
     <div>
-      {propertyList &&
+      {
         propertyList.map((property, index) => {
          return (
           <div key={property.id} className='product-rating-wrapper'>
@@ -15,7 +15,7 @@ const ProductBreakdownList = ({ propertyList }) => {
                   <p>Poor</p>
                   <p>Perfect</p>
                 </div>
-              :  <div className='product-rating-description'>
+              : <div className='product-rating-description'>
                   <p>Too Small</p>
                   <p>Perfect</p>
                   <p>Too Big</p>
@@ -28,4 +28,4 @@ const ProductBreakdownList = ({ propertyList }) => {
   )
 }
 
-export default ProductBreakdownList;
+export default memo(ProductBreakdownList);

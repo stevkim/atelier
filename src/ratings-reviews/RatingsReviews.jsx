@@ -1,22 +1,20 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
-import ModalOverlay from './components/ModalOverlay.jsx';
+import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
-
-const product_id = 40348;
+import ReviewsHeader from './components/ReviewsHeader.jsx';
 
 const RatingsReviews = ({ id }) => {
   const [metaData, setMetaData] = useState({});
   const [reviewList, setReviewList] = useState([]);
-  const [activeList, setActiveList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentSort, setCurrentSort] = useState('relevant'); // cant be newest or helpful
-  const [currentListLength, setCurrentListLength] = useState(0);
-  const [starFilter, setStarFilter] = useState(0);
+  const [pagination, setPagination] = useState({ page: 1, sort: 'relevant' });
+  const [filter, setFilter] = useState({ currentLength: 0, stars: 0});
   const [modal, setModal] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const activeListRef = useRef(null);
 
   const totalReviews = useMemo(() => {
     let total = 0;
@@ -26,86 +24,91 @@ const RatingsReviews = ({ id }) => {
     return total;
   }, [metaData]);
 
+  const activeList = useMemo(() => {
+    if (filter.stars === 0) return reviewList.slice(0, filter.currentLength);
+    return reviewList.filter(review => { return review.rating === filter.stars }).slice(0, filter.currentLength);
+  }, [reviewList, filter])
+
+  const handleStarFilter = useCallback((number) => {
+    number === filter.stars ? setFilter({...filter, stars: 0}) : setFilter({...filter, stars: number});
+    activeListRef.current.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [filter]);
+
+  const handleSort = useCallback((value) => {
+    setPagination({...pagination, sort: value});
+  }, [pagination]);
+
   const handleListIncrement = () => {
-    setCurrentListLength(currentListLength + 2);
+    setFilter({...filter, currentLength: filter.currentLength + 10 });
   };
 
-  const handleStarFilter = (number) => {
-    if (number === starFilter) {
-      setStarFilter(0);
-    } else {
-      setStarFilter(number);
-    }
-  }
-
-  const setFilteredList = () => {
-    if (starFilter === 0) {
-      setActiveList(reviewList.slice(0, currentListLength));
-    } else {
-      let filteredList = reviewList.filter(review => {
-        if (review.rating === starFilter) {
-          return review
-        }
-      })
-      setActiveList(filteredList.slice(0, currentListLength))
-    }
-  }
-
   useEffect(() => {
-    const getData = async() => {
-      const [reviews, meta] = await Promise.all([getReviewList(id, currentPage, currentSort), getReviewMetaData(id)]);
-      setReviewList(reviews.data.results);
-      handleListIncrement();
-
-      setMetaData(meta.data);
-    }
-    getData();
+    getReviewMetaData(id)
+      .then(({ data }) => {
+        setMetaData(data);
+      })
+      .finally(() => {
+        handleListIncrement();
+      })
   }, [id])
 
   useEffect(() => {
-    if (currentListLength > reviewList.length) {
-      getReviewList(id, currentPage + 1, currentSort)
+    if (reviewList.length === 0 || disable) return;
+    if (filter.currentLength >= reviewList.length) {
+      getReviewList(id, pagination, true)
         .then(({ data }) => {
+          if (reviewList.length === [...reviewList, ...data.results].length) {
+            return setDisable(true);
+          }
           setReviewList([...reviewList, ...data.results]);
-          setCurrentPage(currentPage + 1);
-          setFilteredList();
+          setPagination({...pagination, page: pagination.page + 1});
         })
-    } else if (currentListLength !== 0) {
-      setFilteredList();
-    }
-  }, [currentListLength, reviewList, currentSort, starFilter]);
+    };
+  }, [filter.currentLength, reviewList]);
 
   useEffect(() => {
-    getReviewList(id, 1, currentSort)
-      .then(({data}) => {
+    setDisable(false);
+    getReviewList(id, { page: 1, sort: pagination.sort })
+      .then(({ data }) => {
         setReviewList(data.results);
-        setCurrentPage(1);
-        setCurrentListLength(2);
-        setStarFilter(0);
+        setFilter({...filter, currentLength: 10 });
+        setPagination({...pagination, page: 1 });
       })
-  }, [currentSort])
+      .finally(() => {
+        activeListRef.current.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      })
+  }, [id, pagination.sort])
+
+  useEffect(() => {
+    document.body.style.overflow = modal ? 'hidden' : 'scroll';
+  }, [modal])
 
   return (
-    <div style={{ width: '100%'}}>
+    <section className='ratings-reviews-wrapper'>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
           <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter}/>
           <ReviewsList
             reviewList={activeList}
-            handleListIncrement={handleListIncrement}
-            setCurrentSort={setCurrentSort}
-            totalReviews={totalReviews}
-            currentListLength={currentListLength}
-            starFilter={starFilter}
+            handleListIncrement={disable ? () => {return;} : handleListIncrement}
             setModal={setModal}
+            totalReviews={totalReviews}
+            setSort={handleSort}
+            ref={activeListRef}
           />
           {modal &&
             <ModalOverlay>
-              <AddReviewForm id={id} data={metaData.characteristics} setModal={setModal}/>
+              <AddReviewForm data={metaData} setModal={setModal}/>
             </ModalOverlay>
           }
       </div>
-    </div>
+    </section>
   )
 }
 

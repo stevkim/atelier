@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@400;700&family=Rubik:wght@400;700&family=Vina+Sans&display=swap');
+
+:root {
+  --logo-font: 'Vina Sans', sans-serif;
+  --header-font: 'Rubik', sans-serif;
+  --text-font: 'Roboto', sans-serif;
+
+  --text-color: rgb(98, 85, 74);
+  --button-color: rgb(243, 238, 229);
+  --inactive-star-color: rgb(229, 229, 229);
+  --background-color: rgb(255, 255, 255);
+  --inactive-bar-color: rgb(224, 221, 219);
+}
+
+* {
+  font-family: var(--text-font);
+}

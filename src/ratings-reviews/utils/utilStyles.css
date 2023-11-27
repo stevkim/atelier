@@ -1,0 +1,87 @@
+/*----------------------*
+ | Breakdown Bar-rating |
+ *----------------------*/
+.bar-wrapper {
+  width: 80%;
+  height: 1em;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.bar-active {
+  background-color: green;
+  z-index: 2;
+}
+
+.bar-active, .bar-inactive {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: .5em;
+}
+
+.bar-inactive {
+  width: 100%;
+  background-color: var(--inactive-bar-color);
+}
+
+/*-------*
+ | Modal |
+ *-------*/
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 3, 3, .6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modal-background > * {
+  z-index: 16;
+}
+
+/*--------------------*
+ | Product Bar-rating |
+ *--------------------*/
+.product-bar-container {
+  width: inherit;
+  position: relative;
+  height: 1em;
+  z-index: 2;
+  margin-top: 0;
+}
+
+.product-bar-icon {
+  box-sizing: border-box;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 15px solid black;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  z-index: 10;
+  bottom: 5px;
+}
+
+.product-bar-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.product-bar {
+  width: 20%;
+  height: .5em;
+  background-color: lightgray;
+}

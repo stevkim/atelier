@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
-import { convertDate } from '../lib/convertDate.js';
+import { convertDate } from '../lib/utilityFunctions.js';
 
-
-const ReviewItem = ({ review, getList }) => {
+const ReviewItem = ({ review }) => {
   const { reviewer_name, rating, email, date, summary, response,
     body, photos, recommend, helpfulness, review_id } = review;
 
@@ -14,31 +13,31 @@ const ReviewItem = ({ review, getList }) => {
   const formattedDate = useMemo(() => convertDate(date), [date]);
 
   useEffect(() => {
-    if (body.length > 250) {
-      setShow(false);
-    }
+    body.length > 250 ? setShow(false) : '';
   }, [])
 
   const handleHelpfulClick = (id) => {
     if (clicked) return;
     updateHelpfulness(id)
       .then(result => {
-        setClicked(true);
         setHelpful(helpful + 1);
       })
       .catch(err => {
         console.log(err);
+      })
+      .finally(() => {
+        setClicked(true);
       })
   };
 
   const handleReportClick = (id) => {
     if (clicked) return;
     reportReview(id)
-      .then(result => {
-        setClicked(true);
-      })
       .catch(err => {
         console.log(err)
+      })
+      .finally(() => {
+        setClicked(true);
       })
   }
 
@@ -48,10 +47,10 @@ const ReviewItem = ({ review, getList }) => {
         <StarRating rating={rating} />
         <div style={{ marginLeft: 'auto' }}>
           {email && <span>&#10003;</span>}
-          {reviewer_name}, {formattedDate}
+          <span style={{ fontWeight: 'bold' }}>{reviewer_name}</span>, {formattedDate}
         </div>
       </div>
-      <div className='review-summary'>{summary} </div>
+      <div className='review-summary'>{summary}</div>
 
       <div className='review-body'>
         {show
@@ -64,7 +63,7 @@ const ReviewItem = ({ review, getList }) => {
       </div>
       {
         photos.map(photo => {
-          return <img src={photo.url} key={photo.id} alt='Reviewer picture' width='150px'/>
+          return <img  key={photo.id} src={photo.url} alt='Reviewer picture' width='150px' onError={e => { e.target.src = 'https://i.imgur.com/mYzivnl.png'}}/>
         })
       }
 
@@ -79,14 +78,11 @@ const ReviewItem = ({ review, getList }) => {
 
       <div className='helpfulness-wrapper'> Helpful?
         <span className='helpful-review' onClick={() => handleHelpfulClick(review_id)}>Yes</span>
-        ({helpful})  |{' '}
+        {`(${helpful}) | `}
         <span onClick={() => handleReportClick(review_id)}>Report</span>
       </div>
     </div>
   )
 }
 
-export default ReviewItem;
-
-/// need to make body cap out at 250 characters;
-
+export default memo(ReviewItem);

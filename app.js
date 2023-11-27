@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const app = express();
 
-
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -19,12 +18,10 @@ app.route('/*')
         res.status(200).json(results.data);
       })
       .catch(err => {
-        console.log(err);
         res.sendStatus(404);
       })
   })
   .post((req, res) => {
-    console.log(req.body)
     axios.post(`${URL}${req.url}`, req.body, options)
       .then(result => {
         res.status(201).json({ message: 'Successfully posted'});
@@ -39,7 +36,6 @@ app.route('/*')
         res.status(200).json({ message: 'Successfully PUT request'});
       })
       .catch(err => {
-        console.log(err);
         res.sendStatus(404);
       })
   })

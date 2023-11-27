@@ -1,4 +1,3 @@
-require('dotenv').config();
 import axios from 'axios';
 
 export const updateHelpfulness = (id) => {
@@ -10,8 +9,9 @@ export const reportReview = (id) => {
   return axios.put(`/reviews/${id}/report`);
 }
 
-export const getReviewList = (id, page, sort) => {
-  return axios.get(`/reviews/?product_id=${id}&page=${page}&count=20&sort=${sort}`);
+export const getReviewList = (id, pagination, nextPage = false) => {
+  const { page, sort } = pagination;
+  return axios.get(`/reviews/?product_id=${id}&page=${nextPage ? page + 1 : page}&count=50&sort=${sort}`);
 }
 
 export const getReviewMetaData = (id) => {

@@ -14,7 +14,7 @@ const App = () => {
       <QuestionsAndAnswers productId={currentProduct} />
       <RatingsReviews id={currentProduct} />
     </div>
-  )
-}
+  );
+};
 
 export default App;

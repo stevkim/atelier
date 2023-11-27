@@ -6,22 +6,25 @@ import Price from './Price.jsx';
 import AddToCart from './AddToCart.jsx';
 // import ShareButtons from './ShareButtons.jsx';
 
-const Details = ({ product }) => {
-  return (
-    <div className='overview-details'>
-      <h3 className='overview-slogan'>{product.slogan}</h3>
-      <p className='overview-description'>{product.description}</p>
-      <ul className='overview-feature-wrapper'>
-        {product.features.map((feat, index) => {
-          return (
-            <li className='overview-feature' key={'overview-details-' + index}>
-              The {feat.feature} is {feat.value}!
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
+const Details = ({ product }) => (
+  <div className="overview-details">
+    <h3 className="overview-slogan">{product.slogan}</h3>
+    <p className="overview-description">{product.description}</p>
+    <ul className="overview-feature-wrapper">
+      {product.features.map((feat, index) => (
+        <li className="overview-feature" key={`overview-details-${index}`}>
+          The
+          {' '}
+          {feat.feature}
+          {' '}
+          is
+          {' '}
+          {feat.value}
+          !
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default Details;

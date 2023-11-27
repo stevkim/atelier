@@ -10,16 +10,20 @@ const ReviewsHeader = ({ totalReviews, setSort, setFilter }) => {
   }, [value]);
 
   return (
-    <div className='review-list-header'>
-      <label htmlFor='sort-options'>{totalReviews} reviews, sorted by</label>
-      <select name='sort-options' className='review-sort-options' onChange={(e) => setSort(e.target.value)}>
-        <option value='relevant'>Relevance</option>
-        <option value='newest'>Newest</option>
-        <option value='helpful'>Most Helpful</option>
+    <div className="review-list-header">
+      <label htmlFor="sort-options">
+        {totalReviews}
+        {' '}
+        reviews, sorted by
+      </label>
+      <select name="sort-options" className="review-sort-options" onChange={(e) => setSort(e.target.value)}>
+        <option value="relevant">Relevance</option>
+        <option value="newest">Newest</option>
+        <option value="helpful">Most Helpful</option>
       </select>
-      <input type='text' placeholder='Search reviews' value={input} onChange={e => setInput(e.target.value)}/>
+      <input type="text" placeholder="Search reviews" value={input} onChange={(e) => setInput(e.target.value)} />
     </div>
-  )
-}
+  );
+};
 
 export default memo(ReviewsHeader);

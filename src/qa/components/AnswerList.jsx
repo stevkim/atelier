@@ -1,7 +1,12 @@
 import React from 'react';
-import AnswerEntry from './AnswerEntry.jsx';
+import AnswerEntry from './AnswerEntry';
 
-export default function AnswerList({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) {
+export default function AnswerList({
+  currAnswerList,
+  totalAnswers,
+  handleLoadMoreAnswers,
+  handleCollapseAnswers,
+  isAnswerExpanded }) {
   return (
     <div className={`answer-list-container ${isAnswerExpanded && 'answer-list-container-expanded'}`}>
       {

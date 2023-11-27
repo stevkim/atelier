@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import QuestionList from './QuestionList.jsx';
-import Modal from './Modal.jsx';
-import AddQuestionForm from './AddQuestionForm.jsx';
+import QuestionList from './components/QuestionList';
+import Modal from './components/Modal';
+import AddQuestionForm from './components/AddQuestionForm';
 import axios from 'axios';
 import './qaStyles.css';
 
@@ -67,5 +67,5 @@ export default function QuestionsAndAnswers({ productId }) {
         </Modal>
       }
     </div>
-  )
+  );
 }

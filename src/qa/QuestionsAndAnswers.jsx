@@ -41,9 +41,8 @@ export default function QuestionsAndAnswers({ productId }) {
   return (
     <div className='qa-container'>
       <h4>QUESTIONS AND ANSWERS</h4>
-      <div className='search-container'>
+      <div className='qa-search-container'>
         <input
-          className='search-input'
           type='text'
           name='Search'
           placeholder='Have a question? Search for answers...'

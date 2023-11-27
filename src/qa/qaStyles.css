@@ -74,11 +74,11 @@ button {
   flex: 1 1 auto;
   overflow-y: auto;
 }
-.search-container {
+.qa-search-container {
   display: flex;
   margin-bottom: 1em;
 }
-.search-container > input {
+.qa-search-container > input {
   width: 100vw;
   height: 4vh;
 }

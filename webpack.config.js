@@ -26,6 +26,6 @@ module.exports = {
   },
   plugins: [
     new NodePolyfillPlugin(),
-    new ESLintPlugin()
+    // new ESLintPlugin()
   ]
 }

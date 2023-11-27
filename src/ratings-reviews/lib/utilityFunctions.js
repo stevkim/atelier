@@ -45,3 +45,11 @@ export const convertDate = (date) => {
   const dateToFormat = date.split('T')[0].split('-')
   return `${MONTHS[dateToFormat[1]]} ${dateToFormat[2]}, ${dateToFormat[0]}`;
 }
+
+export const getTotalReviewCount = (data) => {
+  let total = 0;
+  for (let keys in data) {
+    total += JSON.parse(data[keys]);
+  }
+  return total;
+}

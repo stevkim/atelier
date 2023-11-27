@@ -63,7 +63,7 @@ const ReviewItem = ({ review }) => {
       </div>
       {
         photos.map(photo => {
-          return <img  key={photo.id} src={photo.url} alt='Reviewer picture' width='150px' onError={e => { e.target.src = 'https://i.imgur.com/mYzivnl.png'}}/>
+          return <img  key={photo.id} src={photo.url} alt='Reviewer picture' width='150px' height='auto' onError={e => { e.target.src = 'https://i.imgur.com/mYzivnl.png'}}/>
         })
       }
 
@@ -77,7 +77,11 @@ const ReviewItem = ({ review }) => {
       }
 
       <div className='helpfulness-wrapper'> Helpful?
-        <span className='helpful-review' onClick={() => handleHelpfulClick(review_id)}>Yes</span>
+        <span className='helpful-review'
+          onClick={() => handleHelpfulClick(review_id)}
+        >
+          Yes
+        </span>
         {`(${helpful}) | `}
         <span onClick={() => handleReportClick(review_id)}>Report</span>
       </div>

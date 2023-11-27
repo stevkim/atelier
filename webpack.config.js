@@ -1,7 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-require('dotenv').config({ path: './.env'});
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -14,7 +13,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /nodeModules/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
@@ -22,16 +21,11 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
-      },
+      }
     ]
   },
   plugins: [
     new NodePolyfillPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        GIT_TOKEN: JSON.stringify(process.env.GIT_TOKEN),
-        API_URL: JSON.stringify(process.env.API_URL)
-      }
-    })
+    // new ESLintPlugin()
   ]
 }

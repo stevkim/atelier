@@ -1,26 +1,33 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getRelatedProducts } from './lib/fetchFunctions.js';
 import ProductList from './ProductList.jsx';
 import './styles/relatedProductsAndComparisonStyles.css';
+import ModalOverlay from '../../ratings-reviews/utils/ModalOverlay.jsx';
+import Comparison from './Comparison.jsx';
 
 const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfitProducts, setOutfitProducts] = useState([-1]);
+  const [modal, setModal] = useState(false);
+  const [relatedProduct, setRelatedProduct] = useState(0);
 
   useEffect(() => {
-    axios.get(`${process.env.API_URL}products/${currentProduct}/related`, {headers: {Authorization: process.env.GIT_TOKEN}})
-      .then(({ data }) => {
-        const uniqueRelatedProducts = data.filter((value, index, array) => array.indexOf(value) === index);
-        setRelatedProducts(uniqueRelatedProducts);
-      })
-      .catch((err) => {
-        console.log(`Failed to retrieve related products for Product ID: ${currentProduct}`);
-      })
+    const getData = async() => {
+      const relatedProducts = await getRelatedProducts(currentProduct);
+      const uniqueRelatedProducts = relatedProducts.data.filter((value, index, array) => array.indexOf(value) === index);
+      setRelatedProducts(uniqueRelatedProducts);
+    }
+    getData();
   }, [currentProduct]);
 
   const productCardClickHandler = (id) => {
     setCurrentProduct(id);
+  };
+
+  const relatedActionButtonClickHandler = (id) => {
+    setRelatedProduct(id)
+    setModal(true);
   };
 
   const addToOutfitHandler = () => {
@@ -28,21 +35,23 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
       console.log(`Product ID: ${currentProduct} already in Your Outfit`);
     } else {
       setOutfitProducts([-1, currentProduct].concat(outfitProducts.slice(1)));
-      console.log(`Product id: ${currentProduct} added to Your Outfit`);
     }
   };
 
   const removeFromOutfitHandler = (id) => {
     setOutfitProducts(outfitProducts.filter((productId) => productId !== id));
-    console.log(`Product id: ${id} removed from Your Outfit`);
   };
 
   return (
     <div>
       <h2>RELATED PRODUCTS</h2>
-      <ProductList  products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} />
+      <ProductList  products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} actionButtonClick={relatedActionButtonClickHandler} />
       <h2>YOUR OUTFIT</h2>
-      <ProductList  products={outfitProducts} productCardClick={removeFromOutfitHandler} isYourOutfit={true} addToOutfit={addToOutfitHandler} />
+      <ProductList  products={outfitProducts} productCardClick={productCardClickHandler} isYourOutfit={true} addToOutfit={addToOutfitHandler} actionButtonClick={removeFromOutfitHandler} />
+      {modal &&
+        <ModalOverlay >
+          <Comparison currentProduct={currentProduct} relatedProduct={relatedProduct} setModal={setModal} />
+        </ModalOverlay>}
     </div>
   )
 };

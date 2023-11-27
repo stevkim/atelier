@@ -24,7 +24,7 @@
 
 .bar-inactive {
   width: 100%;
-  background-color: lightgray;
+  background-color: var(--inactive-bar-color);
 }
 
 /*-------*

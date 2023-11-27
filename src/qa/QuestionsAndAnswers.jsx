@@ -55,7 +55,7 @@ export default function QuestionsAndAnswers({ productId }) {
         isQuestionExpanded={isQuestionExpanded}
         term={term}
       />
-      <div className='button-container'>
+      <div className='qa-button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions &&
           <button onClick={handleMoreQuestions}>More Questions</button>
@@ -64,7 +64,7 @@ export default function QuestionsAndAnswers({ productId }) {
       </div>
       {isModalOpen &&
         <Modal>
-          <AddQuestionForm setIsModalOpen={setIsModalOpen} />
+          <AddQuestionForm productId={productId} setIsModalOpen={setIsModalOpen} />
         </Modal>
       }
     </div>

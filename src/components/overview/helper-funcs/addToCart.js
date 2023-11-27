@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const addToCart = (skuNum, quantity) => {
-  let config = {
+  const config = {
     method: 'post',
-    url: '/cart?sku_id=' + skuNum,
+    url: `/cart?sku_id=${skuNum}`,
   };
 
-  axios.request(config)
-}
+  axios.request(config);
+};
 
 export default addToCart;

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerList from './AnswerList.jsx';
 
 export default function QuestionEntry({ question }) {
-  const { question_id, question_body, question_helpfulness, answers } = question;
+  const {
+    question_id, question_body, question_helpfulness, answers,
+  } = question;
   const [updateQuestionHelpfulness, setUpdateQuestionHelpfulness] = useState(question_helpfulness);
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
   const [currAnswerList, setCurrAnswerList] = useState([]);
@@ -11,8 +13,8 @@ export default function QuestionEntry({ question }) {
   const [isAnswerExpanded, setIsAnswerExpanded] = useState(false);
 
   const handleHelpfulQuestionClick = (id) => {
-    !isQuestionHelpful &&
-    axios.put(`/qa/questions/${id}/helpful`, null)
+    !isQuestionHelpful
+    && axios.put(`/qa/questions/${id}/helpful`, null)
       .then(() => {
         setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
         setIsQuestionHelpful(true);
@@ -37,24 +39,23 @@ export default function QuestionEntry({ question }) {
   useEffect(() => {
     axios.get(`/qa/questions/${question_id}/answers/?count=${totalAnswers}`)
       .then((response) => {
-        const sortedAnswerList = response.data.results.sort((a,b) => {
+        const sortedAnswerList = response.data.results.sort((a, b) => {
           const isSellerA = a.answerer_name === 'Seller';
           const isSellerB = b.answerer_name === 'Seller';
 
           if (isSellerA && !isSellerB) {
             return -1;
-          } else if (!isSellerA && isSellerB) {
+          } if (!isSellerA && isSellerB) {
             return 1;
-          } else {
-            return b.helpfulness - a.helpfulness;
           }
-        })
+          return b.helpfulness - a.helpfulness;
+        });
         setAnswerList(sortedAnswerList);
         setCurrAnswerList(sortedAnswerList.slice(0, 2));
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }, []);
 
   return (
@@ -69,12 +70,18 @@ export default function QuestionEntry({ question }) {
             <span>Helpful?</span>
             <span
               className='yes'
-              style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default'}}
-              onClick={() => {handleHelpfulQuestionClick(question_id)}}>
+              style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
+              onClick={() => { handleHelpfulQuestionClick(question_id); }}
+            >
               Yes
             </span>
-            <span>({updateQuestionHelpfulness})</span>|
-            <span className='add-answer' style={{textDecoration: 'underline'}}>Add Answer</span>
+            <span>
+              (
+              {updateQuestionHelpfulness}
+              )
+            </span>
+            |
+            <span className='add-answer' style={{ textDecoration: 'underline' }}>Add Answer</span>
           </span>
         </div>
       </div>
@@ -89,5 +96,5 @@ export default function QuestionEntry({ question }) {
         />
       </div>
     </div>
-  )
+  );
 }

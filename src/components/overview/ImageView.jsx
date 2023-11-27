@@ -8,29 +8,31 @@ const ImageView = ({ photos }) => {
 
   useEffect(() => {
     console.log(thumbnail);
-  }, [thumbnail])
+  }, [thumbnail]);
 
   const updateThumbnail = (int) => {
     setThumbnail(int);
-  }
+  };
 
   const changeView = () => {
     setInExpandedView(!inExpandedView);
-  }
+  };
 
   return (
     <div className='overview-image-view'>
-      < ImgMain
+      <ImgMain
         url={photos[thumbnail].url}
         inExpandedView={inExpandedView}
-        changeView={changeView} />
+        changeView={changeView}
+      />
 
-      < ThumbnailView
+      <ThumbnailView
         thumbnails={photos}
         thumbnail={thumbnail}
-        updateThumbnail={updateThumbnail} />
+        updateThumbnail={updateThumbnail}
+      />
     </div>
   );
-}
+};
 
 export default ImageView;

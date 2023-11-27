@@ -11,23 +11,23 @@ const StyleWrapper = ({ styles }) => {
 
   const updateStyle = (int) => {
     setStyle(int);
-  }
+  };
 
   return (
     <div className='overview-style-wrapper'>
       {/* ImageView also contains the thumbnails. */}
-      {< ImageView photos={selectedStyle.photos} />}
+      <ImageView photos={selectedStyle.photos} />
 
       {/* Styles will change the style state */}
-      {< StylesView styleIndex={style} styles={styles} updateStyle={updateStyle} />}
+      <StylesView styleIndex={style} styles={styles} updateStyle={updateStyle} />
 
       {/* Price also has the SelectedStyle textbox */}
-      {< Price selectedStyle={selectedStyle} />}
+      <Price selectedStyle={selectedStyle} />
 
       {/* Needs a sizeDropdown, quantityDropdown, and Submit sub */}
-      {< AddToCart skus={selectedStyle.skus} />}
+      <AddToCart skus={selectedStyle.skus} />
     </div>
   );
-}
+};
 
 export default StyleWrapper;

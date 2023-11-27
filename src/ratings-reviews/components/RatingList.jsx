@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as key } from 'uuid';
 import BarRating from '../utils/BarRating.jsx';
 
 const RatingList = ({ ratings, handleStarFilter, total }) => {
@@ -6,21 +7,22 @@ const RatingList = ({ ratings, handleStarFilter, total }) => {
 
   return (
     <div className='rating-list-container'>
-      {ratings &&
-        allRatings.map((_, index) => {
-          let rating = 5 - index;
+      {ratings
+        && allRatings.map((_, index) => {
+          const rating = 5 - index;
           return (
-            <div key={`barrating${index}`} className='bar-rating'>
-              <span onClick={() => handleStarFilter(rating)}>
-                {rating} stars
-              </span>
-              <BarRating rating={ratings[Math.round(JSON.parse(rating) / total * 100)]} />
+            <div key={key()} className='bar-rating'>
+              <button type='button' onClick={() => handleStarFilter(rating)}>
+                {rating}
+                {' '}
+                stars
+              </button>
+              <BarRating rating={ratings[Math.round((JSON.parse(rating) / total) * 100)]} />
             </div>
-          )
-        })
-      }
+          );
+        })}
     </div>
-  )
-}
+  );
+};
 
 export default RatingList;

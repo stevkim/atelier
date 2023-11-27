@@ -1,5 +1,0 @@
-{
-  "parser": "@babel/eslint-parser",
-  "extends": ["airbnb", "airbnb/hooks"],
-  "ignorePatterns": ["node_modules"]
-}

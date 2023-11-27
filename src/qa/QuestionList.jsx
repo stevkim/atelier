@@ -6,15 +6,11 @@ export default function QuestionList({ currQuestionList, isQuestionExpanded, ter
     <div className={`question-list-container ${isQuestionExpanded && 'question-list-container-expanded'}`}>
       {
         currQuestionList
-          .filter((question) => {
-            return term.toLowerCase() === ''
+          .filter((question) => (term.toLowerCase() === ''
             ? question
-            : question.question_body.toLowerCase().includes(term)
-          })
-          .map((question) => {
-            return <QuestionEntry key={question.question_id} question={question} />
-          })
+            : question.question_body.toLowerCase().includes(term)))
+          .map((question) => <QuestionEntry key={question.question_id} question={question} />)
       }
     </div>
-  )
+  );
 }

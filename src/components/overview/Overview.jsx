@@ -10,6 +10,7 @@ import AddToCart from './AddToCart.jsx';
 import './styles.css';
 import productExample from './product-example.js';
 import getOverviewById from './helper-funcs/getOverviewById.js';
+
 require('dotenv').config();
 const axios = require('axios');
 
@@ -24,39 +25,39 @@ const Overview = ({ productId }) => {
   const [style, setStyle] = useState(0);
   const selectedStyle = product.styles[style];
 
-  productId = productId | 40344;
+  productId |= 40344;
 
   useEffect(() => {
     getOverviewById(productId)
-      .then(res => setProduct(res))
-      .catch(err => console.log(err))
-  }, [productId])
+      .then((res) => setProduct(res))
+      .catch((err) => console.log(err));
+  }, [productId]);
 
   const updateStyle = (int) => {
     setStyle(int);
-  }
+  };
 
   // Tech debt: It would probably be faster to just pass in the entire product.
   // It's definitely more readable this way, though.
 
   return (
     <div className='overview'>
-      < ImageView photos={selectedStyle.photos} />
+      <ImageView photos={selectedStyle.photos} />
       <div className='overview-overview'>
-        < Reviews product={product} />
+        <Reviews product={product} />
         <div className='overview-category'>{product.category}</div>
         <h3 className='overview-title'>{product.title}</h3>
-        < Price selectedStyle={selectedStyle} />
-        < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
-        < AddToCart skus={selectedStyle.skus} />
+        <Price selectedStyle={selectedStyle} />
+        <StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
+        <AddToCart skus={selectedStyle.skus} />
         <div className='overview-share-buttons'>
-          < button className='share-facebook'>f</button>
-          < button className='share-x'>x</button>
-          < button className='share-pinterest'>P</button>
+          <button className='share-facebook'>f</button>
+          <button className='share-x'>x</button>
+          <button className='share-pinterest'>P</button>
         </div>
       </div>
-      < Details product={product} />
+      <Details product={product} />
     </div>
-  )
-}
+  );
+};
 export default Overview;

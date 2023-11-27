@@ -6,7 +6,7 @@ const Reviews = ({ product }) => {
   let totalStars = 0;
 
   useEffect(() => {
-    for (var starsGiven in product.reviews) {
+    for (const starsGiven in product.reviews) {
       totalStars += (starsGiven * product.reviews[starsGiven]);
       totalReviews += Number(product.reviews[starsGiven]);
     }
@@ -14,10 +14,15 @@ const Reviews = ({ product }) => {
 
   return (
     <div className='overview-reviews'>
-      < StarRating rating={totalStars / totalReviews} />
-      <div>See All {totalReviews} Reviews!</div>
+      <StarRating rating={totalStars / totalReviews} />
+      <div>
+        See All
+        {totalReviews}
+        {' '}
+        Reviews!
+      </div>
     </div>
   );
-}
+};
 
 export default Reviews;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { getProduct, getProductStyles, getReviewsMetaData } from './lib/fetchFunctions.js';
 import StarRating from '../star-rating/StarRating.jsx';
-import Price from '../overview/Price.jsx';
+import Price from '../price/Price.jsx';
 import './styles/productCardStyles.css';
 
 

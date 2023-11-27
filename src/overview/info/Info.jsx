@@ -1,7 +1,7 @@
 import React from 'react';
 import Reviews from './Reviews.jsx';
 import StylesView from './StylesView.jsx';
-import Price from './Price.jsx';
+import Price from '../components/price/Price.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Info = ({ product, selectedStyle, updateStyle }) => (
@@ -11,7 +11,7 @@ const Info = ({ product, selectedStyle, updateStyle }) => (
       {product.category}
     </div>
     <h3 className='overview-title'>{product.title}</h3>
-    < Price selectedStyle={selectedStyle} />
+    < Price selectedStyle={selectedStyle} includeStyle={true}/>
     < StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
     < AddToCart skus={selectedStyle.skus} />
     <div className='overview-share-buttons'>

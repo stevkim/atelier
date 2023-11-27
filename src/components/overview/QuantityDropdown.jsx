@@ -2,9 +2,9 @@ import React from 'react';
 
 const QuantityDropdown = ({ skus, sizeSelected, updateQuantitySelected }) => (
   <select
-    name="Quantity"
-    title="-Quantity-"
-    className="overview-quantity-dropdown"
+    name='Quantity'
+    title='-Quantity-'
+    className='overview-quantity-dropdown'
     onChange={(e) => { updateQuantitySelected(e.target.value); }}
   >
     {Array.from(Array(skus[sizeSelected].quantity)).slice(0, 25).map((value, index) => (

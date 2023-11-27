@@ -7,12 +7,12 @@ import AddToCart from './AddToCart.jsx';
 // import ShareButtons from './ShareButtons.jsx';
 
 const Details = ({ product }) => (
-  <div className="overview-details">
-    <h3 className="overview-slogan">{product.slogan}</h3>
-    <p className="overview-description">{product.description}</p>
-    <ul className="overview-feature-wrapper">
+  <div className='overview-details'>
+    <h3 className='overview-slogan'>{product.slogan}</h3>
+    <p className='overview-description'>{product.description}</p>
+    <ul className='overview-feature-wrapper'>
       {product.features.map((feat, index) => (
-        <li className="overview-feature" key={`overview-details-${index}`}>
+        <li className='overview-feature' key={`overview-details-${index}`}>
           The
           {' '}
           {feat.feature}

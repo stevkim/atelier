@@ -5,11 +5,11 @@ const Thumbnail = ({
 }) => {
   if (isSelected) {
     return (
-      <div className="overview-thumbnail">&#10004;</div>
+      <div className='overview-thumbnail'>&#10004;</div>
     );
   }
   return (
-    <img className="overview-thumbnail" onClick={() => { updateThumbnail(index); }} src={url} />
+    <img className='overview-thumbnail' onClick={() => { updateThumbnail(index); }} src={url} />
   );
 };
 

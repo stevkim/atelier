@@ -19,8 +19,9 @@ export const convertFilesToDataURL = async (files) => {
 };
 
 export const postRequirements = (data) => {
-  for (const key in data) {
-    if (!!data[key] === false) {
+  const values = Object.values(data);
+  for (let i = 0; i < values.length; i++) {
+    if (!!values[i] === false) {
       return false;
     }
   }

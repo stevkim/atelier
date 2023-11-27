@@ -50,7 +50,7 @@ const ProductList = ({
   }
 
   return (
-    <div className="related-products">
+    <div className='related-products'>
       {leftButton ? <button onClick={leftClickHandler}>{'<'}</button> : <div />}
       {fourProducts.map((id) => {
         if (id === -1) {

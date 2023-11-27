@@ -45,10 +45,10 @@ const AddToCart = ({ skus }) => {
 
   if (skusArray.length > 0) {
     return (
-      <form id="overview-cart-form" onSubmit={(e) => { cartSubmitHandler(e); }}>
+      <form id='overview-cart-form' onSubmit={(e) => { cartSubmitHandler(e); }}>
         <SizeDropdown skus={skusArray} updateSizeSelected={updateSizeSelected} />
         <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected} />
-        <button type="submit" className="overview-cart-submit">Add To Cart</button>
+        <button type='submit' className='overview-cart-submit'>Add To Cart</button>
       </form>
     );
   }

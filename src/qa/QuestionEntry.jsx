@@ -59,17 +59,17 @@ export default function QuestionEntry({ question }) {
   }, []);
 
   return (
-    <div className="question-container">
-      <div className="question-header">
-        <div className="question-indicator" style={{ fontWeight: 'bold' }}>
+    <div className='question-container'>
+      <div className='question-header'>
+        <div className='question-indicator' style={{ fontWeight: 'bold' }}>
           <div>Q:</div>
           <div>{question_body}</div>
         </div>
-        <div className="question-details-container">
-          <span className="helpful-container">
+        <div className='question-details-container'>
+          <span className='helpful-container'>
             <span>Helpful?</span>
             <span
-              className="yes"
+              className='yes'
               style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
               onClick={() => { handleHelpfulQuestionClick(question_id); }}
             >
@@ -81,11 +81,11 @@ export default function QuestionEntry({ question }) {
               )
             </span>
             |
-            <span className="add-answer" style={{ textDecoration: 'underline' }}>Add Answer</span>
+            <span className='add-answer' style={{ textDecoration: 'underline' }}>Add Answer</span>
           </span>
         </div>
       </div>
-      <div className="answer-indicator">
+      <div className='answer-indicator'>
         <div style={{ fontWeight: 'bold' }}>A:</div>
         <AnswerList
           currAnswerList={currAnswerList}

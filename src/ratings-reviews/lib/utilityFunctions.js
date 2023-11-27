@@ -1,31 +1,26 @@
 export const getAverageRating = (ratings, totalRatings) => {
+  if (!ratings || !totalRatings) return 0;
   let total = 0;
-
-  for (const keys in ratings) {
-    total += JSON.parse(keys) * ratings[keys];
-  }
+  const convertedRatings = Object.entries(ratings);
+  convertedRatings.forEach((rating) => {
+    total += JSON.parse(rating[0]) * rating[1];
+  });
   return parseFloat((total / totalRatings).toFixed(1));
 };
 
 export const getAverageRecommended = (data, total) => {
-  for (const key in data) {
-    if (key === 'true') {
-      return Math.round(JSON.parse((data[key]) / total) * 100);
-    }
-  }
-  return 5;
+  if (!data || !total) return 100;
+  return Math.round(JSON.parse((data.true) / total) * 100);
 };
 
 export const convertCharacterstics = (data) => {
-  const characteristics = [];
-  for (const keys in data) {
-    characteristics.push({
-      id: data[keys].id,
-      characteristic: keys,
-      rating: data[keys].value,
-    });
-  }
-  return characteristics;
+  if (!data) return [];
+  const convertedData = Object.entries(data);
+  return convertedData.map((characteristic) => ({
+    characteristic: characteristic[0],
+    id: characteristic[1].id,
+    rating: characteristic[1].value,
+  }));
 };
 
 const MONTHS = {
@@ -49,9 +44,6 @@ export const convertDate = (date) => {
 };
 
 export const getTotalReviewCount = (data) => {
-  let total = 0;
-  for (const keys in data) {
-    total += JSON.parse(data[keys]);
-  }
-  return total;
+  if (!data) return 0;
+  return JSON.parse(data.false) + JSON.parse(data.true);
 };

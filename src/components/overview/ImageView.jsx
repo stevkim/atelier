@@ -19,7 +19,7 @@ const ImageView = ({ photos }) => {
   };
 
   return (
-    <div className="overview-image-view">
+    <div className='overview-image-view'>
       <ImgMain
         url={photos[thumbnail].url}
         inExpandedView={inExpandedView}

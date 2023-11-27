@@ -14,7 +14,7 @@ const StyleWrapper = ({ styles }) => {
   };
 
   return (
-    <div className="overview-style-wrapper">
+    <div className='overview-style-wrapper'>
       {/* ImageView also contains the thumbnails. */}
       <ImageView photos={selectedStyle.photos} />
 

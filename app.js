@@ -17,25 +17,25 @@ app.route('/*')
       .then((results) => {
         res.status(200).json(results.data);
       })
-      .catch((err) => {
+      .catch(() => {
         res.sendStatus(404);
       });
   })
   .post((req, res) => {
     axios.post(`${URL}${req.url}`, req.body, options)
-      .then((result) => {
+      .then(() => {
         res.status(201).json({ message: 'Successfully posted' });
       })
-      .catch((err) => {
+      .catch(() => {
         res.sendStatus(404);
       });
   })
   .put((req, res) => {
     axios.put(`${URL}${req.url}`, null, options)
-      .then((result) => {
+      .then(() => {
         res.status(200).json({ message: 'Successfully PUT request' });
       })
-      .catch((err) => {
+      .catch(() => {
         res.sendStatus(404);
       });
   });

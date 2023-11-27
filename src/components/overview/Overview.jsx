@@ -41,19 +41,19 @@ const Overview = ({ productId }) => {
   // It's definitely more readable this way, though.
 
   return (
-    <div className="overview">
+    <div className='overview'>
       <ImageView photos={selectedStyle.photos} />
-      <div className="overview-overview">
+      <div className='overview-overview'>
         <Reviews product={product} />
-        <div className="overview-category">{product.category}</div>
-        <h3 className="overview-title">{product.title}</h3>
+        <div className='overview-category'>{product.category}</div>
+        <h3 className='overview-title'>{product.title}</h3>
         <Price selectedStyle={selectedStyle} />
         <StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
         <AddToCart skus={selectedStyle.skus} />
-        <div className="overview-share-buttons">
-          <button className="share-facebook">f</button>
-          <button className="share-x">x</button>
-          <button className="share-pinterest">P</button>
+        <div className='overview-share-buttons'>
+          <button className='share-facebook'>f</button>
+          <button className='share-x'>x</button>
+          <button className='share-pinterest'>P</button>
         </div>
       </div>
       <Details product={product} />

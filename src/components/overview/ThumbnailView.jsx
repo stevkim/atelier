@@ -47,7 +47,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail }) => {
 
   return (
     <>
-      <div className="overview-thumbnail-view">
+      <div className='overview-thumbnail-view'>
         {rotatingSliceOf5(thumbnails).map((photo, index) => (
           <Thumbnail
             key={`overview-thumbnail-${index}`}
@@ -58,7 +58,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail }) => {
           />
         ))}
         <button
-          className="overview-thumbnail-button"
+          className='overview-thumbnail-button'
           onClick={() => { incrementThumbnail(+1); }}
         >
           {' '}
@@ -66,8 +66,8 @@ const ThumbnailView = ({ thumbnails, thumbnail, updateThumbnail }) => {
           {' '}
         </button>
       </div>
-      <button className="overview-left-button" onClick={() => { incrementThumbnail(-1); }}>{'<-'}</button>
-      <button className="overview-right-button" onClick={() => { incrementThumbnail(+1); }}>{'->'}</button>
+      <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }}>{'<-'}</button>
+      <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }}>{'->'}</button>
     </>
   );
 };

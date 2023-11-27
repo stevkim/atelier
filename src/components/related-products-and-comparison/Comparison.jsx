@@ -50,22 +50,22 @@ const Comparison = ({ currentProduct, relatedProduct, setModal }) => {
   };
 
   return (
-    <div className="comparison-container" onClick={() => { setModal(false); }}>
-      <div className="close-button">❌</div>
+    <div className='comparison-container' onClick={() => { setModal(false); }}>
+      <div className='close-button'>❌</div>
       <h5>Comparing</h5>
       <table>
         <thead>
           <tr>
-            <th className="left-header" colSpan="2">{currentProductName}</th>
-            <th className="right-header" colSpan="2">{relatedProductName}</th>
+            <th className='left-header' colSpan='2'>{currentProductName}</th>
+            <th className='right-header' colSpan='2'>{relatedProductName}</th>
           </tr>
         </thead>
         <tbody>
           {compareFeatures(currentProductFeatures, relatedProductFeatures).map((feature, index) => (
             <tr key={index}>
-              <td className="value">{feature[0] === true ? '✔' : ''}</td>
-              <td className="feature" colSpan="2">{feature[1]}</td>
-              <td className="value">{feature[2] === true ? '✔' : ''}</td>
+              <td className='value'>{feature[0] === true ? '✔' : ''}</td>
+              <td className='feature' colSpan='2'>{feature[1]}</td>
+              <td className='value'>{feature[2] === true ? '✔' : ''}</td>
             </tr>
           ))}
         </tbody>

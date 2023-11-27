@@ -1,22 +1,23 @@
 import React from 'react';
+import { v4 as key } from 'uuid';
 import BarRating from '../utils/BarRating.jsx';
 
 const RatingList = ({ ratings, handleStarFilter, total }) => {
   const allRatings = Array.from(Array(5));
 
   return (
-    <div className="rating-list-container">
+    <div className='rating-list-container'>
       {ratings
         && allRatings.map((_, index) => {
           const rating = 5 - index;
           return (
-            <div key={`barrating${index}`} className="bar-rating">
-              <span onClick={() => handleStarFilter(rating)}>
+            <div key={key()} className='bar-rating'>
+              <button type='button' onClick={() => handleStarFilter(rating)}>
                 {rating}
                 {' '}
                 stars
-              </span>
-              <BarRating rating={ratings[Math.round(JSON.parse(rating) / total * 100)]} />
+              </button>
+              <BarRating rating={ratings[Math.round((JSON.parse(rating) / total) * 100)]} />
             </div>
           );
         })}

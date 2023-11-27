@@ -36,13 +36,13 @@ export default function QuestionsAndAnswers({ productId }) {
   }, [displayCount]);
 
   return (
-    <div className="qa-container">
+    <div className='qa-container'>
       <h4>QUESTIONS AND ANSWERS</h4>
-      <div className="search-container">
+      <div className='search-container'>
         <input
-          type="text"
-          name="Search"
-          placeholder="Have a question? Search for answers..."
+          type='text'
+          name='Search'
+          placeholder='Have a question? Search for answers...'
           onChange={handleInputChange}
         />
       </div>
@@ -51,7 +51,7 @@ export default function QuestionsAndAnswers({ productId }) {
         isQuestionExpanded={isQuestionExpanded}
         term={term}
       />
-      <div className="button-container">
+      <div className='button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions
           && <button onClick={handleMoreQuestions}>More Answered Questions</button>

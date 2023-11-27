@@ -34,10 +34,10 @@ const ProductCard = ({
   }, [id]);
 
   return (
-    <div className="product-card">
-      <div className="action-button" onClick={() => { actionButtonClick(id); }}>{actionButton}</div>
+    <div className='product-card'>
+      <div className='action-button' onClick={() => { actionButtonClick(id); }}>{actionButton}</div>
       <div onClick={() => { productCardClick(id); }}>
-        <div className="image-container"><img src={imageURL} /></div>
+        <div className='image-container'><img src={imageURL} /></div>
         <h5>{category}</h5>
         <h3>{name}</h3>
         <Price selectedStyle={{ original_price: originalPrice, sale_price: salePrice }} />

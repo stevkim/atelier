@@ -11,11 +11,11 @@ export default function AnswerList({
       }
       {
         totalAnswers > 2 && currAnswerList.length < totalAnswers
-        && <div className="load-more-answers" onClick={handleLoadMoreAnswers}>LOAD MORE ANSWERS</div>
+        && <div className='load-more-answers' onClick={handleLoadMoreAnswers}>LOAD MORE ANSWERS</div>
       }
       {
         totalAnswers > 2 && currAnswerList.length === totalAnswers
-        && <div className="collapse-answers" onClick={handleCollapseAnswers}>COLLAPSE ANSWERS</div>
+        && <div className='collapse-answers' onClick={handleCollapseAnswers}>COLLAPSE ANSWERS</div>
       }
     </div>
   );

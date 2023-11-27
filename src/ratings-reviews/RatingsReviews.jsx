@@ -1,6 +1,4 @@
-import React, {
-  useState, useEffect, useMemo, useCallback, useRef,
-} from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
@@ -22,11 +20,16 @@ const RatingsReviews = ({ id }) => {
 
   const activeList = useMemo(() => {
     if (filter.stars === 0) return reviewList.slice(0, filter.currentLength);
-    return reviewList.filter((review) => review.rating === filter.stars).slice(0, filter.currentLength);
+    return reviewList.filter((review) => review.rating === filter.stars)
+      .slice(0, filter.currentLength);
   }, [reviewList, filter]);
 
   const handleStarFilter = useCallback((number) => {
-    number === filter.stars ? setFilter({ ...filter, stars: 0 }) : setFilter({ ...filter, stars: number });
+    if (number === filter.stars) {
+      setFilter({ ...filter, stars: 0 });
+    } else {
+      setFilter({ ...filter, stars: number });
+    }
     activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
   }, [filter]);
 
@@ -68,6 +71,7 @@ const RatingsReviews = ({ id }) => {
           }
           setReviewList([...reviewList, ...data.results]);
           setPagination({ ...pagination, page: pagination.page + 1 });
+          return null;
         });
     }
   }, [filter.currentLength, reviewList]);
@@ -77,9 +81,9 @@ const RatingsReviews = ({ id }) => {
   }, [modal]);
 
   return (
-    <section className="ratings-reviews-wrapper">
-      <h1 className="ratings-reviews-title">Ratings & Reviews</h1>
-      <div className="ratings-reviews-container">
+    <section className='ratings-reviews-wrapper'>
+      <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
+      <div className='ratings-reviews-container'>
         <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter} />
         <ReviewsList
           reviewList={activeList}

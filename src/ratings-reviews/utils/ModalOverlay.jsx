@@ -2,7 +2,7 @@ import React from 'react';
 import './utilStyles.css';
 
 const ModalOverlay = ({ children }) => (
-  <div className="modal-background">
+  <div className='modal-background'>
     {children}
   </div>
 );

@@ -16,17 +16,11 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
   ],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: { jsx: true },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
+  settings: { react: { version: 'detect' } },
   plugins: [
     'react',
     'react-hooks',
@@ -35,6 +29,19 @@ module.exports = {
     'react/prop-types': 0,
     'react/function-component-definition': [1, { namedComponents: 'arrow-function' }],
     'import/extensions': 'off',
-    'no-console': 1,
+    'no-console': 0,
+    'react-hooks/exhaustive-deps': 0,
+    'max-len': ['warn', { code: 150, ignoreStrings: true }],
+    'jsx-quotes': ['warn', 'prefer-single'],
+    'no-unused-expressions': ['warn', { allowTernary: true }],
+    camelcase: 0,
+    'consistent-return': 0,
+    'object-curly-newline': ['error', {
+      ObjectExpression: { multiline: true, minProperties: 10 },
+      ImportDeclaration: 'never',
+      ExportDeclaration: { multiline: true, minProperties: 3 },
+    }],
+    'react/destructuring-assignment': 0,
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
 };

@@ -1,19 +1,17 @@
-import React, {
-  useEffect, useState, useMemo, memo,
-} from 'react';
+import React, { useMemo, memo } from 'react';
 import RatingList from './RatingList.jsx';
 import { getAverageRating, getAverageRecommended, convertCharacterstics } from '../lib/utilityFunctions.js';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, total, handleStarFilter }) => {
-  const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data]);
-  const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, total), [data]);
+  const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data, total]);
+  const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, total), [data, total]);
   const propertyList = useMemo(() => convertCharacterstics(data.characteristics), [data]);
 
   return (
-    <section className="breakdown-wrapper">
-      <div className="average-rating-breakdown">
+    <section className='breakdown-wrapper'>
+      <div className='average-rating-breakdown'>
         <span>{averageRating.toString()}</span>
         <sup><StarRating rating={averageRating} /></sup>
       </div>

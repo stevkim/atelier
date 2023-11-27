@@ -15,3 +15,9 @@
 * {
   font-family: var(--text-font);
 }
+
+button {
+  border: none;
+  background-color: inherit;
+  font-size: inherit;
+}

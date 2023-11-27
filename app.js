@@ -18,18 +18,15 @@ app.route('/*')
         res.status(200).json(results.data);
       })
       .catch(err => {
-        console.log(err);
         res.sendStatus(404);
       })
   })
   .post((req, res) => {
-    console.log(req.body)
     axios.post(`${URL}${req.url}`, req.body, options)
       .then(result => {
         res.status(201).json({ message: 'Successfully posted'});
       })
       .catch(err => {
-        console.log(err);
         res.sendStatus(404);
       })
   })

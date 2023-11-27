@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { reviews } from '../data.js';
+import { reviews } from '../../../example-data/reviewData.js';
 import ReviewList from '../components/ReviewsList.jsx';
 import ReviewItem from '../components/ReviewItem.jsx';
 import { convertDate } from '../lib/convertDate.js';
@@ -41,11 +41,17 @@ describe('Review Item', () => {
     };
 })
 
-// describe('List of reviews', () => {
-//   test('Displays the correct number of reviews', () => {
+describe('List of reviews', () => {
+  test('Displays the correct number of reviews', async() => {
+    const { container } = render(await <ReviewList reviewList={reviews.results} showButton={true}/>);
 
-//   })
-//   const { container } = render(<ReviewList reviewList={reviews} />);
-//   const list = container.getElementByTagName('section');
+    const list = await screen.getByTestId('review-list');
+    expect(list.children.length).toEqual(reviews.results.length + 1);
 
-// })
+    for (let i = 0; i < list.children.length - 1; i++) {
+      expect([...list.children[i].classList]).toContain('review-wrapper');
+    };
+
+    expect(await screen.getByText('MORE REVIEWS')).toBeInTheDocument();
+  })
+})

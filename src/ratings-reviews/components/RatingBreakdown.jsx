@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, memo } from 'react';
 import RatingList from './RatingList.jsx';
 import { getAverageRating, getAverageRecommended, convertCharacterstics } from '../lib/utilityFunctions.js';
 import StarRating from '../../components/star-rating/StarRating.jsx';
@@ -22,4 +22,4 @@ const RatingBreakdown = ({ data, total, handleStarFilter }) => {
   )
 }
 
-export default RatingBreakdown;
+export default memo(RatingBreakdown);

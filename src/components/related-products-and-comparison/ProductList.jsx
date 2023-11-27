@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
 import './styles/relatedProductsAndComparisonStyles.css';
 
-const ProductList = ({ products, productCardClick, isYourOutfit, addToOutfit }) => {
+const ProductList = ({ products, productCardClick, actionButtonClick, isYourOutfit, addToOutfit }) => {
   const [fourProducts, setFourProducts] = useState([]);
   const [firstIndex, setFirstIndex] = useState(0);
   const [lastIndex, setLastIndex] = useState(0);
@@ -56,7 +56,7 @@ const ProductList = ({ products, productCardClick, isYourOutfit, addToOutfit }) 
         if (id === -1) {
           return <button onClick={addToOutfit} style={{width: '262px', minHeight: '396px'}} key={id}>+ <br />Add to Outfit</button>
         } else {
-          return <ProductCard id={id} key={id} productCardClick={productCardClick} />
+          return <ProductCard id={id} key={id} productCardClick={productCardClick} actionButtonClick={actionButtonClick} actionButton={isYourOutfit ? '❌' : '⭐'} />
         }
       })}
       {rightButton ? <button onClick={rightClickHandler} >{'>'}</button> : <div></div>}

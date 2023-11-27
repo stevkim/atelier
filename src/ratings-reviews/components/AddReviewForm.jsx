@@ -47,7 +47,7 @@ const AddReviewForm = ({ data, setModal }) => {
     } else {
       setErrMessages(errMessages.filter(msg => msg !== errorMessages[type] ));
     }
-  }
+  };
 
   const checkRequirements = () => {
     if (!postRequirements(userInput)) {
@@ -57,7 +57,7 @@ const AddReviewForm = ({ data, setModal }) => {
     }
     setErrMessages(errMessages.filter(msg =>  msg !== errorMessages['default'] ));
     return true;
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const AddReviewForm = ({ data, setModal }) => {
       .finally(() => {
         setModal(false);
       })
-  }
+  };
 
   return (
     <div className='add-review-container'>
@@ -113,7 +113,7 @@ const AddReviewForm = ({ data, setModal }) => {
         <div className='input-wrapper-row'
           onChange={e => setUserInput({...userInput, recommend: JSON.parse(e.target.value)})}
         >
-          <p>Would you recommed this product?</p>
+          <p style={{ marginRight: '.5em' }}>Would you recommed this product?</p>
           <label htmlFor='yes-recommend'>Yes</label>
           <input id='yes-recommend' name='recommend' type='radio' value={true}/>
           <label htmlFor='no-recommend'>No</label>

@@ -7,7 +7,7 @@ const ImgMain = ({ url, expanded, changeView }) => {
 
   return (
     <>
-      <div
+      <button
         className='overview-img-main-default'
         id='overview-img-main'
         style={{

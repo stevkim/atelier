@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getProductInfo = (productId) => {
-  let url = '/products/' + productId;
+  let url = `/products/${productId}`;
   let res = axios.get(url);
   return res;
 };

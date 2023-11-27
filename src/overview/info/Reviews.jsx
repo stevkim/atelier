@@ -1,21 +1,14 @@
-import React from 'react';
-import StarRating from '../star-rating/StarRating.jsx';
+import React, { useEffect } from 'react';
+import StarRating from '../../components/star-rating/StarRating.jsx';
+import countStarsAndReviews from './helper-funcs/countReviews.js';
 
 const Reviews = ({ product }) => {
-  let totalReviews = 0;
-  let totalStars = 0;
-
-  useEffect(() => {
-    for (var starsGiven in product.reviews) {
-      totalStars += (starsGiven * product.reviews[starsGiven]);
-      totalReviews += Number(product.reviews[starsGiven]);
-    }
-  }, [product]);
+  let reviewCounts = countStarsAndReviews(product);
 
   return (
     <div className='overview-reviews'>
-      < StarRating rating={totalStars / totalReviews} />
-      <div>See All {totalReviews} Reviews!</div>
+      < StarRating rating={reviewCounts.stars / reviewCounts.reviews} />
+      <div>See All {reviewCounts.reviews} Reviews!</div>
     </div>
   );
 }

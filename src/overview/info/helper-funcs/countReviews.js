@@ -1,15 +1,16 @@
-const countReviews = (product) => {
-  let totalReviews = 0;
-  let totalStars = 0;
+const countStarsAndReviews = (product) => {
+  let stars = 0;
+  let reviews = 0;
 
   for (var starsGiven in product.reviews) {
-    totalStars += (starsGiven * product.reviews[starsGiven]);
-    totalReviews += Number(product.reviews[starsGiven]);
+    stars += (starsGiven * product.reviews[starsGiven]);
+    reviews += Number(product.reviews[starsGiven]);
   }
 
-  const score = totalStars / totalReviews;
   return {
-    {score},
-    {totalReviews}
+    stars: stars,
+    reviews: reviews,
   }
-}
+};
+
+export default countStarsAndReviews;

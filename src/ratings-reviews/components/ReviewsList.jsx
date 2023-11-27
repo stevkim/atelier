@@ -24,17 +24,17 @@ const ReviewsList = forwardRef(({ reviewList, handleListIncrement, setModal, set
   const throttledScroll = useThrottle(handleScroll, 200);
 
   return (
-    <div className='review-list-container' data-testid='review-list'>
+    <div className='review-list-container'>
       <ReviewsHeader totalReviews={totalReviews} setSort={setSort} setFilter={setFilterValue}/>
-      <div className='review-list-wrapper' onScroll={e => throttledScroll(e)} ref={ref}>
+      <div className='review-list-wrapper' onScroll={e => throttledScroll(e)} ref={ref} data-testid='review-list'>
         {list.length > 0
-          ? <div>
-            {
-              list.map(review => {
-                return <ReviewItem key={review.review_id} review={review} />
-              })
-            }
-            </div>
+          ? <>
+              {
+                list.map(review => {
+                  return <ReviewItem key={review.review_id} review={review} />
+                })
+              }
+            </>
           : <div>Whoops there are no reviews here!</div>
         }
       </div>

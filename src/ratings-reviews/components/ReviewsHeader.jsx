@@ -11,8 +11,8 @@ const ReviewsHeader = ({ totalReviews, setSort, setFilter }) => {
 
   return (
     <div className='review-list-header'>
-      {totalReviews} reviews, sorted by
-      <select className='review-sort-options' onChange={(e) => setSort(e.target.value)}>
+      <label htmlFor='sort-options'>{totalReviews} reviews, sorted by</label>
+      <select name='sort-options' className='review-sort-options' onChange={(e) => setSort(e.target.value)}>
         <option value='relevant'>Relevance</option>
         <option value='newest'>Newest</option>
         <option value='helpful'>Most Helpful</option>

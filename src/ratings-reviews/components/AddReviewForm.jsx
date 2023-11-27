@@ -47,7 +47,7 @@ const AddReviewForm = ({ data, setModal }) => {
     } else {
       setErrMessages(errMessages.filter(msg => msg !== errorMessages[type] ));
     }
-  }
+  };
 
   const checkRequirements = () => {
     if (!postRequirements(userInput)) {
@@ -57,7 +57,7 @@ const AddReviewForm = ({ data, setModal }) => {
     }
     setErrMessages(errMessages.filter(msg =>  msg !== errorMessages['default'] ));
     return true;
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const AddReviewForm = ({ data, setModal }) => {
       .finally(() => {
         setModal(false);
       })
-  }
+  };
 
   return (
     <div className='add-review-container'>

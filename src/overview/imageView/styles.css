@@ -1,4 +1,9 @@
 /* Main image */
+.overview-image-view {
+  width: 45%;
+  aspect-ratio: 7 / 6;
+}
+
 .overview-img-main-default {
   position: absolute;
   left: 10%;

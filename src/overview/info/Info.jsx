@@ -6,7 +6,7 @@ import AddToCart from './addToCart/AddToCart.jsx';
 import './styles.css'
 
 const Info = ({ product, style, selectedStyle, updateStyle }) => (
-  <>
+  <div className='overview-overview'>
     < Reviews product={product} />
     <div className='overview-category'>
       {product.category}
@@ -20,7 +20,7 @@ const Info = ({ product, style, selectedStyle, updateStyle }) => (
       < button className='share-x'>x</button>
       < button className='share-pinterest'>P</button>
     </div>
-  </>
+  </div>
 );
 
 export default Info;

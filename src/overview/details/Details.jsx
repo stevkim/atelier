@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css';
 // import ShareButtons from './ShareButtons.jsx';
 
 const Details = ({ product, expanded }) => {

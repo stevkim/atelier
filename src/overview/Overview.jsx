@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Details from './Details.jsx';
+import Details from './details/Details.jsx';
 import Info from './info/Info.jsx';
 import ImageView from './imageView/ImageView.jsx';
 import './styles.css';

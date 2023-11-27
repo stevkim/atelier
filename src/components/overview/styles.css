@@ -88,13 +88,23 @@
   z-index: 1;
 }
 
+#zoom-box {
+  position: absolute;
+  border: 2px solid #3498db;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  display: none;
+  pointer-events: none;
+}
+
 /*
  * ================
  *      INFO
  * ================
  */
 
- .overview-overview {
+.overview-overview {
   grid-area: overview;
   position: absolute;
   display: grid;
@@ -222,14 +232,11 @@
   min-width: 4vw;
 }
 
-.share-facebook {
-}
+.share-facebook {}
 
-.share-x {
-}
+.share-x {}
 
-.share-pinterest {
-}
+.share-pinterest {}
 
 /*
  * ================
@@ -237,7 +244,7 @@
  * ================
  */
 
- .overview-details {
+.overview-details {
   position: relative;
   height: 100%;
   grid-area: details;
@@ -267,5 +274,4 @@
   border-left: solid;
 }
 
-.overview-feature {
-}
+.overview-feature {}

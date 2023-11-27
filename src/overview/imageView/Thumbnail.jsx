@@ -3,16 +3,16 @@ import React from 'react';
 const Thumbnail = ({ url, isSelected, expanded, updateThumbnail, index }) => {
   if (isSelected) {
     return (
-      <div
+      <button
         style={{
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%'
         }}
-        className={'overview-thumbnail-' + expanded}>&#10004;</div>
+        className={'overview-thumbnail-' + expanded}>&#10004;</button>
     );
   } else {
     return (
-      <div
+      <button
         style={{
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%'

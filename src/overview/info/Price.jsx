@@ -15,6 +15,6 @@ const Price = ({ selectedStyle }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Price;

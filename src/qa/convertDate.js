@@ -1,10 +1,12 @@
-export const convertDate = (date) => {
+const convertDate = (date) => {
   const newDate = new Date(date);
   const options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   };
   return newDate.toLocaleDateString('en-US', options);
 };
+
+export default convertDate;

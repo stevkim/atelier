@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
-import { getReviewList, getReviewMetaData } from './lib/fetchFunctions.js';
+import { getReviewList } from './lib/fetchFunctions.js';
 import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
 import { getTotalReviewCount } from './lib/utilityFunctions.js';
 
-const RatingsReviews = ({ id }) => {
-  const [metaData, setMetaData] = useState({});
+const RatingsReviews = ({ id, productName, metaData }) => {
   const [reviewList, setReviewList] = useState([]);
   const [pagination, setPagination] = useState({ page: 1, sort: 'relevant' });
   const [filter, setFilter] = useState({ currentLength: 10, stars: 0 });
@@ -40,13 +39,6 @@ const RatingsReviews = ({ id }) => {
   const handleListIncrement = () => {
     setFilter({ ...filter, currentLength: filter.currentLength + 10 });
   };
-
-  useEffect(() => {
-    getReviewMetaData(id)
-      .then(({ data }) => {
-        setMetaData(data);
-      });
-  }, [id]);
 
   useEffect(() => {
     setDisable(false);
@@ -97,7 +89,7 @@ const RatingsReviews = ({ id }) => {
         {modal
             && (
             <ModalOverlay>
-              <AddReviewForm data={metaData} setModal={setModal} />
+              <AddReviewForm data={metaData} setModal={setModal} productName={productName} />
             </ModalOverlay>
             )}
       </div>

@@ -74,9 +74,7 @@ const ReviewItem = ({ review }) => {
       {recommend
         && (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {' '}
-          <span style={{ color: 'green', fontSize: '2em' }}>&#10003;</span>
-          {' '}
+          <span style={{ color: 'green', fontSize: '2em', marginX: '.2em' }}>&#10003;</span>
           I recommend this product
         </div>
         )}

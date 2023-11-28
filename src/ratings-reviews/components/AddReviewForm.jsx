@@ -13,7 +13,7 @@ import AddReviewHeader from './AddReviewHeader.jsx';
 import AddReviewUserImages from './AddReviewUserImages.jsx';
 import AddReviewErrorMessages from './AddReviewErrorMessages.jsx';
 
-const AddReviewForm = ({ data, setModal }) => {
+const AddReviewForm = ({ data, setModal, productName }) => {
   const { product_id, characteristics } = data;
   const [userInput, setUserInput] = useState({
     product_id: JSON.parse(product_id),
@@ -82,7 +82,7 @@ const AddReviewForm = ({ data, setModal }) => {
   return (
     <div className='add-review-wrapper'>
       <div className='add-review-container'>
-        <AddReviewHeader setModal={setModal} />
+        <AddReviewHeader setModal={setModal} productName={productName} />
         <form
           className='add-review-form'
           onSubmit={(e) => handleSubmit(e)}

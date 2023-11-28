@@ -5,7 +5,7 @@ import Modal from './components/Modal.jsx';
 import AddQuestionForm from './components/AddQuestionForm.jsx';
 import './qaStyles.css';
 
-const QuestionsAndAnswers = ({ productId }) => {
+const QuestionsAndAnswers = ({ productId, productName }) => {
   const [currQuestionList, setCurrQuestionList] = useState([]);
   const [questionList, setQuestionList] = useState([]);
   const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
@@ -41,7 +41,7 @@ const QuestionsAndAnswers = ({ productId }) => {
 
   return (
     <div className='qa-container'>
-      <h4>QUESTIONS AND ANSWERS</h4>
+      <h2>QUESTIONS AND ANSWERS</h2>
       <div className='qa-search-container'>
         <input
           type='text'
@@ -65,7 +65,7 @@ const QuestionsAndAnswers = ({ productId }) => {
       {isModalOpen
         && (
         <Modal>
-          <AddQuestionForm productId={productId} setIsModalOpen={setIsModalOpen} />
+          <AddQuestionForm productId={productId} productName={productName} setIsModalOpen={setIsModalOpen} />
         </Modal>
         )}
     </div>

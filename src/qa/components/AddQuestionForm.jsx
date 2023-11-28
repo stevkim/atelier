@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AddQuestionForm = ({ productId, setIsModalOpen }) => {
+const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
   const [formData, setFormData] = useState({
     body: '',
     name: '',
@@ -54,7 +54,7 @@ const AddQuestionForm = ({ productId, setIsModalOpen }) => {
       </div>
       <div className='qa-form-heading'>
         <h2>ASK YOUR QUESTION</h2>
-        <h4>About the [Product Name]</h4>
+        <h4>{`About the ${productName}`}</h4>
       </div>
       <div className='qa-form-container'>
         <form onSubmit={handleAddQuestion}>

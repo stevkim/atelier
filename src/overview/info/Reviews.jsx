@@ -10,6 +10,7 @@ const Reviews = ({ product }) => {
       <StarRating rating={reviewCounts.stars / reviewCounts.reviews} />
       <div>
         See All
+        {' '}
         {reviewCounts.reviews}
         {' '}
         Reviews!

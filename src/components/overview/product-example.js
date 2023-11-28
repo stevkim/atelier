@@ -1,4 +1,4 @@
-var productExample = {
+const productExample = {
   product_id: 1,
   title: 'test title',
   category: 'test category',
@@ -7,19 +7,19 @@ var productExample = {
     2: 4,
     3: 5,
     4: 8,
-    5: 12
+    5: 12,
   },
   slogan: 'is a test!',
   description: 'This test is the testiest test of all time.',
   features: [
     {
       feature: 'testability',
-      value: 'high'
+      value: 'high',
     },
     {
       feature: 'nontestability',
-      value: 'low'
-    }
+      value: 'low',
+    },
   ],
   styles: [
     {
@@ -32,22 +32,22 @@ var productExample = {
         {
           thumbnail_url: 'https://i.imgur.com/lQU6jgl.jpeg',
           url: 'https://i.imgur.com/lQU6jgl.jpeg',
-        }
+        },
       ],
       skus: { // WHY would we do it this way? This should be an array!
         37: {
           quantity: 0,
-          size: 'XS'
+          size: 'XS',
         },
         39: {
           quantity: 9001,
-          size: 'M'
+          size: 'M',
         },
         41: {
           quantity: 3,
-          size: 'XL'
-        }
-      }
+          size: 'XL',
+        },
+      },
     },
     {
       style_id: 2,
@@ -59,25 +59,25 @@ var productExample = {
         {
           thumbnail_url: 'https://i.imgur.com/lQU6jgl.jpeg',
           url: 'https://i.imgur.com/lQU6jgl.jpeg',
-        }
+        },
       ],
       skus: {
         38: {
           quantity: 1,
-          size: 'S'
+          size: 'S',
         },
         39: {
           quantity: 0,
-          size: 'M'
+          size: 'M',
         },
         40: {
           quantity: 2,
-          size: 'L'
-        }
-      }
-    }
-  ]
-}
+          size: 'L',
+        },
+      },
+    },
+  ],
+};
 
 export default productExample;
 

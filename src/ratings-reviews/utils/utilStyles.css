@@ -2,10 +2,9 @@
  | Breakdown Bar-rating |
  *----------------------*/
 .bar-wrapper {
-  width: 80%;
+  width: 90%;
   height: 1em;
   position: relative;
-  display: block;
   overflow: hidden;
   border-radius: 2px;
 }
@@ -44,7 +43,7 @@
   left: 0;
 }
 
-.modal-background > * {
+.modal-background * {
   z-index: 16;
 }
 
@@ -83,5 +82,5 @@
 .product-bar {
   width: 20%;
   height: .5em;
-  background-color: lightgray;
+  background-color: var(--inactive-bar-color);
 }

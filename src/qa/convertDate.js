@@ -5,6 +5,7 @@ const convertDate = (date) => {
     month: 'long',
     day: 'numeric',
     timeZone: 'UTC',
+    timeZone: 'UTC',
   };
   return newDate.toLocaleDateString('en-US', options);
 };

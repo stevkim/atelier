@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 const useThrottle = (fn, delay) => {
   let inputs = null;
@@ -13,7 +13,7 @@ const useThrottle = (fn, delay) => {
       } else {
         called = null;
       }
-    }
+    };
 
     if (!called) {
       fn.apply(this, args);
@@ -24,6 +24,6 @@ const useThrottle = (fn, delay) => {
   }, [fn, delay]);
 
   return throttle;
-}
+};
 
 export default useThrottle;

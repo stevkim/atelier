@@ -4,7 +4,9 @@
 
 .ratings-reviews-wrapper {
   max-width: 1920px;
+  width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .ratings-reviews-title {
@@ -20,6 +22,10 @@
   gap: 2em;
   padding: 1em;
   position: relative;
+}
+
+.ratings-reviews-container img {
+  border-radius: 5px;
 }
 
 /*-------------*
@@ -51,7 +57,7 @@
 
 .review-list-wrapper {
   overflow-y: auto;
-  max-height: 50vh;
+  height: 50vh;
 }
 
 .review-sort-options {
@@ -85,6 +91,8 @@
   margin: 0 auto;
   animation: bounce .5s linear infinite;
   transform: scale(1.1);
+  border: none;
+  background-color: inherit;
 }
 
 .back-to-top:hover {
@@ -94,14 +102,19 @@
 
 .add-review-button {
   margin: 1em 0;
+  padding: .8em;
+  border: 1px solid black;
+  position: absolute;
+}
+
+.add-review-button > button {
   display: flex;
   align-items: center;
-  padding: 1em;
-  border: 1px solid black;
-  cursor: pointer;
   font-weight: bold;
-  width: fit-content;
-  position: absolute;
+}
+
+.add-review-button svg {
+  margin-left: .5em;
 }
 
 /*-------------*
@@ -143,6 +156,15 @@
   flex-direction: column;
 }
 
+.review-item-image {
+  max-width: 18%;
+  width: 150px;
+  max-weight: 200px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 .2em;
+}
+
 .helpfulness-wrapper {
   margin: 1em 0;
 }
@@ -153,10 +175,12 @@
 }
 
 .helpful-review {
-  margin-left: 1.5em;
+  margin: 0 0 0 1em;
+  padding: 0;
 }
 
 .show-more-button {
+  display: block;
   cursor: pointer;
   width: fit-content;
   font-style: italic;
@@ -171,19 +195,37 @@
 | Add Review Form |
 *-----------------*/
 
-.add-review-container {
+.add-review-wrapper {
   width: 70vw;
   max-width: 800px;
   background: white;
-  padding: 3em;
   box-sizing: border-box;
+}
+
+.add-review-container {
+  padding: 1em;
+  border: 1px solid black;
+  margin: 5px;
   position: relative;
 }
 
 .add-review-container p {
   font-weight: bold;
-  margin: 0;
+  margin: 0 .5em 0 0;
   padding: 0;
+}
+
+.add-review-container h1, .add-review-container h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.add-review-container h1 {
+  font-family: var(--header-font);
+}
+
+.add-review-container h4 {
+  margin-bottom: 1em;
 }
 
 .add-review-container sub {
@@ -193,21 +235,18 @@
 .add-review-header {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
-.add-review-header > h1 {
-  padding: 0;
-  margin: 0;
-}
-
-.add-review-header > span {
-  cursor: pointer;
+.add-review-close-button {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 0;
+  top: 0;
+  border: none;
+  background-color: inherit;
 }
 
-.add-review-header > span:hover {
+.add-review-close-button:hover {
   transform: scale(1.1);
 }
 
@@ -215,6 +254,10 @@
   display: flex;
   flex-direction: column;
   gap: .3em;
+}
+
+.add-review-form > p {
+  margin-top: .5em;
 }
 
 textarea {
@@ -232,12 +275,6 @@ textarea {
   margin: 0 .5em;
 }
 
-.input-wrapper-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .product-input-wrapper {
   display: flex;
   flex-direction: row;
@@ -250,11 +287,24 @@ textarea {
   padding-bottom: .5em;
 }
 
-.product-input-wrapper >  div {
+.product-input-wrapper > label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
   min-width: 120px;
   width: 20%;
   white-space: nowrap;
   font-size: .8em;
+  margin: .5em 0;
+}
+
+.submit-review-button {
+  border: 1px solid black;
+  padding: .5em;
+  max-width: 20%;
+  margin: 0 auto;
 }
 
 /*-----------------------*
@@ -270,16 +320,14 @@ input[type='file'] {
   gap: 1em;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
-  margin-bottom: 1em;
+  width: 90%;
+  margin: 0 auto 1em;
 }
 
-.user-image-wrapper > img {
+.user-image-wrapper img {
   height: auto;
-  max-width: 20%;
-  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+  width: 20%;
+  object-fit: contain;
 }
 
 /*-----------------*
@@ -297,29 +345,31 @@ input[type='file'] {
   font-weight: bold;
   line-height: .9;
   font-size: 1em;
-  margin: .5em 0;
+  margin: .2em .5em 0;
 }
 
 .average-rating-breakdown > span {
-  font-size: 3em;
+  font-size: 3.5em;
   margin-right: 15px;
 }
 
+.average-rating-breakdown > sup {
+  font-size: 1.2em;
+}
+
 .rating-list-container {
-  width: 100%;
+  width: 30vw;
+  max-width: 600px;
   margin-bottom: 1em;
 }
 
 .bar-rating {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  cursor: pointer;
 }
 
-.bar-rating > span {
+.bar-rating > button {
   white-space: nowrap;
-  margin-right: 1em;
   text-decoration: underline;
 }
 

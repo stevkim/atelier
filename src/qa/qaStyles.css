@@ -70,6 +70,7 @@ button {
   flex-direction: column;
   max-height: 100vh;
   max-width: 1920px;
+  overflow: hidden;
 }
 .question-list-container-expanded {
   flex: 1 1 auto;

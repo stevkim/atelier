@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import convertDate from '../convertDate';
 
-export default function AnswerEntry({ answer }) {
+const AnswerEntry = ({ answer }) => {
   const { answer_id, body, date, answerer_name, helpfulness, photos } = answer;
   const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
   const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
@@ -40,7 +40,7 @@ export default function AnswerEntry({ answer }) {
         {photos.map((photo) => <img key={photo.id} className='answer-photos' src={photo.url} alt='Photos for answer' />)}
       </div>
       <div className='answer-details-container'>
-        <span>
+        <div>
           by
           <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}>
             {' '}
@@ -49,31 +49,35 @@ export default function AnswerEntry({ answer }) {
           ,
           {' '}
           {convertDate(date)}
-        </span>
+        </div>
         |
-        <span className='helpful-container'>
+        <div className='qa-helpful-container'>
           Helpful?
-          <span
+          <button
+            type='button'
             className='yes'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
             onClick={() => { handleHelpfulAnswerClick(answer_id); }}
           >
             Yes
-          </span>
+          </button>
           (
           {updateAnswerHelpfulness}
           )
-        </span>
+        </div>
         |
-        <span
+        <button
+          type='button'
           title='Report'
           className='report'
           style={{ textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default' }}
           onClick={() => { handleReportClick(answer_id); }}
         >
           {reported ? 'Reported' : 'Report'}
-        </span>
+        </button>
       </div>
     </div>
   );
-}
+};
+
+export default AnswerEntry;

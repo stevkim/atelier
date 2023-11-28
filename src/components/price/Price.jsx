@@ -9,13 +9,27 @@ const Price = ({ selectedStyle, includeStyle }) => {
 
   return (
     <div className='overview-price-container'>
-      <span className={'overview-price-' + isOnSale}>${regularPrice}</span>
+      <span className={`overview-price-${isOnSale}`}>
+        $
+        {regularPrice}
+      </span>
       {isOnSale
-        ? <span className='overview-sale-price'>{' $' + salePrice}</span>
+        ? <span className='overview-sale-price'>{` $${salePrice}`}</span>
         : ''}
-      {includeStyle ? <div className='overview-selected-style'> <b>Style {'<'}</b> {selectedStyle.name} </div> : ''}
+      {includeStyle ? (
+        <div className='overview-selected-style'>
+          {' '}
+          <b>
+            Style
+            {'<'}
+          </b>
+          {' '}
+          {selectedStyle.name}
+          {' '}
+        </div>
+      ) : ''}
     </div>
   );
-}
+};
 
 export default Price;

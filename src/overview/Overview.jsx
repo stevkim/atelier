@@ -12,35 +12,33 @@ const Overview = ({ productId }) => {
   const [inExpandedView, setInExpandedView] = useState(false);
   let selectedStyle = product.styles[style];
 
-  productId = productId || 40344;
-
   useEffect(() => {
     getOverviewById(productId)
-      .then(res => setProduct(res))
-      .catch(err => console.log(err))
-  }, [productId])
+      .then((res) => setProduct(res))
+      .catch((err) => console.log(err));
+  }, [productId]);
 
   useEffect(() => {
     selectedStyle = product.styles[style];
-  }, [style])
+  }, [style]);
 
   const updateStyle = (int) => {
     setStyle(int);
-  }
+  };
 
   const changeView = () => {
     setInExpandedView(true);
-  }
+  };
 
   // Tech debt: It would probably be faster to just pass in the entire product.
   // It's definitely more readable this way, though.
 
   return (
     <div className='overview' id='overview'>
-      < ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
+      <ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
       {!inExpandedView ? <Info product={product} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
       {!inExpandedView ? <Details product={product} expanded={inExpandedView} /> : ''}
     </div>
-  )
-}
+  );
+};
 export default Overview;

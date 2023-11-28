@@ -6,11 +6,6 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
   const sizeOfThumbnailView = 7;
 
   useEffect(() => {
-    // This should check if the thumbnail is immediately before or after the array
-    // This is true if:
-    // thumbnail === topThumb - 1, written as:
-    // thumbnail === topThumb
-    // thumbnail is 5, topThumb is 0
     if (thumbnail === topThumbnailIndex - 1) {
       setTopThumbnailIndex(thumbnail);
     }
@@ -29,8 +24,8 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
   };
 
   const rotatingSlice = (arr) => {
-    let slice = arr.slice(topThumbnailIndex, Math.min(topThumbnailIndex + sizeOfThumbnailView, thumbnails.length))
-    for (var i = 0; slice.length < Math.min(sizeOfThumbnailView, arr.length); i++) {
+    const slice = arr.slice(topThumbnailIndex, Math.min(topThumbnailIndex + sizeOfThumbnailView, thumbnails.length));
+    for (let i = 0; slice.length < Math.min(sizeOfThumbnailView, arr.length); i++) {
       slice.push(arr[i]);
     }
     return slice;
@@ -39,7 +34,6 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
   const incrementThumbnail = (increment) => {
     let newThumbnail = (thumbnail + increment) % Object.keys(thumbnails).length;
     if (newThumbnail < 0) {
-      // thumbnail becomes 5
       newThumbnail = Object.keys(thumbnails).length + newThumbnail;
     }
     updateThumbnail(newThumbnail);
@@ -47,17 +41,17 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
 
   return (
     <>
-      <div className={'overview-thumbnail-view-' + expanded}>
-        {rotatingSlice(thumbnails).map((photo, index) => {
-          return (
-            <Thumbnail key={'overview-thumbnail-' + index}
-              url={photo.thumbnail_url}
-              isSelected={(index + topThumbnailIndex) % thumbnails.length === thumbnail}
-              expanded={expanded}
-              updateThumbnail={updateThumbnail}
-              index={(index + topThumbnailIndex) % thumbnails.length} />
-          );
-        })}
+      <div className={`overview-thumbnail-view-${expanded}`}>
+        {rotatingSlice(thumbnails).map((photo, index) => (
+          <Thumbnail
+            key={`overview-thumbnail-${index}`}
+            url={photo.thumbnail_url}
+            isSelected={(index + topThumbnailIndex) % thumbnails.length === thumbnail}
+            expanded={expanded}
+            updateThumbnail={updateThumbnail}
+            index={(index + topThumbnailIndex) % thumbnails.length}
+          />
+        ))}
         <button
           className='overview-thumbnail-button'
           onClick={() => { incrementThumbnail(+1); }}

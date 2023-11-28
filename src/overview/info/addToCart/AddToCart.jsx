@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SizeDropdown from './SizeDropdown.jsx';
 import QuantityDropdown from './QuantityDropdown.jsx';
 import { addToCart } from '../../helper-funcs/axios-requests';
-import './styles.css'
+import './styles.css';
 
 const AddToCart = ({ skus }) => {
   const [sizeSelected, setSizeSelected] = useState([0, false]);
@@ -14,14 +14,14 @@ const AddToCart = ({ skus }) => {
   // const skuNum =
 
   useEffect(() => {
-    let arr = [];
+    const arr = [];
     // This matters to keep the sizes in order for sizeDropdown and to only show proper sizes.
-    for (var skuNum in skus) {
+    for (const skuNum in skus) {
       arr.push(skuNum);
     }
     arr.sort();
     setSkuNumber(arr[0]); // While the skuNums are sorted, take advantage
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       arr[i] = skus[arr[i]];
     }
     setSkusArray(arr);
@@ -43,22 +43,29 @@ const AddToCart = ({ skus }) => {
 
   if (skusArray.length > 0) {
     return (
-      <form id='overview-cart-form' onSubmit={e => { cartSubmitHandler(e) }}>
+      <form id='overview-cart-form' onSubmit={(e) => { cartSubmitHandler(e); }}>
         <SizeDropdown skus={skusArray} sizeSelected={sizeSelected} updateSizeSelected={updateSizeSelected} />
         <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected} />
         {sizeSelected === 0
-          ? <button type='button' className='overview-cart-submit' onClick={() => {
-            const sizeDropdown = document.getElementById('overview-size-dropdown');
-            sizeDropdown.style.color = 'red';
-          }}>Add To Fart</button>
+          ? (
+            <button
+              type='button'
+              className='overview-cart-submit'
+              onClick={() => {
+                const sizeDropdown = document.getElementById('overview-size-dropdown');
+                sizeDropdown.style.color = 'red';
+              }}
+            >
+              Add To Fart
+            </button>
+          )
           : <button type='submit' className='overview-cart-submit'>AddToCart</button>}
       </form>
     );
-  } else {
-    return (
-      <div>Out of stock!</div>
-    );
   }
-}
+  return (
+    <div>Out of stock!</div>
+  );
+};
 
 export default AddToCart;

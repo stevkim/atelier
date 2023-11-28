@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import countStarsAndReviews from './helper-funcs/countReviews.js';
 
-const Reviews = ({ product }) => {
-  const reviewCounts = useMemo(() => countStarsAndReviews(product), [product]);
+const Reviews = ({ reviewsMetaData }) => {
+  const reviewCounts = useMemo(() => countStarsAndReviews(reviewsMetaData), [reviewsMetaData]);
 
   return (
     <div className='overview-reviews'>

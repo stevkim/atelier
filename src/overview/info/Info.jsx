@@ -5,15 +5,15 @@ import Price from '../../components/price/Price.jsx';
 import AddToCart from './addToCart/AddToCart.jsx';
 import './styles.css';
 
-const Info = ({ product, style, selectedStyle, updateStyle }) => (
+const Info = ({ productInfo, reviewsMetaData, styleInfo, style, selectedStyle, updateStyle }) => (
   <div className='overview-overview'>
-    <Reviews product={product} />
+    <Reviews reviewsMetaData={reviewsMetaData} />
     <div className='overview-category'>
-      {product.category}
+      {productInfo.category}
     </div>
-    <h3 className='overview-title'>{product.title}</h3>
+    <h3 className='overview-title'>{productInfo.name}</h3>
     <Price selectedStyle={selectedStyle} includeStyle />
-    <StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
+    <StylesView styleIndex={style} styleInfo={styleInfo} updateStyle={updateStyle} />
     <AddToCart skus={selectedStyle.skus} />
     <div className='overview-share-buttons'>
       <button className='share-facebook' type='button'>f</button>

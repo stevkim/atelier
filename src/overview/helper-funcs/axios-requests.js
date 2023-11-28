@@ -6,9 +6,10 @@ const getProductInfo = (productId) => {
   return res;
 };
 
-const getProductStyles = (productId) => {
+const getProductStyles = async (productId) => {
   const url = `/products/${productId}/styles`;
-  const res = axios.get(url);
+  const res = await axios.get(url);
+  console.log(res);
   return res;
 };
 
@@ -33,5 +34,5 @@ const addToCart = (skuNum) => {
 };
 
 export {
-  getOverviewById, addToCart, getProductInfo,
+  getOverviewById, addToCart, getProductInfo, getProductStyles,
 };

@@ -99,5 +99,4 @@ export default productExample;
  *     features: productLevelInfo.features,
  *     description: productLevelInfo.description,
  *   styles: styleInfo.results,
- * }
  */

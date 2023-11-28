@@ -2,9 +2,9 @@ import React from 'react';
 import { v4 as key } from 'uuid';
 import StyleThumbnail from './StyleThumbnail.jsx';
 
-const StylesView = ({ styleIndex, styles, updateStyle }) => (
+const StylesView = ({ styleIndex, styleInfo, updateStyle }) => (
   <div className='overview-styles-view'>
-    {styles.map((style, index) => (
+    {styleInfo.map((style, index) => (
       <StyleThumbnail
         key={key()}
         url={style.photos[0].thumbnail_url}

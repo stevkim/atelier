@@ -4,12 +4,12 @@ import './styles.css';
 
 // import ShareButtons from './ShareButtons.jsx';
 
-const Details = ({ product }) => (
+const Details = ({ productInfo }) => (
   <div className='overview-details' id='overview-details'>
-    <h3 className='overview-slogan'>{product.slogan}</h3>
-    <p className='overview-description'>{product.description}</p>
+    <h3 className='overview-slogan'>{productInfo.slogan}</h3>
+    <p className='overview-description'>{productInfo.description}</p>
     <ul className='overview-feature-wrapper'>
-      {product.features && product.features.map((feat) => (
+      {productInfo.features && productInfo.features.map((feat) => (
         <li className='overview-feature' key={key()}>
           The
           {' '}

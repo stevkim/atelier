@@ -16,9 +16,9 @@ const Info = ({ product, style, selectedStyle, updateStyle }) => (
     <StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
     <AddToCart skus={selectedStyle.skus} />
     <div className='overview-share-buttons'>
-      <button className='share-facebook'>f</button>
-      <button className='share-x'>x</button>
-      <button className='share-pinterest'>P</button>
+      <button className='share-facebook' type='button'>f</button>
+      <button className='share-x' type='button'>x</button>
+      <button className='share-pinterest' type='button'>P</button>
     </div>
   </div>
 );

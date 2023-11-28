@@ -16,13 +16,13 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
   }, [thumbnail]);
 
   /*
-  const changeThumbnailIndex = () => {
-    if (topThumbnailIndex + 1 === thumbnails.length) {
-      setTopThumbnailIndex(0);
-    } else {
-      setTopThumbnailIndex(topThumbnailIndex + 1);
-    }
-  };
+    const changeThumbnailIndex = () => {
+      if (topThumbnailIndex + 1 === thumbnails.length) {
+        setTopThumbnailIndex(0);
+      } else {
+        setTopThumbnailIndex(topThumbnailIndex + 1);
+      }
+    };
   */
 
   const rotatingSlice = (arr) => {

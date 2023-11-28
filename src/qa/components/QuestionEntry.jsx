@@ -4,7 +4,7 @@ import AnswerList from './AnswerList.jsx';
 import Modal from './Modal.jsx';
 import AddAnswerForm from './AddAnswerForm.jsx';
 
-export default function QuestionEntry({ question }) {
+const QuestionEntry = ({ question }) => {
   const { question_id, question_body, question_helpfulness, answers } = question;
   const [updateQuestionHelpfulness, setUpdateQuestionHelpfulness] = useState(question_helpfulness);
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
@@ -14,15 +14,16 @@ export default function QuestionEntry({ question }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleHelpfulQuestionClick = (id) => {
-    !isQuestionHelpful
-    && axios.put(`/qa/questions/${id}/helpful`, null)
-      .then(() => {
-        setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
-        setIsQuestionHelpful(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!isQuestionHelpful) {
+      axios.put(`/qa/questions/${id}/helpful`, null)
+        .then(() => {
+          setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
+          setIsQuestionHelpful(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const totalAnswers = Object.keys(answers).length;
@@ -67,23 +68,29 @@ export default function QuestionEntry({ question }) {
           <div>{question_body}</div>
         </div>
         <div className='question-details-container'>
-          <span className='helpful-container'>
+          <div className='qa-helpful-container'>
             Helpful?
-            <span
+            <button
+              type='button'
               className='yes'
               style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
               onClick={() => { handleHelpfulQuestionClick(question_id); }}
             >
               Yes
-            </span>
-            <span>
-              (
-              {updateQuestionHelpfulness}
-              )
-            </span>
+            </button>
+            (
+            {updateQuestionHelpfulness}
+            )
             |
-            <span className='add-answer' style={{ textDecoration: 'underline' }} onClick={() => { setIsModalOpen(true); }}>Add Answer</span>
-          </span>
+            <button
+              type='button'
+              className='add-answer'
+              style={{ textDecoration: 'underline' }}
+              onClick={() => { setIsModalOpen(true); }}
+            >
+              Add Answer
+            </button>
+          </div>
         </div>
       </div>
       <div className='answer-indicator'>
@@ -105,4 +112,6 @@ export default function QuestionEntry({ question }) {
       }
     </div>
   );
-}
+};
+
+export default QuestionEntry;

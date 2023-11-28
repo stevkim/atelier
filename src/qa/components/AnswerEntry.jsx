@@ -55,6 +55,7 @@ const AnswerEntry = ({ answer }) => {
           Helpful?
           <button
             type='button'
+            id='helpful-answer'
             className='yes'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
             onClick={() => { handleHelpfulAnswerClick(answer_id); }}
@@ -68,6 +69,7 @@ const AnswerEntry = ({ answer }) => {
         |
         <button
           type='button'
+          id='report-answer'
           title='Report'
           className='report'
           style={{ textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default' }}

@@ -5,7 +5,7 @@ import './styles/relatedProductsAndComparisonStyles.css';
 import ModalOverlay from '../ratings-reviews/utils/ModalOverlay.jsx';
 import Comparison from './Comparison.jsx';
 
-const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => {
+const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct, currentProductInfo }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfitProducts, setOutfitProducts] = useState([-1]);
   const [modal, setModal] = useState(false);
@@ -61,7 +61,7 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
       {modal
         && (
         <ModalOverlay>
-          <Comparison currentProduct={currentProduct} relatedProduct={relatedProduct} setModal={setModal} />
+          <Comparison currentProduct={currentProductInfo} relatedProduct={relatedProduct} setModal={setModal} />
         </ModalOverlay>
         )}
     </div>

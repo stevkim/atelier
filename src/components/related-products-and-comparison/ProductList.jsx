@@ -51,11 +51,11 @@ const ProductList = ({
 
   return (
     <div className='related-products'>
-      {leftButton ? <button onClick={leftClickHandler}>{'<'}</button> : <div />}
+      {leftButton ? <button type='button' onClick={leftClickHandler}>{'<'}</button> : <div />}
       {fourProducts.map((id) => {
         if (id === -1) {
           return (
-            <button onClick={addToOutfit} style={{ width: '262px', minHeight: '396px' }} key={id}>
+            <button type='button' onClick={addToOutfit} style={{ width: '262px', minHeight: '396px' }} key={id}>
               +
               <br />
               Add to Outfit
@@ -64,7 +64,7 @@ const ProductList = ({
         }
         return <ProductCard id={id} key={id} productCardClick={productCardClick} actionButtonClick={actionButtonClick} actionButton={isYourOutfit ? '❌' : '⭐'} />;
       })}
-      {rightButton ? <button onClick={rightClickHandler}>{'>'}</button> : <div />}
+      {rightButton ? <button type='button' onClick={rightClickHandler}>{'>'}</button> : <div />}
     </div>
   );
 };

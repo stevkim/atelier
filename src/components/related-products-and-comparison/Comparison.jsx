@@ -19,6 +19,13 @@ const Comparison = ({ currentProduct, relatedProduct, setModal }) => {
     getData();
   }, []);
 
+  const parseFeature = (feature) => {
+    if (feature.value === null) {
+      return feature.feature;
+    }
+    return `${feature.value} ${feature.feature}`;
+  };
+
   const compareFeatures = (featuresA, featuresB) => {
     const comparedFeatures = [];
     const parsedFeaturesA = featuresA.map((feature) => parseFeature(feature));
@@ -40,13 +47,6 @@ const Comparison = ({ currentProduct, relatedProduct, setModal }) => {
     }
 
     return comparedFeatures;
-  };
-
-  const parseFeature = (feature) => {
-    if (feature.value === null) {
-      return feature.feature;
-    }
-    return `${feature.value} ${feature.feature}`;
   };
 
   return (

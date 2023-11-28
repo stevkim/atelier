@@ -37,7 +37,7 @@ const QuestionsAndAnswers = ({ productId }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [displayCount]);
+  }, [productId, displayCount]);
 
   return (
     <div className='qa-container'>

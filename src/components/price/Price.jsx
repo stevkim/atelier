@@ -5,7 +5,6 @@ const Price = ({ selectedStyle, includeStyle }) => {
   const regularPrice = selectedStyle.original_price;
   const salePrice = selectedStyle.sale_price;
   const isOnSale = salePrice > 0;
-  includeStyle = includeStyle || false;
 
   return (
     <div className='overview-price-container'>
@@ -16,11 +15,12 @@ const Price = ({ selectedStyle, includeStyle }) => {
       {isOnSale
         ? <span className='overview-sale-price'>{` $${salePrice}`}</span>
         : ''}
-      {includeStyle ? (
+      {includeStyle === true ? (
         <div className='overview-selected-style'>
           {' '}
           <b>
             Style
+            {' '}
             {'<'}
           </b>
           {' '}

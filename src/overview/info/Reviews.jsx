@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import countStarsAndReviews from './helper-funcs/countReviews.js';
 

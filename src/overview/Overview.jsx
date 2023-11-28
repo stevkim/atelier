@@ -6,17 +6,17 @@ import './styles.css';
 import productExample from './product-example.js';
 import { getOverviewById } from './helper-funcs/axios-requests.js';
 
-const Overview = ({ productId }) => {
+const Overview = ({ productId, reviewsMetaData, productInfo }) => {
   const [product, setProduct] = useState(productExample);
   const [style, setStyle] = useState(0);
   const [inExpandedView, setInExpandedView] = useState(false);
   let selectedStyle = product.styles[style];
 
   useEffect(() => {
-    getOverviewById(productId)
+    getOverviewById(productId, productInfo, reviewsMetaData)
       .then((res) => setProduct(res))
       .catch((err) => console.log(err));
-  }, [productId]);
+  }, [productId, productInfo, reviewsMetaData]);
 
   useEffect(() => {
     selectedStyle = product.styles[style];

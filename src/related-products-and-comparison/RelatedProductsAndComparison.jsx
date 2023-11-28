@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getRelatedProducts } from './lib/fetchFunctions.js';
 import ProductList from './ProductList.jsx';
 import './styles/relatedProductsAndComparisonStyles.css';
-import ModalOverlay from '../../ratings-reviews/utils/ModalOverlay.jsx';
+import ModalOverlay from '../ratings-reviews/utils/ModalOverlay.jsx';
 import Comparison from './Comparison.jsx';
 
 const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => {

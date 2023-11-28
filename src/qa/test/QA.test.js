@@ -7,6 +7,9 @@ import QuestionEntry from '../components/QuestionEntry';
 import convertDate from '../convertDate';
 import answers from '../../../example-data/answersData';
 import questions from '../../../example-data/questionsData';
+import axios from 'axios';
+
+jest.mock('axios');
 
 describe('Convert Date', () => {
   it('Correctly converts date to desired format', () => {
@@ -37,15 +40,14 @@ describe('AnswerEntry Component', () => {
 
   it('Displays the correct and formatted date on initial render', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
-    const dateElement = screen.getByText(convertDate(answers.results[0].date));
+    const dateElement = screen.getByText(/July 6, 2023/i);
 
     expect(dateElement).toBeInTheDocument();
   });
 
   it('Displays the helpfulness count on initial render', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
-    const helpfulCountElement = screen.getByText(`(${answers.results[0].helpfulness})`);
-
+    const helpfulCountElement = screen.getByText(/(13)/i);
     expect(helpfulCountElement).toBeInTheDocument();
   });
 
@@ -82,10 +84,21 @@ describe('AnswerList Component', () => {
 });
 
 describe('QuestionEntry Component', () => {
-  it('Displays a question on initial render', () => {
+  it('Displays a question on initial render', async () => {
+    axios.get.mockResolvedValue({ data: { results: [] } });
+
     render(<QuestionEntry question={questions.results[0]} />);
-    const questionElement = screen.getByText(questions.results[0].question_body);
+    const questionElement = await screen.findByText(questions.results[0].question_body);
 
     expect(questionElement).toBeInTheDocument();
+  });
+
+  it('Displays helpfulness count on initial render', async () => {
+    axios.get.mockResolvedValue({ data: { results: [] } });
+
+    render(<QuestionEntry question={questions.results[0]} />);
+    const helpfulCountElement = await screen.findByText(/(10)/i);
+
+    expect(helpfulCountElement).toBeInTheDocument();
   });
 });

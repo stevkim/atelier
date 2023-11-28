@@ -30,14 +30,18 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
       </div>
       <div className='qa-form-heading'>
         <h2>SUBMIT YOUR ANSWER</h2>
-        <h4>[Product Name]: {questionBody}</h4>
+        <h4>
+          [Product Name]:
+          {questionBody}
+        </h4>
       </div>
       <div className='qa-form-container'>
         <form>
           <div className='qa-form-row'>
             <label
               htmlFor='nickname-input'
-              className='qa-input-label'>
+              className='qa-input-label'
+            >
               Nickname
               <span className='qa-required-input'> *</span>
             </label>
@@ -55,7 +59,8 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
           <div className='qa-form-row'>
             <label
               htmlFor='email-input'
-              className='qa-input-label'>
+              className='qa-input-label'
+            >
               Email
               <span className='qa-required-input'> *</span>
             </label>
@@ -73,7 +78,8 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
           <div className='qa-form-row'>
             <label
               htmlFor='answer-input'
-              className='qa-input-label'>
+              className='qa-input-label'
+            >
               Answer
               <span className='qa-required-input'> *</span>
             </label>

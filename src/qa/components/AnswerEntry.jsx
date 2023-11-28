@@ -34,26 +34,27 @@ export default function AnswerEntry({ answer }) {
   };
 
   return (
-    <div className="answer-container">
-      <p className="answer">{body}</p>
-      <div className="photos-container">
-        {photos.map((photo) => {
-          return <img key={photo.id} className="answer-photos" src={photo.url} alt="Photos for answer" />;
-        })}
+    <div className='answer-container'>
+      <p className='answer'>{body}</p>
+      <div className='photos-container'>
+        {photos.map((photo) => <img key={photo.id} className='answer-photos' src={photo.url} alt='Photos for answer' />)}
       </div>
-      <div className="answer-details-container">
+      <div className='answer-details-container'>
         <span>
           by
-          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}> {answerer_name}</span>
+          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}>
+            {' '}
+            {answerer_name}
+          </span>
           ,
           {' '}
           {convertDate(date)}
         </span>
         |
-        <span className="helpful-container">
+        <span className='helpful-container'>
           Helpful?
           <span
-            className="yes"
+            className='yes'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
             onClick={() => { handleHelpfulAnswerClick(answer_id); }}
           >
@@ -65,8 +66,8 @@ export default function AnswerEntry({ answer }) {
         </span>
         |
         <span
-          title="Report"
-          className="report"
+          title='Report'
+          className='report'
           style={{ textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default' }}
           onClick={() => { handleReportClick(answer_id); }}
         >

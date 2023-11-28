@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerList from './AnswerList.jsx';
 import Modal from './Modal.jsx';
@@ -14,8 +14,8 @@ export default function QuestionEntry({ question }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleHelpfulQuestionClick = (id) => {
-    !isQuestionHelpful &&
-    axios.put(`/qa/questions/${id}/helpful`, null)
+    !isQuestionHelpful
+    && axios.put(`/qa/questions/${id}/helpful`, null)
       .then(() => {
         setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
         setIsQuestionHelpful(true);
@@ -46,18 +46,17 @@ export default function QuestionEntry({ question }) {
 
           if (isSellerA && !isSellerB) {
             return -1;
-          } else if (!isSellerA && isSellerB) {
+          } if (!isSellerA && isSellerB) {
             return 1;
-          } else {
-            return b.helpfulness - a.helpfulness;
           }
-        })
+          return b.helpfulness - a.helpfulness;
+        });
         setAnswerList(sortedAnswerList);
         setCurrAnswerList(sortedAnswerList.slice(0, 2));
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }, []);
 
   return (
@@ -72,12 +71,18 @@ export default function QuestionEntry({ question }) {
             Helpful?
             <span
               className='yes'
-              style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default'}}
-              onClick={() => {handleHelpfulQuestionClick(question_id)}}>
+              style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
+              onClick={() => { handleHelpfulQuestionClick(question_id); }}
+            >
               Yes
             </span>
-            <span>({updateQuestionHelpfulness})</span>|
-            <span className='add-answer' style={{textDecoration: 'underline'}} onClick={() => { setIsModalOpen(true) }}>Add Answer</span>
+            <span>
+              (
+              {updateQuestionHelpfulness}
+              )
+            </span>
+            |
+            <span className='add-answer' style={{ textDecoration: 'underline' }} onClick={() => { setIsModalOpen(true); }}>Add Answer</span>
           </span>
         </div>
       </div>
@@ -99,5 +104,5 @@ export default function QuestionEntry({ question }) {
         )
       }
     </div>
-  )
+  );
 }

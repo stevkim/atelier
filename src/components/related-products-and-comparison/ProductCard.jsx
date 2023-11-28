@@ -35,7 +35,7 @@ const ProductCard = ({
         + (Number(r[3]) * 3)
         + (Number(r[4]) * 4)
         + (Number(r[5]) * 5))
-      / (Number(r[1]) + Number(r[2]) + Number(r[3]) + Number(r[4]) + Number(r[5]))
+      / (Number(r[1]) + Number(r[2]) + Number(r[3]) + Number(r[4]) + Number(r[5])),
       );
     };
     getData();

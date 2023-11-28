@@ -49,66 +49,66 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
   };
 
   return (
-    <div className="qa-modal-container">
+    <div className='qa-modal-container'>
       {/* <span className="qa-close-modal" onClick={() => { setIsModalOpen(false); }}>X</span> */}
       <div className='qa-close-modal'>
         <button onClick={() => { setIsModalOpen(false); }}>X</button>
       </div>
-      <div className="qa-form-heading">
+      <div className='qa-form-heading'>
         <h2>ASK YOUR QUESTION</h2>
         <h4>About the [Product Name]</h4>
       </div>
-      <div className="qa-form-container">
+      <div className='qa-form-container'>
         <form onSubmit={handleAddQuestion}>
-          <div className="qa-form-row">
-            <label htmlFor='nickname-input' className="qa-input-label">
+          <div className='qa-form-row'>
+            <label htmlFor='nickname-input' className='qa-input-label'>
               Nickname
-              <span className="qa-required-input"> *</span>
+              <span className='qa-required-input'> *</span>
             </label>
             <input
               id='nickname-input'
-              className="qa-input"
-              name="nickname-input"
-              type="text"
-              placeholder="Example: jackson11!"
+              className='qa-input'
+              name='nickname-input'
+              type='text'
+              placeholder='Example: jackson11!'
               maxLength={60}
               onChange={(e) => { setFormData({ ...formData, name: e.target.value }); }}
             />
             <p>For privacy reasons, do not use your full name or email address</p>
-            <label className="qa-input-label">
+            <label className='qa-input-label'>
               Email
-              <span className="qa-required-input"> *</span>
+              <span className='qa-required-input'> *</span>
             </label>
             <input
-              className="qa-input"
-              name="email-input"
-              type="text"
-              placeholder="Example: jack@email.com"
+              className='qa-input'
+              name='email-input'
+              type='text'
+              placeholder='Example: jack@email.com'
               maxLength={60}
               onChange={(e) => { setFormData({ ...formData, email: e.target.value }); }}
             />
             <p>For authentication reasons, you will not be emailed</p>
           </div>
-          <div className="qa-form-row">
-            <label className="qa-input-label">
+          <div className='qa-form-row'>
+            <label className='qa-input-label'>
               Question
-              <span className="qa-required-input"> *</span>
+              <span className='qa-required-input'> *</span>
             </label>
             <textarea
-              className="qa-input"
-              name="question-input"
-              type="text"
+              className='qa-input'
+              name='question-input'
+              type='text'
               maxLength={1000}
               onChange={(e) => { setFormData({ ...formData, body: e.target.value }); }}
             />
           </div>
           <input
-            type="submit"
-            value="Submit"
+            type='submit'
+            value='Submit'
           />
           {
             formErrors.length > 0 && (
-              <div className="qa-form-error-message">
+              <div className='qa-form-error-message'>
                 You must enter the following:
                 <ul>
                   {

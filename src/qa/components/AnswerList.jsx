@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerEntry from './AnswerEntry';
+import AnswerEntry from './AnswerEntry.jsx';
 
 export default function AnswerList({
   currAnswerList,

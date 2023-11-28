@@ -15,9 +15,9 @@ const App = () => {
 
   useEffect(() => {
     const getInfo = async () => {
-      const [meta, product] = await Promise.all([getProductInfo(currentProductId), getReviewMetaData(currentProductId)]);
-      setMetaData(meta);
-      setProductInfo(product);
+      const [product, meta] = await Promise.all([getProductInfo(currentProductId), getReviewMetaData(currentProductId)]);
+      setMetaData(meta.data);
+      setProductInfo(product.data);
     };
     getInfo();
   }, [currentProductId]);
@@ -29,7 +29,7 @@ const App = () => {
         <RelatedProductsAndComparison
           currentProduct={currentProductId}
           setCurrentProduct={setCurrentProductId}
-          currentProductFeatures={productInfo.features}
+          currentProductInfo={productInfo}
         />
         <QuestionsAndAnswers productId={currentProductId} productName={productInfo.name} />
         <RatingsReviews id={currentProductId} productName={productInfo.name} metaData={metaData} />
@@ -39,9 +39,3 @@ const App = () => {
 };
 
 export default App;
-
-// meta data, product level info
-
-// reviews list
-// questions and answers
-// products, related products

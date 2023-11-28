@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-const AddReviewHeader = ({ setModal }) => (
+const AddReviewHeader = ({ setModal, productName }) => (
   <>
     <div className='add-review-header'>
       <h1>Write Your Review</h1>
@@ -10,7 +10,7 @@ const AddReviewHeader = ({ setModal }) => (
         </svg>
       </button>
     </div>
-    <h4>About the [name]</h4>
+    <h4>{`About the [${productName}]`}</h4>
   </>
 );
 

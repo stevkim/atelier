@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import QuestionList from './components/QuestionList.jsx';
 import Modal from './components/Modal.jsx';
 import AddQuestionForm from './components/AddQuestionForm.jsx';
-import axios from 'axios';
 import './qaStyles.css';
 
-export default function QuestionsAndAnswers({ productId }) {
+const QuestionsAndAnswers = ({ productId }) => {
   const [currQuestionList, setCurrQuestionList] = useState([]);
   const [questionList, setQuestionList] = useState([]);
   const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
@@ -15,8 +15,9 @@ export default function QuestionsAndAnswers({ productId }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMoreQuestions = () => {
-    totalQuestions !== displayCount
-    && setDisplayCount(displayCount + 2);
+    if (totalQuestions !== displayCount) {
+      setDisplayCount(displayCount + 2);
+    }
     setIsQuestionExpanded(true);
   };
 
@@ -56,18 +57,19 @@ export default function QuestionsAndAnswers({ productId }) {
       />
       <div className='qa-button-container'>
         {
-          totalQuestions > 2 && currQuestionList.length < totalQuestions &&
-          <button onClick={handleMoreQuestions}>More Questions</button>
+          totalQuestions > 2 && currQuestionList.length < totalQuestions
+          && <button type='button' onClick={handleMoreQuestions}>More Questions</button>
         }
-        <button onClick={() => {setIsModalOpen(true)}}>Add A Question</button>
+        <button type='button' onClick={() => { setIsModalOpen(true); }}>Add A Question</button>
       </div>
-      {isModalOpen &&
+      {isModalOpen
+        && (
         <Modal>
           <AddQuestionForm productId={productId} setIsModalOpen={setIsModalOpen} />
         </Modal>
-      }
+        )}
     </div>
   );
-  );
-}
+};
 
+export default QuestionsAndAnswers;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function AddQuestionForm({ productId, setIsModalOpen }) {
+const AddQuestionForm = ({ productId, setIsModalOpen }) => {
   const [formData, setFormData] = useState({
     body: '',
     name: '',
@@ -16,7 +16,6 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
     }
 
     const fromIndex = email.indexOf('@') + 1;
-
     if (email.indexOf('.', fromIndex) === -1) {
       return false;
     }
@@ -50,9 +49,8 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
 
   return (
     <div className='qa-modal-container'>
-      {/* <span className="qa-close-modal" onClick={() => { setIsModalOpen(false); }}>X</span> */}
       <div className='qa-close-modal'>
-        <button onClick={() => { setIsModalOpen(false); }}>X</button>
+        <button type='button' onClick={() => { setIsModalOpen(false); }}>X</button>
       </div>
       <div className='qa-form-heading'>
         <h2>ASK YOUR QUESTION</h2>
@@ -75,11 +73,12 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
               onChange={(e) => { setFormData({ ...formData, name: e.target.value }); }}
             />
             <p>For privacy reasons, do not use your full name or email address</p>
-            <label className='qa-input-label'>
+            <label htmlFor='email-input' className='qa-input-label'>
               Email
               <span className='qa-required-input'> *</span>
             </label>
             <input
+              id='email-input'
               className='qa-input'
               name='email-input'
               type='text'
@@ -90,11 +89,12 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
             <p>For authentication reasons, you will not be emailed</p>
           </div>
           <div className='qa-form-row'>
-            <label className='qa-input-label'>
+            <label htmlFor='question-input' className='qa-input-label'>
               Question
               <span className='qa-required-input'> *</span>
             </label>
             <textarea
+              id='question-input'
               className='qa-input'
               name='question-input'
               type='text'
@@ -122,4 +122,6 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
       </div>
     </div>
   );
-}
+};
+
+export default AddQuestionForm;

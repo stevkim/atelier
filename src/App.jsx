@@ -29,7 +29,7 @@ const App = () => {
         <RelatedProductsAndComparison
           currentProduct={currentProductId}
           setCurrentProduct={setCurrentProductId}
-          currentProductFeatures={productInfo.features}
+          currentProductInfo={productInfo}
         />
         <QuestionsAndAnswers productId={currentProductId} productName={productInfo.name} />
         <RatingsReviews id={currentProductId} productName={productInfo.name} metaData={metaData} />

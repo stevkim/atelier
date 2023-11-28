@@ -10,6 +10,7 @@ const ImgMain = ({ url, expanded, changeView }) => {
       <button
         className='overview-img-main-default'
         id='overview-img-main'
+        type='button'
         style={{
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%',

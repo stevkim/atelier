@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AnswerEntry from '../components/AnswerEntry';
 import AnswerList from '../components/AnswerList';
@@ -100,5 +100,15 @@ describe('QuestionEntry Component', () => {
     const helpfulCountElement = await screen.findByText(/(10)/i);
 
     expect(helpfulCountElement).toBeInTheDocument();
+  });
+
+  it('Displays "Add Answer" on initial render', async () => {
+    axios.get.mockResolvedValue({ data: { results: [] } });
+    await act(async () => {
+      render( <QuestionEntry question={questions.results[0]} />);
+    });
+    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer' });
+
+    expect(addAnswerElement).toBeInTheDocument();
   });
 });

@@ -35,4 +35,9 @@ const getOverviewById = async (productId) => {
   return res;
 };
 
-export default getOverviewById;
+const addToCart = (skuNum) => {
+  const url = `/cart?sku_id=${skuNum}`;
+  axios.post(url);
+};
+
+export { getOverviewById, addToCart };

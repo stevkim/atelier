@@ -1,0 +1,27 @@
+.overview-price-container {
+  position: relative;
+  grid-area: price;
+  text-wrap: nowrap;
+}
+
+.overview-price-true {
+  color: red;
+  text-decoration: line-through;
+  font-size: 1.25em;
+}
+
+.overview-price-false {
+  font-size: 1.25em;
+}
+
+.overview-sale-price {
+  font-size: 1.25em;
+}
+
+.overview-selected-style {
+  grid-area: selectedStyle;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  text-overflow: clip;
+  font-size: 1.25em;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import QuestionsAndAnswers from './qa/QuestionsAndAnswers.jsx';
-import Overview from './components/overview/Overview.jsx';
+import Overview from './overview/Overview.jsx';
 import RatingsReviews from './ratings-reviews/RatingsReviews.jsx';
 import RelatedProductsAndComparison from './components/related-products-and-comparison/RelatedProductsAndComparison.jsx';
 

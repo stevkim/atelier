@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen }) {
+const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
   const [formData, setFormData] = useState({
     body: '',
     name: '',
@@ -23,6 +24,31 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
     return true;
   };
 
+  const validateForm = (form) => {
+    const errors = [];
+    if (!form.body || !form.name || !form.email) {
+      errors.push('Please fill out required (*) fields');
+    }
+
+    if (form.email && isValidEmail(form.email) === false) {
+      errors.push('Please make sure sure email is formatted correctly');
+    }
+    return errors;
+  };
+
+  const handleAddAnswer = (e) => {
+    e.preventDefault();
+    setFormErrors(validateForm(formData));
+    if (formErrors.length) { return; }
+    axios.post(`/qa/questions/${questionId}/answers`, formData)
+      .then(() => {
+        setIsModalOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className='qa-modal-container'>
       <div className='qa-close-modal'>
@@ -36,7 +62,7 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
         </h4>
       </div>
       <div className='qa-form-container'>
-        <form>
+        <form onSubmit={handleAddAnswer}>
           <div className='qa-form-row'>
             <label
               htmlFor='nickname-input'
@@ -71,7 +97,7 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
               type='text'
               placeholder='Example: jack@email.com'
               maxLength={60}
-              onChange={(e) => { setIsModalOpen({ ...formData, email: e.target.value }); }}
+              onChange={(e) => { setFormData({ ...formData, email: e.target.value }); }}
             />
             <p>For authentication reasons, you will not be emailed</p>
           </div>
@@ -92,8 +118,22 @@ export default function AddAnswerForm({ questionId, questionBody, setIsModalOpen
               onChange={(e) => { setFormData({ ...formData, body: e.target.value }); }}
             />
           </div>
+          <button type='submit'>
+            Submit
+          </button>
+          {
+            formErrors.length > 0 && (
+              <div className='qa-form-error-messages'>
+                <ul>
+                  {formErrors.map((message) => (<li key={message}>{message}</li>))}
+                </ul>
+              </div>
+            )
+          }
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default AddAnswerForm;

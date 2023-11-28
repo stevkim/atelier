@@ -26,9 +26,9 @@ const AddQuestionForm = ({ productId, setIsModalOpen }) => {
   const validateForm = (form) => {
     const errors = [];
     if (!form.body || !form.name || !form.email) {
-      errors.push('Please fill out the required fields');
+      errors.push('Please fill out the required (*) fields');
     }
-    if (form.email.length > 0 && isValidEmail(form.email) === false) {
+    if (form.email && isValidEmail(form.email) === false) {
       errors.push('Please make sure the email is formatted correctly');
     }
     return errors;
@@ -37,7 +37,7 @@ const AddQuestionForm = ({ productId, setIsModalOpen }) => {
   const handleAddQuestion = (e) => {
     e.preventDefault();
     setFormErrors(validateForm(formData));
-    if (formErrors.length > 0) { return; }
+    if (formErrors.length) { return; }
     axios.post('/qa/questions', formData)
       .then(() => {
         setIsModalOpen(false);
@@ -102,10 +102,9 @@ const AddQuestionForm = ({ productId, setIsModalOpen }) => {
               onChange={(e) => { setFormData({ ...formData, body: e.target.value }); }}
             />
           </div>
-          <input
-            type='submit'
-            value='Submit'
-          />
+          <button type='submit'>
+            Submit
+          </button>
           {
             formErrors.length > 0 && (
               <div className='qa-form-error-message'>

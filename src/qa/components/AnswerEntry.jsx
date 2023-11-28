@@ -44,13 +44,14 @@ export default function AnswerEntry({ answer }) {
       <div className="answer-details-container">
         <span>
           by
-          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}>{answerer_name}</span>
+          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}> {answerer_name}</span>
           ,
-          <span>{convertDate(date)}</span>
+          {' '}
+          {convertDate(date)}
         </span>
         |
         <span className="helpful-container">
-          <span>Helpful?</span>
+          Helpful?
           <span
             className="yes"
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
@@ -58,11 +59,9 @@ export default function AnswerEntry({ answer }) {
           >
             Yes
           </span>
-          <span>
-            (
-            {updateAnswerHelpfulness}
-            )
-          </span>
+          (
+          {updateAnswerHelpfulness}
+          )
         </span>
         |
         <span

@@ -13,8 +13,8 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
 
   useEffect(() => {
     const getData = async () => {
-      const relatedProducts = await getRelatedProducts(currentProduct);
-      const uniqueRelatedProducts = relatedProducts.data.filter((value, index, array) => array.indexOf(value) === index);
+      const relatedProductsIds = await getRelatedProducts(currentProduct);
+      const uniqueRelatedProducts = relatedProductsIds.data.filter((value, index, array) => array.indexOf(value) === index);
       setRelatedProducts(uniqueRelatedProducts);
     };
     getData();
@@ -44,9 +44,20 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct }) => 
   return (
     <div>
       <h2>RELATED PRODUCTS</h2>
-      <ProductList products={relatedProducts} productCardClick={productCardClickHandler} isYourOutfit={false} actionButtonClick={relatedActionButtonClickHandler} />
+      <ProductList
+        products={relatedProducts}
+        productCardClick={productCardClickHandler}
+        isYourOutfit={false}
+        actionButtonClick={relatedActionButtonClickHandler}
+      />
       <h2>YOUR OUTFIT</h2>
-      <ProductList products={outfitProducts} productCardClick={productCardClickHandler} isYourOutfit addToOutfit={addToOutfitHandler} actionButtonClick={removeFromOutfitHandler} />
+      <ProductList
+        products={outfitProducts}
+        productCardClick={productCardClickHandler}
+        isYourOutfit
+        addToOutfit={addToOutfitHandler}
+        actionButtonClick={removeFromOutfitHandler}
+      />
       {modal
         && (
         <ModalOverlay>

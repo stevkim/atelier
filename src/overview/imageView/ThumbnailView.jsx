@@ -1,5 +1,6 @@
-import React, { useState, useEffect, expanded } from 'react';
+import React, { useState, useEffect } from 'react';
 import Thumbnail from './Thumbnail.jsx';
+import { v4 as key } from 'uuid';
 
 const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => {
   const [topThumbnailIndex, setTopThumbnailIndex] = useState(0);
@@ -11,10 +12,10 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
     }
     if (thumbnail === topThumbnailIndex + sizeOfThumbnailView) {
       setTopThumbnailIndex(topThumbnailIndex + 1);
-      // top thumb is 1
     }
   }, [thumbnail]);
 
+  /*
   const changeThumbnailIndex = () => {
     if (topThumbnailIndex + 1 === thumbnails.length) {
       setTopThumbnailIndex(0);
@@ -22,6 +23,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
       setTopThumbnailIndex(topThumbnailIndex + 1);
     }
   };
+  */
 
   const rotatingSlice = (arr) => {
     const slice = arr.slice(topThumbnailIndex, Math.min(topThumbnailIndex + sizeOfThumbnailView, thumbnails.length));
@@ -44,7 +46,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
       <div className={`overview-thumbnail-view-${expanded}`}>
         {rotatingSlice(thumbnails).map((photo, index) => (
           <Thumbnail
-            key={`overview-thumbnail-${index}`}
+            key={key()}
             url={photo.thumbnail_url}
             isSelected={(index + topThumbnailIndex) % thumbnails.length === thumbnail}
             expanded={expanded}
@@ -55,14 +57,15 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
         <button
           className='overview-thumbnail-button'
           onClick={() => { incrementThumbnail(+1); }}
+          type='button'
         >
           {' '}
           DOWN
           {' '}
         </button>
       </div>
-      <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }}>{'<-'}</button>
-      <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }}>{'->'}</button>
+      <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }} type='button'>{'<-'}</button>
+      <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }} type='button'>{'->'}</button>
     </>
   );
 };

@@ -1,4 +1,4 @@
-export const convertDate = (date) => {
+const convertDate = (date) => {
   const newDate = new Date(date);
   const options = {
     year: 'numeric',
@@ -8,3 +8,5 @@ export const convertDate = (date) => {
   };
   return newDate.toLocaleDateString('en-US', options);
 };
+
+export default convertDate;

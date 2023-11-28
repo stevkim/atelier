@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { convertDate } from './convertDate.js';
+import convertDate from '../convertDate';
 
-require('dotenv').config();
-
-export default function AnswerEntry({ answer }) {
-  const {
-    answer_id, body, date, answerer_name, helpfulness, photos,
-  } = answer;
+const AnswerEntry = ({ answer }) => {
+  const { answer_id, body, date, answerer_name, helpfulness, photos } = answer;
   const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
   const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
@@ -15,7 +11,7 @@ export default function AnswerEntry({ answer }) {
   const handleHelpfulAnswerClick = (id) => {
     if (!isAnswerHelpful) {
       axios.put(`/qa/answers/${id}/helpful`, null)
-        .then((response) => {
+        .then(() => {
           setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
           setIsAnswerHelpful(true);
         })
@@ -44,41 +40,44 @@ export default function AnswerEntry({ answer }) {
         {photos.map((photo) => <img key={photo.id} className='answer-photos' src={photo.url} alt='Photos for answer' />)}
       </div>
       <div className='answer-details-container'>
-        <span>
+        <div>
           by
-          {' '}
-          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}>{answerer_name}</span>
+          <span style={{ fontWeight: answerer_name === 'Seller' && 'bold' }}>
+            {' '}
+            {answerer_name}
+          </span>
           ,
           {' '}
-          <span>{convertDate(date)}</span>
-        </span>
+          {convertDate(date)}
+        </div>
         |
-        <span className='helpful-container'>
-          <span>Helpful?</span>
-          <span
+        <div className='qa-helpful-container'>
+          Helpful?
+          <button
+            type='button'
             className='yes'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
             onClick={() => { handleHelpfulAnswerClick(answer_id); }}
           >
             Yes
-          </span>
-          <span>
-            (
-            {updateAnswerHelpfulness}
-            )
-          </span>
-        </span>
+          </button>
+          (
+          {updateAnswerHelpfulness}
+          )
+        </div>
         |
-        <span
+        <button
+          type='button'
           title='Report'
           className='report'
           style={{ textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default' }}
           onClick={() => { handleReportClick(answer_id); }}
         >
           {reported ? 'Reported' : 'Report'}
-        </span>
+        </button>
       </div>
-
     </div>
   );
-}
+};
+
+export default AnswerEntry;

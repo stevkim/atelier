@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import QuestionList from './QuestionList.jsx';
+import QuestionList from './components/QuestionList.jsx';
+import Modal from './components/Modal.jsx';
+import AddQuestionForm from './components/AddQuestionForm.jsx';
 import './qaStyles.css';
 
-export default function QuestionsAndAnswers({ productId }) {
+const QuestionsAndAnswers = ({ productId }) => {
   const [currQuestionList, setCurrQuestionList] = useState([]);
   const [questionList, setQuestionList] = useState([]);
   const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [displayCount, setDisplayCount] = useState(2);
   const [term, setTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMoreQuestions = () => {
-    totalQuestions !== displayCount
-    && setDisplayCount(displayCount + 2);
+    if (totalQuestions !== displayCount) {
+      setDisplayCount(displayCount + 2);
+    }
     setIsQuestionExpanded(true);
   };
 
@@ -24,7 +28,7 @@ export default function QuestionsAndAnswers({ productId }) {
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/?product_id=${productId}&count=20`)
+    axios.get(`/qa/questions/?product_id=${productId}&count=200`)
       .then((response) => {
         setTotalQuestions(response.data.results.length);
         setQuestionList(response.data.results);
@@ -33,12 +37,12 @@ export default function QuestionsAndAnswers({ productId }) {
       .catch((err) => {
         console.log(err);
       });
-  }, [displayCount]);
+  }, [productId, displayCount]);
 
   return (
     <div className='qa-container'>
       <h4>QUESTIONS AND ANSWERS</h4>
-      <div className='search-container'>
+      <div className='qa-search-container'>
         <input
           type='text'
           name='Search'
@@ -51,13 +55,21 @@ export default function QuestionsAndAnswers({ productId }) {
         isQuestionExpanded={isQuestionExpanded}
         term={term}
       />
-      <div className='button-container'>
+      <div className='qa-button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions
-          && <button onClick={handleMoreQuestions}>More Answered Questions</button>
+          && <button type='button' onClick={handleMoreQuestions}>More Questions</button>
         }
-        <button>Add A Question</button>
+        <button type='button' onClick={() => { setIsModalOpen(true); }}>Add A Question</button>
       </div>
+      {isModalOpen
+        && (
+        <Modal>
+          <AddQuestionForm productId={productId} setIsModalOpen={setIsModalOpen} />
+        </Modal>
+        )}
     </div>
   );
-}
+};
+
+export default QuestionsAndAnswers;

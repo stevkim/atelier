@@ -50,19 +50,23 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
 
   return (
     <div className="qa-modal-container">
-      <span className="qa-close-modal" onClick={() => { setIsModalOpen(false); }}>X</span>
+      {/* <span className="qa-close-modal" onClick={() => { setIsModalOpen(false); }}>X</span> */}
+      <div className='qa-close-modal'>
+        <button onClick={() => { setIsModalOpen(false); }}>X</button>
+      </div>
       <div className="qa-form-heading">
-        <h2>Ask Your Question</h2>
+        <h2>ASK YOUR QUESTION</h2>
         <h4>About the [Product Name]</h4>
       </div>
       <div className="qa-form-container">
         <form onSubmit={handleAddQuestion}>
           <div className="qa-form-row">
-            <label className="qa-input-label">
+            <label htmlFor='nickname-input' className="qa-input-label">
               Nickname
-              <span className="qa-required-input">*</span>
+              <span className="qa-required-input"> *</span>
             </label>
             <input
+              id='nickname-input'
               className="qa-input"
               name="nickname-input"
               type="text"
@@ -73,7 +77,7 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
             <p>For privacy reasons, do not use your full name or email address</p>
             <label className="qa-input-label">
               Email
-              <span className="qa-required-input">*</span>
+              <span className="qa-required-input"> *</span>
             </label>
             <input
               className="qa-input"
@@ -88,7 +92,7 @@ export default function AddQuestionForm({ productId, setIsModalOpen }) {
           <div className="qa-form-row">
             <label className="qa-input-label">
               Question
-              <span className="qa-required-input">*</span>
+              <span className="qa-required-input"> *</span>
             </label>
             <textarea
               className="qa-input"

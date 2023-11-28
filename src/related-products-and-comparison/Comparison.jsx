@@ -3,16 +3,12 @@ import { getProduct } from './lib/fetchFunctions.js';
 import './styles/comparisonStyles.css';
 
 const Comparison = ({ currentProduct, relatedProduct, setModal }) => {
-  const [currentProductFeatures, setCurrentProductFeatures] = useState([]);
   const [relatedProductFeatures, setRelatedProductFeatures] = useState([]);
-  const [currentProductName, setCurrentProductName] = useState('');
   const [relatedProductName, setRelatedProductName] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      const [currentProductData, relatedProductData] = await Promise.all([getProduct(currentProduct), getProduct(relatedProduct)]);
-      setCurrentProductName(currentProductData.data.name);
-      setCurrentProductFeatures(currentProductData.data.features);
+      const relatedProductData = await getProduct(relatedProduct);
       setRelatedProductName(relatedProductData.data.name);
       setRelatedProductFeatures(relatedProductData.data.features);
     };
@@ -56,12 +52,12 @@ const Comparison = ({ currentProduct, relatedProduct, setModal }) => {
       <table>
         <thead>
           <tr>
-            <th className='left-header' colSpan='2'>{currentProductName}</th>
+            <th className='left-header' colSpan='2'>{currentProduct.name}</th>
             <th className='right-header' colSpan='2'>{relatedProductName}</th>
           </tr>
         </thead>
         <tbody>
-          {compareFeatures(currentProductFeatures, relatedProductFeatures).map((feature, index) => (
+          {compareFeatures(currentProduct.features, relatedProductFeatures).map((feature, index) => (
             <tr key={index}>
               <td className='value'>{feature[0] === true ? '✔' : ''}</td>
               <td className='feature' colSpan='2'>{feature[1]}</td>

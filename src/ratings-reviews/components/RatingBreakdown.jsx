@@ -15,7 +15,7 @@ const RatingBreakdown = ({ data, total, handleStarFilter }) => {
         <span>{averageRating.toString()}</span>
         <sup><StarRating rating={averageRating} /></sup>
       </div>
-      <p>
+      <p style={{ marginLeft: '.2em' }}>
         {averageRecommended}
         % of reviews recommend this product
       </p>

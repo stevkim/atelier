@@ -87,11 +87,12 @@ const RatingsReviews = ({ id }) => {
         <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter} />
         <ReviewsList
           reviewList={activeList}
-          handleListIncrement={disable ? () => {} : handleListIncrement}
+          handleListIncrement={handleListIncrement}
           setModal={setModal}
           totalReviews={totalReviews}
           setSort={handleSort}
           ref={activeListRef}
+          disable={disable}
         />
         {modal
             && (

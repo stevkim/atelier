@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import QuestionList from './components/QuestionList';
-import Modal from './components/Modal';
-import AddQuestionForm from './components/AddQuestionForm';
+import QuestionList from './components/QuestionList.jsx';
+import Modal from './components/Modal.jsx';
+import AddQuestionForm from './components/AddQuestionForm.jsx';
 import axios from 'axios';
 import './qaStyles.css';
 

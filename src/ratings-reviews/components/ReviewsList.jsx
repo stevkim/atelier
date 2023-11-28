@@ -3,7 +3,7 @@ import ReviewItem from './ReviewItem.jsx';
 import ReviewsHeader from './ReviewsHeader.jsx';
 import useThrottle from '../hooks/useThrottle.jsx';
 
-const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, totalReviews }, ref) => {
+const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, totalReviews, disable }, ref) => {
   const [filterValue, setFilterValue] = useState('');
   const [scrollButton, setScrollButton] = useState(false);
 
@@ -22,9 +22,9 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, total
   const throttledScroll = useThrottle(handleScroll, 200);
 
   return (
-    <div className='review-list-container'>
+    <section className='review-list-container'>
       <ReviewsHeader totalReviews={totalReviews} setSort={setSort} setFilter={setFilterValue} />
-      <div className='review-list-wrapper' onScroll={(e) => throttledScroll(e)} ref={ref} data-testid='review-list'>
+      <div className='review-list-wrapper' onScroll={disable ? () => {} : (e) => throttledScroll(e)} ref={ref} data-testid='review-list'>
         {list.length > 0
           ? (
             <>
@@ -53,7 +53,7 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, total
           </button>
           )}
       </div>
-    </div>
+    </section>
   );
 };
 

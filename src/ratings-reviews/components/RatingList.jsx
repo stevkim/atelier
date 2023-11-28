@@ -6,7 +6,7 @@ const RatingList = ({ ratings, handleStarFilter, total }) => {
   const allRatings = Array.from(Array(5));
 
   return (
-    <div className='rating-list-container'>
+    <section className='rating-list-container'>
       {ratings
         && allRatings.map((_, index) => {
           const rating = 5 - index;
@@ -21,7 +21,7 @@ const RatingList = ({ ratings, handleStarFilter, total }) => {
             </div>
           );
         })}
-    </div>
+    </section>
   );
 };
 

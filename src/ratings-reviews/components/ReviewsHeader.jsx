@@ -16,7 +16,7 @@ const ReviewsHeader = ({ totalReviews, setSort, setFilter }) => {
         {' '}
         reviews, sorted by
       </label>
-      <select name='sort-options' className='review-sort-options' onChange={(e) => setSort(e.target.value)}>
+      <select aria-label='review-sort' name='sort-options' className='review-sort-options' onChange={(e) => setSort(e.target.value)}>
         <option value='relevant'>Relevance</option>
         <option value='newest'>Newest</option>
         <option value='helpful'>Most Helpful</option>

@@ -40,4 +40,6 @@ const addToCart = (skuNum) => {
   axios.post(url);
 };
 
-export { getOverviewById, addToCart };
+export {
+  getOverviewById, addToCart, getProductInfo,
+};

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SizeDropdown from './SizeDropdown.jsx';
 import QuantityDropdown from './QuantityDropdown.jsx';
-import { addToCart } from '../../helper-funcs/axios-requests';
+import { addToCart } from '../../helper-funcs/axios-requests.js';
+import compareByFirstEntry from './helper-funcs/compareByFirstEntry.js';
 import './styles.css';
 
 const AddToCart = ({ skus }) => {
@@ -9,22 +10,12 @@ const AddToCart = ({ skus }) => {
   const [quantitySelected, setQuantitySelected] = useState(0);
   const [skusArray, setSkusArray] = useState([]);
   const [skuNumber, setSkuNumber] = useState(0);
-  // skuNum in skus
-  // how access?
-  // const skuNum =
 
   useEffect(() => {
-    const arr = [];
-    // This matters to keep the sizes in order for sizeDropdown and to only show proper sizes.
-    for (const skuNum in skus) {
-      arr.push(skuNum);
-    }
-    arr.sort();
-    setSkuNumber(arr[0]); // While the skuNums are sorted, take advantage
-    for (let i = 0; i < arr.length; i++) {
-      arr[i] = skus[arr[i]];
-    }
-    setSkusArray(arr);
+    const skuArray = Object.entries(skus);
+    skuArray.sort(compareByFirstEntry);
+    setSkuNumber(skuArray[0]);
+    setSkusArray(skuArray);
   }, [skus]);
 
   const updateSizeSelected = (size) => {
@@ -46,7 +37,7 @@ const AddToCart = ({ skus }) => {
       <form id='overview-cart-form' onSubmit={(e) => { cartSubmitHandler(e); }}>
         <SizeDropdown skus={skusArray} sizeSelected={sizeSelected} updateSizeSelected={updateSizeSelected} />
         <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected} />
-        {sizeSelected === 0
+        {sizeSelected[0] === 0
           ? (
             <button
               type='button'

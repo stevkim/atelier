@@ -13,10 +13,10 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
   let selectedStyle = product.styles[style];
 
   useEffect(() => {
-    getOverviewById(productId, productInfo.data, reviewsMetaData.data)
+    getOverviewById(productId, productInfo, reviewsMetaData)
       .then((res) => setProduct(res))
       .catch((err) => console.log(err));
-  }, [productId]);
+  }, [productId, productInfo, reviewsMetaData]);
 
   useEffect(() => {
     selectedStyle = product.styles[style];

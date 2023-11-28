@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import countStarsAndReviews from './helper-funcs/countReviews.js';
 
 const Reviews = ({ product }) => {
-  const reviewCounts = countStarsAndReviews(product);
+  const reviewCounts = useMemo(() => countStarsAndReviews(product), [product]);
 
   return (
     <div className='overview-reviews'>

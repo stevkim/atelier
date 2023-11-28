@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
-        <Overview productId={currentProductId} reviewsMetaData={metaData} productInfo={productInfo} />
+        <Overview productId={currentProductId} reviewsMetaData={metaData.data} productInfo={productInfo.data} />
         <RelatedProductsAndComparison
           currentProduct={currentProductId}
           setCurrentProduct={setCurrentProductId}

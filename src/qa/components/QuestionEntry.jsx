@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import AnswerList from './AnswerList.jsx';
+import Modal from './Modal.jsx';
+import AddAnswerForm from './AddAnswerForm.jsx';
 
 export default function QuestionEntry({ question }) {
   const { question_id, question_body, question_helpfulness, answers } = question;
@@ -9,6 +11,7 @@ export default function QuestionEntry({ question }) {
   const [currAnswerList, setCurrAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
   const [isAnswerExpanded, setIsAnswerExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleHelpfulQuestionClick = (id) => {
     !isQuestionHelpful &&
@@ -37,7 +40,7 @@ export default function QuestionEntry({ question }) {
   useEffect(() => {
     axios.get(`/qa/questions/${question_id}/answers/?count=${totalAnswers}`)
       .then((response) => {
-        const sortedAnswerList = response.data.results.sort((a,b) => {
+        const sortedAnswerList = response.data.results.sort((a, b) => {
           const isSellerA = a.answerer_name === 'Seller';
           const isSellerB = b.answerer_name === 'Seller';
 
@@ -66,7 +69,7 @@ export default function QuestionEntry({ question }) {
         </div>
         <div className='question-details-container'>
           <span className='helpful-container'>
-            <span>Helpful?</span>
+            Helpful?
             <span
               className='yes'
               style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default'}}
@@ -74,7 +77,7 @@ export default function QuestionEntry({ question }) {
               Yes
             </span>
             <span>({updateQuestionHelpfulness})</span>|
-            <span className='add-answer' style={{textDecoration: 'underline'}}>Add Answer</span>
+            <span className='add-answer' style={{textDecoration: 'underline'}} onClick={() => { setIsModalOpen(true) }}>Add Answer</span>
           </span>
         </div>
       </div>
@@ -88,6 +91,13 @@ export default function QuestionEntry({ question }) {
           isAnswerExpanded={isAnswerExpanded}
         />
       </div>
+      {
+        isModalOpen && (
+          <Modal>
+            <AddAnswerForm questionId={question_id} questionBody={question_body} setIsModalOpen={setIsModalOpen} />
+          </Modal>
+        )
+      }
     </div>
   )
 }

@@ -10,7 +10,6 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
   const [styleInfo, setStyleInfo] = useState([]);
   const [style, setStyle] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(undefined);
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     getProductStyles(productId)

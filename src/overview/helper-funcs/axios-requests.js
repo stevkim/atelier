@@ -9,7 +9,6 @@ const getProductInfo = (productId) => {
 const getProductStyles = async (productId) => {
   const url = `/products/${productId}/styles`;
   const res = await axios.get(url);
-  console.log(res);
   return res;
 };
 

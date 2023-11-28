@@ -9,6 +9,7 @@ const StyleThumbnail = ({ url, isSelected, updateStyle, index }) => {
           backgroundSize: '100% 100%',
         }}
         className='overview-style-thumbnail'
+        type='button'
       >
         &#10004;
       </button>
@@ -20,6 +21,7 @@ const StyleThumbnail = ({ url, isSelected, updateStyle, index }) => {
         backgroundImage: `url('${url}')`,
         backgroundSize: '100% 100%',
       }}
+      type='button'
       className='overview-style-thumbnail'
       onClick={() => { updateStyle(index); }}
     />

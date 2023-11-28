@@ -37,5 +37,6 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
       {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>
   );
-}
+};
+
 export default Overview;

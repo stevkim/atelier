@@ -3,7 +3,7 @@ import { v4 as key } from 'uuid';
 import StyleThumbnail from './StyleThumbnail.jsx';
 
 const StylesView = ({ styleIndex, styleInfo, updateStyle }) => (
-  <div className='overview-styles-view'>
+  <div aria-label='stylesView' className='overview-styles-view'>
     {styleInfo.map((style, index) => (
       <StyleThumbnail
         key={key()}

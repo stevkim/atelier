@@ -5,7 +5,7 @@ import './styles.css';
 // import ShareButtons from './ShareButtons.jsx';
 
 const Details = ({ productInfo }) => (
-  <div className='overview-details' id='overview-details'>
+  <div aria-label='overviewDetails' className='overview-details' id='overview-details'>
     <h3 className='overview-slogan'>{productInfo.slogan}</h3>
     <p className='overview-description'>{productInfo.description}</p>
     <ul className='overview-feature-wrapper'>

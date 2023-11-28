@@ -1,6 +1,6 @@
 const productExample = {
   product_id: 1,
-  title: 'test title',
+  name: 'test title',
   category: 'test category',
   reviews: {
     1: 1,

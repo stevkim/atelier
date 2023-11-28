@@ -6,7 +6,7 @@ const Reviews = ({ reviewsMetaData }) => {
   const reviewCounts = useMemo(() => countStarsAndReviews(reviewsMetaData), [reviewsMetaData]);
 
   return (
-    <div className='overview-reviews'>
+    <div aria-label='reviews' className='overview-reviews'>
       <StarRating rating={reviewCounts.stars / reviewCounts.reviews} />
       <div>
         See All

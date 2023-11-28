@@ -9,7 +9,7 @@ const Details = ({ product }) => (
     <h3 className='overview-slogan'>{product.slogan}</h3>
     <p className='overview-description'>{product.description}</p>
     <ul className='overview-feature-wrapper'>
-      {product.features.map((feat, index) => (
+      {product.features.map((feat) => (
         <li className='overview-feature' key={key()}>
           The
           {' '}

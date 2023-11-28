@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as key } from 'uuid';
 
 const SizeDropdown = ({ skus, updateSizeSelected }) => (
   <select
@@ -15,11 +16,11 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => (
     {skus.map((sku, index) => {
       if (sku.quantity === 0) {
         return (
-          <option key={`size-option-${index}`} disabled value={index}>{`${sku.size} Out of Stock!`}</option>
+          <option key={key()} disabled value={index}>{`${sku.size} Out of Stock!`}</option>
         );
       }
       return (
-        <option key={`size-option-${index}`} value={index}>{sku.size}</option>
+        <option key={key()} value={index}>{sku.size}</option>
       );
     })}
 

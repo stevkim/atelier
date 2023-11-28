@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Thumbnail from './Thumbnail.jsx';
 import { v4 as key } from 'uuid';
+import Thumbnail from './Thumbnail.jsx';
 
 const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => {
   const [topThumbnailIndex, setTopThumbnailIndex] = useState(0);

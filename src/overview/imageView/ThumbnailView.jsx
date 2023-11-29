@@ -64,8 +64,8 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
           {' '}
         </button>
       </div>
-      <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }} type='button'>{'<-'}</button>
-      <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }} type='button'>{'->'}</button>
+      {thumbnails.length > 0 ? <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }} type='button'>{'<-'}</button> : ''}
+      {thumbnails.length > 0 ? <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }} type='button'>{'->'}</button> : ''}
     </>
   );
 };

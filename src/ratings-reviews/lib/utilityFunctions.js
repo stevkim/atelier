@@ -13,7 +13,7 @@ export const getAverageRecommended = (data, total) => {
   return Math.round(JSON.parse((data.true) / total) * 100);
 };
 
-export const convertCharacterstics = (data) => {
+export const convertCharacteristics = (data) => {
   if (!data) return [];
   const convertedData = Object.entries(data);
   return convertedData.map((characteristic) => ({

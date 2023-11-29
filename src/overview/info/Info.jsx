@@ -14,7 +14,7 @@ const Info = ({ productInfo, reviewsMetaData, styleInfo, style, selectedStyle, u
     <h3 aria-label='title' className='overview-title'>{productInfo.name}</h3>
     <Price selectedStyle={selectedStyle} includeStyle />
     <StylesView styleIndex={style} styleInfo={styleInfo} updateStyle={updateStyle} />
-    <AddToCart skus={selectedStyle.skus} />
+    <AddToCart skus={selectedStyle.skus || {}} />
     <div aria-label='shareButtons' className='overview-share-buttons'>
       <button className='share-facebook' type='button'>f</button>
       <button className='share-x' type='button'>x</button>

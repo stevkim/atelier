@@ -8,9 +8,9 @@ import { getProductStyles } from './helper-funcs/axios-requests.js';
 
 const Overview = ({ productId, reviewsMetaData, productInfo }) => {
   const [inExpandedView, setInExpandedView] = useState(false);
-  const [styleInfo, setStyleInfo] = useState(productExample.styles);
+  const [styleInfo, setStyleInfo] = useState([]);
   const [style, setStyle] = useState(0);
-  const [selectedStyle, setSelectedStyle] = useState(styleInfo[style]);
+  const [selectedStyle, setSelectedStyle] = useState({});
 
   useEffect(() => {
     getProductStyles(productId)
@@ -32,7 +32,7 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
 
   return (
     <div className='overview' id='overview'>
-      <ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
+      <ImageView photos={selectedStyle.photos || []} expanded={inExpandedView} changeView={changeView} />
       {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
       {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>

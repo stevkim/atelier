@@ -13,7 +13,7 @@ const ImageView = ({ photos, expanded, changeView }) => {
   return (
     <div className='overview-image-view'>
       <ImgMain
-        url={photos[thumbnail].url}
+        url={photos[thumbnail]?.url || ''}
         expanded={expanded}
         changeView={changeView}
       />

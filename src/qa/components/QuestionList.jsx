@@ -2,7 +2,7 @@ import React from 'react';
 import QuestionEntry from './QuestionEntry.jsx';
 
 const QuestionList = ({ currQuestionList, isQuestionExpanded, term, productName }) => (
-  <div className={`question-list-container ${isQuestionExpanded && 'question-list-container-expanded'}`}>
+  <div className={isQuestionExpanded ? 'question-list-container-expanded' : 'question-list-container'}>
     {
       currQuestionList
         .filter((question) => (term.toLowerCase() === ''

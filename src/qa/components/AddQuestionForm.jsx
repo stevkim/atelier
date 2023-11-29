@@ -31,7 +31,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
   return (
     <div className='qa-modal-container'>
       <div className='qa-close-modal'>
-        <button type='button' onClick={() => { setIsModalOpen(false); }}>X</button>
+        <button type='button' id='close-modal' onClick={() => { setIsModalOpen(false); }}>X</button>
       </div>
       <div className='qa-form-heading'>
         <h2>ASK YOUR QUESTION</h2>
@@ -84,7 +84,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
               onChange={(e) => { updateFormDataValue(e, 'body'); }}
             />
           </div>
-          <button type='submit'>
+          <button type='submit' id='submit-question'>
             Submit
           </button>
           {

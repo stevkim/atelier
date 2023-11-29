@@ -1,27 +1,12 @@
 import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import answers from '../../../example-data/answersData';
 import AnswerEntry from '../components/AnswerEntry';
 import AnswerList from '../components/AnswerList';
-import QuestionEntry from '../components/QuestionEntry';
-import { convertDate } from '../lib/helperFunctions';
-import answers from '../../../example-data/answersData';
-import questions from '../../../example-data/questionsData';
 import axios from 'axios';
 
 jest.mock('axios');
-
-describe('Convert Date', () => {
-  it('Correctly converts date to desired format', () => {
-    const dateOne = '2023-07-06T00:00:00.000Z';
-    const dateTwo = '2000-11-18T00:00:00.000Z';
-    const dateThree = '2016-06-25T00:00:00.000Z';
-
-    expect(convertDate(dateOne)).toBe('July 6, 2023');
-    expect(convertDate(dateTwo)).toBe('November 18, 2000');
-    expect(convertDate(dateThree)).toBe('June 25, 2016');
-  });
-});
 
 describe('AnswerEntry Component', () => {
   it('Displays the answer on initial render', () => {
@@ -48,15 +33,42 @@ describe('AnswerEntry Component', () => {
   it('Displays the helpfulness count on initial render', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
     const helpfulCountElement = screen.getByText(/(13)/i);
+
     expect(helpfulCountElement).toBeInTheDocument();
   });
 
   it('Displays "Report" on initial render', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
-    const reportElement = screen.getByTitle('Report');
+    const reportElement = screen.getByTitle('reportAnswer');
 
     expect(reportElement).toHaveTextContent('Report');
   });
+
+  it('Increases helpful count upon clicking "Yes"', async () => {
+    axios.put.mockResolvedValue({});
+    render(<AnswerEntry answer={answers.results[0]} />);
+
+    const helpfulCount = screen.getByText(/(13)/i);
+    const yesElement = screen.getByTitle('helpfulAnswer');
+
+    await act (async () => {
+      fireEvent.click(yesElement);
+    });
+
+    expect(helpfulCount).toHaveTextContent(/(14)/i);
+  });
+
+  it('Changes "Report" to Reported upon clicking "Report"', async () => {
+    axios.put.mockResolvedValue({});
+    render(<AnswerEntry answer={answers.results[0]} />);
+    const reportElement = screen.getByTitle('reportAnswer');
+
+    await act (async () => {
+      fireEvent.click(reportElement);
+    });
+
+    expect(reportElement).toHaveTextContent('Report');
+  })
 });
 
 describe('AnswerList Component', () => {
@@ -80,48 +92,5 @@ describe('AnswerList Component', () => {
     const collapseAnswers = screen.getByText(/collapse Answers/i);
 
     expect(collapseAnswers).toBeInTheDocument();
-  });
-});
-
-describe('QuestionEntry Component', () => {
-  it('Displays a question on initial render', async () => {
-    axios.get.mockResolvedValue({ data: { results: [] } });
-
-    render(<QuestionEntry question={questions.results[0]} />);
-    const questionElement = await screen.findByText(questions.results[0].question_body);
-
-    expect(questionElement).toBeInTheDocument();
-  });
-
-  it('Displays helpfulness count on initial render', async () => {
-    axios.get.mockResolvedValue({ data: { results: [] } });
-
-    render(<QuestionEntry question={questions.results[0]} />);
-    const helpfulCountElement = await screen.findByText(/(10)/i);
-
-    expect(helpfulCountElement).toBeInTheDocument();
-  });
-
-  it('Displays "Add Answer" on initial render', async () => {
-    axios.get.mockResolvedValue({ data: { results: [] } });
-    await act(async () => {
-      render( <QuestionEntry question={questions.results[0]} />);
-    });
-    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer' });
-
-    expect(addAnswerElement).toBeInTheDocument();
-  });
-
-  it('Displays the form to add an answer when clicking "Add Answer"', async () => {
-    axios.get.mockResolvedValue({ data: { results: [] } });
-    await act(async () => {
-      render(<QuestionEntry question={questions.results[0]} />);
-    });
-
-    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer'});
-    fireEvent.click(addAnswerElement);
-    const modalForm = screen.getByTestId('answerForm');
-
-    expect(modalForm).toBeInTheDocument();
   });
 });

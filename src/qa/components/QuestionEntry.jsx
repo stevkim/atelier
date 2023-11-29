@@ -72,7 +72,8 @@ const QuestionEntry = ({ question, productName }) => {
             Helpful?
             <button
               type='button'
-              className='yes'
+              id='helpful-question'
+              title='helpfulQuestion'
               style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
               onClick={() => { handleHelpfulQuestionClick(question_id); }}
             >
@@ -84,8 +85,7 @@ const QuestionEntry = ({ question, productName }) => {
             |
             <button
               type='button'
-              className='add-answer'
-              title='Add-Answer'
+              id='add-answer'
               style={{ textDecoration: 'underline' }}
               onClick={() => { setIsModalOpen(true); }}
             >

@@ -16,31 +16,40 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
 
   const handleMoreQuestions = () => {
     if (totalQuestions !== displayCount) {
-      setDisplayCount(displayCount + 2);
+      setDisplayCount((prevCount) => prevCount + 2);
+      setCurrQuestionList((prevList) => questionList.slice(0, prevList.length + 2));
     }
     setIsQuestionExpanded(true);
   };
 
   const handleInputChange = (e) => {
     e.target.value.length >= 3
-      ? setTerm(e.target.value)
+      ? setTerm(e.target.value.toLowerCase())
       : setTerm('');
   };
 
   useEffect(() => {
     getListOfQuestions(productId)
       .then((response) => {
-        setTotalQuestions(response.data.results.length);
-        setQuestionList(response.data.results);
-        setCurrQuestionList(response.data.results.slice(0, displayCount));
+        let filteredList;
+
+        if (term) {
+          filteredList = response.data.results.filter((question) => question.question_body.toLowerCase().includes(term));
+        } else {
+          filteredList = response.data.results;
+        }
+
+        setTotalQuestions(filteredList.length);
+        setQuestionList(filteredList);
+        setCurrQuestionList(filteredList.slice(0, displayCount));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [productId, displayCount]);
+  }, [productId, term]);
 
   return (
-    <div className='qa-container'>
+    <div id='questions-answers' className='qa-container'>
       <h2>QUESTIONS AND ANSWERS</h2>
       <div className='qa-search-container'>
         <input
@@ -53,7 +62,6 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       <QuestionList
         currQuestionList={currQuestionList}
         isQuestionExpanded={isQuestionExpanded}
-        term={term}
         productName={productName}
       />
       <div className='qa-button-container'>

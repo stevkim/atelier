@@ -5,17 +5,17 @@ import Price from '../../components/price/Price.jsx';
 import AddToCart from './addToCart/AddToCart.jsx';
 import './styles.css';
 
-const Info = ({ product, style, selectedStyle, updateStyle }) => (
-  <div className='overview-overview'>
-    <Reviews product={product} />
-    <div className='overview-category'>
-      {product.category}
+const Info = ({ productInfo, reviewsMetaData, styleInfo, style, selectedStyle, updateStyle }) => (
+  <div aria-label='info' className='overview-overview'>
+    <Reviews reviewsMetaData={reviewsMetaData} />
+    <div aria-label='category' className='overview-category'>
+      {productInfo.category || 'Loading Category...'}
     </div>
-    <h3 className='overview-title'>{product.title}</h3>
+    <h3 aria-label='title' className='overview-title'>{productInfo.name || 'Loading Title...'}</h3>
     <Price selectedStyle={selectedStyle} includeStyle />
-    <StylesView styleIndex={style} styles={product.styles} updateStyle={updateStyle} />
-    <AddToCart skus={selectedStyle.skus} />
-    <div className='overview-share-buttons'>
+    <StylesView styleIndex={style} styleInfo={styleInfo} updateStyle={updateStyle} />
+    <AddToCart skus={selectedStyle.skus || {}} />
+    <div aria-label='shareButtons' className='overview-share-buttons'>
       <button className='share-facebook' type='button'>f</button>
       <button className='share-x' type='button'>x</button>
       <button className='share-pinterest' type='button'>P</button>

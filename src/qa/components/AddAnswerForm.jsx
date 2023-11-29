@@ -41,7 +41,7 @@ const AddAnswerForm = ({ questionId, questionBody, productName, setIsModalOpen }
         </h4>
       </div>
       <div className='qa-form-container'>
-        <form data-testid='answerForm' onSubmit={handleAddAnswer}>
+        <form title='answerForm' onSubmit={handleAddAnswer}>
           <div className='qa-form-row'>
             <label
               htmlFor='nickname-input'

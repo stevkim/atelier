@@ -38,7 +38,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
         <h4>{`About the ${productName}`}</h4>
       </div>
       <div className='qa-form-container'>
-        <form onSubmit={handleAddQuestion}>
+        <form title='questionForm' onSubmit={handleAddQuestion}>
           <div className='qa-form-row'>
             <label htmlFor='nickname-input' className='qa-input-label'>
               Nickname
@@ -79,6 +79,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
               className='qa-input'
               name='question-input'
               type='text'
+              placeholder='Why did you like the product or not?'
               maxLength={1000}
               onChange={(e) => { updateFormDataValue(e, 'body'); }}
             />

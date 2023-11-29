@@ -1,10 +1,77 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { reviews } from '../../../example-data/reviewData.js';
 import ReviewList from '../components/ReviewsList.jsx';
 import ReviewItem from '../components/ReviewItem.jsx';
 import { convertDate } from '../lib/utilityFunctions.js';
+
+const reviews = {
+  "product": "40347",
+  "page": 0,
+  "count": 5,
+  "results": [
+      {
+          "review_id": 1277643,
+          "rating": 3,
+          "summary": "dsgsd",
+          "recommend": true,
+          "response": null,
+          "body": "ds",
+          "date": "2022-12-03T00:00:00.000Z",
+          "reviewer_name": "test",
+          "helpfulness": 3,
+          "photos": []
+      },
+      {
+          "review_id": 1277600,
+          "rating": 3,
+          "summary": "dsgsd",
+          "recommend": true,
+          "response": 'Testing',
+          "body": "dsfgsdfg",
+          "date": "2022-12-02T00:00:00.000Z",
+          "reviewer_name": "test",
+          "helpfulness": 1,
+          "photos": []
+      },
+      {
+          "review_id": 1277838,
+          "rating": 4,
+          "summary": "asddd",
+          "recommend": false,
+          "response": null,
+          "body": "asdasdasdasdasdasdasdasdasdadsasdasdasdasdadsasdasd",
+          "date": "2022-12-12T00:00:00.000Z",
+          "reviewer_name": "asd",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1277836,
+          "rating": 3,
+          "summary": "asdd",
+          "recommend": false,
+          "response": null,
+          "body": "asdasdadasdasdadasdasdasdasdasdasdasdasdasdasdasdadasdadasdasdadasdasdasdasdasdasdasdasdaasdasdadasdasdadasdasdasdasdasdasdasdasdasdasdasdadaasdasdadasdasdadasdasdasdasdasdasdasdasdasdasdasdadasdadasdasdadasdasdasdasdasdasdasdasdaasdasdadasdasdadasdasdasdasdasdasdasdasdasdasdasdadasdadasdasdadasdasdasdasdasdasdasdasdasdadasdasdadasdasdasdasdasdasdasdasda",
+          "date": "2022-12-12T00:00:00.000Z",
+          "reviewer_name": "asd",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "review_id": 1280449,
+          "rating": 5,
+          "summary": "I love it",
+          "recommend": false,
+          "response": null,
+          "body": "Nothing beats it!",
+          "date": "2023-08-22T00:00:00.000Z",
+          "reviewer_name": "John",
+          "helpfulness": 0,
+          "photos": [{id: 1, url:'test'}, {id: 2, url: 'it has a fallback'}]
+      }
+  ]
+};
 
 describe('Convert Date', () => {
   test('Correctly converts date to the intended format', () => {
@@ -19,39 +86,92 @@ describe('Convert Date', () => {
 });
 
 describe('Review Item', () => {
+  test('Correctly displays review information', async () => {
     for (let i = 0; i < reviews.count; i++) {
-      test('Correctly displays username and date', () => {
-        const currentReview = reviews.results[i]
-        const { container } = render(<ReviewItem review={currentReview} />);
-        const reviewDate = convertDate(currentReview.date);
-        const text = `${currentReview.reviewer_name}`;
-        const header = container.querySelector('.review-header');
+      const currentReview = reviews.results[i];
+      const { reviewer_name, rating, email, date, summary, response,
+        body, photos, recommend, helpfulness, review_id, } = currentReview;
+      render(await <ReviewItem review={currentReview} />);
 
-        expect(header.innerHTML).toContain(text);
-      });
+      expect(await screen.findByText(reviewer_name)).toBeInTheDocument();
+      expect(await screen.findByText(summary)).toBeInTheDocument();
 
-      test('Correctly displays helpfulness', () => {
-        const currentReview = reviews.results[i]
-        const { container } = render(<ReviewItem review={currentReview} />);
-        const helpful = container.querySelector('.helpfulness-wrapper');
-        const helpfulRating = currentReview.helpfulness.toString();
+      if (body.length < 250) {
+        expect(await screen.findByText(body)).toBeInTheDocument();
+      } else {
+        const button = await screen.findByText('Show more');
+        expect(button).toBeInTheDocument();
+        fireEvent.click(button);
+        expect(await screen.findByText(body)).toBeInTheDocument();
+      };
 
-        expect(helpful.innerHTML).toContain(helpfulRating);
-      })
+      if (photos.length > 0) {
+        photos.forEach(async (photo) => {
+          expect(await screen.findByLabelText(photo.id)).toBeInTheDocument();
+        })
+      }
+
+      recommend && expect(await screen.findByText('I recommend this product')).toBeInTheDocument();
+
+      response && expect(await screen.findByText(response)).toBeInTheDocument();
+
+      const helpful = await screen.findByTestId('helpful');
+      expect(helpful).toBeInTheDocument();
+      expect(await screen.findByText((content) => {
+        return content.includes(`(${helpfulness})`);
+      })).toBeInTheDocument();
+
+      expect(await screen.findByText('Yes')).toBeInTheDocument();
+      expect(await screen.findByText('Report')).toBeInTheDocument();
+
+      cleanup();
     };
+  });
 })
 
 describe('List of reviews', () => {
-  test('Displays the correct number of reviews', async() => {
-    const { container } = render(await <ReviewList reviewList={reviews.results} showButton={true}/>);
+  afterEach(() => {
+    cleanup();
+  })
 
-    const list = await screen.getByTestId('review-list');
-    expect(list.children.length).toEqual(reviews.results.length);
+  test('Displays the correct number of reviews', async () => {
+    const { rerender } = render(await <ReviewList reviewList={reviews.results} />);
+    const list = await screen.findByTestId('review-list');
+    expect(list.childElementCount).toEqual(reviews.results.length);
 
-    for (let i = 0; i < list.children.length - 1; i++) {
-      expect([...list.children[i].classList]).toContain('review-wrapper');
-    };
+    rerender(await <ReviewList reviewList={[]} />);
+    expect(await screen.findByText('Whoops there are no reviews here!')).toBeInTheDocument();
+  });
 
-    expect(await screen.getByText('ADD A REVIEW')).toBeInTheDocument();
+  test('Correctly functions based on user interaction', async () => {
+    const increment = jest.fn();
+    const sort = jest.fn();
+    const total = 10;
+    const { rerender } = render(await <ReviewList totalReviews={total} setSort={sort} reviewList={reviews.results} handleListIncrement={increment} disable={true} />);
+
+    const header = `${total} reviews, sorted by`;
+    expect(await screen.findByText(header)).toBeInTheDocument();
+
+    const options = await screen.findByLabelText('review-sort');
+    expect(options.childElementCount).toEqual(3);
+
+    fireEvent.change(options, { target: { value: 'Test' }});
+    expect(sort).toHaveBeenCalled();
+
+    const searchInput = await screen.findByPlaceholderText('Search reviews');
+    fireEvent.change(searchInput, { target: { value: 'Test' }});
+    expect(searchInput.value).toEqual('Test');
+
+    const reviewList = await screen.getByTestId('review-list');
+    expect(reviewList.childElementCount).toEqual(reviews.results.length);
+
+    fireEvent.scroll(reviewList, { target: { scrollY: 1000 } });
+    expect(increment).toHaveBeenCalledTimes(0);
+
+    rerender(await <ReviewList reviewList={reviews.results} handleListIncrement={increment} disable={false} />);
+    fireEvent.scroll(reviewList, { target: { scrollY: 1000 } });
+    expect(increment).toHaveBeenCalled();
+
+    expect(await screen.findByText('ADD A REVIEW')).toBeInTheDocument();
   })
 })

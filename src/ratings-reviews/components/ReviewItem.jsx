@@ -68,7 +68,7 @@ const ReviewItem = ({ review }) => {
           )}
       </div>
       {
-        photos.map((photo) => <img key={photo.id} src={photo.url} alt='Reviewer upload' className='review-item-image' onError={(e) => { e.target.src = 'https://i.imgur.com/mYzivnl.png'; }} />)
+        photos.map((photo) => <img key={photo.id} aria-label={photo.id} src={photo.url} alt='Reviewer upload' className='review-item-image' onError={(e) => { e.target.src = 'https://i.imgur.com/mYzivnl.png'; }} />)
       }
 
       {recommend
@@ -87,7 +87,7 @@ const ReviewItem = ({ review }) => {
         </div>
         )}
 
-      <div className='helpfulness-wrapper'>
+      <div className='helpfulness-wrapper' data-testid='helpful'>
         Helpful?
         <button
           type='button'

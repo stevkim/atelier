@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
-const ComfortForm = ({ setCharacterstic }) => (
-  <div onChange={(e) => setCharacterstic('Comfort', e.target.value)}>
+const ComfortForm = ({ setCharacteristic }) => (
+  <div onChange={(e) => setCharacteristic('Comfort', e.target.value)}>
     <p>Comfort</p>
     <div className='product-input-wrapper'>
       <label htmlFor='comfort-1'>

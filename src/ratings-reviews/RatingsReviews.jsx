@@ -73,7 +73,7 @@ const RatingsReviews = ({ id, productName, metaData }) => {
   }, [modal]);
 
   return (
-    <section className='ratings-reviews-wrapper'>
+    <section id='ratings-reviews' className='ratings-reviews-wrapper'>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
         <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter} />

@@ -99,8 +99,13 @@
   z-index: -1;
 }
 
-.share-facebook {}
+.share-facebook {
+  border-style: solid;
+  z-index: 999;
+}
 
-.share-x {}
+.share-x {
+
+}
 
 .share-pinterest {}

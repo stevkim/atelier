@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react';
 import StarRating from './StarRating.jsx';
 import '@testing-library/jest-dom'
-import { convertRating } from './convertRating.js';
+import convertRating from './convertRating.js';
 
 describe('Converting the rating', () => {
   test('Correctly rounds the rating to the nearest quarter', () => {

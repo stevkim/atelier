@@ -6,9 +6,9 @@
   "scripts": {
     "build": "npx webpack",
     "test": "npx jest --env=jsdom",
+    "test:coverage": "npx jest --coverage --env=jsdom",
     "client-dev": "npx webpack --watch",
     "start": "nodemon app.js",
-    "coverage": "npx jest --coverage --env=jsdom",
     "lint": "eslint . --ext js,jsx",
     "lint:fix": "eslint . --ext js,jsx --fix"
   },

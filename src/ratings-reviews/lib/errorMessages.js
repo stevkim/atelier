@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export default {
   default: 'Please enter the required fields',
   email: 'The email address provided is not in correct email format',

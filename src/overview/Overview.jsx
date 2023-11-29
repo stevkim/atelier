@@ -4,41 +4,39 @@ import Info from './info/Info.jsx';
 import ImageView from './imageView/ImageView.jsx';
 import './styles.css';
 import productExample from './product-example.js';
-import { getOverviewById } from './helper-funcs/axios-requests.js';
+import { getProductStyles } from './helper-funcs/axios-requests.js';
 
 const Overview = ({ productId, reviewsMetaData, productInfo }) => {
-  const [product, setProduct] = useState(productExample);
-  const [style, setStyle] = useState(0);
   const [inExpandedView, setInExpandedView] = useState(false);
-  let selectedStyle = product.styles[style];
+  const [styleInfo, setStyleInfo] = useState([]);
+  const [style, setStyle] = useState(0);
+  const [selectedStyle, setSelectedStyle] = useState({});
 
   useEffect(() => {
-    getOverviewById(productId, productInfo, reviewsMetaData)
-      .then((res) => setProduct(res))
+    getProductStyles(productId)
+      .then((res) => {
+        setStyleInfo(res.data.results);
+        setSelectedStyle(res.data.results[style]);
+      })
       .catch((err) => console.log(err));
-  }, [productId, productInfo, reviewsMetaData]);
-
-  useEffect(() => {
-    selectedStyle = product.styles[style];
-  }, [style]);
+  }, [productId]);
 
   const updateStyle = (int) => {
     setStyle(int);
+    setSelectedStyle(styleInfo[int]);
   };
 
   const changeView = () => {
     setInExpandedView(true);
   };
 
-  // Tech debt: It would probably be faster to just pass in the entire product.
-  // It's definitely more readable this way, though.
-
   return (
     <div className='overview' id='overview'>
-      <ImageView photos={selectedStyle.photos} expanded={inExpandedView} changeView={changeView} />
-      {!inExpandedView ? <Info product={product} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
-      {!inExpandedView ? <Details product={product} expanded={inExpandedView} /> : ''}
+      <ImageView photos={selectedStyle.photos || []} expanded={inExpandedView} changeView={changeView} />
+      {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+      {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>
   );
 };
+
 export default Overview;

@@ -11,6 +11,7 @@ const ImgMain = ({ url, expanded, changeView }) => {
         className='overview-img-main-default'
         id='overview-img-main'
         type='button'
+        aria-label='imgMain'
         style={{
           backgroundImage: `url('${url}')`,
           backgroundSize: '100% 100%',

@@ -10,6 +10,7 @@
   width: inherit;
   transition: transform 0.4s ease-out;
   aspect-ratio: 7 / 6;
+  border-style: solid;
 }
 
 .overview-thumbnail-view-false {

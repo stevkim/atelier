@@ -6,7 +6,7 @@ import QualityForm from './forms/QualityForm.jsx';
 import LengthForm from './forms/LengthForm.jsx';
 import FitForm from './forms/FitForm.jsx';
 import AddStarRating from '../utils/AddStarRating.jsx';
-import { convertFilesToDataURL, postRequirements } from '../lib/addReviewFunctions.js';
+import { convertFilesToDataURL, postRequirements } from '../lib/formUtilityFunctions.js';
 import { postReview } from '../lib/fetchFunctions.js';
 import errorMessages from '../lib/errorMessages.js';
 import AddReviewHeader from './AddReviewHeader.jsx';
@@ -29,9 +29,9 @@ const AddReviewForm = ({ data, setModal, productName }) => {
   const [errMessages, setErrMessages] = useState([]);
   const [error, setError] = useState(false);
 
-  const convertImage = async (files) => {
+  const convertImage = async (e) => {
     try {
-      const result = await convertFilesToDataURL(files);
+      const result = await convertFilesToDataURL(e.target.files);
       setErrMessages(errMessages.filter((msg) => msg !== errorMessages.maxCapacity));
       setUserInput({ ...userInput, photos: result });
     } catch (err) {
@@ -40,7 +40,7 @@ const AddReviewForm = ({ data, setModal, productName }) => {
     }
   };
 
-  const setCharacterstic = (input, value) => {
+  const setCharacteristic = (input, value) => {
     setUserInput({ ...userInput, characteristics: { ...userInput.characteristics, [characteristics[input].id]: parseInt(value, 10) } });
   };
 
@@ -157,12 +157,12 @@ const AddReviewForm = ({ data, setModal, productName }) => {
             )
             : <div className='body-subtext'>Minimum reached</div>}
 
-          {characteristics.Size && <SizeForm setCharacterstic={setCharacterstic} />}
-          {characteristics.Width && <WidthForm setCharacterstic={setCharacterstic} />}
-          {characteristics.Comfort && <ComfortForm setCharacterstic={setCharacterstic} />}
-          {characteristics.Quality && <QualityForm setCharacterstic={setCharacterstic} />}
-          {characteristics.Length && <LengthForm setCharacterstic={setCharacterstic} />}
-          {characteristics.Fit && <FitForm setCharacterstic={setCharacterstic} />}
+          {characteristics.Size && <SizeForm setCharacteristic={setCharacteristic} />}
+          {characteristics.Width && <WidthForm setCharacteristic={setCharacteristic} />}
+          {characteristics.Comfort && <ComfortForm setCharacteristic={setCharacteristic} />}
+          {characteristics.Quality && <QualityForm setCharacteristic={setCharacteristic} />}
+          {characteristics.Length && <LengthForm setCharacteristic={setCharacteristic} />}
+          {characteristics.Fit && <FitForm setCharacteristic={setCharacteristic} />}
 
           <p>Add Images (optional):</p>
           <input

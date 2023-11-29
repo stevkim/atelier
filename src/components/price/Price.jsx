@@ -10,7 +10,7 @@ const Price = ({ selectedStyle, includeStyle }) => {
     <div className='overview-price-container'>
       <span className={`overview-price-${isOnSale}`}>
         $
-        {regularPrice}
+        {regularPrice || '00.00'}
       </span>
       {isOnSale
         ? <span className='overview-sale-price'>{` $${salePrice}`}</span>
@@ -24,7 +24,7 @@ const Price = ({ selectedStyle, includeStyle }) => {
             {'<'}
           </b>
           {' '}
-          {selectedStyle.name}
+          {selectedStyle.name || 'None Available'}
           {' '}
         </div>
       ) : ''}

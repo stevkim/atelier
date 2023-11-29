@@ -8,13 +8,14 @@ const Reviews = ({ reviewsMetaData }) => {
   return (
     <div aria-label='reviews' className='overview-reviews'>
       <StarRating rating={reviewCounts.stars / reviewCounts.reviews} />
-      <div>
+      <a href='#ratings-reviews-wrapper'>
         See All
         {' '}
         {reviewCounts.reviews}
         {' '}
         Reviews!
-      </div>
+      </a>
+      <br />
     </div>
   );
 };

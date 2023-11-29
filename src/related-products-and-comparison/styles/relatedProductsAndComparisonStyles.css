@@ -1,3 +1,8 @@
+.related-products-and-comparison {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .related-products {
   display: flex;
   align-items: center;

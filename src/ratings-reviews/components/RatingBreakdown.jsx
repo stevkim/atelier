@@ -1,13 +1,13 @@
 import React, { useMemo, memo } from 'react';
 import RatingList from './RatingList.jsx';
-import { getAverageRating, getAverageRecommended, convertCharacterstics } from '../lib/utilityFunctions.js';
+import { getAverageRating, getAverageRecommended, convertCharacteristics } from '../lib/utilityFunctions.js';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, total, handleStarFilter }) => {
   const averageRating = useMemo(() => getAverageRating(data.ratings, total), [data, total]);
   const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, total), [data, total]);
-  const propertyList = useMemo(() => convertCharacterstics(data.characteristics), [data]);
+  const propertyList = useMemo(() => convertCharacteristics(data.characteristics), [data]);
 
   return (
     <section className='breakdown-wrapper'>

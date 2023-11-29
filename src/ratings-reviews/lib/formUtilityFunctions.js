@@ -1,4 +1,4 @@
-const convertFile = (file) => new Promise((resolve, reject) => {
+export const convertFile = (file) => new Promise((resolve, reject) => {
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = () => {
@@ -10,7 +10,7 @@ const convertFile = (file) => new Promise((resolve, reject) => {
 });
 
 export const convertFilesToDataURL = async (files) => {
-  const listOfFiles = Array.from(files.target.files);
+  const listOfFiles = Array.from(files);
   if (listOfFiles.length > 5) {
     throw new Error('Maximum of 5 pictures!');
   }

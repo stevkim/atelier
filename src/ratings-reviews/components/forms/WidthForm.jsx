@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
-const WidthForm = ({ setCharacterstic }) => (
-  <div onChange={(e) => setCharacterstic('Width', e.target.value)}>
+const WidthForm = ({ setCharacteristic }) => (
+  <div onChange={(e) => setCharacteristic('Width', e.target.value)}>
     <p>Width</p>
     <div className='product-input-wrapper'>
       <label htmlFor='width-1'>

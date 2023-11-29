@@ -2,6 +2,9 @@ import React, { useState, useEffect, useMemo, memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
 import { convertDate } from '../lib/utilityFunctions.js';
+import ReviewItemResponse from './ReviewItemResponse.jsx';
+import ReviewItemRecommend from './ReviewItemRecommend.jsx';
+import ReviewItemImages from './ReviewItemImages.jsx';
 
 const ReviewItem = ({ review }) => {
   const {
@@ -55,7 +58,6 @@ const ReviewItem = ({ review }) => {
         </div>
       </div>
       <div className='review-summary'>{summary}</div>
-
       <div className='review-body'>
         {show
           ? <div>{body}</div>
@@ -67,27 +69,10 @@ const ReviewItem = ({ review }) => {
             </div>
           )}
       </div>
-      {
-        photos.map((photo) => <img key={photo.id} src={photo.url} alt='Reviewer upload' className='review-item-image' onError={(e) => { e.target.src = 'https://i.imgur.com/mYzivnl.png'; }} />)
-      }
-
-      {recommend
-        && (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{ color: 'green', fontSize: '2em', marginX: '.2em' }}>&#10003;</span>
-          I recommend this product
-        </div>
-        )}
-
-      {response
-        && (
-        <div className='review-response'>
-          <span style={{ fontWeight: 600 }}>Reponse from Seller:</span>
-          <span style={{ textIndent: '1em' }}>{response}</span>
-        </div>
-        )}
-
-      <div className='helpfulness-wrapper'>
+      <ReviewItemImages photos={photos} />
+      {recommend && <ReviewItemRecommend />}
+      {response && <ReviewItemResponse response={response} />}
+      <div className='helpfulness-wrapper' data-testid='helpful'>
         Helpful?
         <button
           type='button'

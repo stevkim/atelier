@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import axios from 'axios';
 
 export const updateHelpfulness = (id) => axios.put(`/reviews/${id}/helpful`);

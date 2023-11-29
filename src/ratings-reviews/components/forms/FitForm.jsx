@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
-const FitForm = ({ setCharacterstic }) => (
-  <div onChange={(e) => setCharacterstic('Fit', e.target.value)}>
+const FitForm = ({ setCharacteristic }) => (
+  <div onChange={(e) => setCharacteristic('Fit', e.target.value)}>
     <p>Fit</p>
     <div className='product-input-wrapper'>
       <label htmlFor='fit-1'>

@@ -10,7 +10,7 @@ const AddStarRating = ({ rating, setOverallRating }) => {
   };
 
   return (
-    <div>
+    <div data-testid='star-rating-input'>
       {
         Array.from(Array(5)).map((star, index) => (
           <button

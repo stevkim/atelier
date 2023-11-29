@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { addAnswer } from '../lib/fetchFunctions.js';
+import { validateForm } from '../lib/helperFunctions.js';
 
-const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
+const AddAnswerForm = ({ questionId, questionBody, productName, setIsModalOpen }) => {
   const [formData, setFormData] = useState({
     body: '',
     name: '',
@@ -11,36 +12,15 @@ const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
 
   const [formErrors, setFormErrors] = useState([]);
 
-  const isValidEmail = (email) => {
-    if (email.indexOf('@') === -1) {
-      return false;
-    }
-
-    const fromIndex = email.indexOf('@') + 1;
-    if (email.indexOf('.', fromIndex) === -1) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const validateForm = (form) => {
-    const errors = [];
-    if (!form.body || !form.name || !form.email) {
-      errors.push('Please fill out required (*) fields');
-    }
-
-    if (form.email && isValidEmail(form.email) === false) {
-      errors.push('Please make sure sure email is formatted correctly');
-    }
-    return errors;
+  const updateFormDataValue = (e, key) => {
+    setFormData({ ...formData, [key]: e.target.value });
   };
 
   const handleAddAnswer = (e) => {
     e.preventDefault();
     setFormErrors(validateForm(formData));
     if (formErrors.length) { return; }
-    axios.post(`/qa/questions/${questionId}/answers`, formData)
+    addAnswer(questionId, formData)
       .then(() => {
         setIsModalOpen(false);
       })
@@ -52,17 +32,16 @@ const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
   return (
     <div className='qa-modal-container'>
       <div className='qa-close-modal'>
-        <button onClick={() => { setIsModalOpen(false); }}>X</button>
+        <button type='button' onClick={() => { setIsModalOpen(false); }}>X</button>
       </div>
       <div className='qa-form-heading'>
         <h2>SUBMIT YOUR ANSWER</h2>
         <h4>
-          [Product Name]:
-          {questionBody}
+          {`${productName}: ${questionBody}`}
         </h4>
       </div>
       <div className='qa-form-container'>
-        <form onSubmit={handleAddAnswer}>
+        <form data-testid='answerForm' onSubmit={handleAddAnswer}>
           <div className='qa-form-row'>
             <label
               htmlFor='nickname-input'
@@ -78,7 +57,7 @@ const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
               type='text'
               placeholder='Example: jack543!'
               maxLength={60}
-              onChange={(e) => { setFormData({ ...formData, name: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'name'); }}
             />
             <p>For privacy reasons, do not use your full name or email address</p>
           </div>
@@ -97,7 +76,7 @@ const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
               type='text'
               placeholder='Example: jack@email.com'
               maxLength={60}
-              onChange={(e) => { setFormData({ ...formData, email: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'email'); }}
             />
             <p>For authentication reasons, you will not be emailed</p>
           </div>
@@ -115,7 +94,7 @@ const AddAnswerForm = ({ questionId, questionBody, setIsModalOpen }) => {
               name='answer-input'
               type='text'
               maxLength={1000}
-              onChange={(e) => { setFormData({ ...formData, body: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'body'); }}
             />
           </div>
           <button type='submit'>

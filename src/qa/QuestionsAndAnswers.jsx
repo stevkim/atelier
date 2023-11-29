@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getListOfQuestions } from './lib/fetchFunctions.js';
 import QuestionList from './components/QuestionList.jsx';
 import Modal from './components/Modal.jsx';
 import AddQuestionForm from './components/AddQuestionForm.jsx';
 import './qaStyles.css';
 
 const QuestionsAndAnswers = ({ productId, productName }) => {
-  const [currQuestionList, setCurrQuestionList] = useState([]);
-  const [questionList, setQuestionList] = useState([]);
-  const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [questionList, setQuestionList] = useState([]);
+  const [currQuestionList, setCurrQuestionList] = useState([]);
   const [displayCount, setDisplayCount] = useState(2);
+  const [isQuestionExpanded, setIsQuestionExpanded] = useState(false);
   const [term, setTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +28,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/?product_id=${productId}&count=200`)
+    getListOfQuestions(productId)
       .then((response) => {
         setTotalQuestions(response.data.results.length);
         setQuestionList(response.data.results);
@@ -54,6 +54,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
         currQuestionList={currQuestionList}
         isQuestionExpanded={isQuestionExpanded}
         term={term}
+        productName={productName}
       />
       <div className='qa-button-container'>
         {

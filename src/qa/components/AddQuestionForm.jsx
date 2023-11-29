@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { addQuestion } from '../lib/fetchFunctions.js';
+import { validateForm } from '../lib/helperFunctions.js';
 
 const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
   const [formData, setFormData] = useState({
@@ -10,35 +11,15 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
   });
   const [formErrors, setFormErrors] = useState([]);
 
-  const isValidEmail = (email) => {
-    if (email.indexOf('@') === -1) {
-      return false;
-    }
-
-    const fromIndex = email.indexOf('@') + 1;
-    if (email.indexOf('.', fromIndex) === -1) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const validateForm = (form) => {
-    const errors = [];
-    if (!form.body || !form.name || !form.email) {
-      errors.push('Please fill out the required (*) fields');
-    }
-    if (form.email && isValidEmail(form.email) === false) {
-      errors.push('Please make sure the email is formatted correctly');
-    }
-    return errors;
+  const updateFormDataValue = (e, key) => {
+    setFormData({ ...formData, [key]: e.target.value });
   };
 
   const handleAddQuestion = (e) => {
     e.preventDefault();
     setFormErrors(validateForm(formData));
     if (formErrors.length) { return; }
-    axios.post('/qa/questions', formData)
+    addQuestion(formData)
       .then(() => {
         setIsModalOpen(false);
       })
@@ -70,7 +51,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
               type='text'
               placeholder='Example: jackson11!'
               maxLength={60}
-              onChange={(e) => { setFormData({ ...formData, name: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'name'); }}
             />
             <p>For privacy reasons, do not use your full name or email address</p>
             <label htmlFor='email-input' className='qa-input-label'>
@@ -84,7 +65,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
               type='text'
               placeholder='Example: jack@email.com'
               maxLength={60}
-              onChange={(e) => { setFormData({ ...formData, email: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'email'); }}
             />
             <p>For authentication reasons, you will not be emailed</p>
           </div>
@@ -99,7 +80,7 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
               name='question-input'
               type='text'
               maxLength={1000}
-              onChange={(e) => { setFormData({ ...formData, body: e.target.value }); }}
+              onChange={(e) => { updateFormDataValue(e, 'body'); }}
             />
           </div>
           <button type='submit'>

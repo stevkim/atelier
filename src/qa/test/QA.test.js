@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AnswerEntry from '../components/AnswerEntry';
 import AnswerList from '../components/AnswerList';
 import QuestionEntry from '../components/QuestionEntry';
-import convertDate from '../convertDate';
+import { convertDate } from '../lib/helperFunctions';
 import answers from '../../../example-data/answersData';
 import questions from '../../../example-data/questionsData';
 import axios from 'axios';
@@ -110,5 +110,18 @@ describe('QuestionEntry Component', () => {
     const addAnswerElement = screen.getByRole('button', { name: 'Add Answer' });
 
     expect(addAnswerElement).toBeInTheDocument();
+  });
+
+  it('Displays the form to add an answer when clicking "Add Answer"', async () => {
+    axios.get.mockResolvedValue({ data: { results: [] } });
+    await act(async () => {
+      render(<QuestionEntry question={questions.results[0]} />);
+    });
+
+    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer'});
+    fireEvent.click(addAnswerElement);
+    const modalForm = screen.getByTestId('answerForm');
+
+    expect(modalForm).toBeInTheDocument();
   });
 });

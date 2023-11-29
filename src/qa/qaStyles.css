@@ -15,12 +15,6 @@
 .answer {
   margin-top: 0;
 }
-.yes,
-.report,
-.load-more-answers,
-.collapse-answers,
-.add-answer,
-.qa-close-modal,
 button {
   cursor: pointer;
 }

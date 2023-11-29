@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import convertDate from '../convertDate';
+import { markAnswerHelpful, reportAnswer } from '../lib/fetchFunctions.js';
+import { convertDate } from '../lib/helperFunctions.js';
 
 const AnswerEntry = ({ answer }) => {
   const { answer_id, body, date, answerer_name, helpfulness, photos } = answer;
@@ -10,7 +10,7 @@ const AnswerEntry = ({ answer }) => {
 
   const handleHelpfulAnswerClick = (id) => {
     if (!isAnswerHelpful) {
-      axios.put(`/qa/answers/${id}/helpful`, null)
+      markAnswerHelpful(id)
         .then(() => {
           setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
           setIsAnswerHelpful(true);
@@ -23,7 +23,7 @@ const AnswerEntry = ({ answer }) => {
 
   const handleReportClick = (id) => {
     if (!reported) {
-      axios.put(`/qa/answers/${id}/report`, null)
+      reportAnswer(id)
         .then(() => {
           setReported(true);
         })
@@ -55,7 +55,8 @@ const AnswerEntry = ({ answer }) => {
           Helpful?
           <button
             type='button'
-            className='yes'
+            id='helpful-answer'
+            title='helpfulAnswer'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
             onClick={() => { handleHelpfulAnswerClick(answer_id); }}
           >
@@ -68,8 +69,8 @@ const AnswerEntry = ({ answer }) => {
         |
         <button
           type='button'
-          title='Report'
-          className='report'
+          id='report-answer'
+          title='reportAnswer'
           style={{ textDecoration: reported ? 'none' : 'underline', cursor: reported && 'default' }}
           onClick={() => { handleReportClick(answer_id); }}
         >

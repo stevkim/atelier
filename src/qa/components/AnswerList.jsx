@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 
 const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) => (
-  <div className={`answer-list-container ${isAnswerExpanded && 'answer-list-container-expanded'}`}>
+  <div className={isAnswerExpanded ? 'answer-list-container-expanded' : 'answer-list-container'}>
     {
       currAnswerList.map((answer) => <AnswerEntry key={answer.answer_id} answer={answer} />)
     }
@@ -11,7 +11,7 @@ const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handl
       && (
         <button
           type='button'
-          className='load-more-answers'
+          id='load-more-answers'
           onClick={handleLoadMoreAnswers}
         >
           LOAD MORE ANSWERS
@@ -23,7 +23,7 @@ const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handl
       && (
         <button
           type='button'
-          className='collapse-answers'
+          id='collapse-answers'
           onClick={handleCollapseAnswers}
         >
           COLLAPSE ANSWERS

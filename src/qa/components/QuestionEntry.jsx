@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { markQuestionHelpful, getListOfAnswers } from '../lib/fetchFunctions.js';
 import AnswerList from './AnswerList.jsx';
 import Modal from './Modal.jsx';
 import AddAnswerForm from './AddAnswerForm.jsx';
 
-const QuestionEntry = ({ question }) => {
+const QuestionEntry = ({ question, productName }) => {
   const { question_id, question_body, question_helpfulness, answers } = question;
   const [updateQuestionHelpfulness, setUpdateQuestionHelpfulness] = useState(question_helpfulness);
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
@@ -15,7 +15,7 @@ const QuestionEntry = ({ question }) => {
 
   const handleHelpfulQuestionClick = (id) => {
     if (!isQuestionHelpful) {
-      axios.put(`/qa/questions/${id}/helpful`, null)
+      markQuestionHelpful(id)
         .then(() => {
           setUpdateQuestionHelpfulness(updateQuestionHelpfulness + 1);
           setIsQuestionHelpful(true);
@@ -39,7 +39,7 @@ const QuestionEntry = ({ question }) => {
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/${question_id}/answers/?count=${totalAnswers}`)
+    getListOfAnswers(question_id, totalAnswers)
       .then((response) => {
         const sortedAnswerList = response.data.results.sort((a, b) => {
           const isSellerA = a.answerer_name === 'Seller';
@@ -72,7 +72,8 @@ const QuestionEntry = ({ question }) => {
             Helpful?
             <button
               type='button'
-              className='yes'
+              id='helpful-question'
+              title='helpfulQuestion'
               style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
               onClick={() => { handleHelpfulQuestionClick(question_id); }}
             >
@@ -84,7 +85,7 @@ const QuestionEntry = ({ question }) => {
             |
             <button
               type='button'
-              className='add-answer'
+              id='add-answer'
               style={{ textDecoration: 'underline' }}
               onClick={() => { setIsModalOpen(true); }}
             >
@@ -106,7 +107,7 @@ const QuestionEntry = ({ question }) => {
       {
         isModalOpen && (
           <Modal>
-            <AddAnswerForm questionId={question_id} questionBody={question_body} setIsModalOpen={setIsModalOpen} />
+            <AddAnswerForm questionId={question_id} questionBody={question_body} productName={productName} setIsModalOpen={setIsModalOpen} />
           </Modal>
         )
       }

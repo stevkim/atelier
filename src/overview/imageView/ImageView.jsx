@@ -11,15 +11,15 @@ const ImageView = ({ photos, expanded, changeView }) => {
   };
 
   return (
-    <div className='overview-image-view'>
+    <div className='overview-image-view' id='overview-image-view'>
       <ImgMain
-        url={photos[thumbnail]?.url || ''}
+        url={photos?.length > 0 ? photos[thumbnail]?.url : 'https://i.imgur.com/re3s4Yh.png'}
         expanded={expanded}
         changeView={changeView}
       />
 
       <ThumbnailView
-        thumbnails={photos}
+        thumbnails={photos?.length > 0 ? photos : [{ thumbnail_url: 'https://i.imgur.com/re3s4Yh.png' }]}
         thumbnail={thumbnail}
         expanded={expanded}
         updateThumbnail={updateThumbnail}

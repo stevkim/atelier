@@ -43,26 +43,21 @@ const AddToCart = ({ skus }) => {
         <QuantityDropdown skus={skusArray} sizeSelected={sizeSelected} updateQuantitySelected={updateQuantitySelected} />
         {sizeSelected[0] === 0
           ? (
-            <div className='overview-cart-submit'>
-              Add To Cart
+            <div>
               <button
                 type='button'
+                className='overview-cart-submit'
                 onClick={() => {
                   const sizeDropdown = document.getElementById('overview-size-dropdown');
                   sizeDropdown.style.color = 'red';
                 }}
               >
-                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M12 4.5v15m7.5-7.5h-15' />
-                </svg>
-
+                Add To Cart
               </button>
             </div>
           )
           : (
-            <div>
-              <button type='submit' className='overview-cart-submit'>Add To Cart</button>
-            </div>
+            <button type='submit' className='overview-cart-submit'>Add To Cart</button>
           )}
 
       </form>

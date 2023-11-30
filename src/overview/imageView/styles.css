@@ -82,6 +82,7 @@
   box-sizing: border-box;
   width: 100px;
   height: 100px;
+  background-repeat: no-repeat;
   display: none;
   pointer-events: none;
 }

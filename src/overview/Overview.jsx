@@ -3,7 +3,6 @@ import Details from './details/Details.jsx';
 import Info from './info/Info.jsx';
 import ImageView from './imageView/ImageView.jsx';
 import './styles.css';
-import productExample from './product-example.js';
 import { getProductStyles } from './helper-funcs/axios-requests.js';
 
 const Overview = ({ productId, reviewsMetaData, productInfo }) => {
@@ -32,7 +31,7 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
 
   return (
     <div className='overview' id='overview'>
-      <ImageView photos={selectedStyle.photos || []} expanded={inExpandedView} changeView={changeView} />
+      <ImageView photos={selectedStyle?.photos} expanded={inExpandedView} changeView={changeView} />
       {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
       {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>

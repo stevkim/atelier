@@ -9,7 +9,7 @@ const QuantityDropdown = ({ skus, sizeSelected, updateQuantitySelected }) => {
         className='overview-quantity-dropdown'
         onChange={(e) => { updateQuantitySelected(e.target.value); }}
       >
-        {Array.from(Array(skus[sizeSelected[0]].quantity)).slice(0, 25).map((value, index) => (
+        {Array.from(Array(skus[sizeSelected[0]][1].quantity)).slice(0, 25).map((value, index) => (
           <option key={`overview-cart-quantity-${index + 1}`} value={index + 1}>
             {index + 1}
           </option>

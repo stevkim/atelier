@@ -22,9 +22,8 @@
 
 .overview-cart-submit {
   margin-top: 5%;
-  inline-size: 70%;
   font-size: 2vw;
-  min-width: 4vw;
+  width: 16vw;
   border-style: solid;
   object-fit: fill;
 }

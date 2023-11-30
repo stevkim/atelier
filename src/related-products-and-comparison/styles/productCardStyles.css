@@ -3,6 +3,7 @@
   border: 1px solid;
   padding: 5px;
   cursor: pointer;
+  background-color: rgb(243, 238, 229);
 }
 
 .image-container {
@@ -16,7 +17,7 @@
 
 .image-container img {
   box-sizing: border-box;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }

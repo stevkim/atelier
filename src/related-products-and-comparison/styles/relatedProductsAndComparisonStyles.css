@@ -24,3 +24,13 @@
   box-sizing: border-box;
   padding: 0 8px;
 }
+
+.carousel-button {
+  border: 1px solid;
+}
+
+.add-to-outfit-button {
+  border: 1px solid;
+  width: '262px';
+  height: 100%;
+}

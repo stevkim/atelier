@@ -5,7 +5,6 @@ import { getReviewList } from './lib/fetchFunctions.js';
 import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
-import { getTotalReviewCount } from './lib/utilityFunctions.js';
 
 const RatingsReviews = ({ id, productName, metaData }) => {
   const [reviewList, setReviewList] = useState([]);
@@ -16,8 +15,6 @@ const RatingsReviews = ({ id, productName, metaData }) => {
   const activeListRef = useRef(null);
 
   const backToTop = () => activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const totalReviews = useMemo(() => getTotalReviewCount(metaData.recommended), [metaData]);
 
   const activeList = useMemo(() => {
     if (filter.stars === 0) return reviewList.slice(0, filter.currentLength);
@@ -82,12 +79,11 @@ const RatingsReviews = ({ id, productName, metaData }) => {
     <section id='ratings-reviews' className='ratings-reviews-wrapper'>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter} />
+        <RatingBreakdown data={metaData} handleStarFilter={handleStarFilter} />
         <ReviewsList
           reviewList={activeList}
           handleListIncrement={handleListIncrement}
           setModal={setModal}
-          totalReviews={totalReviews}
           setSort={handleSort}
           disable={disable}
           ref={activeListRef}

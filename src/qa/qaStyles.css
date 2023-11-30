@@ -43,6 +43,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1.4em;
+  border-bottom: 1px solid #e5e7eb;
   /* margin-bottom: 2.5em; */
 }
 .question-header {
@@ -59,24 +60,48 @@ button {
   gap: 1em;
   margin-top: 1em;
 }
+
+
+
+
+
 .qa-container {
   display: flex;
   flex-direction: column;
+  min-width: 980px;
+  max-width: 78rem;
   max-height: 100vh;
-  max-width: 1920px;
-  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 6.25rem;
 }
+
+.qa-search-container {
+  display: flex;
+  position: relative;
+  margin-bottom: 1.7rem;
+}
+.qa-search-container input {
+  width: 100vw;
+  height: 2.1rem;
+  font-size: 1rem;
+  padding-right: 2.1rem;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+
+
 .question-list-container-expanded {
   flex: 1 1 auto;
   overflow-y: auto;
-}
-.qa-search-container {
-  display: flex;
-  margin-bottom: 1em;
-}
-.qa-search-container > input {
-  width: 100vw;
-  height: 4vh;
 }
 .qa-modal-background {
   background: rgba(100, 100, 100, .6);

@@ -8,15 +8,15 @@
   font-size: 1.5vw;
   aspect-ratio: 7 / 8;
   grid-template-areas:
-    'reviews'
-    'categor'
-    'title'
-    'price'
-    'selectStyle'
-    'AddToCart'
-    'buttons';
+    'reviews .'
+    'categor .'
+    'title .'
+    'price .'
+    'selectStyle styleButtons'
+    'AddToCart .'
+    'buttons .';
   grid-auto-rows: 7% 7% 12% 14% 40% 20% 7%;
-  grid-auto-columns: 80%;
+  grid-auto-columns: 80% 20%;
 }
 
 .overview-reviews {
@@ -46,7 +46,6 @@
 }
 
 .overview-price-container {
-  position: relative;
   grid-area: price;
   text-wrap: nowrap;
   height: 8vh;
@@ -79,13 +78,20 @@
   z-index: 1;
   grid-area: selectStyle;
   row-gap: 14%;
-  padding-top: 4vh;
+  padding-top: 2vh;
   padding-bottom: 2vh;
   width: 100%;
   display: grid;
   grid-template-columns: 20% 20% 20% 20%;
-  overflow-y: auto;
+  overflow: hidden;
   aspect-ratio: 4 / 1;
+}
+
+.overview-styles-view-buttons {
+  grid-area: styleButtons;
+  display: grid;
+  padding-top: 2vh;
+  grid-template-rows: 50% 50%;
 }
 
 .overview-style-thumbnail {

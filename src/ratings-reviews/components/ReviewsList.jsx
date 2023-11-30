@@ -3,7 +3,7 @@ import ReviewItem from './ReviewItem.jsx';
 import ReviewsHeader from './ReviewsHeader.jsx';
 import useThrottle from '../hooks/useThrottle.jsx';
 
-const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, totalReviews, disable }, ref) => {
+const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disable }, ref) => {
   const [filterValue, setFilterValue] = useState('');
   const [scrollButton, setScrollButton] = useState(false);
 
@@ -23,7 +23,7 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, total
 
   return (
     <section className='review-list-container'>
-      <ReviewsHeader totalReviews={totalReviews} setSort={setSort} setFilter={setFilterValue} />
+      <ReviewsHeader totalReviews={list.length} setSort={setSort} setFilter={setFilterValue} />
       <div className='review-list-wrapper' onScroll={disable ? () => {} : (e) => throttledScroll(e)} ref={ref} data-testid='review-list'>
         {list.length > 0
           ? (
@@ -34,6 +34,7 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, total
             </>
           )
           : <div>Whoops there are no reviews here!</div>}
+        {disable && <div style={{ margin: '0 auto', width: 'fit-content', padding: '.2em' }}>No more reviews to load!</div>}
       </div>
       <div className='review-button-wrapper'>
         <div className='add-review-button'>

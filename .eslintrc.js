@@ -28,9 +28,9 @@ module.exports = {
   rules: {
     'react/prop-types': 0,
     'react/function-component-definition': [1, { namedComponents: 'arrow-function' }],
+    'import/no-extraneous-dependencies': 0,
     'import/extensions': 'off',
     'no-console': 0,
-    'react-hooks/exhaustive-deps': 0,
     'max-len': ['warn', { code: 150, ignoreStrings: true }],
     'jsx-quotes': ['warn', 'prefer-single'],
     'no-unused-expressions': ['warn', { allowTernary: true }],

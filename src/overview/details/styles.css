@@ -9,6 +9,7 @@
     '. description feature';
   gap: 1%;
   grid-template-columns: 9% 48.75%;
+  grid-template-rows: 33% 33% 33%;
   font-size: calc(1.4vw + 1px);
 }
 

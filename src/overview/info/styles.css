@@ -15,7 +15,7 @@
     'selectStyle styleButtons'
     'AddToCart .'
     'buttons .';
-  grid-auto-rows: 7% 7% 12% 14% 40% 20% 7%;
+  grid-auto-rows: 7% 7% 12% 16% 35% 24% 4%;
   grid-auto-columns: 80% 20%;
 }
 
@@ -78,11 +78,11 @@
   z-index: 1;
   grid-area: selectStyle;
   row-gap: 14%;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  padding-top: 2.5vh;
+  padding-bottom: 5.5vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 20% 20% 20% 20%;
+  grid-template-columns: 25% 25% 25% 25%;
   overflow: hidden;
   aspect-ratio: 4 / 1;
 }
@@ -91,11 +91,11 @@
   grid-area: styleButtons;
   display: grid;
   padding-top: 2vh;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 70% 30%;
 }
 
 .overview-style-thumbnail {
-  border-style: solid;
+  border: 1px solid black;
   border-radius: 100%;
   width: 65%;
   padding-left: 5%;

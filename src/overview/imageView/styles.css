@@ -10,7 +10,7 @@
   width: inherit;
   transition: transform 0.4s ease-out;
   aspect-ratio: 7 / 6;
-  border-style: solid;
+  border: 2px solid black;
 }
 
 .overview-thumbnail-view-false {
@@ -34,7 +34,7 @@
 }
 
 .overview-thumbnail-false {
-  border-style: solid;
+  border: 2px solid black;
   width: 100%;
   aspect-ratio: 1 / 1;
   text-align: center;
@@ -45,7 +45,7 @@
 }
 
 .overview-thumbnail-true {
-  border-style: solid;
+  border: 2px solid black;
   width: calc(47.5% / 7);
   aspect-ratio: 1 / 1;
   border-radius: 100%;

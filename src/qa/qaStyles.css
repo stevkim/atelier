@@ -188,17 +188,9 @@ button {
   font-weight: bold;
 }
 
-/* .qa-add-answer-button:hover {
-  color: #62554a;
-} */
-
-
-
-
-
-
-
-
+.qa-add-answer-button:hover {
+  color: #a19992;
+}
 
 
 

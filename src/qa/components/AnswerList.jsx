@@ -2,7 +2,7 @@ import React from 'react';
 import AnswerEntry from './AnswerEntry.jsx';
 
 const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) => (
-  <div className={isAnswerExpanded ? 'answer-list-container-expanded' : 'answer-list-container'}>
+  <div className={`answer-list-container${isAnswerExpanded ? '-expanded' : ''}`}>
     {
       currAnswerList.map((answer) => <AnswerEntry key={answer.answer_id} answer={answer} />)
     }

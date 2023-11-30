@@ -48,6 +48,10 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       });
   }, [productId, term]);
 
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'scroll';
+  }, [isModalOpen]);
+
   return (
     <div id='questions-answers' className='qa-container'>
       <h2>QUESTIONS AND ANSWERS</h2>

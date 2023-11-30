@@ -56,7 +56,7 @@ describe('QuestionEntry Component', () => {
 
     render(<QuestionEntry question={questions.results[0]} />);
     const helpfulCount = await screen.findByText(/(10)/i);
-    const yesElement = screen.getByTitle('helpfulQuestion');
+    const yesElement = screen.getByTitle('IsQuestionHelpful');
 
     await act (async () => {
       fireEvent.click(yesElement);

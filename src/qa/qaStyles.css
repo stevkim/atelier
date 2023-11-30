@@ -1,108 +1,207 @@
-.answer-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2em;
-}
-.answer-details-container {
-  display: flex;
-  gap: 1em;
-  font-size: 0.9em;
-}
-.qa-helpful-container {
-  display: flex;
-  gap: 0.6em;
-}
-.answer {
-  margin-top: 0;
-}
-button {
-  cursor: pointer;
-}
-.answer-list-container {
-  margin-top: 0;
-}
-.answer-list-container-expanded {
-  max-height: 50vh;
-  width: 100vw;
-  overflow-y: auto;
-}
-.answer-photos {
-  height: 5.8em;
-  width: 7em;
-}
-.photos-container {
-  display: flex;
-  gap: 0.5em;
-}
-.load-more-answers,
-.collapse-answers {
-  font-size: 0.8em;
-  font-weight: bold;
-}
-.question-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4em;
-  border-bottom: 1px solid #e5e7eb;
-  /* margin-bottom: 2.5em; */
-}
-.question-header {
-  display: flex;
-  justify-content: space-between;
-}
-.answer-indicator,
-.question-indicator {
-  display: flex;
-  gap: 0.5em;
-}
-.qa-button-container {
-  display: flex;
-  gap: 1em;
-  margin-top: 1em;
-}
-
-
-
-
+/*------*
+| Q & A |
+*-------*/
 
 .qa-container {
   display: flex;
   flex-direction: column;
   min-width: 980px;
   max-width: 78rem;
-  max-height: 100vh;
-  margin: 0 auto;
+  max-height: calc(100vh - 50px);
+  margin: 3.75rem auto;
   padding: 0 6.25rem;
+  color: var(--text-color);
 }
+
+/*-----------*
+| Search Bar |
+*------------*/
 
 .qa-search-container {
   display: flex;
   position: relative;
-  margin-bottom: 1.7rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid black;
 }
+
 .qa-search-container input {
-  width: 100vw;
+  width: 75vw;
   height: 2.1rem;
   font-size: 1rem;
-  padding-right: 2.1rem;
+  padding-left: 1.8rem;
+  border: 0;
+  outline: none;
 }
 
 .search-icon {
   position: absolute;
   top: 50%;
-  right: 0.5rem;
   transform: translateY(-50%);
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
-
-
+/*----------*
+| Questions |
+*-----------*/
 
 .question-list-container-expanded {
   flex: 1 1 auto;
   overflow-y: auto;
 }
+
+.question-list-container-expanded::-webkit-scrollbar {
+  display: none;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 0;
+}
+
+.question-container:first-child {
+  padding-top: 0;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-indicator,
+.question-indicator {
+  display: flex;
+  gap: 0.5em;
+}
+
+.question-details-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.qa-helpful-container {
+  display: flex;
+  align-items: center;
+}
+
+.qa-bold {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/*--------*
+| Answers |
+*---------*/
+
+.answer-list-container-expanded {
+  max-height: 50vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.answer-list-container,
+.answer-list-container-expanded{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.answer-list-container-expanded::-webkit-scrollbar {
+  display: none;
+}
+
+.answer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-container p {
+  margin: 0 0 0.2rem;
+}
+
+.photos-container {
+  display: flex;
+  gap: 0.5em;
+}
+
+.photos-container img {
+  height: 5.5em;
+  width: 7em;
+}
+
+.answer-details-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+}
+
+
+
+.qa-button-container {
+  display: flex;
+  gap: 1em;
+  margin-top: 1.5rem;
+}
+
+
+
+button {
+  cursor: pointer;
+}
+.load-more-answers,
+.collapse-answers {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/*------*
+| Icons |
+*-------*/
+
+.report-answer,
+.qa-helpful {
+  width: 1.2rem;
+  height: 1.2rem;
+  stroke: #62554a;
+}
+.qa-icon-button {
+  padding: 0.2rem 0.2rem 0;
+}
+.qa-fill {
+  fill: #62554a;
+}
+
+.qa-plus-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.qa-add-answer-button {
+  display: flex;
+  align-items: center;
+  color: #62554a;
+  font-weight: bold;
+}
+
+/* .qa-add-answer-button:hover {
+  color: #62554a;
+} */
+
+
+
+
+
+
+
+
+
+
+
 .qa-modal-background {
   background: rgba(100, 100, 100, .6);
   width: 100vw;

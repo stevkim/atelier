@@ -5,6 +5,7 @@ import RatingsReviews from './ratings-reviews/RatingsReviews.jsx';
 import RelatedProductsAndComparison from './related-products-and-comparison/RelatedProductsAndComparison.jsx';
 import { getProductInfo } from './overview/helper-funcs/axios-requests.js';
 import { getReviewMetaData } from './ratings-reviews/lib/fetchFunctions.js';
+import Navbar from './components/navbar/Navbar.jsx';
 
 const Overview = lazy(() => import('./overview/Overview.jsx'));
 
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <div>
+      <Navbar />
       <Suspense fallback={<div>Loading...</div>}>
         <Overview productId={currentProductId} reviewsMetaData={metaData} productInfo={productInfo} />
         <RelatedProductsAndComparison

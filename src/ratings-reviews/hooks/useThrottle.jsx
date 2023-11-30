@@ -8,8 +8,8 @@ const useThrottle = (fn, delay) => {
     const wait = () => {
       if (inputs) {
         fn.apply(this, inputs);
-        inputs = null;
-        called = setTimeout(wait, delay);
+        inputs = null; // eslint-disable-line
+        called = setTimeout(wait, delay); // eslint-disable-line
       } else {
         called = null;
       }

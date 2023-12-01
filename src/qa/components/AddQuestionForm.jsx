@@ -44,19 +44,21 @@ const AddQuestionForm = ({ productId, productName, setIsModalOpen }) => {
       </div>
       <div className='qa-form-container'>
         <form title='questionForm' onSubmit={handleAddQuestion}>
-            <label htmlFor='nickname-input'>
-              <div className='qa-form-row'>
-                Nickname
-                <span className='qa-required-input'> *</span>
-                <input
-                  className='qa-input'
-                  type='text'
-                  placeholder='Example: jackson11!'
-                  maxLength={60}
-                  onChange={(e) => { updateFormDataValue(e, 'name'); }}
-                />
-              </div>
-            </label>
+          <label htmlFor='nickname-input'>
+            <div className='qa-form-row'>
+              Nickname
+              <span className='qa-required-input'> *</span>
+            </div>
+            <div className='qa-form-row'>
+              <input
+                className='qa-input'
+                type='text'
+                placeholder='Example: jackson11!'
+                maxLength={60}
+                onChange={(e) => { updateFormDataValue(e, 'name'); }}
+              />
+            </div>
+          </label>
             <p>For privacy reasons, do not use your full name or email address</p>
             <label htmlFor='email-input'>
               Email

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import ProductCard from './ProductCard.jsx';
 import '../styles/relatedProductsAndComparisonStyles.css';
 
@@ -51,4 +51,4 @@ const ProductList = ({
   );
 };
 
-export default ProductList;
+export default memo(ProductList);

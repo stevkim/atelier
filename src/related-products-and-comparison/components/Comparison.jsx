@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { compareFeatures } from '../lib/utilityFunctions.js';
 import '../styles/comparisonStyles.css';
 import { v4 as key } from 'uuid';
@@ -27,4 +27,4 @@ const Comparison = ({ currentProduct, relatedProduct, setModal }) => (
     </div>
 );
 
-export default Comparison;
+export default memo(Comparison);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import Price from '../../components/price/Price.jsx';
 import '../styles/productCardStyles.css';
@@ -29,4 +29,4 @@ const ProductCard = ({
   </div>
 );
 
-export default ProductCard;
+export default memo(ProductCard);

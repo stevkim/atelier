@@ -80,7 +80,7 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct, curre
   };
 
   return (
-    <div id='related-products'>
+    <div id='related-products' className='related-products-and-comparison'>
       <h2>RELATED PRODUCTS</h2>
       <ProductList
         products={relatedProducts}

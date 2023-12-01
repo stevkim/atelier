@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 const SizeForm = ({ setCharacteristic }) => (
   <div onChange={(e) => setCharacteristic('Size', e.target.value)}>
-    <p>Size</p>
+    Size
     <div className='product-input-wrapper'>
       <label htmlFor='size-1'>
         <input id='size-1' name='size' type='radio' value={1} />

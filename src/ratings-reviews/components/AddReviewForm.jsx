@@ -148,14 +148,11 @@ const AddReviewForm = ({ data, setModal, productName }) => {
             onChange={(e) => setUserInput({ ...userInput, body: e.target.value })}
             onBlur={(e) => checkValid(e, 'body')}
           />
-          {userInput.body.length < 50
-            ? (
-              <div className='body-subtext'>
-                Minimum required characters left:
-                {`[${50 - userInput.body.length}]`}
-              </div>
-            )
-            : <div className='body-subtext'>Minimum reached</div>}
+          <div className='body-subtext'>
+            {userInput.body.length < 50
+              ? `Minimum required characters left: [${50 - userInput.body.length}]`
+              : 'Minimum reached'}
+          </div>
 
           {characteristics.Size && <SizeForm setCharacteristic={setCharacteristic} />}
           {characteristics.Width && <WidthForm setCharacteristic={setCharacteristic} />}

@@ -9,6 +9,8 @@ const ReviewItemImages = ({ photos }) => (
           aria-label={photo.id}
           src={photo.url}
           alt='Reviewer upload'
+          height='165'
+          width='165'
           className='review-item-image'
           onError={(e) => { e.target.src = 'https://i.imgur.com/mYzivnl.png'; }}
         />

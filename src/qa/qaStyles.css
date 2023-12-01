@@ -5,8 +5,9 @@
 .qa-container {
   display: flex;
   flex-direction: column;
+  width: 78vw;
   min-width: 980px;
-  max-width: 78rem;
+  max-width: 1400px;
   max-height: calc(100vh - 50px);
   margin: 3.75rem auto;
   padding: 0 6.25rem;
@@ -20,7 +21,7 @@
 .qa-search-container {
   display: flex;
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.8rem;
   border-bottom: 1px solid black;
 }
 
@@ -31,6 +32,7 @@
   padding-left: 1.8rem;
   border: 0;
   outline: none;
+  color: var(--text-color);
 }
 
 .search-icon {
@@ -39,6 +41,7 @@
   transform: translateY(-50%);
   width: 1.3rem;
   height: 1.3rem;
+  stroke: var(--text-color);
 }
 
 /*----------*
@@ -60,6 +63,7 @@
   gap: 0.8rem;
   border-bottom: 1px solid #e5e7eb;
   padding: 1.5rem 0;
+  box-sizing: border-box;
 }
 
 .question-container:first-child {
@@ -96,16 +100,17 @@
 | Answers |
 *---------*/
 
-.answer-list-container-expanded {
-  max-height: 50vh;
-  width: 100vw;
-  overflow-y: auto;
-}
-
-.answer-list-container,
-.answer-list-container-expanded{
+.answer-list-container {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+}
+
+.answer-list-container-expanded {
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  overflow-y: auto;
   gap: 2rem;
 }
 
@@ -140,62 +145,91 @@
   margin-top: 0.1rem;
 }
 
-
-
-.qa-button-container {
-  display: flex;
-  gap: 1em;
-  margin-top: 1.5rem;
-}
-
-
-
-button {
-  cursor: pointer;
-}
-.load-more-answers,
-.collapse-answers {
-  font-size: 0.8em;
-  font-weight: bold;
-}
-
-/*------*
-| Icons |
-*-------*/
+/*----------------*
+| Icons & Buttons |
+*-----------------*/
 
 .report-answer,
 .qa-helpful {
   width: 1.2rem;
   height: 1.2rem;
-  stroke: #62554a;
+  stroke: var(--text-color);
 }
+
+.qa-fill {
+  fill: var(--text-color);
+}
+
+.report-answer:hover,
+.qa-helpful:hover {
+  stroke: #a19992;
+}
+
 .qa-icon-button {
   padding: 0.2rem 0.2rem 0;
 }
-.qa-fill {
-  fill: #62554a;
-}
 
-.qa-plus-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+.qa-add-answer-button svg {
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 .qa-add-answer-button {
   display: flex;
   align-items: center;
-  color: #62554a;
-  font-weight: bold;
+  color: var(--text-color);
+  font-weight: 600;
 }
 
-.qa-add-answer-button:hover {
+.qa-add-answer-button:hover,
+.qa-add-answer-button svg:hover,
+.load-more-answers:hover,
+.collapse-answers:hover,
+.qa-close-modal svg:hover {
   color: #a19992;
+  fill: #a19992;
 }
 
+button {
+  cursor: pointer;
+}
 
+.load-more-answers,
+.collapse-answers {
+  width: fit-content;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.qa-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 1.5rem;
+}
+
+.qa-button-container button {
+  border: 2.5px solid var(--text-color);
+  border-radius: 0.3rem;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.qa-button-container button:hover {
+  color: white;
+  background-color: var(--text-color);
+}
+
+/*------*
+| Modal |
+*-------*/
 
 .qa-modal-background {
-  background: rgba(100, 100, 100, .6);
+  background: rgba(0, 0, 0, .7);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -209,25 +243,61 @@ button {
   top: 0;
   left: 0;
 }
+
 .qa-modal-container {
-  width: 60vw;
-  max-width: 600px;
+  width: 50vw;
+  max-width: 500px;
   background-color: white;
   padding: 2em;
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
+
+.qa-close-modal svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .qa-close-modal {
   margin-left: auto;
 }
+
 .qa-form-container {
   display: flex;
   flex-direction: column;
 }
+
 .qa-required-input {
   color: red;
+}
+.qa-submit-form {
+  display: flex;
+  justify-content: center;
+}
+
+.qa-form-heading h2 {
+  margin: 0;
+}
+
+.qa-submit-form button {
+  background-color: var(--text-color);
+  border-radius: 0.3rem;
+  color: white;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.qa-submit-form button:hover {
+  opacity: 0.8;
+}
+
+.qa-form-heading h4 {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem 0 2rem;
 }

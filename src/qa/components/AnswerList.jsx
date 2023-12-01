@@ -11,7 +11,7 @@ const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handl
       && (
         <button
           type='button'
-          id='load-more-answers'
+          className='load-more-answers'
           onClick={handleLoadMoreAnswers}
         >
           LOAD MORE ANSWERS
@@ -23,7 +23,7 @@ const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handl
       && (
         <button
           type='button'
-          id='collapse-answers'
+          className='collapse-answers'
           onClick={handleCollapseAnswers}
         >
           COLLAPSE ANSWERS

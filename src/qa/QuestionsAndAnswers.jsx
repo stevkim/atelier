@@ -74,9 +74,9 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       <div className='qa-button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions
-          && <button type='button' id='more-questions' onClick={handleMoreQuestions}>More Questions</button>
+          && <button type='button' className='more-questions' onClick={handleMoreQuestions}>MORE QUESTIONS</button>
         }
-        <button type='button' id='add-question' onClick={() => { setIsModalOpen(true); }}>Add A Question</button>
+        <button type='button' className='add-question' onClick={() => { setIsModalOpen(true); }}>ADD A QUESTION</button>
       </div>
       {isModalOpen
         && (

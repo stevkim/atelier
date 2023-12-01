@@ -32,7 +32,7 @@ describe('QuestionEntry Component', () => {
     await act(async () => {
       render( <QuestionEntry question={questions.results[0]} />);
     });
-    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer' });
+    const addAnswerElement = screen.getByRole('button', { name: 'ADD ANSWER' });
 
     expect(addAnswerElement).toBeInTheDocument();
   });
@@ -43,7 +43,7 @@ describe('QuestionEntry Component', () => {
       render(<QuestionEntry question={questions.results[0]} />);
     });
 
-    const addAnswerElement = screen.getByRole('button', { name: 'Add Answer'});
+    const addAnswerElement = screen.getByRole('button', { name: 'ADD ANSWER'});
     fireEvent.click(addAnswerElement);
     const modalForm = screen.getByTitle('answerForm');
 
@@ -80,14 +80,14 @@ describe('QuestionAndAnswers Component', () => {
       render(<QuestionsAndAnswers />);
     });
 
-    expect(screen.getByRole('button', { name: 'Add A Question' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'ADD A QUESTION' })).toBeInTheDocument();
   });
 
   it('Displays the form to add a question upon clicking "Add A Question"', async () => {
     await act (async () => {
       render(<QuestionsAndAnswers />);
     });
-    const addQuestionButton = screen.getByRole('button', { name: 'Add A Question'});
+    const addQuestionButton = screen.getByRole('button', { name: 'ADD A QUESTION'});
 
     fireEvent.click(addQuestionButton);
 

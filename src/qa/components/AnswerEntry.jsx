@@ -37,7 +37,7 @@ const AnswerEntry = ({ answer }) => {
     <div className='answer-container'>
       <p>{body}</p>
       <div className='photos-container'>
-        {photos.map((photo) => <img key={photo.id} src={photo.url} alt='Photos for answer' />)}
+        {photos.map((photo) => <img key={photo.id} src={photo.url} alt='Photos for answer' width='160' height='160' />)}
       </div>
       <div className='answer-details-container'>
         <div>

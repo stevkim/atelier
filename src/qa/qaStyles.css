@@ -26,7 +26,8 @@
 }
 
 .qa-search-container input {
-  width: 75vw;
+  width: 100%;
+  display: flex;
   height: 2.1rem;
   font-size: 1rem;
   padding-left: 1.8rem;
@@ -258,6 +259,57 @@ button {
   border-radius: 4px;
 }
 
+/*-----*
+| Form |
+*------*/
+
+.qa-form-heading h2 {
+  margin: 0;
+}
+
+.qa-form-heading h4 {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem 0 1rem;
+}
+
+.qa-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-required-input {
+  color: red;
+}
+
+.qa-input {
+  height: 1.8rem;
+}
+
+.qa-textbox {
+  height: 3.8rem;
+}
+
+.qa-form-label {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+}
+
+.qa-label-description {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+}
+
+.qa-form-error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+/*-------------*
+| Modal Button |
+*--------------*/
+
 .qa-close-modal svg {
   width: 1.5rem;
   height: 1.5rem;
@@ -267,37 +319,20 @@ button {
   margin-left: auto;
 }
 
-.qa-form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.qa-required-input {
-  color: red;
-}
 .qa-submit-form {
   display: flex;
   justify-content: center;
 }
 
-.qa-form-heading h2 {
-  margin: 0;
-}
-
 .qa-submit-form button {
   background-color: var(--text-color);
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
   color: white;
   width: 100%;
   padding: 0.5rem 0;
+  margin: 1.5rem 0 0;
 }
 
 .qa-submit-form button:hover {
   opacity: 0.8;
-}
-
-.qa-form-heading h4 {
-  display: flex;
-  justify-content: center;
-  margin: 0.2rem 0 2rem;
 }

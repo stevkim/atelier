@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { markQuestionHelpful, getListOfAnswers } from '../lib/fetchFunctions.js';
+import { markQuestionHelpful } from '../lib/fetchFunctions.js';
 import AnswerList from './AnswerList.jsx';
 import Modal from './Modal.jsx';
 import AddAnswerForm from './AddAnswerForm.jsx';
@@ -9,7 +9,7 @@ const QuestionEntry = ({ question, productName }) => {
   const [updateQuestionHelpfulness, setUpdateQuestionHelpfulness] = useState(question_helpfulness);
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(false);
   const [currAnswerList, setCurrAnswerList] = useState([]);
-  const [answerList, setAnswerList] = useState([]);
+  const [answerList, setAnswerList] = useState(Object.values(answers));
   const [isAnswerExpanded, setIsAnswerExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,8 +26,6 @@ const QuestionEntry = ({ question, productName }) => {
     }
   };
 
-  const totalAnswers = Object.keys(answers).length;
-
   const handleLoadMoreAnswers = () => {
     setCurrAnswerList(answerList);
     setIsAnswerExpanded(true);
@@ -39,25 +37,21 @@ const QuestionEntry = ({ question, productName }) => {
   };
 
   useEffect(() => {
-    getListOfAnswers(question_id, totalAnswers)
-      .then((response) => {
-        const sortedAnswerList = response.data.results.sort((a, b) => {
-          const isSellerA = a.answerer_name === 'Seller';
-          const isSellerB = b.answerer_name === 'Seller';
+    const sortedAnswerList = [...answerList].sort((a, b) => {
+      const isSellerA = a.answerer_name === 'Seller';
+      const isSellerB = b.answerer_name === 'Seller';
 
-          if (isSellerA && !isSellerB) {
-            return -1;
-          } if (!isSellerA && isSellerB) {
-            return 1;
-          }
-          return b.helpfulness - a.helpfulness;
-        });
-        setAnswerList(sortedAnswerList);
-        setCurrAnswerList(sortedAnswerList.slice(0, 2));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      if (isSellerA && !isSellerB) {
+        return -1;
+      } if (!isSellerA && isSellerB) {
+        return 1;
+      }
+
+      return b.helpfulness - a.helpfulness;
+    });
+
+    setAnswerList(sortedAnswerList);
+    setCurrAnswerList(sortedAnswerList.slice(0, 2));
   }, []);
 
   return (
@@ -73,7 +67,7 @@ const QuestionEntry = ({ question, productName }) => {
               type='button'
               className='qa-icon-button'
               aria-label='Helpful Question'
-              style={{ textDecoration: isQuestionHelpful ? 'none' : 'underline', cursor: isQuestionHelpful && 'default' }}
+              style={{ cursor: isQuestionHelpful && 'default' }}
               onClick={() => { handleHelpfulQuestionClick(question_id); }}
             >
               {
@@ -101,15 +95,14 @@ const QuestionEntry = ({ question, productName }) => {
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='qa-fill'>
               <path fillRule='evenodd' d='M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z' clipRule='evenodd' />
             </svg>
-
           </button>
         </div>
       </div>
       <div className='answer-indicator'>
-        {totalAnswers > 0 && <div className='qa-bold'>A:</div>}
+        {answerList.length > 0 && <div className='qa-bold'>A:</div>}
         <AnswerList
           currAnswerList={currAnswerList}
-          totalAnswers={totalAnswers}
+          totalAnswers={answerList.length}
           handleLoadMoreAnswers={handleLoadMoreAnswers}
           handleCollapseAnswers={handleCollapseAnswers}
           isAnswerExpanded={isAnswerExpanded}

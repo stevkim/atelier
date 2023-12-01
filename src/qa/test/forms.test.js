@@ -12,33 +12,33 @@ describe('AddAnswerForm component', () => {
   it('Displays the Nickname label and the placeholder within the input', () => {
     render(<AddAnswerForm />);
 
-    expect(screen.getByLabelText('Nickname *')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Example: jack543!/i)).toBeInTheDocument();
+    expect(screen.getByText('Nickname')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example: jack543!')).toBeInTheDocument();
   });
 
   it('Displays the Email label and the placeholder within the input', () => {
     render(<AddAnswerForm />);
 
-    expect(screen.getByLabelText(/Email */i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Example: jack@email.com/i)).toBeInTheDocument();
+    expect(screen.getByText('Email')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example: jack@email.com')).toBeInTheDocument();
   });
 
   it('Displays the Answer label and its input', () => {
     render(<AddAnswerForm />);
 
-    expect(screen.getByLabelText(/Answer */i)).toBeInTheDocument();
+    expect(screen.getByTestId('qa-answer-label')).toBeInTheDocument();
   });
 
   it('Displays the X button to close the modal', () => {
     render(<AddAnswerForm />);
-    const cancelButton = screen.getByRole('button', { name: 'X' });
+    const cancelButton = screen.getByTestId('close-modal');
 
     expect(cancelButton).toBeInTheDocument();
   });
 
   it('Displays the Submit button', () => {
     render(<AddAnswerForm />);
-    const submitButton = screen.getByRole('button', { name: 'Submit'});
+    const submitButton = screen.getByRole('button', { name: 'SUBMIT'});
 
     expect(submitButton).toBeInTheDocument();
   });
@@ -48,7 +48,7 @@ describe('AddAnswerForm component', () => {
     axios.post.mockResolvedValue({});
 
     render(<AddAnswerForm setIsModalOpen={mockSetIsModalOpen} />);
-    const submitButton = screen.getByRole('button', { name: 'Submit'});
+    const submitButton = screen.getByRole('button', { name: 'SUBMIT'});
     fireEvent.click(submitButton);
 
     expect(screen.getByRole('list')).toBeInTheDocument();
@@ -59,34 +59,34 @@ describe('AddQuestionForm Component', () => {
   it('Displays the Nickname and label and the placeholder within the input', () => {
     render(<AddQuestionForm />);
 
-    expect(screen.getByLabelText('Nickname *')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Example: jackson11!/i)).toBeInTheDocument();
+    expect(screen.getByText('Nickname')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example: jackson11!')).toBeInTheDocument();
   })
 
   it('Displays the Email label and the placeholder within the input', () => {
     render(<AddQuestionForm />);
 
-    expect(screen.getByLabelText(/Email */i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Example: jack@email.com/i)).toBeInTheDocument();
+    expect(screen.getByText('Email')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example: jack@email.com')).toBeInTheDocument();
   });
 
   it('Displays the Question label and the placeholder within the input', () => {
     render(<AddQuestionForm />);
 
-    expect(screen.getByLabelText(/Question */i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Why did you like the product or not?/i)).toBeInTheDocument();
+    expect(screen.getByText('Question')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Ask your question')).toBeInTheDocument();
   });
 
   it('Displays the X button to close the modal', () => {
     render(<AddQuestionForm />);
-    const cancelButton = screen.getByTitle('CloseModal');
+    const cancelButton = screen.getByTestId('close-modal');
 
     expect(cancelButton).toBeInTheDocument();
   });
 
   it('Displays the Submit button', () => {
     render(<AddQuestionForm />);
-    const submitButton = screen.getByRole('button', { name: 'Submit'});
+    const submitButton = screen.getByRole('button', { name: 'SUBMIT'});
 
     expect(submitButton).toBeInTheDocument();
   });

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { v4 as key } from 'uuid';
 import { markAnswerHelpful, reportAnswer } from '../lib/fetchFunctions.js';
 import { convertDate } from '../lib/helperFunctions.js';
 
 const AnswerEntry = ({ answer }) => {
-  const { answer_id, body, date, answerer_name, helpfulness, photos } = answer;
+  const { id, body, date, answerer_name, helpfulness, photos } = answer;
   const [isAnswerHelpful, setIsAnswerHelpful] = useState(false);
   const [updateAnswerHelpfulness, setUpdateAnswerHelpfulness] = useState(helpfulness);
   const [reported, setReported] = useState(false);
 
-  const handleHelpfulAnswerClick = (id) => {
+  const handleHelpfulAnswerClick = (answerId) => {
     if (!isAnswerHelpful) {
-      markAnswerHelpful(id)
+      markAnswerHelpful(answerId)
         .then(() => {
           setUpdateAnswerHelpfulness(updateAnswerHelpfulness + 1);
           setIsAnswerHelpful(true);
@@ -21,9 +22,9 @@ const AnswerEntry = ({ answer }) => {
     }
   };
 
-  const handleReportClick = (id) => {
+  const handleReportClick = (answerId) => {
     if (!reported) {
-      reportAnswer(id)
+      reportAnswer(answerId)
         .then(() => {
           setReported(true);
         })
@@ -37,7 +38,7 @@ const AnswerEntry = ({ answer }) => {
     <div className='answer-container'>
       <p>{body}</p>
       <div className='photos-container'>
-        {photos.map((photo) => <img key={photo.id} src={photo.url} alt='Photos for answer' width='160' height='160' />)}
+        {photos.map((photo) => <img key={key()} src={photo} alt='Photos for answer' width='160' height='160' />)}
       </div>
       <div className='answer-details-container'>
         <div>
@@ -56,7 +57,7 @@ const AnswerEntry = ({ answer }) => {
             className='qa-icon-button'
             aria-label='Upvote Answer'
             style={{ textDecoration: isAnswerHelpful ? 'none' : 'underline', cursor: isAnswerHelpful && 'default' }}
-            onClick={() => { handleHelpfulAnswerClick(answer_id); }}
+            onClick={() => { handleHelpfulAnswerClick(id); }}
           >
             {
               isAnswerHelpful
@@ -80,7 +81,7 @@ const AnswerEntry = ({ answer }) => {
             aria-label='Report Answer'
             className='qa-icon-button'
             style={{ cursor: reported && 'default' }}
-            onClick={() => { handleReportClick(answer_id); }}
+            onClick={() => { handleReportClick(id); }}
           >
             {
               reported

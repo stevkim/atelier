@@ -45,7 +45,7 @@ describe('QuestionEntry Component', () => {
 
     const addAnswerElement = screen.getByRole('button', { name: 'ADD ANSWER'});
     fireEvent.click(addAnswerElement);
-    const modalForm = screen.getByTitle('answerForm');
+    const modalForm = screen.getByTestId('answer-form');
 
     expect(modalForm).toBeInTheDocument();
   });
@@ -91,6 +91,6 @@ describe('QuestionAndAnswers Component', () => {
 
     fireEvent.click(addQuestionButton);
 
-    expect(screen.getByTitle('questionForm')).toBeInTheDocument();
+    expect(screen.getByTestId('question-form')).toBeInTheDocument();
   });
 });

@@ -28,8 +28,10 @@ const getOverviewById = async (productId, productInfo, reviewMetaData) => {
 };
 
 const addToCart = (skuNum) => {
-  const url = `/cart?sku_id=${skuNum}`;
-  axios.post(url);
+  console.log('skuNum is...', skuNum);
+  const url = '/cart';
+  const body = { sku_id: skuNum };
+  axios.post(url, body);
 };
 
 export {

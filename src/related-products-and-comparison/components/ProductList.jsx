@@ -29,13 +29,13 @@ const ProductList = ({
 
   return (
     <div className='related-products'>
-      {leftButton && <button type='button' onClick={leftClickHandler}>{'<'}</button>}
+      {leftButton && <button type='button' className='carousel-button' onClick={leftClickHandler}>{'<'}</button>}
       <div className='carousel-container'>
         <div className='carousel-track' style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` }}>
           {products.map((product, index) => (
             <div key={product.id} className='carousel-item'>
               {product.id === -1 ? (
-                <button type='button' onClick={addToOutfit} style={{ width: '262px', minHeight: '396px' }} key={product.id}>
+                <button type='button' className='add-to-outfit-button' onClick={addToOutfit} style={{ width: '262px', minHeight: '396px' }} key={product.id}>
                   +
                   <br />
                   Add to Outfit
@@ -46,7 +46,7 @@ const ProductList = ({
           ))}
         </div>
       </div>
-      {rightButton ? <button type='button' onClick={rightClickHandler}>{'>'}</button> : <div />}
+      {rightButton ? <button type='button' className='carousel-button' onClick={rightClickHandler}>{'>'}</button> : <div />}
     </div>
   );
 };

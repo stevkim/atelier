@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import StarRating from '../../components/star-rating/StarRating.jsx';
 import countStarsAndReviews from './helper-funcs/countReviews.js';
 
@@ -20,4 +20,4 @@ const Reviews = ({ reviewsMetaData }) => {
   );
 };
 
-export default Reviews;
+export default memo(Reviews);

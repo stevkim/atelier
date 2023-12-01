@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Details from './details/Details.jsx';
 import Info from './info/Info.jsx';
 import ImageView from './imageView/ImageView.jsx';
@@ -26,7 +26,7 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
   };
 
   const changeView = () => {
-    setInExpandedView(true);
+    setInExpandedView(!inExpandedView);
   };
 
   return (

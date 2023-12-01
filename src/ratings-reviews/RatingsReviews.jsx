@@ -55,6 +55,10 @@ const RatingsReviews = ({ id, productName, metaData }) => {
           }
           setReviewList([...reviewList, ...data.results]);
           setPagination({ ...pagination, page: pagination.page + 1 });
+        })
+        .catch((err) => {
+          console.log(err);
+          return setDisable(true);
         });
     }
     setFilter({ ...filter, currentLength: filter.currentLength + 10 });

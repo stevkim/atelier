@@ -1,6 +1,6 @@
 const path = require('path');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -13,7 +13,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /\.test.js/, /\.spec.js/],
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
@@ -25,7 +25,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new NodePolyfillPlugin(),
-    new ESLintPlugin()
-  ]
+    new ESLintPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    })
+  ],
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getProduct, getRelatedProducts } from './lib/fetchFunctions.js';
 import { getProductsStyles, getRatings, getOutfitFromCookie } from './lib/utilityFunctions.js';
 import ProductList from './components/ProductList.jsx';
@@ -45,16 +45,16 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct, curre
     getOutfitData();
   }, []);
 
-  const productCardClickHandler = (id) => {
+  const productCardClickHandler = useCallback((id) => {
     setCurrentProduct(id);
-  };
+  }, []);
 
-  const relatedActionButtonClickHandler = (product) => {
+  const relatedActionButtonClickHandler = useCallback((product) => {
     setRelatedProduct(product);
     setModal(true);
-  };
+  }, []);
 
-  const addToOutfitHandler = async () => {
+  const addToOutfitHandler = useCallback(async () => {
     if (outfitProductIds.includes(currentProduct)) {
       console.log(`Product ID: ${currentProduct} already in Your Outfit`);
     } else {
@@ -67,9 +67,9 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct, curre
       setOutfitDefaultStyles([null, defaultStyle].concat(outfitDefaultStyles.slice(1)));
       setOutfitRatings([null, rating].concat(outfitRatings.slice(1)));
     }
-  };
+  }, [currentProduct, currentProductInfo, outfitDefaultStyles, outfitRatings, outfitProductIds, outfitProducts]);
 
-  const removeFromOutfitHandler = (product) => {
+  const removeFromOutfitHandler = useCallback((product) => {
     const indexToRemove = outfitProductIds.findIndex((productId) => productId === product.id);
     const outfitString = JSON.stringify(outfitProductIds.filter((val, index) => index !== indexToRemove).slice(1));
     document.cookie = `outfit=${outfitString}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
@@ -77,7 +77,7 @@ const RelatedProductsAndComparison = ({ currentProduct, setCurrentProduct, curre
     setOutfitProducts(outfitProducts.filter((val, index) => index !== indexToRemove));
     setOutfitDefaultStyles(outfitDefaultStyles.filter((val, index) => index !== indexToRemove));
     setOutfitRatings(outfitRatings.filter((val, index) => index !== indexToRemove));
-  };
+  }, [currentProduct, currentProductInfo, outfitProductIds, outfitProducts, outfitDefaultStyles, outfitRatings]);
 
   return (
     <div id='related-products' className='related-products-and-comparison'>

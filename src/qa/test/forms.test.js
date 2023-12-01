@@ -79,7 +79,7 @@ describe('AddQuestionForm Component', () => {
 
   it('Displays the X button to close the modal', () => {
     render(<AddQuestionForm />);
-    const cancelButton = screen.getByRole('button', { name: 'X' });
+    const cancelButton = screen.getByTitle('CloseModal');
 
     expect(cancelButton).toBeInTheDocument();
   });
@@ -96,7 +96,7 @@ describe('AddQuestionForm Component', () => {
     axios.post.mockResolvedValue({});
 
     render(<AddQuestionForm setIsModalOpen={mockSetIsModalOpen} />);
-    const submitButton = screen.getByRole('button', { name: 'Submit'});
+    const submitButton = screen.getByRole('button', { name: 'SUBMIT'});
     fireEvent.click(submitButton);
 
     expect(screen.getByRole('list')).toBeInTheDocument();

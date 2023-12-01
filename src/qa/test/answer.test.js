@@ -37,11 +37,11 @@ describe('AnswerEntry Component', () => {
     expect(helpfulCountElement).toBeInTheDocument();
   });
 
-  it('Displays "Report" on initial render', () => {
+  it('Displays report icon on initial render', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
-    const reportElement = screen.getByTitle('reportAnswer');
+    const reportElement = screen.getByTitle('ReportAnswer');
 
-    expect(reportElement).toHaveTextContent('Report');
+    expect(reportElement).toBeInTheDocument();
   });
 
   it('Increases helpful count upon clicking "Yes"', async () => {
@@ -49,7 +49,7 @@ describe('AnswerEntry Component', () => {
     render(<AnswerEntry answer={answers.results[0]} />);
 
     const helpfulCount = screen.getByText(/(13)/i);
-    const yesElement = screen.getByTitle('helpfulAnswer');
+    const yesElement = screen.getByTitle('IsAnswerHelpful');
 
     await act (async () => {
       fireEvent.click(yesElement);
@@ -58,16 +58,17 @@ describe('AnswerEntry Component', () => {
     expect(helpfulCount).toHaveTextContent(/(14)/i);
   });
 
-  it('Changes "Report" to Reported upon clicking "Report"', async () => {
+  it('Changes unfilled report icon to filled report icon upon clicking "Report"', async () => {
     axios.put.mockResolvedValue({});
     render(<AnswerEntry answer={answers.results[0]} />);
-    const reportElement = screen.getByTitle('reportAnswer');
+    const reportElement = screen.getByTitle('ReportAnswer');
 
     await act (async () => {
       fireEvent.click(reportElement);
     });
 
-    expect(reportElement).toHaveTextContent('Report');
+    const reportedElement = screen.getByTitle('ReportedAnswer');
+    expect(reportedElement).toBeInTheDocument();
   })
 });
 

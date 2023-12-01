@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getListOfQuestions = (id) => axios.get(`/qa/questions/?product_id=${id}&count=200`);
+export const getListOfQuestions = (id) => axios.get(`/qa/questions/?product_id=${id}&count=1000`);
 
 export const markQuestionHelpful = (id) => axios.put(`/qa/questions/${id}/helpful`, null);
 

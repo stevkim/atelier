@@ -9,6 +9,7 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => (
     id='overview-size-dropdown'
     onChange={(e) => {
       updateSizeSelected(e.target.value);
+      console.log(e.target.value);
       document.getElementById('overview-size-dropdown').style.color = 'black';
     }}
   >

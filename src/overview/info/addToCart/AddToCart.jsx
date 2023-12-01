@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import SizeDropdown from './SizeDropdown.jsx';
 import QuantityDropdown from './QuantityDropdown.jsx';
 import { addToCart } from '../../helper-funcs/axios-requests.js';
@@ -10,31 +10,29 @@ const AddToCart = ({ skus }) => {
   const [quantitySelected, setQuantitySelected] = useState(0);
   const [skusArray, setSkusArray] = useState([]);
   const [skuNumber, setSkuNumber] = useState(0);
-  // const [skuSubmitted, setSkuSubmitted] = useState(false);
 
   useEffect(() => {
     const skuArray = Object.entries(skus);
     skuArray.sort(compareByFirstEntry);
-    setSkuNumber(skuArray[0]);
+    if (skuArray[0]?.length > 0) {
+      setSkuNumber(skuArray[0][0]);
+    }
     setSkusArray(skuArray);
-    // setSkuSubmitted(false);
   }, [skus]);
 
-  const updateSizeSelected = (size) => {
-    setSkuNumber(skuNumber - sizeSelected + size); // skuNums are consecutive
+  const updateSizeSelected = useCallback((size) => {
+    setSkuNumber(skuNumber - sizeSelected[0] + size);
     setSizeSelected([size, true]);
-    // setSkuSubmitted(false);
-  };
+  }, []);
 
-  const updateQuantitySelected = (int) => {
+  const updateQuantitySelected = useCallback((int) => {
     setQuantitySelected(int);
-  };
+  }, []);
 
-  const cartSubmitHandler = (e) => {
+  const cartSubmitHandler = useCallback((e) => {
     e.preventDefault();
     addToCart(skuNumber, quantitySelected); // This is bugged currently. Request returns a 422.
-    // setSkuSubmitted(true);
-  };
+  }, []);
 
   if (skusArray.length > 0) {
     return (
@@ -69,4 +67,4 @@ const AddToCart = ({ skus }) => {
   );
 };
 
-export default AddToCart;
+export default memo(AddToCart);

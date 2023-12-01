@@ -6,7 +6,6 @@ import RelatedProductsAndComparison from './related-products-and-comparison/Rela
 import { getProductInfo } from './overview/helper-funcs/axios-requests.js';
 import { getReviewMetaData } from './ratings-reviews/lib/fetchFunctions.js';
 import Navbar from './components/navbar/Navbar.jsx';
-import Share from './Share.jsx';
 
 const App = () => {
   const [currentProductId, setCurrentProductId] = useState(40348);
@@ -41,7 +40,6 @@ const App = () => {
       />
       <QuestionsAndAnswers productId={currentProductId} productName={productInfo.name} />
       <RatingsReviews id={currentProductId} productName={productInfo.name} metaData={metaData} />
-      <Share id={currentProductId} />
     </div>
   );
 };

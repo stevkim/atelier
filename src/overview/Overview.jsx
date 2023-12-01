@@ -31,8 +31,10 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
 
   return (
     <div className='overview' id='overview'>
-      <ImageView photos={selectedStyle?.photos} expanded={inExpandedView} changeView={changeView} />
-      {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '2vw', justifyContent: 'center' }}>
+        <ImageView photos={selectedStyle?.photos} expanded={inExpandedView} changeView={changeView} />
+        {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+      </div>
       {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>
   );

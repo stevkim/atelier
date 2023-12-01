@@ -15,8 +15,9 @@ const ImgMain = ({ url, expanded, changeView }) => (
       if (!expanded) {
         const thisImg = document.getElementById('overview-img-main');
         const container = document.getElementById('overview');
-        container.style.marginBottom = '10%';
         container.style.marginTop = '4%';
+        container.style.marginBottom = '10%';
+        thisImg.style.marginTop = '4%';
         thisImg.style.transform = 'scale(2, 1.25)';
         thisImg.style.left = '27vw';
         changeView();

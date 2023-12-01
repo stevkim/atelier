@@ -47,6 +47,7 @@ const AddToCart = ({ skus }) => {
               <button
                 type='button'
                 className='overview-cart-submit'
+                aria-label='add-to-cart'
                 onClick={() => {
                   const sizeDropdown = document.getElementById('overview-size-dropdown');
                   sizeDropdown.style.color = 'red';
@@ -57,7 +58,7 @@ const AddToCart = ({ skus }) => {
             </div>
           )
           : (
-            <button type='submit' className='overview-cart-submit'>Add To Cart</button>
+            <button type='submit' className='overview-cart-submit' aria-label='add-to-cart'>Add To Cart</button>
           )}
 
       </form>

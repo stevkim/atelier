@@ -9,8 +9,8 @@
     '. description feature';
   gap: 1%;
   grid-template-columns: 9% 48.75%;
-  grid-template-rows: 33% 33% 33%;
-  font-size: calc(1.4vw + 1px);
+  grid-template-rows: 25% 37.5% 37.5%;
+  font-size: calc(1.3vw + 1px);
 }
 
 .overview-slogan {

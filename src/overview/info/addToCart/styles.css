@@ -1,6 +1,5 @@
 #overview-cart-form {
   grid-area: AddToCart;
-  aspect-ratio: 4 / 2;
   z-index: 1;
 }
 
@@ -24,6 +23,6 @@
   margin-top: 5%;
   font-size: 2vw;
   width: 16vw;
-  border-style: solid;
+  border: 1px solid black;
   object-fit: fill;
 }

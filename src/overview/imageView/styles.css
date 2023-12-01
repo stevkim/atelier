@@ -103,9 +103,16 @@
 .overview-right-button {
   position: absolute;
   top: 72.5%;
-  left: calc(53.5% - 1vw - 13px);
+  left: calc(40vw);
   font-size: 1.5vw;
   z-index: 1;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.overview-right-button svg {
+  height: 1em;
+  width: 1em;
 }
 
 #zoom-box {

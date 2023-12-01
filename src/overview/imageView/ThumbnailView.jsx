@@ -43,6 +43,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
             className='overview-thumbnail-button'
             onClick={() => { incrementThumbnail(+1); }}
             type='button'
+            aria-label='next-thumbnail'
           >
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3' />
@@ -54,7 +55,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
       </div>
       {thumbnails.length > 0
         ? (
-          <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }} type='button'>
+          <button className='overview-left-button' aria-label='style-left' onClick={() => { incrementThumbnail(-1); }} type='button'>
 
             <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
               <path strokeLinecap='round' strokeLinejoin='round' d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18' />
@@ -63,7 +64,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
           </button>
         ) : ''}
       {thumbnails.length > 0 ? (
-        <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }} type='button'>
+        <button className='overview-right-button' aria-label='style-right' onClick={() => { incrementThumbnail(+1); }} type='button'>
           <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
             <path strokeLinecap='round' strokeLinejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3' />
           </svg>

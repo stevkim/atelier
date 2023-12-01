@@ -4,7 +4,7 @@ import AnswerEntry from './AnswerEntry.jsx';
 const AnswerList = ({ currAnswerList, totalAnswers, handleLoadMoreAnswers, handleCollapseAnswers, isAnswerExpanded }) => (
   <div className={`answer-list-container${isAnswerExpanded ? '-expanded' : ''}`}>
     {
-      currAnswerList.map((answer) => <AnswerEntry key={answer.answer_id} answer={answer} />)
+      currAnswerList.map((answer) => <AnswerEntry key={answer.id} answer={answer} />)
     }
     {
       totalAnswers > 2 && currAnswerList.length < totalAnswers

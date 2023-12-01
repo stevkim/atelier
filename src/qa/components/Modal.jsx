@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Modal({ children }) {
-  return (
-    <div className='qa-modal-background'>
-      {children}
-    </div>
-  );
-}
+const Modal = ({ children }) => (
+  <div className='qa-modal-background'>
+    {children}
+  </div>
+);
+
+export default Modal;

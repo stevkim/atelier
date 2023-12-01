@@ -32,7 +32,11 @@ const AddAnswerForm = ({ questionId, questionBody, productName, setIsModalOpen }
   return (
     <div className='qa-modal-container'>
       <div className='qa-close-modal'>
-        <button type='button' id='close-modal' onClick={() => { setIsModalOpen(false); }}>X</button>
+        <button type='button' onClick={() => { setIsModalOpen(false); }}>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='qa fill' data-testid='close-modal'>
+            <path fillRule='evenodd' d='M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z' clipRule='evenodd' />
+          </svg>
+        </button>
       </div>
       <div className='qa-form-heading'>
         <h2>SUBMIT YOUR ANSWER</h2>
@@ -41,68 +45,50 @@ const AddAnswerForm = ({ questionId, questionBody, productName, setIsModalOpen }
         </h4>
       </div>
       <div className='qa-form-container'>
-        <form title='answerForm' onSubmit={handleAddAnswer}>
-          <div className='qa-form-row'>
-            <label
-              htmlFor='nickname-input'
-              className='qa-input-label'
-            >
-              Nickname
-              <span className='qa-required-input'> *</span>
-            </label>
-            <input
-              id='nickname-input'
-              className='qa-input'
-              name='nickname-input'
-              type='text'
-              placeholder='Example: jack543!'
-              maxLength={60}
-              onChange={(e) => { updateFormDataValue(e, 'name'); }}
-            />
-            <p>For privacy reasons, do not use your full name or email address</p>
+        <form data-testid='answer-form' onSubmit={handleAddAnswer}>
+          <p className='qa-form-label'>
+            Nickname
+            <span className='qa-required-input'>*</span>
+          </p>
+          <input
+            className='qa-input'
+            type='text'
+            placeholder='Example: jack543!'
+            maxLength={60}
+            onChange={(e) => { updateFormDataValue(e, 'name'); }}
+          />
+          <p className='qa-label-description'>For privacy reasons, do not use your full name or email address</p>
+          <p className='qa-form-label'>
+            Email
+            <span className='qa-required-input'>*</span>
+          </p>
+          <input
+            className='qa-input'
+            type='text'
+            placeholder='Example: jack@email.com'
+            maxLength={60}
+            onChange={(e) => { updateFormDataValue(e, 'email'); }}
+          />
+          <p className='qa-label-description'>For authentication reasons, you will not be emailed</p>
+          <p className='qa-form-label' data-testid='qa-answer-label'>
+            Answer
+            <span className='qa-required-input'>*</span>
+          </p>
+          <textarea
+            className='qa-textbox'
+            type='text'
+            maxLength={1000}
+            onChange={(e) => { updateFormDataValue(e, 'body'); }}
+          />
+          <div className='qa-submit-form'>
+            <button type='submit'>
+              SUBMIT
+            </button>
           </div>
-          <div className='qa-form-row'>
-            <label
-              htmlFor='email-input'
-              className='qa-input-label'
-            >
-              Email
-              <span className='qa-required-input'> *</span>
-            </label>
-            <input
-              id='email-input'
-              className='qa-input'
-              name='email-input'
-              type='text'
-              placeholder='Example: jack@email.com'
-              maxLength={60}
-              onChange={(e) => { updateFormDataValue(e, 'email'); }}
-            />
-            <p>For authentication reasons, you will not be emailed</p>
-          </div>
-          <div className='qa-form-row'>
-            <label
-              htmlFor='answer-input'
-              className='qa-input-label'
-            >
-              Answer
-              <span className='qa-required-input'> *</span>
-            </label>
-            <textarea
-              id='answer-input'
-              className='qa-input'
-              name='answer-input'
-              type='text'
-              maxLength={1000}
-              onChange={(e) => { updateFormDataValue(e, 'body'); }}
-            />
-          </div>
-          <button type='submit' id='submit-answer'>
-            Submit
-          </button>
           {
             formErrors.length > 0 && (
-              <div className='qa-form-error-messages'>
+              <div className='qa-form-error'>
+                You must enter the following:
                 <ul>
                   {formErrors.map((message) => (<li key={message}>{message}</li>))}
                 </ul>

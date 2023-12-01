@@ -22,9 +22,9 @@ const Navbar = () => {
 
   return (
     <div className='nav'>
-      <div className='nav-logo'>
+      <a className='nav-logo' href='/'>
         SithQL
-      </div>
+      </a>
       <div className='nav-items'>
         {
           navs.map((nav) => <a key={nav.id} href={nav.id}>{nav.name}</a>)

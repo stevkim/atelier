@@ -6,7 +6,7 @@ const ProductBreakdownList = ({ propertyList }) => (
     {
         propertyList.map((property) => (
           <div key={property.id} className='product-rating-wrapper'>
-            <h4 className='product-rating-title'>{property.characteristic}</h4>
+            <h5 className='product-rating-title'>{property.characteristic}</h5>
             <ProductBar rating={Math.round((JSON.parse(property.rating) / 5) * 100)} />
             {property.characteristic === 'Comfort' || property.characteristic === 'Quality'
               ? (

@@ -16,31 +16,44 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
 
   const handleMoreQuestions = () => {
     if (totalQuestions !== displayCount) {
-      setDisplayCount(displayCount + 2);
+      setDisplayCount((prevCount) => prevCount + 2);
+      setCurrQuestionList((prevList) => questionList.slice(0, prevList.length + 2));
     }
     setIsQuestionExpanded(true);
   };
 
   const handleInputChange = (e) => {
     e.target.value.length >= 3
-      ? setTerm(e.target.value)
+      ? setTerm(e.target.value.toLowerCase())
       : setTerm('');
   };
 
   useEffect(() => {
     getListOfQuestions(productId)
       .then((response) => {
-        setTotalQuestions(response.data.results.length);
-        setQuestionList(response.data.results);
-        setCurrQuestionList(response.data.results.slice(0, displayCount));
+        let filteredList;
+
+        if (term) {
+          filteredList = response.data.results.filter((question) => question.question_body.toLowerCase().includes(term));
+        } else {
+          filteredList = response.data.results;
+        }
+
+        setTotalQuestions(filteredList.length);
+        setQuestionList(filteredList);
+        setCurrQuestionList(filteredList.slice(0, displayCount));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [productId, displayCount]);
+  }, [productId, term]);
+
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'scroll';
+  }, [isModalOpen]);
 
   return (
-    <div className='qa-container'>
+    <div id='questions-answers' className='qa-container'>
       <h2>QUESTIONS AND ANSWERS</h2>
       <div className='qa-search-container'>
         <input
@@ -49,19 +62,21 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
           placeholder='Have a question? Search for answers...'
           onChange={handleInputChange}
         />
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='search-icon'>
+          <path strokeLinecap='round' strokeLinejoin='round' d='M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z' />
+        </svg>
       </div>
       <QuestionList
         currQuestionList={currQuestionList}
         isQuestionExpanded={isQuestionExpanded}
-        term={term}
         productName={productName}
       />
       <div className='qa-button-container'>
         {
           totalQuestions > 2 && currQuestionList.length < totalQuestions
-          && <button type='button' id='more-questions' onClick={handleMoreQuestions}>More Questions</button>
+          && <button type='button' className='more-questions' onClick={handleMoreQuestions}>MORE QUESTIONS</button>
         }
-        <button type='button' id='add-question' onClick={() => { setIsModalOpen(true); }}>Add A Question</button>
+        <button type='button' className='add-question' onClick={() => { setIsModalOpen(true); }}>ADD A QUESTION</button>
       </div>
       {isModalOpen
         && (

@@ -1,9 +1,9 @@
 const path = require('path');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.join(__dirname, 'src/index.jsx'),
   output: {
     path: path.join(__dirname, '/dist'),
@@ -25,7 +25,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new NodePolyfillPlugin(),
-    new ESLintPlugin()
-  ]
+    new ESLintPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    })
+  ],
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  }
 }

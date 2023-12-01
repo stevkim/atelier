@@ -5,7 +5,6 @@ import { getReviewList } from './lib/fetchFunctions.js';
 import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
-import { getTotalReviewCount } from './lib/utilityFunctions.js';
 
 const RatingsReviews = ({ id, productName, metaData }) => {
   const [reviewList, setReviewList] = useState([]);
@@ -15,7 +14,7 @@ const RatingsReviews = ({ id, productName, metaData }) => {
   const [disable, setDisable] = useState(false);
   const activeListRef = useRef(null);
 
-  const totalReviews = useMemo(() => getTotalReviewCount(metaData.recommended), [metaData]);
+  const backToTop = () => activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
 
   const activeList = useMemo(() => {
     if (filter.stars === 0) return reviewList.slice(0, filter.currentLength);
@@ -23,39 +22,32 @@ const RatingsReviews = ({ id, productName, metaData }) => {
       .slice(0, filter.currentLength);
   }, [reviewList, filter]);
 
-  const handleStarFilter = useCallback((number) => {
+  const handleStarFilter = (number) => {
+    setDisable(false);
     if (number === filter.stars) {
       setFilter({ ...filter, stars: 0 });
     } else {
       setFilter({ ...filter, stars: number });
     }
-    activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [filter]);
-
-  const handleSort = useCallback((value) => {
-    setPagination({ ...pagination, sort: value });
-  }, [pagination]);
-
-  const handleListIncrement = () => {
-    setFilter({ ...filter, currentLength: filter.currentLength + 10 });
+    backToTop();
   };
 
-  useEffect(() => {
+  const handleSort = useCallback((value) => {
     setDisable(false);
-    getReviewList(id, { page: 1, sort: pagination.sort })
+    getReviewList(id, { page: 1, sort: value })
       .then(({ data }) => {
         setReviewList(data.results);
         setFilter({ ...filter, currentLength: 10 });
-        setPagination({ ...pagination, page: 1 });
+        setPagination({ page: 1, sort: value });
       })
       .finally(() => {
-        activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        backToTop();
       });
-  }, [id, pagination.sort]);
+  }, [id, filter]);
 
-  useEffect(() => {
+  const handleListIncrement = () => {
     if (reviewList.length === 0 || disable) return;
-    if (filter.currentLength >= reviewList.length) {
+    if (filter.currentLength + 10 >= reviewList.length) {
       getReviewList(id, pagination, true)
         .then(({ data }) => {
           if (reviewList.length === [...reviewList, ...data.results].length) {
@@ -63,10 +55,25 @@ const RatingsReviews = ({ id, productName, metaData }) => {
           }
           setReviewList([...reviewList, ...data.results]);
           setPagination({ ...pagination, page: pagination.page + 1 });
-          return null;
+        })
+        .catch((err) => {
+          console.log(err);
+          return setDisable(true);
         });
     }
-  }, [filter.currentLength, reviewList]);
+    setFilter({ ...filter, currentLength: filter.currentLength + 10 });
+  };
+
+  useEffect(() => {
+    setDisable(false);
+    getReviewList(id, { page: 1, sort: 'relevant' })
+      .then(({ data }) => {
+        setReviewList(data.results);
+      })
+      .finally(() => {
+        backToTop();
+      });
+  }, [id]);
 
   useEffect(() => {
     document.body.style.overflow = modal ? 'hidden' : 'scroll';
@@ -76,15 +83,14 @@ const RatingsReviews = ({ id, productName, metaData }) => {
     <section id='ratings-reviews' className='ratings-reviews-wrapper'>
       <h1 className='ratings-reviews-title'>Ratings & Reviews</h1>
       <div className='ratings-reviews-container'>
-        <RatingBreakdown data={metaData} total={totalReviews} handleStarFilter={handleStarFilter} />
+        <RatingBreakdown data={metaData} handleStarFilter={handleStarFilter} />
         <ReviewsList
           reviewList={activeList}
           handleListIncrement={handleListIncrement}
           setModal={setModal}
-          totalReviews={totalReviews}
           setSort={handleSort}
-          ref={activeListRef}
           disable={disable}
+          ref={activeListRef}
         />
         {modal
             && (

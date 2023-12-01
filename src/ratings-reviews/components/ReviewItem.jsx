@@ -51,7 +51,7 @@ const ReviewItem = ({ review }) => {
       <div className='review-header'>
         <StarRating rating={rating} />
         <div style={{ marginLeft: 'auto' }}>
-          {email && <span>&#10003;</span>}
+          {email && <>&#10003;</>}
           <span style={{ fontWeight: 'bold' }}>{reviewer_name}</span>
           {', '}
           {formattedDate}
@@ -60,13 +60,13 @@ const ReviewItem = ({ review }) => {
       <div className='review-summary'>{summary}</div>
       <div className='review-body'>
         {show
-          ? <div>{body}</div>
+          ? body
           : (
-            <div>
+            <>
               {body.slice(0, 250)}
               ...
               <button type='button' className='show-more-button' onClick={() => setShow(true)}>Show more</button>
-            </div>
+            </>
           )}
       </div>
       <ReviewItemImages photos={photos} />

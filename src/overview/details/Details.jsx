@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { v4 as key } from 'uuid';
 import './styles.css';
 
@@ -25,4 +25,4 @@ const Details = ({ productInfo }) => (
   </div>
 );
 
-export default Details;
+export default memo(Details);

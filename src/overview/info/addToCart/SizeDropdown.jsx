@@ -9,18 +9,19 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => (
     id='overview-size-dropdown'
     onChange={(e) => {
       updateSizeSelected(e.target.value);
+      console.log(e.target.value);
       document.getElementById('overview-size-dropdown').style.color = 'black';
     }}
   >
     <option hidden value={0}>-Size-</option>
     {skus.map((sku, index) => {
-      if (sku.quantity === 0) {
+      if (sku[1].quantity === 0) {
         return (
-          <option key={key()} disabled value={index}>{`${sku.size} Out of Stock!`}</option>
+          <option key={key()} disabled value={index}>{`${sku[1].size} Out of Stock!`}</option>
         );
       }
       return (
-        <option key={key()} value={index}>{sku.size}</option>
+        <option key={key()} value={index}>{sku[1].size}</option>
       );
     })}
 

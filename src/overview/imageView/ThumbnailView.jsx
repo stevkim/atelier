@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as key } from 'uuid';
 import Thumbnail from './Thumbnail.jsx';
+import rotatingSlice from '../helper-funcs/rotatingSlice.js';
 
 const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => {
   const [topThumbnailIndex, setTopThumbnailIndex] = useState(0);
@@ -15,24 +16,6 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
     }
   }, [thumbnail]);
 
-  /*
-    const changeThumbnailIndex = () => {
-      if (topThumbnailIndex + 1 === thumbnails.length) {
-        setTopThumbnailIndex(0);
-      } else {
-        setTopThumbnailIndex(topThumbnailIndex + 1);
-      }
-    };
-  */
-
-  const rotatingSlice = (arr) => {
-    const slice = arr.slice(topThumbnailIndex, Math.min(topThumbnailIndex + sizeOfThumbnailView, thumbnails.length));
-    for (let i = 0; slice.length < Math.min(sizeOfThumbnailView, arr.length); i++) {
-      slice.push(arr[i]);
-    }
-    return slice;
-  };
-
   const incrementThumbnail = (increment) => {
     let newThumbnail = (thumbnail + increment) % Object.keys(thumbnails).length;
     if (newThumbnail < 0) {
@@ -44,7 +27,7 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
   return (
     <>
       <div className={`overview-thumbnail-view-${expanded}`}>
-        {rotatingSlice(thumbnails).map((photo, index) => (
+        {rotatingSlice(thumbnails, topThumbnailIndex, sizeOfThumbnailView).map((photo, index) => (
           <Thumbnail
             key={key()}
             url={photo.thumbnail_url}
@@ -54,18 +37,39 @@ const ThumbnailView = ({ thumbnails, thumbnail, expanded, updateThumbnail }) => 
             index={(index + topThumbnailIndex) % thumbnails.length}
           />
         ))}
-        <button
-          className='overview-thumbnail-button'
-          onClick={() => { incrementThumbnail(+1); }}
-          type='button'
-        >
-          {' '}
-          DOWN
-          {' '}
-        </button>
+        {!expanded ? (
+
+          <button
+            className='overview-thumbnail-button'
+            onClick={() => { incrementThumbnail(+1); }}
+            type='button'
+            aria-label='next-thumbnail'
+          >
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor'>
+              <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3' />
+            </svg>
+
+          </button>
+        )
+          : ''}
       </div>
-      {thumbnails.length > 0 ? <button className='overview-left-button' onClick={() => { incrementThumbnail(-1); }} type='button'>{'<-'}</button> : ''}
-      {thumbnails.length > 0 ? <button className='overview-right-button' onClick={() => { incrementThumbnail(+1); }} type='button'>{'->'}</button> : ''}
+      {thumbnails.length > 0
+        ? (
+          <button className='overview-left-button' aria-label='style-left' onClick={() => { incrementThumbnail(-1); }} type='button'>
+
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
+              <path strokeLinecap='round' strokeLinejoin='round' d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18' />
+            </svg>
+
+          </button>
+        ) : ''}
+      {thumbnails.length > 0 ? (
+        <button className='overview-right-button' aria-label='style-right' onClick={() => { incrementThumbnail(+1); }} type='button'>
+          <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
+            <path strokeLinecap='round' strokeLinejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3' />
+          </svg>
+        </button>
+      ) : ''}
     </>
   );
 };

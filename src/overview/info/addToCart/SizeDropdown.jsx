@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { v4 as key } from 'uuid';
 
-const SizeDropdown = ({ skus, updateSizeSelected }) => (
+const SizeDropdown = ({ skus, sizeSelected, updateSizeSelected }) => (
   <select
     name='Size'
-    title='-Size-'
     className='overview-size-dropdown'
     id='overview-size-dropdown'
+    value={sizeSelected[0]}
     onChange={(e) => {
       updateSizeSelected(e.target.value);
-      console.log(e.target.value);
       document.getElementById('overview-size-dropdown').style.color = 'black';
     }}
   >
-    <option hidden value={0}>-Size-</option>
+    <option value={0}>-Size-</option>
     {skus.map((sku, index) => {
       if (sku[1].quantity === 0) {
         return (
@@ -24,8 +23,6 @@ const SizeDropdown = ({ skus, updateSizeSelected }) => (
         <option key={key()} value={index}>{sku[1].size}</option>
       );
     })}
-
   </select>
 );
-
 export default SizeDropdown;

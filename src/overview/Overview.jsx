@@ -33,7 +33,7 @@ const Overview = ({ productId, reviewsMetaData, productInfo }) => {
     <div className='overview' id='overview'>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '2vw', justifyContent: 'center' }}>
         <ImageView photos={selectedStyle?.photos} expanded={inExpandedView} changeView={changeView} />
-        {!inExpandedView ? <Info productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
+        {!inExpandedView ? <Info productId={productId} productInfo={productInfo} reviewsMetaData={reviewsMetaData.ratings} styleInfo={styleInfo} style={style} selectedStyle={selectedStyle} updateStyle={updateStyle} /> : ''}
       </div>
       {!inExpandedView ? <Details productInfo={productInfo} /> : ''}
     </div>

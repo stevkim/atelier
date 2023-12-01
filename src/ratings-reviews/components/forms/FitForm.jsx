@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 const FitForm = ({ setCharacteristic }) => (
   <div onChange={(e) => setCharacteristic('Fit', e.target.value)}>
-    <p>Fit</p>
+    Fit
     <div className='product-input-wrapper'>
       <label htmlFor='fit-1'>
         <input id='fit-1' name='fit' type='radio' value={1} />

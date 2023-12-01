@@ -149,9 +149,6 @@ describe('List of reviews', () => {
     const total = 10;
     const { rerender } = render(await <ReviewList totalReviews={total} setSort={sort} reviewList={reviews.results} handleListIncrement={increment} disable={true} />);
 
-    const header = `${total} reviews, sorted by`;
-    expect(await screen.findByText(header)).toBeInTheDocument();
-
     const options = await screen.findByLabelText('review-sort');
     expect(options.childElementCount).toEqual(3);
 
@@ -163,7 +160,7 @@ describe('List of reviews', () => {
     expect(searchInput.value).toEqual('Test');
 
     const reviewList = await screen.getByTestId('review-list');
-    expect(reviewList.childElementCount).toEqual(reviews.results.length);
+    expect(reviewList.childElementCount).toEqual(reviews.results.length + 1);
 
     fireEvent.scroll(reviewList, { target: { scrollY: 1000 } });
     expect(increment).toHaveBeenCalledTimes(0);

@@ -139,30 +139,14 @@ Run tests with coverage: ```npm run test:coverage```
 <!-- CONTACT -->
 
 ## Contact
-<div align='left'>
-  <h3 align='center'> Nathaniel Wise </h3>
-  <h4 align='center'>
-    <a href="https://www.linkedin.com/in/nathaniel-wise-911048283/">Linkedin</a> |
-    <a href="https://github.com/Gralayer">GitHub</a>
-  </h4>
-  <h3 align='center'> Jose Felix </h3>
-  <h4 align='center'>
-    <a href="https://www.linkedin.com/in/jose-m-felix/">Linkedin</a> |
-    <a href="https://github.com/jose-m-f">GitHub</a>
-  </h4>
-</div>
-<div align='left'>
-  <h3 align='center'> Hazel Kimberly Carcido </h3>
-  <h4 align='center'>
-    <a href="https://www.linkedin.com/in/hazelkcarcido/">Linkedin</a> |
-    <a href="https://github.com/hazelkimberly">GitHub</a>
-  </h4>
-  <h3 align='center'> Steven Kim </h3>
-  <h4 align='center'>
-    <a href="https://www.linkedin.com/in/stevkim/">Linkedin</a> |
-    <a href="https://github.com/stevkim">GitHub</a>
-  </h4>
-</div>
+<h3 align='left'> Nathaniel Wise  <a href="https://www.linkedin.com/in/nathaniel-wise-911048283/">Linkedin</a> | <a href="https://github.com/Gralayer">GitHub</a></h3>
+
+<h3 align='left'> Jose Felix <a href="https://www.linkedin.com/in/jose-m-felix/">Linkedin</a> | <a href="https://github.com/jose-m-f">GitHub</a> </h3>
+
+<h3 align='left'> Hazel Kimberly Carcido <a href="https://www.linkedin.com/in/hazelkcarcido/">Linkedin</a> | <a href="https://github.com/hazelkimberly">GitHub</a></h3>
+
+<h3 align='left'> Steven Kim <a href="https://www.linkedin.com/in/stevkim/">Linkedin</a> | <a href="https://github.com/stevkim">GitHub</a></h3>
+
 
 
 <p align="right"><a href="#readme-top">back to top</a></p>

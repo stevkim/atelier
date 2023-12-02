@@ -8,7 +8,7 @@
   </h3>
   <p align="center">
     <br />
-    <a href="https://github.com/The-Fellowship-of-the-stRing/project-atelier"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Revenge-of-the-SithQL/atelier"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>
@@ -70,10 +70,6 @@
 ![Babel](https://img.shields.io/badge/babel-%23000000.svg?style=for-the-badge&logo=babel)
 ![axios](https://img.shields.io/badge/axios-%23000000.svg?style=for-the-badge&logo=axios)
 ![jest](https://img.shields.io/badge/jest-%23000000.svg?style=for-the-badge&logo=jest)
-
-<p align="right">
-  (<a href="#readme-top">back to top</a>)
-</p>
 
 ## Getting Started
 
@@ -143,29 +139,39 @@ Run tests with coverage: ```npm run test:coverage```
 <!-- CONTACT -->
 
 ## Contact
+<table>
+  <tr>
+    <td>
+      <h3 align='center'> Nathaniel Wise </h3>
+      <h4 align='center'>
+        <a href="https://www.linkedin.com/in/nathaniel-wise-911048283/">Linkedin</a> |
+        <a href="https://github.com/Gralayer">GitHub</a>
+      </h4>
+    </td>
+    <td>
+      <h3 align='center'> Jose Felix </h3>
+      <h4 align='center'>
+        <a href="https://www.linkedin.com/in/jose-m-felix/">Linkedin</a> |
+        <a href="https://github.com/jose-m-f">GitHub</a>
+      </h4>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3 align='center'> Hazel Kimberly Carcido </h3>
+      <h4 align='center'>
+        <a href="https://www.linkedin.com/in/hazelkcarcido/">Linkedin</a> |
+        <a href="https://github.com/hazelkimberly">GitHub</a>
+      </h4>
+    </td>
+    <td>
+      <h3 align='center'> Steven Kim </h3>
+      <h4 align='center'>
+        <a href="https://www.linkedin.com/in/stevkim/">Linkedin</a> |
+        <a href="https://github.com/stevkim">GitHub</a>
+      </h4>
+    </td>
+  </tr>
+</table>
 
-<h3 align='center'> Nathaniel Wise </h3>
-<h4 align='center'>
-  <a href="https://www.linkedin.com/in/nathaniel-wise-911048283/">Linkedin</a> |
-  <a href="https://github.com/Gralayer">GitHub</a>
-</h4>
-
-<h3 align='center'> Jose Felix </h3>
-<h4 align='center'>
-  <a href="https://www.linkedin.com/in/jose-m-felix/">Linkedin</a> |
-  <a href="https://github.com/jose-m-f">GitHub</a>
-</h4>
-
-<h3 align='center'> Hazel Kimberly Carcido </h3>
-<h4 align='center'>
-  <a href="https://www.linkedin.com/in/hazelkcarcido/">Linkedin</a> |
-  <a href="https://github.com/hazelkimberly">GitHub</a>
-</h4>
-
-<h3 align='center'> Steven Kim </h3>
-<h4 align='center'>
-  <a href="https://www.linkedin.com/in/stevkim/">Linkedin</a> |
-  <a href="https://github.com/stevkim">GitHub</a>
-</h4>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">back to top</a></p>

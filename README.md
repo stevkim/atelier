@@ -3,9 +3,9 @@
 <br />
 <div align="center">
   <a href="https://github.com/Revenge-of-the-SithQL/atelier"></a>
-  <h3 align="center">
+  <h1 align="center">
     Project Atelier
-  </h3>
+  </h1>
   <p align="center">
     <br />
     <a href="https://github.com/Revenge-of-the-SithQL/atelier"><strong>Explore the docs »</strong></a>
@@ -25,128 +25,65 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li>
-          <a href="#prerequisites">Prerequisites</a>
-        </li>
-        <li>
-          <a href="#installation">Installation</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#usage">Usage</a>
+      <a href="#project-overview">Project Overview</a>
     </li>
     <li>
       <a href="#roadmap">Roadmap</a>
     </li>
-    <li>
-      <a href="#optimizations">Optimizations</a>
-    </li>
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
   </ol>
 </details>
+<br />
+
+<img src='https://github.com/stevkim/atelier/blob/main/src/gifs/gif2.gif' />
+<img src='https://github.com/stevkim/atelier/blob/main/src/gifs/gif3.gif' />
 
 ## About
-
-<div align="center">
-  <img src="./client/src/assets/demo1.gif" alt="project landing page image" width="700px" />
-<br />
-  <img src="./client/src/assets/demo2.gif" alt="project landing page image" width="700px" />
-</div>
 
 <br />
 <p>
   Atelier is a desktop and mobile friendly app utilizing React and Express that enables users to browse through a collection of over 15 million products, add them to their outfits, read through a robust Q&A section, peruse the products ratings and reviews, and add products to their cart.
 </p>
 
+This repo is meant to highlight my personal part of the project. The main project repo can be found <a href='https://github.com/Revenge-of-the-SithQL/atelier'>here.</a>
+<p>
+  The project was then connected to my own backend, which can be found <a href='https://github.com/hr-titan/sk-reviews'>here.</a>
+</p>
+
+
+### My responsibilities were:
+
+- [x] Rating and reviews feature
+- [x] Setup of the environment - Webpack config, Babel
+- [x] Deployment on AWS EC2
+
 ### Built With
-![node.js](https://img.shields.io/badge/node-%23000000.svg?style=for-the-badge&logo=node.js)
-![React](https://img.shields.io/badge/React-%23000000.svg?style=for-the-badge&logo=react&logoColor)
+![node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![Webpack](https://img.shields.io/badge/webpack-%23000000.svg?style=for-the-badge&logo=webpack)
 ![Babel](https://img.shields.io/badge/babel-%23000000.svg?style=for-the-badge&logo=babel)
 ![axios](https://img.shields.io/badge/axios-%23000000.svg?style=for-the-badge&logo=axios)
-![jest](https://img.shields.io/badge/jest-%23000000.svg?style=for-the-badge&logo=jest)
 
-## Getting Started
-
+## Project Overview
+<a id='project-overview'></a>
+<strong>Goal: </strong> Create a seamless UI for the product & reviews section of an e-commerce landing page.
 <p>
-    Instructions to setup Project Atelier on your local machine below.
+  The challenges for this project revolved around creating reusable components to keep code quantity low while maintaining high code quality. Some of the reused components included - star ratings (to visualize overall ratings), bar ratings (to visualize bar ratings), characteristic forms, etc.
 </p>
-
-### Prerequisites
-
-![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
-
-```sh
-npm install npm@latest -g 
-```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Revenge-of-the-SithQL/atelier
-   ```
-1. Install NPM packages
-   ```sh
-   npm install
-   ```
-1. Enter your port, API URL, and Github Token in `.env` file
-   ```sh
-    GIT_API_URL = (your database URI)
-    GIT_TOKEN = (your github token)
-   ```
-1. Run build command.
-   ```sh
-   npm run build
-   ```
-1. Run in production environment
-   ```sh
-   npm run start
-   ```
-
-## Usage
-
-Atelier is run on the designated port and opens a webpage as soon as the npm start command is utilized. It can also be accessed utilizing localhost:3000 directly in the browser.
-
-Run tests: ```npm run test ```
-
-Run tests with coverage: ```npm run test:coverage```
-
+<p>
+  Another challenge was to create an <strong>infinite scrolling feature</strong>, which i created and optimized using a custom throttle hook. The throttle hook reduced the 'infinite' nature of this feature, reducing total calculations by 98%.
+</p>
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
 <!-- ROADMAP -->
 
-## Roadmap
-
-- [x] Strategize each person's roles and widgets
-- [x] Setup the environment
-- [x] Create respective widgets
+## Roadmap to Highlight feature
+<a id='roadmap'><a/>
+- [x] Fork repo from <a href='https://github.com/Revenge-of-the-SithQL/atelier'>project repo </a>
+- [x] Reinstall dependencies/remove code that isn't mine
+- [x] Refactor utility functions to connect to my own <a href='https://github.com/hr-titan/sk-reviews'>server</a>
 - [x] Refactor and optimize code 
-- [x] Deploy on AWS
-
-## Optimizations
-
- 1. Consolidate common API calls into shared components
- 2. Refactor to memoize variables to minimize unecessary re-renders
- 3. Optimize by code-splitting and tree-shaking to bring lighthouse scores up
-
-<!-- CONTACT -->
-
-## Contact
-<h3 align='left'> Nathaniel Wise  <a href="https://www.linkedin.com/in/nathaniel-wise-911048283/">Linkedin</a> | <a href="https://github.com/Gralayer">GitHub</a></h3>
-
-<h3 align='left'> Jose Felix <a href="https://www.linkedin.com/in/jose-m-felix/">Linkedin</a> | <a href="https://github.com/jose-m-f">GitHub</a> </h3>
-
-<h3 align='left'> Hazel Kimberly Carcido <a href="https://www.linkedin.com/in/hazelkcarcido/">Linkedin</a> | <a href="https://github.com/hazelkimberly">GitHub</a></h3>
-
-<h3 align='left'> Steven Kim <a href="https://www.linkedin.com/in/stevkim/">Linkedin</a> | <a href="https://github.com/stevkim">GitHub</a></h3>
-
 
 
 <p align="right"><a href="#readme-top">back to top</a></p>

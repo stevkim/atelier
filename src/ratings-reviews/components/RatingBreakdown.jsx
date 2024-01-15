@@ -5,9 +5,9 @@ import StarRating from '../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, handleStarFilter }) => {
-  const totalReviews = useMemo(() => getTotalReviewCount(data.recommended), [data]);
-  const averageRating = useMemo(() => getAverageRating(data.ratings, totalReviews), [data, totalReviews]);
-  const averageRecommended = useMemo(() => getAverageRecommended(data.recommended, totalReviews), [data, totalReviews]);
+  const totalReviews = useMemo(() => getTotalReviewCount(data.recommend), [data]);
+  const averageRating = useMemo(() => getAverageRating(data.rating, totalReviews), [data, totalReviews]);
+  const averageRecommended = useMemo(() => getAverageRecommended(data.recommend, totalReviews), [data, totalReviews]);
   const propertyList = useMemo(() => convertCharacteristics(data.characteristics), [data]);
 
   return (
@@ -20,7 +20,7 @@ const RatingBreakdown = ({ data, handleStarFilter }) => {
         {averageRecommended}
         % of reviews recommend this product
       </p>
-      <RatingList ratings={data.ratings} total={totalReviews} handleStarFilter={handleStarFilter} />
+      <RatingList ratings={data.rating} total={totalReviews} handleStarFilter={handleStarFilter} />
       <ProductBreakdownList propertyList={propertyList} />
     </section>
   );

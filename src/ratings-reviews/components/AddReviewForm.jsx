@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import SizeForm from './forms/SizeForm.jsx';
-import WidthForm from './forms/WidthForm.jsx';
-import ComfortForm from './forms/ComfortForm.jsx';
-import QualityForm from './forms/QualityForm.jsx';
-import LengthForm from './forms/LengthForm.jsx';
-import FitForm from './forms/FitForm.jsx';
+import React, { useState, useMemo } from 'react';
+import CharacteristicForm from './forms/CharacteristicForm.jsx';
 import AddStarRating from '../utils/AddStarRating.jsx';
 import { convertFilesToDataURL, postRequirements } from '../lib/formUtilityFunctions.js';
 import { postReview } from '../lib/fetchFunctions.js';
@@ -12,8 +7,9 @@ import errorMessages from '../lib/errorMessages.js';
 import AddReviewHeader from './AddReviewHeader.jsx';
 import AddReviewUserImages from './AddReviewUserImages.jsx';
 import AddReviewErrorMessages from './AddReviewErrorMessages.jsx';
+import { convertCharacteristics } from '../lib/utilityFunctions.js';
 
-const AddReviewForm = ({ data, setModal, productName }) => {
+const AddReviewForm = ({ data, setModal }) => {
   const { product_id, characteristics } = data;
   const [userInput, setUserInput] = useState({
     product_id: JSON.parse(product_id),
@@ -29,6 +25,8 @@ const AddReviewForm = ({ data, setModal, productName }) => {
   const [errMessages, setErrMessages] = useState([]);
   const [error, setError] = useState(false);
 
+  const relevantCharacteristics = useMemo(() => convertCharacteristics(characteristics), [characteristics]);
+
   const convertImage = async (e) => {
     try {
       const result = await convertFilesToDataURL(e.target.files);
@@ -41,7 +39,7 @@ const AddReviewForm = ({ data, setModal, productName }) => {
   };
 
   const setCharacteristic = (input, value) => {
-    setUserInput({ ...userInput, characteristics: { ...userInput.characteristics, [characteristics[input].id]: parseInt(value, 10) } });
+    setUserInput({ ...userInput, characteristics: { ...userInput.characteristics, [input]: parseInt(value, 10) } });
   };
 
   const setOverallRating = (value) => {
@@ -82,7 +80,7 @@ const AddReviewForm = ({ data, setModal, productName }) => {
   return (
     <div className='add-review-wrapper'>
       <div className='add-review-container'>
-        <AddReviewHeader setModal={setModal} productName={productName} />
+        <AddReviewHeader setModal={setModal} />
         <form
           className='add-review-form'
           onSubmit={(e) => handleSubmit(e)}
@@ -119,7 +117,7 @@ const AddReviewForm = ({ data, setModal, productName }) => {
             className='input-wrapper-row'
             onChange={(e) => setUserInput({ ...userInput, recommend: JSON.parse(e.target.value) })}
           >
-            <p style={{ marginRight: '.5em' }}>Would you recommed this product?</p>
+            <p style={{ marginRight: '.5em' }}>Would you recommend this product?</p>
             <label htmlFor='yes-recommend'>
               Yes
               <input id='yes-recommend' name='recommend' type='radio' value='true' />
@@ -154,12 +152,15 @@ const AddReviewForm = ({ data, setModal, productName }) => {
               : 'Minimum reached'}
           </div>
 
-          {characteristics.Size && <SizeForm setCharacteristic={setCharacteristic} />}
-          {characteristics.Width && <WidthForm setCharacteristic={setCharacteristic} />}
-          {characteristics.Comfort && <ComfortForm setCharacteristic={setCharacteristic} />}
-          {characteristics.Quality && <QualityForm setCharacteristic={setCharacteristic} />}
-          {characteristics.Length && <LengthForm setCharacteristic={setCharacteristic} />}
-          {characteristics.Fit && <FitForm setCharacteristic={setCharacteristic} />}
+          {
+            relevantCharacteristics.map((entry) => (
+              <CharacteristicForm
+                key={entry.characteristic}
+                setCharacteristic={setCharacteristic}
+                type={entry.characteristic}
+              />
+            ))
+          }
 
           <p>Add Images (optional):</p>
           <input

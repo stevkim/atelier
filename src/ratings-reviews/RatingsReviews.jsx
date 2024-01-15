@@ -6,7 +6,7 @@ import ModalOverlay from './utils/ModalOverlay.jsx';
 import AddReviewForm from './components/AddReviewForm.jsx';
 import RatingBreakdown from './components/RatingBreakdown.jsx';
 
-const RatingsReviews = ({ id, productName, metaData }) => {
+const RatingsReviews = ({ id, metaData }) => {
   const [reviewList, setReviewList] = useState([]);
   const [pagination, setPagination] = useState({ page: 1, sort: 'relevant' });
   const [filter, setFilter] = useState({ currentLength: 10, stars: 0 });
@@ -36,7 +36,7 @@ const RatingsReviews = ({ id, productName, metaData }) => {
     setDisable(false);
     getReviewList(id, { page: 1, sort: value })
       .then(({ data }) => {
-        setReviewList(data.results);
+        setReviewList(data);
         setFilter({ ...filter, currentLength: 10 });
         setPagination({ page: 1, sort: value });
       })
@@ -50,10 +50,10 @@ const RatingsReviews = ({ id, productName, metaData }) => {
     if (filter.currentLength + 10 >= reviewList.length) {
       getReviewList(id, pagination, true)
         .then(({ data }) => {
-          if (reviewList.length === [...reviewList, ...data.results].length) {
+          if (reviewList.length === [...reviewList, ...data].length) {
             return setDisable(true);
           }
-          setReviewList([...reviewList, ...data.results]);
+          setReviewList([...reviewList, ...data]);
           setPagination({ ...pagination, page: pagination.page + 1 });
         })
         .catch((err) => {
@@ -65,10 +65,11 @@ const RatingsReviews = ({ id, productName, metaData }) => {
   };
 
   useEffect(() => {
+    if (!id) return;
     setDisable(false);
     getReviewList(id, { page: 1, sort: 'relevant' })
       .then(({ data }) => {
-        setReviewList(data.results);
+        setReviewList(data);
       })
       .finally(() => {
         backToTop();
@@ -95,7 +96,7 @@ const RatingsReviews = ({ id, productName, metaData }) => {
         {modal
             && (
             <ModalOverlay>
-              <AddReviewForm data={metaData} setModal={setModal} productName={productName} />
+              <AddReviewForm data={metaData} setModal={setModal} />
             </ModalOverlay>
             )}
       </div>

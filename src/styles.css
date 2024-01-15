@@ -10,6 +10,10 @@
   --inactive-bar-color: rgb(224, 221, 219);
 }
 
+* {
+  font-family: var(--text-font);
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -19,13 +23,8 @@ html, body {
   justify-content: center;
 }
 
-* {
-  font-family: var(--text-font);
-}
 
 body {
-  margin: 0;
-  padding: 0;
   max-width: 1920px;
 }
 
@@ -74,11 +73,4 @@ button {
 
 .nav-items a:hover {
   color: gray;
-}
-
-.share-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5em;
 }

@@ -11,11 +11,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 const URL = process.env.API_URL;
-const options = { headers: { Authorization: process.env.GIT_TOKEN } };
 
 app.route('/*')
   .get((req, res) => {
-    axios.get(`${URL}${req.url}`, options)
+    axios.get(`${URL}${req.url}`)
       .then((results) => {
         res.status(200).json(results.data);
       })
@@ -24,7 +23,7 @@ app.route('/*')
       });
   })
   .post((req, res) => {
-    axios.post(`${URL}${req.url}`, req.body, options)
+    axios.post(`${URL}${req.url}`, req.body)
       .then(() => {
         res.status(201).json({ message: 'Successfully posted' });
       })
@@ -33,7 +32,7 @@ app.route('/*')
       });
   })
   .put((req, res) => {
-    axios.put(`${URL}${req.url}`, null, options)
+    axios.put(`${URL}${req.url}`, null)
       .then(() => {
         res.status(200).json({ message: 'Successfully PUT request' });
       })

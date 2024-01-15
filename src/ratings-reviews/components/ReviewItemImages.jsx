@@ -5,9 +5,9 @@ const ReviewItemImages = ({ photos }) => (
     {
       photos.map((photo) => (
         <img
-          key={photo.id}
-          aria-label={photo.id}
-          src={photo.url}
+          key={photo}
+          aria-label={photo}
+          src={photo}
           alt='Reviewer upload'
           height='165'
           width='165'

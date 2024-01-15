@@ -1,9 +1,0 @@
-.overview {
-  margin-top: 2vh;
-  position: relative;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  max-width: 1920px;
-}

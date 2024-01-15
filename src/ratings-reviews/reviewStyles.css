@@ -19,6 +19,7 @@
 .ratings-reviews-container  {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 2em;
   padding: 1em;
   position: relative;
@@ -47,7 +48,7 @@
 }
 
 .review-list-container {
-  width: 70vw;
+  width: 100%;
   max-width: 1400px;
 }
 
@@ -332,8 +333,9 @@ input[type='file'] {
 *------------------*/
 
 .breakdown-wrapper {
-  width: 30vw;
+  width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .average-rating-breakdown {
@@ -355,9 +357,9 @@ input[type='file'] {
 }
 
 .rating-list-container {
-  width: 30vw;
+  width: 100%;
   max-width: 600px;
-  margin-bottom: 1em;
+  margin: 0 auto 1em;
 }
 
 .bar-rating {
@@ -427,5 +429,21 @@ input[type='file'] {
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+/*-------------*
+| Break-points |
+*--------------*/
+
+@media only screen and (min-width: 1000px) {
+  .ratings-reviews-container {
+    flex-wrap: nowrap;
+  }
+  .breakdown-wrapper {
+    width: 30%;
+  }
+  .review-list-container {
+    width: 70%;
   }
 }

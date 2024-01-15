@@ -1,7 +1,7 @@
 {
-  "name": "revenge-of-the-sithql",
+  "name": "atelier-ratings-reviews",
   "version": "1.0.0",
-  "description": "",
+  "description": "The ratings and reviews feature of Atelier",
   "main": "index.js",
   "scripts": {
     "build": "npx webpack",
@@ -12,7 +12,7 @@
     "lint": "eslint . --ext js,jsx",
     "lint:fix": "eslint . --ext js,jsx --fix"
   },
-  "author": "Revenge-of-the-SithQL",
+  "author": "stevkim",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.3",

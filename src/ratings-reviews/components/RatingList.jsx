@@ -17,7 +17,7 @@ const RatingList = ({ ratings, handleStarFilter, total }) => {
                 {' '}
                 stars
               </button>
-              <BarRating rating={ratings[Math.round((JSON.parse(rating) / total) * 100)]} />
+              <BarRating rating={Math.round((ratings[rating] / total) * 100)} />
             </div>
           );
         })}

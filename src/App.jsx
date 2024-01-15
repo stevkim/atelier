@@ -4,7 +4,7 @@ import { getReviewMetaData } from './ratings-reviews/lib/fetchFunctions.js';
 import Navbar from './components/navbar/Navbar.jsx';
 
 const App = () => {
-  const [currentProductId, setCurrentProductId] = useState(703480);
+  const [currentProductId, setCurrentProductId] = useState(486887);
   const [metaData, setMetaData] = useState({});
 
   useEffect(() => {

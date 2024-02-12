@@ -3,8 +3,8 @@ import ReviewsList from './components/ReviewsList.jsx';
 import './reviewStyles.css';
 import { getReviewList } from './lib/fetchFunctions.js';
 import ModalOverlay from './utils/ModalOverlay.jsx';
-import AddReviewForm from './components/AddReviewForm.jsx';
-import RatingBreakdown from './components/RatingBreakdown.jsx';
+import AddReviewForm from './components/forms/AddReviewForm.jsx';
+import RatingBreakdown from './components/ratings/RatingBreakdown.jsx';
 
 const RatingsReviews = ({ id, metaData }) => {
   const [reviewList, setReviewList] = useState([]);
@@ -86,6 +86,7 @@ const RatingsReviews = ({ id, metaData }) => {
       <div className='ratings-reviews-container'>
         <RatingBreakdown data={metaData} handleStarFilter={handleStarFilter} />
         <ReviewsList
+          scrollToTop={backToTop}
           reviewList={activeList}
           handleListIncrement={handleListIncrement}
           setModal={setModal}

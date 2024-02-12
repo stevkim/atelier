@@ -1,7 +1,7 @@
 import React, { useMemo, memo } from 'react';
 import RatingList from './RatingList.jsx';
-import { getAverageRating, getAverageRecommended, convertCharacteristics, getTotalReviewCount } from '../lib/utilityFunctions.js';
-import StarRating from '../../components/star-rating/StarRating.jsx';
+import { getAverageRating, getAverageRecommended, convertCharacteristics, getTotalReviewCount } from '../../lib/utilityFunctions.js';
+import StarRating from '../../../components/star-rating/StarRating.jsx';
 import ProductBreakdownList from './ProductBreakdownList.jsx';
 
 const RatingBreakdown = ({ data, handleStarFilter }) => {

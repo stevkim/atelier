@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import CharacteristicForm from './forms/CharacteristicForm.jsx';
-import AddStarRating from '../utils/AddStarRating.jsx';
-import { convertFilesToDataURL, postRequirements } from '../lib/formUtilityFunctions.js';
-import { postReview } from '../lib/fetchFunctions.js';
-import errorMessages from '../lib/errorMessages.js';
+import CharacteristicForm from './CharacteristicForm.jsx';
+import AddStarRating from '../../utils/AddStarRating.jsx';
+import { convertFilesToDataURL, postRequirements } from '../../lib/formUtilityFunctions.js';
+import { postReview } from '../../lib/fetchFunctions.js';
+import errorMessages from '../../lib/errorMessages.js';
 import AddReviewHeader from './AddReviewHeader.jsx';
 import AddReviewUserImages from './AddReviewUserImages.jsx';
 import AddReviewErrorMessages from './AddReviewErrorMessages.jsx';
-import { convertCharacteristics } from '../lib/utilityFunctions.js';
+import { convertCharacteristics } from '../../lib/utilityFunctions.js';
 
 const AddReviewForm = ({ data, setModal }) => {
   const { product_id, characteristics } = data;

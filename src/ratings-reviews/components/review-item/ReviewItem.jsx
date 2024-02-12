@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, memo } from 'react';
-import StarRating from '../../components/star-rating/StarRating.jsx';
-import { updateHelpfulness, reportReview } from '../lib/fetchFunctions.js';
-import { convertDate } from '../lib/utilityFunctions.js';
+import StarRating from '../../../components/star-rating/StarRating.jsx';
+import { updateHelpfulness, reportReview } from '../../lib/fetchFunctions.js';
+import { convertDate } from '../../lib/utilityFunctions.js';
 import ReviewItemResponse from './ReviewItemResponse.jsx';
 import ReviewItemRecommend from './ReviewItemRecommend.jsx';
 import ReviewItemImages from './ReviewItemImages.jsx';

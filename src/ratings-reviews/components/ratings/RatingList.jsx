@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as key } from 'uuid';
-import BarRating from '../utils/BarRating.jsx';
+import BarRating from '../../utils/BarRating.jsx';
 
 const RatingList = ({ ratings, handleStarFilter, total }) => {
   const allRatings = Array.from(Array(5));

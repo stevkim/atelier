@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import ProductBar from '../utils/ProductBar.jsx';
+import ProductBar from '../../utils/ProductBar.jsx';
 
 const ProductBreakdownList = ({ propertyList }) => (
   <div>

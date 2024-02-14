@@ -11,17 +11,23 @@ const RatingsReviews = ({ id, metaData }) => {
   const [pagination, setPagination] = useState({ page: 1, sort: 'relevant' });
   const [filter, setFilter] = useState({ currentLength: 10, stars: 0 });
   const [modal, setModal] = useState(false);
+
+  // disables the increment function, when there are no more reviews to fetch
   const [disable, setDisable] = useState(false);
+  // points to the review list element
   const activeListRef = useRef(null);
 
+  // scroll back to the top of list element
   const backToTop = () => activeListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
 
+  // the active list to display based on filters
   const activeList = useMemo(() => {
     if (filter.stars === 0) return reviewList.slice(0, filter.currentLength);
     return reviewList.filter((review) => review.rating === filter.stars)
       .slice(0, filter.currentLength);
   }, [reviewList, filter]);
 
+  // filter the list based on star rating - scrolls back to top afterwards
   const handleStarFilter = (number) => {
     setDisable(false);
     if (number === filter.stars) {
@@ -32,6 +38,7 @@ const RatingsReviews = ({ id, metaData }) => {
     backToTop();
   };
 
+  // sort function - sets the list based on sort
   const handleSort = useCallback((value) => {
     setDisable(false);
     getReviewList(id, { page: 1, sort: value })
@@ -45,6 +52,7 @@ const RatingsReviews = ({ id, metaData }) => {
       });
   }, [id, filter]);
 
+  // increment the list - fetch next page is needed
   const handleListIncrement = () => {
     if (reviewList.length === 0 || disable) return;
     if (filter.currentLength + 10 >= reviewList.length) {
@@ -64,6 +72,7 @@ const RatingsReviews = ({ id, metaData }) => {
     setFilter({ ...filter, currentLength: filter.currentLength + 10 });
   };
 
+  // fetch review list - refetch when id changes
   useEffect(() => {
     if (!id) return;
     setDisable(false);
@@ -76,6 +85,7 @@ const RatingsReviews = ({ id, metaData }) => {
       });
   }, [id]);
 
+  // disable scroll if modal is open
   useEffect(() => {
     document.body.style.overflow = modal ? 'hidden' : 'scroll';
   }, [modal]);

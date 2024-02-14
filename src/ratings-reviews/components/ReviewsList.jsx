@@ -1,13 +1,16 @@
 import React, { forwardRef, useState, useMemo } from 'react';
 import ReviewItem from './review-item/ReviewItem.jsx';
 import ReviewsHeader from './ReviewsHeader.jsx';
-import useThrottle from '../hooks/useThrottle.jsx';
 import BackToTopButton from './BackToTopButton.jsx';
 import AddReviewButton from './forms/AddReviewButton.jsx';
+import NoMoreReviews from './NoMoreReviews.jsx';
+import useThrottle from '../hooks/useThrottle.jsx';
+import useInfiniteScroll from '../hooks/useInfiniteScroll.jsx';
 
 const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disable, scrollToTop }, ref) => {
-  const [filterValue, setFilterValue] = useState('');
+  // if true, shows the scroll to top button
   const [scrollButton, setScrollButton] = useState(false);
+  const [filterValue, setFilterValue] = useState('');
 
   // Memoized list to automate search filters from user
   const list = useMemo(() => reviewList.filter((review) => {
@@ -15,17 +18,7 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disab
     return review.summary.toLowerCase().includes(filterValue.toLowerCase());
   }), [reviewList, filterValue]);
 
-  // Infinite scroll feature - looks at the current scroll position and increments the list as needed
-  const handleScroll = (e) => {
-    const { scrollTop, clientHeight, scrollHeight } = e.target;
-    scrollTop + clientHeight >= 1200 ? setScrollButton(true) : setScrollButton(false);
-    if (scrollTop + clientHeight > scrollHeight - 300) {
-      handleListIncrement();
-    }
-  };
-  // Throttle for the infinite scroll - throttles to 1 invocation every 200ms
-  const throttledScroll = useThrottle(handleScroll, 200);
-
+  // return jsx of the list of reviews or an error handling fragment
   const listOfReviews = () => {
     if (list.length > 0) {
       return list.map((review) => <ReviewItem key={review.review_id} review={review} />);
@@ -33,17 +26,22 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disab
     return <>Whoops there are no reviews here!</>;
   };
 
+  // Infinite scroll - expects a React ref, setScroll, increment
+  const infiniteScroll = useInfiniteScroll(ref, setScrollButton, handleListIncrement)
+  // throttle useScroll to optimize infinite scroll
+  const throttledInfiniteScroll = useThrottle(infiniteScroll, 200);
+
   return (
     <section className='review-list-container'>
       <ReviewsHeader totalReviews={list.length} setSort={setSort} setFilter={setFilterValue} />
       <div
         className='review-list-wrapper'
-        onScroll={disable ? () => {} : (e) => throttledScroll(e)}
+        onScroll={disable ? null : throttledInfiniteScroll}
         ref={ref}
         data-testid='review-list'
       >
         {listOfReviews()}
-        {disable ? <div style={{ margin: '0 auto', width: 'fit-content', padding: '.2em' }}>No more reviews to load!</div> : null}
+        {disable ? <NoMoreReviews /> : null}
       </div>
       <div className='review-button-wrapper'>
         <AddReviewButton setModal={setModal} />
@@ -53,4 +51,5 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disab
   );
 };
 
+// forwardRef is to pass reference of list to parent, to scroll back to top from other components
 export default forwardRef(ReviewsList);

@@ -13,6 +13,7 @@ const ReviewItem = ({ review }) => {
   } = review;
 
   const [clicked, setClicked] = useState(false);
+  // limit the body length to 250 unless user clicks to see all of it
   const [show, setShow] = useState(true);
   const [helpful, setHelpful] = useState(helpfulness);
   const formattedDate = useMemo(() => convertDate(date), [date]);
@@ -63,8 +64,7 @@ const ReviewItem = ({ review }) => {
           ? body
           : (
             <>
-              {body.slice(0, 250)}
-              ...
+              {body.slice(0, 250) + '...'}
               <button type='button' className='show-more-button' onClick={() => setShow(true)}>Show more</button>
             </>
           )}

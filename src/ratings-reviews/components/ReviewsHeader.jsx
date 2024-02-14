@@ -3,6 +3,7 @@ import useDebounce from '../hooks/useDebounce.jsx';
 
 const ReviewsHeader = ({ totalReviews, setSort, setFilter }) => {
   const [input, setInput] = useState('');
+  // debounces the input by 500ms
   const value = useDebounce(input, 500);
 
   useEffect(() => {

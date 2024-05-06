@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 import React, { useState, useEffect, useMemo, memo } from 'react';
 import StarRating from '../../../components/star-rating/StarRating.jsx';
 import { updateHelpfulness, reportReview } from '../../lib/fetchFunctions.js';

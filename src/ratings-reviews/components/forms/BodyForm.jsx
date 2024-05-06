@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const BodyForm = ({ checkValid, setBody }) => (
   <>
@@ -12,6 +12,6 @@ const BodyForm = ({ checkValid, setBody }) => (
       onBlur={(e) => checkValid(e, 'body')}
     />
   </>
-)
+);
 
 export default BodyForm;

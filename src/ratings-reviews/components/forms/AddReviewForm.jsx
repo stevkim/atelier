@@ -15,7 +15,6 @@ import BodyForm from './BodyForm.jsx';
 import ImageForm from './ImageForm.jsx';
 import { convertCharacteristics } from '../../lib/utilityFunctions.js';
 
-
 const AddReviewForm = ({ data, setModal }) => {
   const { product_id, characteristics } = data;
   const [userInput, setUserInput] = useState({
@@ -35,7 +34,7 @@ const AddReviewForm = ({ data, setModal }) => {
   const relevantCharacteristics = useMemo(() => convertCharacteristics(characteristics), [characteristics]);
 
   const setInput = (type, value) => {
-    setUserInput({...userInput, [type]: value});
+    setUserInput({ ...userInput, [type]: value });
   };
 
   const setCharacteristic = (input, value) => {

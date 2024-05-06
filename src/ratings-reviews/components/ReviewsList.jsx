@@ -27,7 +27,7 @@ const ReviewsList = ({ reviewList, handleListIncrement, setModal, setSort, disab
   };
 
   // Infinite scroll - expects a React ref, setScroll, increment
-  const infiniteScroll = useInfiniteScroll(ref, setScrollButton, handleListIncrement)
+  const infiniteScroll = useInfiniteScroll(ref, setScrollButton, handleListIncrement);
   // throttle useScroll to optimize infinite scroll
   const throttledInfiniteScroll = useThrottle(infiniteScroll, 200);
 

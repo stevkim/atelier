@@ -9,9 +9,9 @@ const useInfiniteScroll = (el, setScroll, increment) => {
     if (scrollTop + clientHeight > scrollHeight - 300) {
       increment();
     }
-  }
+  };
 
   return handleScroll;
-}
+};
 
 export default useInfiniteScroll;

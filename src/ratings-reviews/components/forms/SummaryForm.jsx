@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SummaryForm = ({ checkValid, setSummary }) => (
   <>
@@ -11,7 +11,6 @@ const SummaryForm = ({ checkValid, setSummary }) => (
       onBlur={(e) => checkValid(e, 'summary')}
     />
   </>
-)
+);
 
-
-export default SummaryForm
+export default SummaryForm;
